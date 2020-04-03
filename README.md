@@ -39,15 +39,11 @@ You may want to select one of the items as default.
     ```
 2. The `defaultIndex` property.
     ```javascript
-    ...
     defaultIndex={1}
-    ...
     ```
 3. The `defaultValue` property.
     ```javascript
-    ...
     defaultValue="i2"
-    ...
     ```
 ### Placeholder
 You may want to have a placeholder while the default value is null.
