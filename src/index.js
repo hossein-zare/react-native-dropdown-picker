@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     StyleSheet,
     Text,
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 // Icon
 import Feather from 'react-native-vector-icons/Feather';
 
-class PickerDropDown extends Component {
+class DropDownPicker extends React.Component {
     constructor(props) {
         super(props);
 
@@ -36,14 +36,14 @@ class PickerDropDown extends Component {
                 value: choice.value
             },
             visible: false
-        }
-    }
+        };
+    };
 
     toggle() {
         this.setState({
             visible: ! this.state.visible
         });
-    }
+    };
 
     select(item, index) {
         this.setState({
@@ -56,13 +56,13 @@ class PickerDropDown extends Component {
 
         // onChangeItem callback
         this.props.onChangeItem(item, index);
-    }
+    };
 
     render() {
         const { defaultNull, placeholder, disabled = false } = this.props;
         const label = defaultNull && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
         return (
-            <View style={{...this.props.style}}>
+            <View style={[this.props.style]}>
                 <TouchableOpacity disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={{flexDirection: 'row'}}>
                     <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
                         <Text style={[this.props.labelStyle, {
@@ -94,16 +94,16 @@ class PickerDropDown extends Component {
                 </View>
             </View>
         );
-    }
+    };
 }
 
-PickerDropDown.defaultProps = {
-    placeholder: 'Select...',
+DropDownPicker.defaultProps = {
+    placeholder: 'Select an item',
     dropDownMaxHeight: 150,
     onChangeItem: () => {},
 };
 
-PickerDropDown.propTypes = {
+DropDownPicker.propTypes = {
     items: PropTypes.array.isRequired,
     style: PropTypes.object,
     itemStyle: PropTypes.object,
