@@ -57,12 +57,15 @@ placeholder="Select an item"
 ### Styling the component
 You have 3 options to style the component.
 1. The `style` property.
+
     ```javacript
     style={{minWidth: 150}}
     ```
     It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
+    
 2. The `itemStyle` property.
         If you want the labels on the `left` and `right` side or to centerize them:
+
     ```javacript
     itemStyle={{alignItems: 'flex-start|flex-end|center'}}
     ```
