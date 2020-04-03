@@ -1,0 +1,1 @@
+A picker (dropdown) component for react native which supports both Android & iOS.

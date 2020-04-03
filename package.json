@@ -1,0 +1,35 @@
+{
+  "name": "react-native-dropdown-picker",
+  "version": "1.0.1",
+  "description": "A picker (dropdown) for react native which supports both Android & iOS.",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hossein-zare/react-native-dropdown-picker.git"
+  },
+  "keywords": [
+    "picker",
+    "dropdown",
+    "menu",
+    "component",
+    "react",
+    "reactnative",
+    "android",
+    "ios",
+    "javascript"
+  ],
+  "dependencies": {
+    "react-native-vector-icons": "^6.6.0",
+    "prop-types": "^15.7.2"
+  },
+  "author": "Hossein Zare",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hossein-zare/react-native-dropdown-picker/issues"
+  },
+  "homepage": "https://github.com/hossein-zare/react-native-dropdown-picker#readme"
+}
