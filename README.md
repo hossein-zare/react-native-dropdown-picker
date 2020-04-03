@@ -20,35 +20,35 @@ Render the component.
 ```javascript
 <DropDownPicker
     items={[
-		{label: 'Item 1', value: 'i1'},
-		{label: 'Item 2', value: 'i2'},
-	]}
-	defaultIndex={0}
-	style={{minWidth: 150}}
-	onChangeItem={item => console.log(item.label, item.value)}
+        {label: 'Item 1', value: 'i1'},
+        {label: 'Item 2', value: 'i2'},
+    ]}
+    defaultIndex={0}
+    style={{minWidth: 150}}
+    onChangeItem={item => console.log(item.label, item.value)}
 />
 ```
 ### Default item
 You may want to select one of the items as default.
 1. Add `selected: true` to the object.
-	```javascript
-	items={[
-		{label: 'Item 1', value: 'i1'},
-		{label: 'Item 2', value: 'i2', selected: true},
-	]}
-	```
+    ```javascript
+    items={[
+        {label: 'Item 1', value: 'i1'},
+        {label: 'Item 2', value: 'i2', selected: true},
+    ]}
+    ```
 2. The `defaultIndex` property.
-	```javascript
-	...
-	defaultIndex={1}
-	...
-	```
+    ```javascript
+    ...
+    defaultIndex={1}
+    ...
+    ```
 3. The `defaultValue` property.
-	```javascript
-	...
-	defaultValue="i2"
-	...
-	```
+    ```javascript
+    ...
+    defaultValue="i2"
+    ...
+    ```
 ### Placeholder
 You may want to have a placeholder while the default value is null.
 Add the following properties to the component.
@@ -61,20 +61,20 @@ placeholder="Select an item"
 ### Styling the component
 You have 3 options to style the component.
 1. The `style` property.
-	```javacript
-	style={{minWidth: 150}}
-	```
-	It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
+    ```javacript
+    style={{minWidth: 150}}
+    ```
+    It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
 2. The `itemStyle` property.
-		If you want the labels on the `left` and `right` side or to centerize them:
-	```javacript
-	itemStyle={{alignItems: 'flex-start|flex-end|center'}}
-	```
+        If you want the labels on the `left` and `right` side or to centerize them:
+    ```javacript
+    itemStyle={{alignItems: 'flex-start|flex-end|center'}}
+    ```
 3. The `labelStyle` property.
-	This property gives full control over the label.
-	```javacript
-	labelStyle={{fontSize: 14, color: '#000'}}
-	```
+    This property gives full control over the label.
+    ```javacript
+    labelStyle={{fontSize: 14, color: '#000'}}
+    ```
 ### Props
 |Name|Description|Default|Required
 |--|--|--|--
