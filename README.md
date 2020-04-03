@@ -8,7 +8,7 @@ A picker (dropdown) component for react native which supports both Android & iOS
 ### Installation
 ##### via NPM
 ```sh
-$ npm install react-native-dropdown-picker
+$ npm install react-native-dropdown-picker --save
 ```
 ##### via Yarn
 ```sh
