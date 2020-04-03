@@ -17,7 +17,7 @@ yarn add react-native-dropdown-picker
 ### Basic Usage
 First of all import the package.
 ```javascript
-import DropDownPicker from 'react-native-dropdown-picker;
+import DropDownPicker from 'react-native-dropdown-picker';
 ```
 Render the component.
 ```javascript
