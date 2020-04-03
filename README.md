@@ -2,6 +2,9 @@
 # React native dropdown picker
 A picker (dropdown) component for react native which supports both Android & iOS.
 ## Getting Started
+![Screenshot](https://github.com/hossein-zare/react-native-dropdown-picker/screenshots/1.png)
+![Screenshot](https://github.com/hossein-zare/react-native-dropdown-picker/screenshots/2.png)
+
 ### Installation
 ##### via NPM
 ```sh
@@ -92,4 +95,4 @@ You have 3 options to style the component.
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
 |`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
 |`disabled`|This disables the component.|`bool`|`false`|No
-|`onChangeItem`|Callback which returns `item` and `index`. the `item` is the selected object.|`function`||No
+|`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object.|`function`||No
