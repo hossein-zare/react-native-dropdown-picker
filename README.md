@@ -2,8 +2,8 @@
 # React native dropdown picker
 A picker (dropdown) component for react native which supports both Android & iOS.
 ## Getting Started
-![Screenshot](https://github.com/hossein-zare/react-native-dropdown-picker/screenshots/1.png)
-![Screenshot](https://github.com/hossein-zare/react-native-dropdown-picker/screenshots/2.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/master/screenshots/1.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/master/screenshots/2.png)
 
 ### Installation
 ##### via NPM
