@@ -37,13 +37,13 @@ class DropDownPicker extends React.Component {
             },
             visible: false
         };
-    };
+    }
 
     toggle() {
         this.setState({
             visible: ! this.state.visible
         });
-    };
+    }
 
     select(item, index) {
         this.setState({
@@ -56,7 +56,7 @@ class DropDownPicker extends React.Component {
 
         // onChangeItem callback
         this.props.onChangeItem(item, index);
-    };
+    }
 
     render() {
         const { defaultNull, placeholder, disabled = false } = this.props;
@@ -81,6 +81,7 @@ class DropDownPicker extends React.Component {
                 </TouchableOpacity>
                 <View style={[styles.dropDown, styles.dropDownBox, ! this.state.visible && styles.hidden, {
                     maxHeight: this.props.dropDownMaxHeight,
+                    zIndex: this.props.zIndex
                 }]}>
                     <ScrollView style={{width: '100%'}}>
                         {
@@ -94,12 +95,13 @@ class DropDownPicker extends React.Component {
                 </View>
             </View>
         );
-    };
+    }
 }
 
 DropDownPicker.defaultProps = {
     placeholder: 'Select an item',
     dropDownMaxHeight: 150,
+    zIndex: 5000,
     onChangeItem: () => {},
 };
 
@@ -156,8 +158,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         position: 'absolute',
         top: 39,
-        width: '100%',
-        zIndex: 5001
+        width: '100%'
     },
     dropDownItem: {
         paddingVertical: 8,

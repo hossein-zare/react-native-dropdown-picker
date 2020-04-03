@@ -81,7 +81,7 @@ You have 3 options to style the component.
 ### Props
 |Name|Description|Type|Default|Required
 |--|--|--|--|--
-|`items`|The items for the component.|`array`||Yes
+|**`items`**|The items for the component.|`array`||Yes
 |`defaultIndex`|The index of the default item.|`number`|`0`|No
 |`defaultValue`|The value of the default item.|`any`||No
 |`defaultNull`|This sets the choice to null which must be used with `placeholder`|`bool`|`false`|No
@@ -90,5 +90,6 @@ You have 3 options to style the component.
 |`style`|Additional styles for the component.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
-|`disabled`|This disables the component.|`bool`||`false`|No
+|`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
+|`disabled`|This disables the component.|`bool`|`false`|No
 |`onChangeItem`|Callback which returns `item` and `index`. the `item` is the selected object.|`function`||No
