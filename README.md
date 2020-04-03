@@ -31,6 +31,7 @@ Render the component.
 ### Default item
 You may want to select one of the items as default.
 1. Add `selected: true` to the object.
+
     ```javascript
     items={[
         {label: 'Item 1', value: 'i1'},
@@ -38,15 +39,18 @@ You may want to select one of the items as default.
     ]}
     ```
 2. The `defaultIndex` property.
+
     ```javascript
     defaultIndex={1}
     ```
 3. The `defaultValue` property.
+
     ```javascript
     defaultValue="i2"
     ```
 ### Placeholder
 You may want to have a placeholder while the default value is null.
+
 Add the following properties to the component.
 ```javascript
 ...
@@ -62,7 +66,7 @@ You have 3 options to style the component.
     style={{minWidth: 150}}
     ```
     It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
-    
+
 2. The `itemStyle` property.
         If you want the labels on the `left` and `right` side or to centerize them:
 
