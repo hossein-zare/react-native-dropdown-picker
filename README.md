@@ -80,7 +80,7 @@ You have 3 options to style the component.
     ```
 ### Props
 |Name|Description|Type|Default|Required
-|--|--|--|--
+|--|--|--|--|--
 |`items`|The items for the component.|`array`||Yes
 |`defaultIndex`|The index of the default item.|`number`|`0`|No
 |`defaultValue`|The value of the default item.|`any`||No
