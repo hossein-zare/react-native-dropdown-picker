@@ -79,16 +79,16 @@ You have 3 options to style the component.
     labelStyle={{fontSize: 14, color: '#000'}}
     ```
 ### Props
-|Name|Description|Default|Required
+|Name|Description|Type|Default|Required
 |--|--|--|--
-|`items`|The items for the component.||Yes
-|`defaultIndex`|The index of the default item.|`0`|No
-|`defaultValue`|The value of the default item.||No
-|`defaultNull`|This sets the choice to null which must be used with `placeholder`|`false`|No
-|`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|'Select an item'|No
-|`dropDownMaxHeight`|Height of the dropdown box.|`150`|No
-|`style`|Additional styles for the component.|`{}`|No
-|`itemStyle`|Additional styles for the items.|`{}`|No
-|`labelStyle`|Additional styles for the labels.|`{}`|No
-|`disabled`|This disables the component.|`false`|No
-|`onChangeItem`|Callback which returns `item` and `index`. the `item` is the selected object.||No
+|`items`|The items for the component.|`array`||Yes
+|`defaultIndex`|The index of the default item.|`number`|`0`|No
+|`defaultValue`|The value of the default item.|`any`||No
+|`defaultNull`|This sets the choice to null which must be used with `placeholder`|`bool`|`false`|No
+|`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|`string`|'Select an item'|No
+|`dropDownMaxHeight`|Height of the dropdown box.|`number`|`150`|No
+|`style`|Additional styles for the component.|`object`|`{}`|No
+|`itemStyle`|Additional styles for the items.|`object`|`{}`|No
+|`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
+|`disabled`|This disables the component.|`bool`||`false`|No
+|`onChangeItem`|Callback which returns `item` and `index`. the `item` is the selected object.|`function`||No
