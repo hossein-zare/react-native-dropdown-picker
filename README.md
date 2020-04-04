@@ -33,6 +33,8 @@ Render the component.
 ```
 ### Default item
 You may want to select one of the items as default.
+
+**Use one of these ways:**
 1. Add `selected: true` to the object.
 
     ```javascript
@@ -71,12 +73,14 @@ You have 3 options to style the component.
     It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
 
 2. The `itemStyle` property.
+
         If you want the labels on the `left` and `right` side or to centerize them:
 
     ```javacript
     itemStyle={{alignItems: 'flex-start|flex-end|center'}}
     ```
 3. The `labelStyle` property.
+
     This property gives full control over the label.
     ```javacript
     labelStyle={{fontSize: 14, color: '#000'}}
