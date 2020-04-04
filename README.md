@@ -74,8 +74,7 @@ You have 3 options to style the component.
 
 2. The `itemStyle` property.
 
-        If you want the labels on the `left` and `right` side or to centerize them:
-
+    If you want the labels on the `left` and `right` side or to centerize them:
     ```javacript
     itemStyle={{alignItems: 'flex-start|flex-end|center'}}
     ```
