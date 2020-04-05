@@ -64,14 +64,21 @@ placeholder="Select an item"
 ...
 ```
 **Dynamic placeholder**
+
 In some case you're going to create 2 or more pickers which are linked together.
 
 Think of a country picker and city picker, whenever you're changing the country, the city picker should be reset and show the placeholder.
 ```javascript
-    state = {
-        country: null,
-        city: null,
-        cities: []
+import React from 'react';
+export default class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            country: null,
+            city: null,
+            cities: []
+        };
     }
 
     changeCountry(item) {
@@ -123,6 +130,7 @@ Think of a country picker and city picker, whenever you're changing the country,
             </>
         );
     }
+}
 ```
 
 ### Styling the component
