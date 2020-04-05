@@ -123,6 +123,7 @@ Think of a country picker and city picker, whenever you're changing the country,
             </>
         );
     }
+```
 
 ### Styling the component
 You have 3 options to style the component.
