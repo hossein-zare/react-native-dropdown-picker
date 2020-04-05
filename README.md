@@ -63,6 +63,67 @@ defaultNull
 placeholder="Select an item"
 ...
 ```
+**Dynamic placeholder**
+In some case you're going to create 2 or more pickers which are linked together.
+
+Think of a country picker and city picker, whenever you're changing the country, the city picker should be reset and show the placeholder.
+```javascript
+    state = {
+        country: null,
+        city: null,
+        cities: []
+    }
+
+    changeCountry(item) {
+        let city = null;
+        let cities;
+        switch (item.value) {
+            case 'fr':
+                cities = [
+                    {label: 'Paris', value: 'paris'}
+                ];
+            break;
+            case 'es':
+                cities = [
+                    {label: 'Madrid', value: 'madrid'}
+                ];
+            break;
+        }
+
+        this.setState({
+            city,
+            cities
+        });
+    }
+
+    changeCity(item) {
+        this.setState({
+            city: item.value
+        });
+    }
+
+    render() {
+        return (
+            <>
+                <DropDownPicker
+                    items={[
+                        {label: 'France', value: 'fr'},
+                        {label: 'Spain', value: 'es'},
+                    ]}
+                    defaultNull
+                    placeholder="Select your country"
+                    onChangeItem={item => this.changeCountry(item)}
+                />
+                <DropDownPicker
+                    items={this.state.cities}
+                    defaultNull={this.state.city === null}
+                    placeholder="Select your city"
+                    onChangeItem={item => this.changeCity(item)}
+                />
+            </>
+        );
+    }
+
 ### Styling the component
 You have 3 options to style the component.
 1. The `style` property.

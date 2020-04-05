@@ -17,7 +17,7 @@ class DropDownPicker extends React.Component {
 
         let choice;
 
-        if (props.defaultNull) {
+        if (props.defaultNull || (props.hasOwnProperty('defaultValue') && props.defaultValue === null)) {
             choice = {
                 label: null,
                 value: null
@@ -40,8 +40,22 @@ class DropDownPicker extends React.Component {
                 label: choice.label,
                 value: choice.value
             },
-            visible: false
+            visible: false,
         };
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.defaultNull === true) {
+            return {
+                choice: {
+                    label: null,
+                    value: null
+                },
+                visible: props.disabled ? false : state.visible,
+            };
+        }
+
+        return null;
     }
 
     toggle() {
@@ -59,13 +73,15 @@ class DropDownPicker extends React.Component {
             visible: false
         });
 
+        this.props.defaultNull = false;
+
         // onChangeItem callback
         this.props.onChangeItem(item, index);
     }
 
     render() {
         const { defaultNull, placeholder, disabled = false } = this.props;
-        const label = defaultNull && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
+        const label = (defaultNull) && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
         return (
             <View style={[this.props.style]}>
                 <TouchableOpacity disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={{flexDirection: 'row'}}>
@@ -104,6 +120,7 @@ class DropDownPicker extends React.Component {
 }
 
 DropDownPicker.defaultProps = {
+    defaultNull: false,
     placeholder: 'Select an item',
     dropDownMaxHeight: 150,
     zIndex: 5000,
