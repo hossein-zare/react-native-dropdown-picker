@@ -134,7 +134,7 @@ export default class MyComponent extends React.Component {
 ```
 
 ### Styling the component
-You have 3 options to style the component.
+You have 5 options to style the component.
 1. The `style` property.
 
     ```javacript
@@ -153,6 +153,17 @@ You have 3 options to style the component.
     This property gives full control over the label.
     ```javacript
     labelStyle={{fontSize: 14, color: '#000'}}
+4. The `activeItemStyle` property.
+
+    This property allows you to style the active item.
+    ```javacript
+    activeItemStyle={{alignItems: 'center'}}
+    ```
+5. The `activeLabelStyle` property.
+
+    This property allows you to style the active label.
+    ```javacript
+    activeLabelStyle={{color: 'red'}}
     ```
 ### Props
 |Name|Description|Type|Default|Required
@@ -160,12 +171,14 @@ You have 3 options to style the component.
 |**`items`**|The items for the component.|`array`||Yes
 |`defaultIndex`|The index of the default item.|`number`|`0`|No
 |`defaultValue`|The value of the default item.|`any`||No
-|`defaultNull`|This sets the choice to null which must be used with `placeholder`|`bool`|`false`|No
+|`defaultNull`|This sets the choice to null which must be used with `placeholder`|`bool`|`true`|No
 |`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|`string`|'Select an item'|No
 |`dropDownMaxHeight`|Height of the dropdown box.|`number`|`150`|No
 |`style`|Additional styles for the component.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
+|`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
+|`activeLabelStyle`|Additional styles for the active label.|`object`|`{}`|No
 |`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
 |`disabled`|This disables the component.|`bool`|`false`|No
 |`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object.|`function`||No

@@ -80,7 +80,7 @@ class DropDownPicker extends React.Component {
     }
 
     render() {
-        const { defaultNull, placeholder, disabled = false } = this.props;
+        const { defaultNull, placeholder, disabled } = this.props;
         const label = (defaultNull) && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
         return (
             <View style={[this.props.style]}>
@@ -107,8 +107,12 @@ class DropDownPicker extends React.Component {
                     <ScrollView style={{width: '100%'}}>
                         {
                             this.props.items.map((item, index) => (
-                                <TouchableOpacity key={index} onPress={() => this.select(item, index)} style={{...styles.dropDownItem, ...this.props.itemStyle}}>
-                                    <Text style={this.props.labelStyle}>{item.label}</Text>
+                                <TouchableOpacity key={index} onPress={() => this.select(item, index)} style={[styles.dropDownItem, this.props.itemStyle, (
+                                    this.state.choice.value === item.value && this.props.activeItemStyle
+                                )]}>
+                                    <Text style={[this.props.labelStyle, 
+                                        this.state.choice.value === item.value && this.props.activeLabelStyle
+                                    ]}>{item.label}</Text>
                                 </TouchableOpacity>
                             ))
                         }
@@ -123,7 +127,13 @@ DropDownPicker.defaultProps = {
     defaultNull: false,
     placeholder: 'Select an item',
     dropDownMaxHeight: 150,
+    style: {},
+    itemStyle: {},
+    labelStyle: {},
+    activeItemStyle: {},
+    activeLabelStyle: {},
     zIndex: 5000,
+    disabled: false,
     onChangeItem: () => {},
 };
 
