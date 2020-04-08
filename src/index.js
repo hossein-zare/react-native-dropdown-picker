@@ -95,17 +95,19 @@ class DropDownPicker extends React.Component {
                     <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
                         <Text style={[this.props.labelStyle, {opacity}]}>{label}</Text>
                     </View>
-                    <View style={[styles.dropDown, styles.arrow, this.state.visible && styles.noBottomRightRadius]}>
-                        <View style={[this.props.arrowStyle, {opacity}]}>
-                        {
-                            ! this.state.visible ? (
-                                this.props.customArrowUp ?? <Feather name="chevron-down" size={this.props.arrowSize} />
-                            ) : (
-                                this.props.customArrowDown ?? <Feather name="chevron-up" size={this.props.arrowSize} />
-                            )
-                        }
+                    {this.props.showArrow && (
+                        <View style={[styles.dropDown, styles.arrow, this.state.visible && styles.noBottomRightRadius]}>
+                            <View style={[this.props.arrowStyle, {opacity}]}>
+                            {
+                                ! this.state.visible ? (
+                                    this.props.customArrowUp ?? <Feather name="chevron-down" size={this.props.arrowSize} />
+                                ) : (
+                                    this.props.customArrowDown ?? <Feather name="chevron-up" size={this.props.arrowSize} />
+                                )
+                            }
+                            </View>
                         </View>
-                    </View>
+                    )}
                 </TouchableOpacity>
                 <View style={[styles.dropDown, styles.dropDownBox, ! this.state.visible && styles.hidden, {
                     maxHeight: this.props.dropDownMaxHeight,
@@ -140,6 +142,7 @@ DropDownPicker.defaultProps = {
     activeItemStyle: {},
     activeLabelStyle: {},
     arrowStyle: {},
+    showArrow: true,
     arrowSize: 15,
     customArrowUp: null,
     customArrowDown: null,
@@ -160,6 +163,7 @@ DropDownPicker.propTypes = {
     labelStyle: PropTypes.object,
     activeItemStyle: PropTypes.object,
     activeLabelStyle: PropTypes.object,
+    showArrow: PropTypes.bool,
     arrowStyle: PropTypes.object,
     arrowSize: PropTypes.number,
     customArrowUp: PropTypes.any,
