@@ -137,14 +137,14 @@ export default class MyComponent extends React.Component {
 You have 7 options to style the component.
 1. The `style` property.
 
-    Use this to adjust the inner part of the picker. Exception: `height`
+    Use this to adjust the inner part of the picker. (`height`)
     ```javacript
     style={{paddingVertical: 10}}
     ```
 
 2. The `containerStyle` property.
     
-    Use this to adjust the outter part of the picker such as `margin`. Exception: `width`
+    Use this to adjust the outter part of the picker such as `margin`. (`width`)
     ```javacript
     containerStyle={{minWidth: 150}}
     ```
