@@ -27,7 +27,7 @@ Render the component.
         {label: 'Item 2', value: 'item2'},
     ]}
     defaultIndex={0}
-    style={{minWidth: 150}}
+    containerStyle={{minWidth: 150}}
     onChangeItem={item => console.log(item.label, item.value)}
 />
 ```
