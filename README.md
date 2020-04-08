@@ -23,8 +23,8 @@ Render the component.
 ```javascript
 <DropDownPicker
     items={[
-        {label: 'Item 1', value: 'i1'},
-        {label: 'Item 2', value: 'i2'},
+        {label: 'Item 1', value: 'item1'},
+        {label: 'Item 2', value: 'item2'},
     ]}
     defaultIndex={0}
     style={{minWidth: 150}}
@@ -39,8 +39,8 @@ You may want to select one of the items as default.
 
     ```javascript
     items={[
-        {label: 'Item 1', value: 'i1'},
-        {label: 'Item 2', value: 'i2', selected: true},
+        {label: 'Item 1', value: 'item1'},
+        {label: 'Item 2', value: 'item2', selected: true},
     ]}
     ```
 2. The `defaultIndex` property.
@@ -51,7 +51,7 @@ You may want to select one of the items as default.
 3. The `defaultValue` property.
 
     ```javascript
-    defaultValue="i2"
+    defaultValue="item2"
     ```
 ### Placeholder
 You may want to have a placeholder while the default value is null.
@@ -65,7 +65,7 @@ placeholder="Select an item"
 ```
 **Dynamic placeholder**
 
-In some case you're going to create 2 or more pickers which are linked together.
+In some case you're going to create two or more pickers which are linked together.
 
 Think of a country picker and city picker, whenever you're changing the country, the city picker should be reset and show the placeholder.
 ```javascript
@@ -134,7 +134,7 @@ export default class MyComponent extends React.Component {
 ```
 
 ### Styling the component
-You have 5 options to style the component.
+You have 6 options to style the component.
 1. The `style` property.
 
     ```javacript
@@ -165,13 +165,19 @@ You have 5 options to style the component.
     ```javacript
     activeLabelStyle={{color: 'red'}}
     ```
+6. The `arrowStyle` property.
+
+    Adds your additional styles to the `View` element of the arrow.
+    ```javacript
+    arrowStyle={{marginRight: 10}}
+    ```
 ### Props
 |Name|Description|Type|Default|Required
 |--|--|--|--|--
 |**`items`**|The items for the component.|`array`||Yes
 |`defaultIndex`|The index of the default item.|`number`|`0`|No
 |`defaultValue`|The value of the default item.|`any`||No
-|`defaultNull`|This sets the choice to null which must be used with `placeholder`|`bool`|`true`|No
+|`defaultNull`|This sets the choice to null which should be used with `placeholder`|`bool`|`true`|No
 |`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|`string`|'Select an item'|No
 |`dropDownMaxHeight`|Height of the dropdown box.|`number`|`150`|No
 |`style`|Additional styles for the component.|`object`|`{}`|No
@@ -179,6 +185,10 @@ You have 5 options to style the component.
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
 |`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
 |`activeLabelStyle`|Additional styles for the active label.|`object`|`{}`|No
+|`arrowStyle`|Additional styles for the arrow component.|`object`|`{}`|No
+|`arrowSize`|The size of the arrow component.|`number`|`15`|No
+|`customArrowUp`|Customize the arrow-up.|`jsx`|`{}`|No
+|`customArrowDown`|Customize the arrow-down.|`jsx`|`{}`|No
 |`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
 |`disabled`|This disables the component.|`bool`|`false`|No
 |`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object.|`function`||No
