@@ -85,13 +85,19 @@ class DropDownPicker extends React.Component {
         this.props.onChangeItem(item, index);
     }
 
+    getLayout(layout) {
+        this.setState({
+            top: layout.height - 1
+        });
+    }
+
     render() {
         const { defaultNull, placeholder, disabled } = this.props;
         const label = (defaultNull) && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
         const opacity = disabled ? 0.5 : 1;
         return (
             <View style={this.props.style}>
-                <TouchableOpacity disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={{flexDirection: 'row'}}>
+                <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={{flexDirection: 'row'}}>
                     <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
                         <Text style={[this.props.labelStyle, {opacity}]}>{label}</Text>
                     </View>
@@ -110,6 +116,7 @@ class DropDownPicker extends React.Component {
                     )}
                 </TouchableOpacity>
                 <View style={[styles.dropDown, styles.dropDownBox, ! this.state.visible && styles.hidden, {
+                    top: this.state.top,
                     maxHeight: this.props.dropDownMaxHeight,
                     zIndex: this.props.zIndex
                 }]}>
@@ -179,7 +186,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        height: 40,
+        paddingVertical: 8,
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
     },
@@ -199,7 +206,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        height: 40,
+        paddingVertical: 8,
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
         flexGrow: 1
@@ -211,7 +218,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         position: 'absolute',
-        top: 39,
         width: '100%'
     },
     dropDownItem: {
