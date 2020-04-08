@@ -96,8 +96,8 @@ class DropDownPicker extends React.Component {
         const label = (defaultNull) && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
         const opacity = disabled ? 0.5 : 1;
         return (
-            <View style={this.props.style}>
-                <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={{flexDirection: 'row'}}>
+            <View style={this.props.containerStyle}>
+                <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={[this.props.style, {flexDirection: 'row'}]}>
                     <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
                         <Text style={[this.props.labelStyle, {opacity}]}>{label}</Text>
                     </View>
@@ -144,6 +144,7 @@ DropDownPicker.defaultProps = {
     placeholder: 'Select an item',
     dropDownMaxHeight: 150,
     style: {},
+    containerStyle: {},
     itemStyle: {},
     labelStyle: {},
     activeItemStyle: {},
@@ -166,6 +167,7 @@ DropDownPicker.propTypes = {
     placeholder: PropTypes.string,
     dropDownMaxHeight: PropTypes.number,
     style: PropTypes.object,
+    containerStyle: PropTypes.object,
     itemStyle: PropTypes.object,
     labelStyle: PropTypes.object,
     activeItemStyle: PropTypes.object,

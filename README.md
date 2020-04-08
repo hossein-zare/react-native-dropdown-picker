@@ -134,13 +134,21 @@ export default class MyComponent extends React.Component {
 ```
 
 ### Styling the component
-You have 6 options to style the component.
-1. The `style` property.
-
+You have 7 options to style the component.
+1. The `containerStyle` property.
+    
+    Use this to adjust the outter part of the picker such as `margin`. Exception: `width`
     ```javacript
-    style={{minWidth: 150}}
+    containerStyle={{minWidth: 150}}
     ```
     It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
+
+1. The `style` property.
+
+    Use this to adjust the inner part of the picker. Exception: `height`
+    ```javacript
+    style={{paddingVertical: 10}}
+    ```
 
 2. The `itemStyle` property.
 
@@ -180,7 +188,8 @@ You have 6 options to style the component.
 |`defaultNull`|This sets the choice to null which should be used with `placeholder`|`bool`|`true`|No
 |`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|`string`|'Select an item'|No
 |`dropDownMaxHeight`|Height of the dropdown box.|`number`|`150`|No
-|`style`|Additional styles for the component.|`object`|`{}`|No
+|`style`|Additional styles for the picker.|`object`|`{}`|No
+|`containerStyle`|Additional styles for the container view.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
 |`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
