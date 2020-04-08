@@ -135,14 +135,6 @@ export default class MyComponent extends React.Component {
 
 ### Styling the component
 You have 7 options to style the component.
-1. The `containerStyle` property.
-    
-    Use this to adjust the outter part of the picker such as `margin`. Exception: `width`
-    ```javacript
-    containerStyle={{minWidth: 150}}
-    ```
-    It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
-
 1. The `style` property.
 
     Use this to adjust the inner part of the picker. Exception: `height`
@@ -150,30 +142,38 @@ You have 7 options to style the component.
     style={{paddingVertical: 10}}
     ```
 
-2. The `itemStyle` property.
+2. The `containerStyle` property.
+    
+    Use this to adjust the outter part of the picker such as `margin`. Exception: `width`
+    ```javacript
+    containerStyle={{minWidth: 150}}
+    ```
+    It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
+
+3. The `itemStyle` property.
 
     If you want the labels on the `left` and `right` side or to centerize them:
     ```javacript
     itemStyle={{alignItems: 'flex-start|flex-end|center'}}
     ```
-3. The `labelStyle` property.
+4. The `labelStyle` property.
 
     This property gives full control over the label.
     ```javacript
     labelStyle={{fontSize: 14, color: '#000'}}
-4. The `activeItemStyle` property.
+5. The `activeItemStyle` property.
 
     This property allows you to style the active item.
     ```javacript
     activeItemStyle={{alignItems: 'center'}}
     ```
-5. The `activeLabelStyle` property.
+6. The `activeLabelStyle` property.
 
     This property allows you to style the active label.
     ```javacript
     activeLabelStyle={{color: 'red'}}
     ```
-6. The `arrowStyle` property.
+7. The `arrowStyle` property.
 
     Adds your additional styles to the `View` element of the arrow.
     ```javacript
