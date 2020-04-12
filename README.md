@@ -148,7 +148,7 @@ You have 7 options to style the component.
     ```javacript
     containerStyle={{width: 150, height: 70}}
     ```
-    You don't have to set `width` and `height`.
+    You don't have to set the `width` and `height`.
 
 3. The `itemStyle` property.
 
