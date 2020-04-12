@@ -144,7 +144,7 @@ You have 7 options to style the component.
 
 2. The `containerStyle` property.
     
-    Use this to adjust the outter part of the picker such as `margin`, `width`, `height`.
+    Use this to adjust the outer part of the picker such as `margin`, `width`, `height`.
     ```javacript
     containerStyle={{width: 150, height: 70}}
     ```
