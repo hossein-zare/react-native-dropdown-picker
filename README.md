@@ -137,18 +137,18 @@ export default class MyComponent extends React.Component {
 You have 7 options to style the component.
 1. The `style` property.
 
-    Use this to adjust the inner part of the picker. (`height`)
+    Use this to adjust the inner part of the picker.
     ```javacript
     style={{paddingVertical: 10}}
     ```
 
 2. The `containerStyle` property.
     
-    Use this to adjust the outter part of the picker such as `margin`. (`width`)
+    Use this to adjust the outter part of the picker such as `margin`, `width`, `height`.
     ```javacript
-    containerStyle={{minWidth: 150}}
+    containerStyle={{width: 150, height: 70}}
     ```
-    It's also possible to extend the width of the component with `width: '100%'` which depends on the parent's style.
+    You don't have to set `width` and `height`.
 
 3. The `itemStyle` property.
 
