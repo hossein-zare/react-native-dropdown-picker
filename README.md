@@ -65,7 +65,7 @@ placeholder="Select an item"
 ```
 **Dynamic placeholder**
 
-In some case you're going to create two or more pickers which are linked together.
+In some cases you're going to create two or more pickers which are linked together.
 
 Think of a country picker and city picker, whenever you're changing the country, the city picker should be reset and show the placeholder.
 ```javascript
