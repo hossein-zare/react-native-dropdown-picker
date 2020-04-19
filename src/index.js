@@ -15,25 +15,6 @@ class DropDownPicker extends React.Component {
     constructor(props) {
         super(props);
 
-        // Initialize the component
-        this.initialize(props);
-    }
-
-    static getDerivedStateFromProps(props, state) {
-        if (props.defaultNull === true) {
-            return {
-                choice: {
-                    label: null,
-                    value: null
-                },
-                visible: props.disabled ? false : state.visible,
-            };
-        }
-
-        return null;
-    }
-
-    initialize(props) {
         let choice;
 
         if (props.defaultNull || (props.hasOwnProperty('defaultValue') && props.defaultValue === null)) {
@@ -55,6 +36,20 @@ class DropDownPicker extends React.Component {
             },
             visible: false,
         };
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.defaultNull === true) {
+            return {
+                choice: {
+                    label: null,
+                    value: null
+                },
+                visible: props.disabled ? false : state.visible,
+            };
+        }
+
+        return null;
     }
 
     null() {
@@ -96,7 +91,9 @@ class DropDownPicker extends React.Component {
         const label = (defaultNull) && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
         const opacity = disabled ? 0.5 : 1;
         return (
-            <View style={this.props.containerStyle}>
+            <View style={[this.props.containerStyle, {
+            	zIndex: this.props.zIndex
+            }]}>
                 <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={[this.props.style, {flexDirection: 'row', flex: 1}]}>
                     <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
                         <Text style={[this.props.labelStyle, {opacity}]}>{label}</Text>
@@ -120,7 +117,7 @@ class DropDownPicker extends React.Component {
                     maxHeight: this.props.dropDownMaxHeight,
                     zIndex: this.props.zIndex
                 }]}>
-                    <ScrollView style={{width: '100%'}}>
+                    <ScrollView style={{width: '100%'}} nestedScrollEnabled={true}>
                         {
                             this.props.items.map((item, index) => (
                                 <TouchableOpacity key={index} onPress={() => this.select(item, index)} style={[styles.dropDownItem, this.props.itemStyle, (
