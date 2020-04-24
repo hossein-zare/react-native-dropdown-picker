@@ -27,7 +27,7 @@ Render the component.
         {label: 'Item 2', value: 'item2'},
     ]}
     defaultIndex={0}
-    containerStyle={{minWidth: 150}}
+    containerStyle={{height: 40}}
     onChangeItem={item => console.log(item.label, item.value)}
 />
 ```
@@ -148,8 +148,6 @@ You have 7 options to style the component.
     ```javacript
     containerStyle={{width: 150, height: 70}}
     ```
-    You don't have to set the `width` and `height`.
-
 3. The `itemStyle` property.
 
     If you want the labels on the `left` and `right` side or to centerize them:
