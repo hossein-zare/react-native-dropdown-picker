@@ -4,7 +4,8 @@ import {
     Text,
     View,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -92,7 +93,11 @@ class DropDownPicker extends React.Component {
         const opacity = disabled ? 0.5 : 1;
         return (
             <View style={[this.props.containerStyle, {
-                zIndex: this.props.zIndex
+                ...Platform.select({
+                    ios: {
+                      zIndex: this.props.zIndex 
+                    }
+                })
             }]}>
                 <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={[this.props.style, {flexDirection: 'row', flex: 1}]}>
                     <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
