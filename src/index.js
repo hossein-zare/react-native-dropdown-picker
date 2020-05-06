@@ -99,12 +99,12 @@ class DropDownPicker extends React.Component {
                     }
                 })
             }]}>
-                <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={[this.props.style, {flexDirection: 'row', flex: 1}]}>
-                    <View style={[styles.dropDown, styles.dropDownDisplay, this.state.visible && styles.noBottomLeftRadius]}>
+                <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={[styles.dropDown, this.props.style, this.state.visible && styles.noBottomRadius, {flexDirection: 'row', flex: 1}]}>
+                    <View style={[styles.dropDownDisplay]}>
                         <Text style={[this.props.labelStyle, {opacity}]}>{label}</Text>
                     </View>
                     {this.props.showArrow && (
-                        <View style={[styles.dropDown, styles.arrow, this.state.visible && styles.noBottomRightRadius]}>
+                        <View style={[styles.arrow]}>
                             <View style={[this.props.arrowStyle, {opacity}]}>
                             {
                                 ! this.state.visible ? (
@@ -202,15 +202,14 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 5,
         borderBottomRightRadius: 5,
         borderBottomLeftRadius: 5,
-        borderBottomWidth: 2,
-        borderBottomColor: '#dfdfdf',
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
     },
     dropDownDisplay: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        paddingVertical: 8,
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
         flexGrow: 1
@@ -233,10 +232,8 @@ const styles = StyleSheet.create({
         position: 'relative',
         display: 'none'
     },
-    noBottomLeftRadius: {
+    noBottomRadius: {
         borderBottomLeftRadius: 0,
-    },
-    noBottomRightRadius: {
         borderBottomRightRadius: 0,
     }
 });
