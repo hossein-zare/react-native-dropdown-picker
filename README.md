@@ -119,12 +119,14 @@ export default class MyComponent extends React.Component {
                     ]}
                     defaultNull
                     placeholder="Select your country"
+                    containerStyle={{height: 40}}
                     onChangeItem={item => this.changeCountry(item)}
                 />
                 <DropDownPicker
                     items={this.state.cities}
                     defaultNull={this.state.city === null}
                     placeholder="Select your city"
+                    containerStyle={{height: 40}}
                     onChangeItem={item => this.changeCity(item)}
                 />
             </>
@@ -134,7 +136,7 @@ export default class MyComponent extends React.Component {
 ```
 
 ### Styling the component
-You have 7 options to style the component.
+You have 8 options to style the component.
 1. The `style` property.
 
     Use this to adjust the inner part of the picker.
@@ -159,6 +161,13 @@ You have 7 options to style the component.
     This property gives full control over the label.
     ```javacript
     labelStyle={{fontSize: 14, color: '#000'}}
+    ```
+4. The `placeholderStyle` property.
+
+    It is possible to style the placeholder text with this property.
+    ```javacript
+    placeholderStyle={{fontWeight: 'bold'}}
+    ```
 5. The `activeItemStyle` property.
 
     This property allows you to style the active item.
@@ -190,6 +199,7 @@ You have 7 options to style the component.
 |`containerStyle`|Additional styles for the container view.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
+|`placeholderStyle`|Additional styles for the placeholder text.|`object`|`{}`|No
 |`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
 |`activeLabelStyle`|Additional styles for the active label.|`object`|`{}`|No
 |`arrowStyle`|Additional styles for the arrow.|`object`|`{}`|No

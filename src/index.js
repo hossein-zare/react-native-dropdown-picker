@@ -89,7 +89,9 @@ class DropDownPicker extends React.Component {
 
     render() {
         const { defaultNull, placeholder, disabled } = this.props;
-        const label = (defaultNull) && this.state.choice.label === null ? (placeholder) : this.state.choice.label;
+        const isPlaceholderActive = (defaultNull) && this.state.choice.label === null;
+        const label = isPlaceholderActive ? (placeholder) : this.state.choice.label;
+        const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         return (
             <View style={[this.props.containerStyle, {
@@ -101,7 +103,7 @@ class DropDownPicker extends React.Component {
             }]}>
                 <TouchableOpacity onLayout={(event) => { this.getLayout(event.nativeEvent.layout) }} disabled={disabled} onPress={() => this.toggle()} activeOpacity={1} style={[styles.dropDown, this.props.style, this.state.visible && styles.noBottomRadius, {flexDirection: 'row', flex: 1}]}>
                     <View style={[styles.dropDownDisplay]}>
-                        <Text style={[this.props.labelStyle, {opacity}]}>{label}</Text>
+                        <Text style={[this.props.labelStyle, placeholderStyle, {opacity}]}>{label}</Text>
                     </View>
                     {this.props.showArrow && (
                         <View style={[styles.arrow]}>
@@ -149,6 +151,7 @@ DropDownPicker.defaultProps = {
     containerStyle: {},
     itemStyle: {},
     labelStyle: {},
+    placeholderStyle: {},
     activeItemStyle: {},
     activeLabelStyle: {},
     arrowStyle: {},
