@@ -110,9 +110,9 @@ class DropDownPicker extends React.Component {
                             <View style={[this.props.arrowStyle, {opacity}]}>
                             {
                                 ! this.state.visible ? (
-                                    this.props.customArrowUp ?? <Feather name="chevron-down" size={this.props.arrowSize} />
+                                    this.props.customArrowUp ?? <Feather name="chevron-down" size={this.props.arrowSize} color={this.props.arrowColor} />
                                 ) : (
-                                    this.props.customArrowDown ?? <Feather name="chevron-up" size={this.props.arrowSize} />
+                                    this.props.customArrowDown ?? <Feather name="chevron-up" size={this.props.arrowSize} color={this.props.arrowColor} />
                                 )
                             }
                             </View>
@@ -156,6 +156,7 @@ DropDownPicker.defaultProps = {
     activeItemStyle: {},
     activeLabelStyle: {},
     arrowStyle: {},
+    arrowColor: '#000',
     showArrow: true,
     arrowSize: 15,
     customArrowUp: null,
@@ -181,6 +182,7 @@ DropDownPicker.propTypes = {
     activeLabelStyle: PropTypes.object,
     showArrow: PropTypes.bool,
     arrowStyle: PropTypes.object,
+    arrowColor: PropTypes.string,
     arrowSize: PropTypes.number,
     customArrowUp: PropTypes.any,
     customArrowDown: PropTypes.any,

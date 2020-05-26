@@ -217,8 +217,9 @@ You have 9 options to style the component.
 |`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
 |`activeLabelStyle`|Additional styles for the active label.|`object`|`{}`|No
 |`arrowStyle`|Additional styles for the arrow.|`object`|`{}`|No
-|`showArrow`|An option to show/hide the arrow.|`bool`|`true`|No
+|`arrowColor`|The color of arrow icons|`string`|`#000`|No
 |`arrowSize`|The size of the arrow.|`number`|`15`|No
+|`showArrow`|An option to show/hide the arrow.|`bool`|`true`|No
 |`customArrowUp`|Customize the arrow-up.|`jsx`|`null`|No
 |`customArrowDown`|Customize the arrow-down.|`jsx`|`null`|No
 |`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
