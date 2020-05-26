@@ -135,52 +135,65 @@ export default class MyComponent extends React.Component {
 }
 ```
 
+### Dropdown Overflow
+Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
+
+```javascript
+dropDownStyle={{marginTop: 2}}
+```
+
 ### Styling the component
-You have 8 options to style the component.
+You have 9 options to style the component.
 1. The `style` property.
 
     Use this to adjust the inner part of the picker.
     ```javacript
     style={{paddingVertical: 10}}
     ```
+2. The `dropDownStyle` property.
 
-2. The `containerStyle` property.
+    Additional styles for the dropdown box.
+    ```javacript
+    dropDownStyle={{backgroundColor: '#fafafa}}
+    ```
+
+3. The `containerStyle` property.
     
     Use this to adjust the outer part of the picker such as `margin`, `width`, `height`.
     ```javacript
     containerStyle={{width: 150, height: 70}}
     ```
-3. The `itemStyle` property.
+4. The `itemStyle` property.
 
     If you want the labels on the `left` and `right` side or to centerize them:
     ```javacript
     itemStyle={{alignItems: 'flex-start|flex-end|center'}}
     ```
-4. The `labelStyle` property.
+5. The `labelStyle` property.
 
     This property gives full control over the label.
     ```javacript
     labelStyle={{fontSize: 14, color: '#000'}}
     ```
-4. The `placeholderStyle` property.
+6. The `placeholderStyle` property.
 
     It is possible to style the placeholder text with this property.
     ```javacript
     placeholderStyle={{fontWeight: 'bold'}}
     ```
-5. The `activeItemStyle` property.
+7. The `activeItemStyle` property.
 
     This property allows you to style the active item.
     ```javacript
     activeItemStyle={{alignItems: 'center'}}
     ```
-6. The `activeLabelStyle` property.
+8. The `activeLabelStyle` property.
 
     This property allows you to style the active label.
     ```javacript
     activeLabelStyle={{color: 'red'}}
     ```
-7. The `arrowStyle` property.
+9. The `arrowStyle` property.
 
     Adds your additional styles to the `View` element of the arrow.
     ```javacript
@@ -196,6 +209,7 @@ You have 8 options to style the component.
 |`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|`string`|'Select an item'|No
 |`dropDownMaxHeight`|Height of the dropdown box.|`number`|`150`|No
 |`style`|Additional styles for the picker.|`object`|`{}`|No
+|`dropDownStyle`|Additional styles for the dropdown box.|`object`|`{}`|No
 |`containerStyle`|Additional styles for the container view.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No

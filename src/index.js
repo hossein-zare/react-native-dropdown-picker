@@ -119,7 +119,7 @@ class DropDownPicker extends React.Component {
                         </View>
                     )}
                 </TouchableOpacity>
-                <View style={[styles.dropDown, styles.dropDownBox, ! this.state.visible && styles.hidden, {
+                <View style={[styles.dropDown, styles.dropDownBox, this.props.dropDownStyle, ! this.state.visible && styles.hidden, {
                     top: this.state.top,
                     maxHeight: this.props.dropDownMaxHeight,
                     zIndex: this.props.zIndex
@@ -148,6 +148,7 @@ DropDownPicker.defaultProps = {
     placeholder: 'Select an item',
     dropDownMaxHeight: 150,
     style: {},
+    dropDownStyle: {},
     containerStyle: {},
     itemStyle: {},
     labelStyle: {},
@@ -172,6 +173,7 @@ DropDownPicker.propTypes = {
     placeholder: PropTypes.string,
     dropDownMaxHeight: PropTypes.number,
     style: PropTypes.object,
+    dropDownStyle: PropTypes.object,
     containerStyle: PropTypes.object,
     itemStyle: PropTypes.object,
     labelStyle: PropTypes.object,
