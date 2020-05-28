@@ -49,7 +49,7 @@ dropDownStyle={{
 ```
 
 #### zIndex conflicts
-A lot of uses use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
+A lot of users use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
 
 The `style` and `dropDownStyle` properties must be used instead.
 
@@ -87,7 +87,30 @@ defaultNull
 placeholder="Select an item"
 ...
 ```
-**Dynamic placeholder**
+#### Dynamic placeholder
+Take note of the `defaultNull` property.
+
+```javascript
+state = {
+    item: null
+}
+
+<DropDownPicker
+    items={[
+        {label: 'Item 1', value: 1},
+        {label: 'Item 2', value: 2}
+    ]}
+    defaultNull={this.state.item === null}
+    placeholder="Select an item"
+    placeholderStyle={{fontWeight: 'bold'}}
+    onChangeItem={(item)=> {
+        this.setState({
+            item: item.value
+        });
+    }}
+    dropDownMaxHeight={240}
+/>
+```
 
 In some cases you're going to create two or more pickers which are linked together.
 
@@ -141,7 +164,7 @@ export default class MyComponent extends React.Component {
                         {label: 'France', value: 'fr'},
                         {label: 'Spain', value: 'es'},
                     ]}
-                    defaultNull
+                    defaultNull={this.state.country === null}
                     placeholder="Select your country"
                     containerStyle={{height: 40}}
                     onChangeItem={item => this.changeCountry(item)}
