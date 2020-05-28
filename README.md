@@ -20,17 +20,39 @@ First of all import the package.
 import DropDownPicker from 'react-native-dropdown-picker';
 ```
 Render the component.
+Read the docs to avoid mixing up props.
 ```javascript
 <DropDownPicker
     items={[
         {label: 'Item 1', value: 'item1'},
         {label: 'Item 2', value: 'item2'},
     ]}
-    defaultIndex={0}
+    defaultValue="item1"
     containerStyle={{height: 40}}
+    style={{backgroundColor: '#fafafa'}}
+    dropDownStyle={{backgroundColor: '#fafafa'}}
     onChangeItem={item => console.log(item.label, item.value)}
 />
 ```
+
+##### borderRadius
+The only thing you have to avoid is `borderRadius`. All the corners must be set separately.
+
+```javascript
+style={{
+    borderTopLeftRadius: 10, borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10, borderBottomRightRadius: 10
+}}
+dropDownStyle={{
+    borderBottomLeftRadius: 20, borderBottomRightRadius: 20
+}}
+```
+
+##### zIndex conflicts
+A lot of uses use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
+The `style` and `dropDownStyle` properties must be used instead.
+Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
+
 ### Default item
 You may want to select one of the items as default.
 
@@ -159,7 +181,7 @@ You have 9 options to style the component.
 
 3. The `containerStyle` property.
     
-    Use this to adjust the outer part of the picker such as `margin`, `width`, `height`.
+    Use this to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
     ```javacript
     containerStyle={{width: 150, height: 70}}
     ```
