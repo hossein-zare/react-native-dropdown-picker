@@ -1,6 +1,6 @@
 {
   "name": "react-native-dropdown-picker",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "A picker (dropdown) for react native which supports both Android & iOS.",
   "main": "src/index.js",
   "repository": {
