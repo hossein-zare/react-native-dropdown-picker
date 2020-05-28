@@ -35,7 +35,7 @@ Read the docs to avoid mixing up props.
 />
 ```
 
-##### borderRadius
+#### borderRadius
 The only thing you have to avoid is `borderRadius`. All the corners must be set separately.
 
 ```javascript
@@ -48,7 +48,7 @@ dropDownStyle={{
 }}
 ```
 
-##### zIndex conflicts
+#### zIndex conflicts
 A lot of uses use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
 The `style` and `dropDownStyle` properties must be used instead.
 Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
