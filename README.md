@@ -1,9 +1,20 @@
 
-# React native dropdown picker
-A picker (dropdown) component for react native which supports both Android & iOS.
+# React native dropdown picker v3
+A multiple / single, searchable item picker (dropdown) component for react native which supports both Android & iOS.
+
+## Caution
+**x < 3.0.0 versions are incompatible with the current version, if you're going to upgrade the package you also have to follow the docs.**
+
+## Changelog
++ Added multiple items feature.
++ Added searchable items feature.
++ Removed `defaultIndex` property.
++ Removed `defaultNull` property.
++ The `defaultValue` is state-friendly.
+
 ## Getting Started
-![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/master/screenshots/1.png)
-![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/master/screenshots/2.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/1.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/2.png)
 
 ### Installation
 ##### via NPM
@@ -15,25 +26,134 @@ npm install react-native-dropdown-picker --save
 yarn add react-native-dropdown-picker
 ```
 ### Basic Usage
-First of all import the package.
+The first step is to import the package.
 ```javascript
 import DropDownPicker from 'react-native-dropdown-picker';
 ```
-Render the component.
-Read the docs to avoid mixing up props.
+
+#### Single
+Select a single item.
 ```javascript
+this.state = {
+    country: 'uk'
+}
+
 <DropDownPicker
     items={[
-        {label: 'Item 1', value: 'item1'},
-        {label: 'Item 2', value: 'item2'},
+        {label: 'UK', value: 'uk'},
+        {label: 'France', value: 'france'},
     ]}
-    defaultValue="item1"
+    defaultValue={this.state.country}
     containerStyle={{height: 40}}
     style={{backgroundColor: '#fafafa'}}
     dropDownStyle={{backgroundColor: '#fafafa'}}
-    onChangeItem={item => console.log(item.label, item.value)}
+    onChangeItem={item => this.setState({
+        country: item.value
+    })}
 />
 ```
+
+#### Multiple
+Select multiple items.
+```javascript
+this.state = {
+    countries: ['uk']
+}
+
+<DropDownPicker
+    items={[
+        {label: 'UK', value: 'uk'},
+        {label: 'France', value: 'france'},
+    ]}
+
+    multiple={true}
+    multipleText="%d items have been selected."
+    min={0}
+    max={10}
+
+    defaultValue={this.state.countries}
+    containerStyle={{height: 40}}
+    onChangeItem={item => this.setState({
+        countries: item // an array of the selected items
+    })}
+/>
+```
+
+### Searchable items
+Search for specific items.
+
+```javascript
+searchable={true}
+searchablePlaceholder="Search..."
+searchableError="Not Found"
+```
+
+### FAQ
+
+#### Multiple pickers and the open dropdown issue
+Clicking on another picker doesn't close the other pickers?
+This can be fixed with the help of state.
+
+```javascript
+this.state = {
+    itemA: null,
+    isVisibleA: false,
+
+    itemB: null,
+    isVisibleB: false
+}
+
+changeVisibility(state) {
+    this.setState({
+        isVisibleA: false,
+        isVisibleB: false,
+        ...state
+    });
+}
+
+// Picker A
+<DropDownPicker
+    items={[
+        {label: 'UK', value: 'uk'},
+        {label: 'France', value: 'france'},
+    ]}
+    defaultValue={this.state.itemA}
+    containerStyle={{height: 40}}
+
+    isVisible={this.state.isVisibleA}
+    onOpen={() => this.changeVisibility({
+        isVisibleA: true
+    })}
+    onClose={() => this.setState({
+        isVisibleA: false
+    })}
+    onChangeItem={item => this.setState({
+        itemA: item.value
+    })}
+/>
+
+// Picker B
+<DropDownPicker
+    items={[
+        {label: 'UK', value: 'uk'},
+        {label: 'France', value: 'france'},
+    ]}
+    defaultValue={this.state.itemB}
+    containerStyle={{height: 40}}
+
+    isVisible={this.state.isVisibleB}
+    onOpen={() => this.changeVisibility({
+        isVisibleB: true
+    })}
+    onClose={() => this.setState({
+        isVisibleB: false
+    })}
+    onChangeItem={item => this.setState({
+        itemB: item.value
+    })}
+/>
+```
+
 
 #### borderRadius
 The only thing you have to avoid is `borderRadius`. All the corners must be set separately.
@@ -55,142 +175,49 @@ The `style` and `dropDownStyle` properties must be used instead.
 
 Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
 
-### Default item
-You may want to select one of the items as default.
-
-**Use one of these ways:**
-1. Add `selected: true` to the object.
-
-    ```javascript
-    items={[
-        {label: 'Item 1', value: 'item1'},
-        {label: 'Item 2', value: 'item2', selected: true},
-    ]}
-    ```
-2. The `defaultIndex` property.
-
-    ```javascript
-    defaultIndex={1}
-    ```
-3. The `defaultValue` property.
-
-    ```javascript
-    defaultValue="item2"
-    ```
-### Placeholder
-You may want to have a placeholder while the default value is null.
-
-Add the following properties to the component.
-```javascript
-...
-defaultNull
-placeholder="Select an item"
-...
-```
-#### Dynamic placeholder
-Take note of the `defaultNull` property.
-
-```javascript
-state = {
-    item: null
-}
-
-<DropDownPicker
-    items={[
-        {label: 'Item 1', value: 1},
-        {label: 'Item 2', value: 2}
-    ]}
-    defaultNull={this.state.item === null}
-    placeholder="Select an item"
-    placeholderStyle={{fontWeight: 'bold'}}
-    onChangeItem={(item)=> {
-        this.setState({
-            item: item.value
-        });
-    }}
-    dropDownMaxHeight={240}
-/>
-```
-
-In some cases you're going to create two or more pickers which are linked together.
-
-Think of a country picker and city picker, whenever you're changing the country, the city picker should be reset and show the placeholder.
-```javascript
-import React from 'react';
-export default class MyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            country: null,
-            city: null,
-            cities: []
-        };
-    }
-
-    changeCountry(item) {
-        let city = null;
-        let cities;
-        switch (item.value) {
-            case 'fr':
-                cities = [
-                    {label: 'Paris', value: 'paris'}
-                ];
-            break;
-            case 'es':
-                cities = [
-                    {label: 'Madrid', value: 'madrid'}
-                ];
-            break;
-        }
-
-        this.setState({
-            city,
-            cities
-        });
-    }
-
-    changeCity(item) {
-        this.setState({
-            city: item.value
-        });
-    }
-
-    render() {
-        return (
-            <>
-                <DropDownPicker
-                    items={[
-                        {label: 'France', value: 'fr'},
-                        {label: 'Spain', value: 'es'},
-                    ]}
-                    defaultNull={this.state.country === null}
-                    placeholder="Select your country"
-                    containerStyle={{height: 40}}
-                    onChangeItem={item => this.changeCountry(item)}
-                />
-                <DropDownPicker
-                    items={this.state.cities}
-                    defaultNull={this.state.city === null}
-                    placeholder="Select your city"
-                    containerStyle={{height: 40}}
-                    onChangeItem={item => this.changeCity(item)}
-                />
-            </>
-        );
-    }
-}
-```
-
-### Dropdown Overflow
+#### Dropdown Overflow
 Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
 
 ```javascript
 dropDownStyle={{marginTop: 2}}
 ```
 
+### Default item
+You may want to select one of the items as default.
+
+**Use one of these ways:**
+1. Add `selected: true` to the object. **(This method is not state friendly!)**
+
+    ```javascript
+    items={[
+        {label: 'Item 1', value: 'item1'},
+        {label: 'Item 2', value: 'item2', selected: true, disabled: true},
+    ]}
+    ```
+
+2. The `defaultValue` property.
+    ```javascript
+    defaultValue="uk" // Single
+    defaultValue=["uk"] // Multiple
+    ```
+### Placeholder
+You may want to have a placeholder while the default value is null or an empty array.
+
+Add the following properties to the component.
+```javascript
+this.state = {
+    data: null, // Single
+    data: [] // Multiple
+}
+
+...
+defaultValue={this.state.data}
+placeholder="Select an item"
+...
+```
+
 ### Styling the component
-You have 9 options to style the component.
+You have 10 options to style the component.
 1. The `style` property.
 
     Use this to adjust the inner part of the picker.
@@ -201,7 +228,7 @@ You have 9 options to style the component.
 
     Additional styles for the dropdown box.
     ```javacript
-    dropDownStyle={{backgroundColor: '#fafafa}}
+    dropDownStyle={{backgroundColor: '#fafafa'}}
     ```
 
 3. The `containerStyle` property.
@@ -246,14 +273,19 @@ You have 9 options to style the component.
     ```javacript
     arrowStyle={{marginRight: 10}}
     ```
+10. The `searchableStyle` property.
+
+    Additional styles for the `TextInput`
+    ```javacript
+    searchableStyle={{backgroundColor: '#dfdfdf'}}
+    ```
+
 ### Props
 |Name|Description|Type|Default|Required
 |--|--|--|--|--
 |**`items`**|The items for the component.|`array`||Yes
-|`defaultIndex`|The index of the default item.|`number`|`0`|No
-|`defaultValue`|The value of the default item.|`any`||No
-|`defaultNull`|This sets the choice to null which should be used with `placeholder`|`bool`|`true`|No
-|`placeholder`|Default text to be shown to the user which must be used with `defaultNull`|`string`|'Select an item'|No
+|`defaultValue`|The value of the default item. (If `multiple={true}`, it takes an array of pre-selected values: `['uk']`)|`any`||No
+|`placeholder`|Default text to be shown to the user when `defaultValue={null}` or `defaultValue={[]}`|`string`|'Select an item'|No
 |`dropDownMaxHeight`|Height of the dropdown box.|`number`|`150`|No
 |`style`|Additional styles for the picker.|`object`|`{}`|No
 |`dropDownStyle`|Additional styles for the dropdown box.|`object`|`{}`|No
@@ -267,8 +299,19 @@ You have 9 options to style the component.
 |`arrowColor`|The color of arrow icons|`string`|`#000`|No
 |`arrowSize`|The size of the arrow.|`number`|`15`|No
 |`showArrow`|An option to show/hide the arrow.|`bool`|`true`|No
-|`customArrowUp`|Customize the arrow-up.|`jsx`|`null`|No
-|`customArrowDown`|Customize the arrow-down.|`jsx`|`null`|No
+|`customArrowUp`|Customize the arrow-up.|`jsx`|`(size, color) => ...`|No
+|`customArrowDown`|Customize the arrow-down.|`jsx`|`(size, color) => ...`|No
+|`customTickIcon`|Customize the tick icon for multiple item picker.|`jsx`|`() => ...`|No
 |`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
-|`disabled`|This disables the component.|`bool`|`false`|No
-|`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object.|`function`||No
+|`disabled`|Disables the component.|`bool`|`false`|No
+|`isVisible`|Open or close the dropdown box.|`bool`|`false`|No
+|`multiple`|If set to true selecting multiple items is possible.|`bool`|`false`|No
+|`multipleText`|a Text to inform the user how many items have been selected.|`string`|`%d items have been selected`|No
+|`min`|minimum number of items.|`number`|`0`|No
+|`max`|maximum number of items.|`number`|`10000000`|No
+|`searchable`|Shows a `TextInput` to search for specific items.|`bool`|`false`|No
+|`searchableStyle`|Additional styles for the `TextInput`.|`object`|`{}`|No
+|`searchableError`|Shows a message when nothing found.|`string`|`Not Found`|No
+|`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
+|`onClose`|Fires when you close the picker.|`func`|`() => {}`|No
+|`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`||No
