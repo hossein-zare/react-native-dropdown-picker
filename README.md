@@ -2,8 +2,10 @@
 # React native dropdown picker v3
 A multiple / single, searchable item picker (dropdown) component for react native which supports both Android & iOS.
 
-## Caution
-**x < 3.0.0 versions are incompatible with the current version, if you're going to upgrade the package you also have to follow the docs.**
+## Caution (incompatibility)
+**x < 3.0.0 versions are incompatible with the current version.**
+
+**if you're going to upgrade the package you also have to follow the docs.**
 
 ## Changelog
 + Added multiple items feature.
@@ -186,7 +188,7 @@ dropDownStyle={{marginTop: 2}}
 You may want to select one of the items as default.
 
 **Use one of these ways:**
-1. Add `selected: true` to the object. **(This method is not state friendly!)**
+1. Add `selected: true` to the object. **(This method is not state-friendly!)**
 
     ```javascript
     items={[
