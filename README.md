@@ -3,9 +3,9 @@
 A single or multiple, searchable item picker (dropdown) component for react native which supports both Android & iOS.
 
 ## Caution (incompatibility)
-**x < 3.0.0 versions are incompatible with the current version.**
+**x < 3.0.0 Versions are incompatible with the current version.**
 
-**if you're going to upgrade the package you also have to follow the docs.**
+**It's required to follow the docs in order to upgrade the package to v3.x**
 
 ## Changelog
 + Added multiple items feature.
