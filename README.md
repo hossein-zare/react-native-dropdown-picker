@@ -90,100 +90,6 @@ searchablePlaceholder="Search..."
 searchableError="Not Found"
 ```
 
-### FAQ
-
-#### Multiple pickers and the open dropdown issue
-Clicking on another picker doesn't close the other pickers?
-This can be fixed with the help of state.
-
-```javascript
-this.state = {
-    itemA: null,
-    isVisibleA: false,
-
-    itemB: null,
-    isVisibleB: false
-}
-
-changeVisibility(state) {
-    this.setState({
-        isVisibleA: false,
-        isVisibleB: false,
-        ...state
-    });
-}
-
-// Picker A
-<DropDownPicker
-    items={[
-        {label: 'UK', value: 'uk'},
-        {label: 'France', value: 'france'},
-    ]}
-    defaultValue={this.state.itemA}
-    containerStyle={{height: 40}}
-
-    isVisible={this.state.isVisibleA}
-    onOpen={() => this.changeVisibility({
-        isVisibleA: true
-    })}
-    onClose={() => this.setState({
-        isVisibleA: false
-    })}
-    onChangeItem={item => this.setState({
-        itemA: item.value
-    })}
-/>
-
-// Picker B
-<DropDownPicker
-    items={[
-        {label: 'UK', value: 'uk'},
-        {label: 'France', value: 'france'},
-    ]}
-    defaultValue={this.state.itemB}
-    containerStyle={{height: 40}}
-
-    isVisible={this.state.isVisibleB}
-    onOpen={() => this.changeVisibility({
-        isVisibleB: true
-    })}
-    onClose={() => this.setState({
-        isVisibleB: false
-    })}
-    onChangeItem={item => this.setState({
-        itemB: item.value
-    })}
-/>
-```
-
-
-#### borderRadius
-The only thing you have to avoid is `borderRadius`. All the corners must be set separately.
-
-```javascript
-style={{
-    borderTopLeftRadius: 10, borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10, borderBottomRightRadius: 10
-}}
-dropDownStyle={{
-    borderBottomLeftRadius: 20, borderBottomRightRadius: 20
-}}
-```
-
-#### zIndex conflicts
-A lot of users use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
-
-The `style` and `dropDownStyle` properties must be used instead.
-
-Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
-
-#### Dropdown Overflow
-Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
-
-```javascript
-dropDownStyle={{marginTop: 2}}
-```
-
 ### Default item
 You may want to select one of the items as default.
 
@@ -281,6 +187,100 @@ You have 10 options to style the component.
     ```javacript
     searchableStyle={{backgroundColor: '#dfdfdf'}}
     ```
+
+### FAQ
+
+#### Multiple pickers and the open dropdown issue
+Clicking on another picker doesn't close the other pickers?
+This can be fixed with the help of state.
+
+```javascript
+this.state = {
+    itemA: null,
+    isVisibleA: false,
+
+    itemB: null,
+    isVisibleB: false
+}
+
+changeVisibility(state) {
+    this.setState({
+        isVisibleA: false,
+        isVisibleB: false,
+        ...state
+    });
+}
+
+// Picker A
+<DropDownPicker
+    items={[
+        {label: 'UK', value: 'uk'},
+        {label: 'France', value: 'france'},
+    ]}
+    defaultValue={this.state.itemA}
+    containerStyle={{height: 40}}
+
+    isVisible={this.state.isVisibleA}
+    onOpen={() => this.changeVisibility({
+        isVisibleA: true
+    })}
+    onClose={() => this.setState({
+        isVisibleA: false
+    })}
+    onChangeItem={item => this.setState({
+        itemA: item.value
+    })}
+/>
+
+// Picker B
+<DropDownPicker
+    items={[
+        {label: 'UK', value: 'uk'},
+        {label: 'France', value: 'france'},
+    ]}
+    defaultValue={this.state.itemB}
+    containerStyle={{height: 40}}
+
+    isVisible={this.state.isVisibleB}
+    onOpen={() => this.changeVisibility({
+        isVisibleB: true
+    })}
+    onClose={() => this.setState({
+        isVisibleB: false
+    })}
+    onChangeItem={item => this.setState({
+        itemB: item.value
+    })}
+/>
+```
+
+
+#### borderRadius
+The only thing you have to avoid is `borderRadius`. All the corners must be set separately.
+
+```javascript
+style={{
+    borderTopLeftRadius: 10, borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10, borderBottomRightRadius: 10
+}}
+dropDownStyle={{
+    borderBottomLeftRadius: 20, borderBottomRightRadius: 20
+}}
+```
+
+#### zIndex conflicts
+A lot of users use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
+
+The `style` and `dropDownStyle` properties must be used instead.
+
+Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
+
+#### Dropdown Overflow
+Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
+
+```javascript
+dropDownStyle={{marginTop: 2}}
+```
 
 ### Props
 |Name|Description|Type|Default|Required
