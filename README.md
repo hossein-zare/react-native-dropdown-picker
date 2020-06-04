@@ -290,7 +290,7 @@ dropDownStyle={{
         <DropDownPicker ... />
     </View>
     ```
-    Demo: https://snack.expo.io/RfVIa84Be  
+    Demo: https://snack.expo.io/@hossein-zare/823437  
 3. Multiple Pickers
     ```javascript
     <DropDownPicker zIndex={5000} />
@@ -339,4 +339,4 @@ dropDownStyle={{marginTop: 2}}
 |`searchableError`|Shows a message when nothing found.|`string`|`Not Found`|No
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
 |`onClose`|Fires when you close the picker.|`func`|`() => {}`|No
-|`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`||No
+|`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`|`(item, index) => {}`|No
