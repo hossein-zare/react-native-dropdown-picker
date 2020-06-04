@@ -269,15 +269,15 @@ dropDownStyle={{
 ```
 
 #### zIndex conflicts (Untouchable Items, Overlapping pickers)
-1. Using the `containerStyle` property to style the picker results in unexpected behaviors like untouchable items.
+1. Using the `containerStyle` property to style the picker results in unexpected behaviors like untouchable items.  
     > The `style` and `dropDownStyle` properties must be used instead.  
     > Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
-2. Nested Views
+2. Nested Views  
     > You have to add `zIndex` to the nested views which contain the picker.  
     > **Note!** `zIndex` locks the picker on Android, The solution is to use the `Platform.OS`
     ```javascript
     import { Platform } from 'react-native';
-    
+
     <View
         style={{
             ...(Platform.OS !== 'android' && {
