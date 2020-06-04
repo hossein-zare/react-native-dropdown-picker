@@ -290,7 +290,13 @@ dropDownStyle={{
         <DropDownPicker ... />
     </View>
     ```
-    Demo: https://snack.expo.io/RfVIa84Be
+    Demo: https://snack.expo.io/RfVIa84Be  
+3. Multiple Pickers
+    ```javascript
+    <DropDownPicker zIndex={5000} />
+    <DropDownPicker zIndex={4000} />
+    <DropDownPicker zIndex={3000} />
+    ```
 
 #### Dropdown Overflow
 Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
