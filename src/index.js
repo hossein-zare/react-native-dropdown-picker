@@ -210,11 +210,11 @@ class DropDownPicker extends React.Component {
 
         return (
             <View style={[this.props.containerStyle, {
-                ...Platform.select({
-                    ios: {
+
+                    ...(Platform.OS !== 'android' && {
                       zIndex: this.props.zIndex
-                    }
-                })
+                    })
+
             }]}>
                 <TouchableOpacity
                     onLayout={(event) => this.getLayout(event.nativeEvent.layout)}
@@ -277,7 +277,7 @@ class DropDownPicker extends React.Component {
                       )
                     }
 
-                    <ScrollView style={{width: '100%', zIndex: this.props.zIndex}} nestedScrollEnabled={true}>
+                    <ScrollView style={{width: '100%'}} nestedScrollEnabled={true}>
                         {
                             items.length > 0 ? items.map((item, index) => (
                                 <TouchableOpacity
