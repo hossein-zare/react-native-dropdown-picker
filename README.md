@@ -268,12 +268,27 @@ dropDownStyle={{
 }}
 ```
 
-#### zIndex conflicts
-A lot of users use the `containerStyle` property to style the picker which results in unexpected behaviors like untouchable scrollviews.
-
-The `style` and `dropDownStyle` properties must be used instead.
-
-Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
+#### zIndex conflicts (Untouchable Items, Overlapping pickers)
+1. Using the `containerStyle` property to style the picker results in unexpected behaviors like untouchable items.
+    > The `style` and `dropDownStyle` properties must be used instead.  
+    > Use the `containerStyle` prop to adjust the outer part of the picker such as `margin`, `width`, `height`, `flex`, ...
+2. Nested Views
+    > You have to add `zIndex` to the nested views which contain the picker.  
+    > **Note!** `zIndex` locks the picker on Android, The solution is to use the `Platform.OS`
+    ```javascript
+    import { Platform } from 'react-native';
+    
+    <View
+        style={{
+            ...(Platform.OS !== 'android' && {
+                zIndex: 10
+            })
+        }}
+    >
+        <DropDownPicker ... />
+    </View>
+    ```
+    Demo: https://snack.expo.io/RfVIa84Be
 
 #### Dropdown Overflow
 Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.

@@ -212,7 +212,7 @@ class DropDownPicker extends React.Component {
             <View style={[this.props.containerStyle, {
 
                     ...(Platform.OS !== 'android' && {
-                      zIndex: this.props.zIndex
+                        zIndex: this.props.zIndex
                     })
 
             }]}>
@@ -444,7 +444,8 @@ const styles = StyleSheet.create({
     },
     hidden: {
         position: 'relative',
-        display: 'none'
+        display: 'none',
+        borderWidth: 0
     },
     noBottomRadius: {
         borderBottomLeftRadius: 0,
