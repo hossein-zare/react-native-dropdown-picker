@@ -324,9 +324,9 @@ dropDownStyle={{marginTop: 2}}
 |`arrowColor`|The color of arrow icons|`string`|`#000`|No
 |`arrowSize`|The size of the arrow.|`number`|`15`|No
 |`showArrow`|An option to show/hide the arrow.|`bool`|`true`|No
-|`customArrowUp`|Customize the arrow-up.|`jsx`|`(size, color) => ...`|No
-|`customArrowDown`|Customize the arrow-down.|`jsx`|`(size, color) => ...`|No
-|`customTickIcon`|Customize the tick icon for multiple item picker.|`jsx`|`() => ...`|No
+|`customArrowUp`|Customize the arrow-up.|`func`|`(size, color) => ...`|No
+|`customArrowDown`|Customize the arrow-down.|`func`|`(size, color) => ...`|No
+|`customTickIcon`|Customize the tick icon for multiple item picker.|`func`|`() => ...`|No
 |`zIndex`|This property specifies the stack order of the component.|`number`|`5000`|No
 |`disabled`|Disables the component.|`bool`|`false`|No
 |`isVisible`|Open or close the dropdown box.|`bool`|`false`|No
