@@ -1,6 +1,6 @@
 {
   "name": "react-native-dropdown-picker",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A single or multiple, searchable item picker (dropdown) component for react native which supports both Android & iOS.",
   "main": "src/index.js",
   "repository": {
