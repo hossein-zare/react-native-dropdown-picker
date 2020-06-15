@@ -230,7 +230,7 @@ class DropDownPicker extends React.Component {
                     ]}
                 >
                     <View style={[styles.dropDownDisplay]}>
-                        <Text style={[this.props.labelStyle, placeholderStyle, {opacity}]}>
+                        <Text style={[this.props.labelStyle, placeholderStyle, {opacity, flex: 1, marginRight: 5}]}>
                             {multiple ? (
                                 this.state.choice.length > 0 ? this.getNumberOfItems() : placeholder
                             ) : label}
@@ -413,9 +413,7 @@ const styles = StyleSheet.create({
     },
     dropDownDisplay: {
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
-        textAlign: 'center',
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
         flexGrow: 1

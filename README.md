@@ -155,13 +155,20 @@ You have 10 options to style the component.
 
     This property gives full control over the label.
     ```javacript
-    labelStyle={{fontSize: 14, color: '#000'}}
+    labelStyle={{
+        fontSize: 14,
+        textAlign: 'left',
+        color: '#000'
+    }}
     ```
 6. The `placeholderStyle` property.
 
     It is possible to style the placeholder text with this property.
     ```javacript
-    placeholderStyle={{fontWeight: 'bold'}}
+    placeholderStyle={{
+        fontWeight: 'bold',
+        textAlign: 'center'
+    }}
     ```
 7. The `activeItemStyle` property.
 
@@ -332,8 +339,8 @@ dropDownStyle={{marginTop: 2}}
 |`isVisible`|Open or close the dropdown box.|`bool`|`false`|No
 |`multiple`|If set to true selecting multiple items is possible.|`bool`|`false`|No
 |`multipleText`|a Text to inform the user how many items have been selected.|`string`|`%d items have been selected`|No
-|`min`|minimum number of items.|`number`|`0`|No
-|`max`|maximum number of items.|`number`|`10000000`|No
+|`min`|Minimum number of items.|`number`|`0`|No
+|`max`|Maximum number of items.|`number`|`10000000`|No
 |`searchable`|Shows a `TextInput` to search for specific items.|`bool`|`false`|No
 |`searchableStyle`|Additional styles for the `TextInput`.|`object`|`{}`|No
 |`searchableError`|Shows a message when nothing found.|`string`|`Not Found`|No
