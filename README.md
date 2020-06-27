@@ -342,6 +342,7 @@ dropDownStyle={{marginTop: 2}}
 |`min`|Minimum number of items.|`number`|`0`|No
 |`max`|Maximum number of items.|`number`|`10000000`|No
 |`searchable`|Shows a `TextInput` to search for specific items.|`bool`|`false`|No
+|`searchablePlaceholder`|Default text to be shown to the user.|`string`|'Search for an item'|No
 |`searchableStyle`|Additional styles for the `TextInput`.|`object`|`{}`|No
 |`searchableError`|Shows a message when nothing found.|`string`|`Not Found`|No
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
