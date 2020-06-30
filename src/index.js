@@ -366,6 +366,7 @@ DropDownPicker.propTypes = {
     containerStyle: PropTypes.object,
     itemStyle: PropTypes.object,
     labelStyle: PropTypes.object,
+    placeholderStyle: PropTypes.object,
     activeItemStyle: PropTypes.object,
     activeLabelStyle: PropTypes.object,
     showArrow: PropTypes.bool,
