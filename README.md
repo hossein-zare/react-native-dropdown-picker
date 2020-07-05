@@ -13,6 +13,10 @@ A single or multiple, searchable item picker (dropdown) component for react nati
 + Removed `defaultIndex` property.
 + Removed `defaultNull` property.
 + The `defaultValue` is state-friendly.
++ Added `searchablePlaceholderTextColor` property.
++ Added `selectedtLabelStyle` property.
++ Added `icon` property for items.
++ `searchableError` returns `jsx`.
 
 ## Getting Started
 ![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/1.png)
@@ -36,18 +40,23 @@ import DropDownPicker from 'react-native-dropdown-picker';
 #### Single
 Select a single item.
 ```javascript
+import Icon from 'react-native-vector-icons/Feather';
+
 this.state = {
     country: 'uk'
 }
 
 <DropDownPicker
     items={[
-        {label: 'UK', value: 'uk'},
-        {label: 'France', value: 'france'},
+        {label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900" />},
+        {label: 'France', value: 'france', icon: () => <Icon name="flag" size={18} color="#900" />},
     ]}
     defaultValue={this.state.country}
     containerStyle={{height: 40}}
     style={{backgroundColor: '#fafafa'}}
+    itemStyle={{
+        justifyContent: 'flex-start'
+    }}
     dropDownStyle={{backgroundColor: '#fafafa'}}
     onChangeItem={item => this.setState({
         country: item.value
@@ -58,14 +67,16 @@ this.state = {
 #### Multiple
 Select multiple items.
 ```javascript
+import Icon from 'react-native-vector-icons/Feather';
+
 this.state = {
     countries: ['uk']
 }
 
 <DropDownPicker
     items={[
-        {label: 'UK', value: 'uk'},
-        {label: 'France', value: 'france'},
+        {label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900" />},
+        {label: 'France', value: 'france', icon: () => <Icon name="flag" size={18} color="#900" />},
     ]}
 
     multiple={true}
@@ -75,6 +86,9 @@ this.state = {
 
     defaultValue={this.state.countries}
     containerStyle={{height: 40}}
+    itemStyle={{
+        justifyContent: 'flex-start'
+    }}
     onChangeItem={item => this.setState({
         countries: item // an array of the selected items
     })}
@@ -125,7 +139,7 @@ placeholder="Select an item"
 ```
 
 ### Styling the component
-You have 10 options to style the component.
+You have 12 options to style the component.
 1. The `style` property.
 
     Use this to adjust the inner part of the picker.
@@ -149,7 +163,7 @@ You have 10 options to style the component.
 
     If you want the labels on the `left` and `right` side or to centerize them:
     ```javacript
-    itemStyle={{alignItems: 'flex-start|flex-end|center'}}
+    itemStyle={{justifyContent: 'flex-start|flex-end|center'}}
     ```
 5. The `labelStyle` property.
 
@@ -161,7 +175,15 @@ You have 10 options to style the component.
         color: '#000'
     }}
     ```
-6. The `placeholderStyle` property.
+6. The `selectedtLabelStyle` property.
+
+    Changes the style of the selected item label.
+    ```javacript
+    selectedtLabelStyle={{
+        color: '#39739d'
+    }}
+    ```
+7. The `placeholderStyle` property.
 
     It is possible to style the placeholder text with this property.
     ```javacript
@@ -170,29 +192,35 @@ You have 10 options to style the component.
         textAlign: 'center'
     }}
     ```
-7. The `activeItemStyle` property.
+8. The `activeItemStyle` property.
 
     This property allows you to style the active item.
     ```javacript
-    activeItemStyle={{alignItems: 'center'}}
+    activeItemStyle={{justifyContent: 'center'}}
     ```
-8. The `activeLabelStyle` property.
+9. The `activeLabelStyle` property.
 
     This property allows you to style the active label.
     ```javacript
     activeLabelStyle={{color: 'red'}}
     ```
-9. The `arrowStyle` property.
+10. The `arrowStyle` property.
 
     Adds your additional styles to the `View` element of the arrow.
     ```javacript
     arrowStyle={{marginRight: 10}}
     ```
-10. The `searchableStyle` property.
+11. The `searchableStyle` property.
 
     Additional styles for the `TextInput`
     ```javacript
     searchableStyle={{backgroundColor: '#dfdfdf'}}
+    ```
+12. The `searchablePlaceholderTextColor` property.
+
+    Assigns a new color to the placeholder text
+    ```javacript
+    searchablePlaceholderTextColor="silver"
     ```
 
 ### FAQ
@@ -297,8 +325,13 @@ dropDownStyle={{
         <DropDownPicker ... />
     </View>
     ```
-    Demo: https://snack.expo.io/@hossein-zare/823437  
-3. Multiple Pickers
+    Demo: https://snack.expo.io/@hossein-zare/823437
+4. DropDownPicker wrapped by `<View style={{backgroundColor: '...'}}>`
+
+   Remove the `backgroundColor` from the parent element.  
+   https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
+
+5. Multiple Pickers
     ```javascript
     <DropDownPicker zIndex={5000} />
     <DropDownPicker zIndex={4000} />
@@ -324,6 +357,7 @@ dropDownStyle={{marginTop: 2}}
 |`containerStyle`|Additional styles for the container view.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
+|`selectedtLabelStyle`|Additional styles for the selected label.|`object`|`{}`|No
 |`placeholderStyle`|Additional styles for the placeholder text.|`object`|`{}`|No
 |`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
 |`activeLabelStyle`|Additional styles for the active label.|`object`|`{}`|No
@@ -342,9 +376,10 @@ dropDownStyle={{marginTop: 2}}
 |`min`|Minimum number of items.|`number`|`0`|No
 |`max`|Maximum number of items.|`number`|`10000000`|No
 |`searchable`|Shows a `TextInput` to search for specific items.|`bool`|`false`|No
-|`searchablePlaceholder`|Default text to be shown to the user.|`string`|`Search...`|No
+|`searchablePlaceholder`|Default text to be shown to the user.|`string`|`Search for an item`|No
+|`searchablePlaceholderTextColor`|TextInput placeholder text color.|`string`|`gray`|No
 |`searchableStyle`|Additional styles for the `TextInput`.|`object`|`{}`|No
-|`searchableError`|Shows a message when nothing found.|`string`|`Not Found`|No
+|`searchableError`|Shows a jsx element when nothing found.|`func`|`() => <Text>Not Found</Text>`|No
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
 |`onClose`|Fires when you close the picker.|`func`|`() => {}`|No
 |`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`|`(item, index) => {}`|No
