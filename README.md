@@ -102,8 +102,10 @@ Search for specific items.
 
 ```javascript
 searchable={true}
-searchablePlaceholder="Search..."
-searchableError="Not Found"
+searchablePlaceholder="Search for an item"
+searchablePlaceholderTextColor="gray"
+seachableStyle={{}}
+searchableError={() => <Text>Not Found</Text>}
 ```
 
 ### Default item
