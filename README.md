@@ -16,7 +16,7 @@ A single or multiple, searchable item picker (dropdown) component for react nati
 + Added `searchablePlaceholderTextColor` property.
 + Added `selectedtLabelStyle` property.
 + Added `icon` property for items.
-+ `searchableError` returns `jsx`.
++ The `searchableError` returns `jsx`.
 + Changed `ScrollView` to `FlatList`.
 + Added types file.
 
