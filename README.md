@@ -17,6 +17,8 @@ A single or multiple, searchable item picker (dropdown) component for react nati
 + Added `selectedtLabelStyle` property.
 + Added `icon` property for items.
 + `searchableError` returns `jsx`.
++ Changed `ScrollView` to `FlatList`.
++ Added types file.
 
 ## Getting Started
 ![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/1.png)
