@@ -14,7 +14,7 @@ A single or multiple, searchable item picker (dropdown) component for react nati
 + Removed `defaultNull` property.
 + The `defaultValue` is state-friendly.
 + Added `searchablePlaceholderTextColor` property.
-+ Added `selectedtLabelStyle` property.
++ Added `selectedLabelStyle` property.
 + Added `icon` property for items.
 + The `searchableError` returns `jsx`.
 + Changed `ScrollView` to `FlatList`.
@@ -179,7 +179,7 @@ You have 12 options to style the component.
         color: '#000'
     }}
     ```
-6. The `selectedtLabelStyle` property.
+6. The `selectedLabelStyle` property.
 
     Changes the style of the selected item label.
     ```javacript
@@ -361,7 +361,7 @@ dropDownStyle={{marginTop: 2}}
 |`containerStyle`|Additional styles for the container view.|`object`|`{}`|No
 |`itemStyle`|Additional styles for the items.|`object`|`{}`|No
 |`labelStyle`|Additional styles for the labels.|`object`|`{}`|No
-|`selectedtLabelStyle`|Additional styles for the selected label.|`object`|`{}`|No
+|`selectedLabelStyle`|Additional styles for the selected label.|`object`|`{}`|No
 |`placeholderStyle`|Additional styles for the placeholder text.|`object`|`{}`|No
 |`activeItemStyle`|Additional styles for the active item.|`object`|`{}`|No
 |`activeLabelStyle`|Additional styles for the active label.|`object`|`{}`|No

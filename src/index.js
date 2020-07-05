@@ -296,7 +296,7 @@ class DropDownPicker extends React.Component {
                         <Text style={[
                             this.props.labelStyle,
                             placeholderStyle, {opacity, flex: 1, marginRight: 5},
-                            this.state.choice.label !== null && this.props.selectedtLabelStyle,
+                            this.state.choice.label !== null && this.props.selectedLabelStyle,
                             this.state.choice.icon && {marginLeft: 5}
                         ]}>
                             {multiple ? (
@@ -367,7 +367,7 @@ DropDownPicker.defaultProps = {
     containerStyle: {},
     itemStyle: {},
     labelStyle: {},
-    selectedtLabelStyle: {},
+    selectedLabelStyle: {},
     placeholderStyle: {},
     activeItemStyle: {},
     activeLabelStyle: {},
@@ -405,7 +405,7 @@ DropDownPicker.propTypes = {
     containerStyle: PropTypes.object,
     itemStyle: PropTypes.object,
     labelStyle: PropTypes.object,
-    selectedtLabelStyle: PropTypes.object,
+    selectedLabelStyle: PropTypes.object,
     placeholderStyle: PropTypes.object,
     activeItemStyle: PropTypes.object,
     activeLabelStyle: PropTypes.object,
