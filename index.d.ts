@@ -11,7 +11,7 @@ declare module 'react-native-dropdown-picker' {
     containerStyle?: Object;
     itemStyle?: Object;
     labelStyle?: Object;
-    selectedtLabelStyle?: Object;
+    selectedLabelStyle?: Object;
     placeholderStyle?: Object;
     activeItemStyle?: Object;
     activeLabelStyle?: Object;
