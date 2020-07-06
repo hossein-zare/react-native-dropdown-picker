@@ -253,11 +253,9 @@ class DropDownPicker extends React.Component {
 
     _renderEmptyContainer = () => {
         return (
-            <Text style={[styles.notFound, {
-                fontFamily: this.props.labelStyle?.fontFamily
-            }]}>
+            <View style={styles.notFound}>
                 {this.props.searchableError()}
-            </Text>
+            </View>
         )
     }
 
@@ -493,10 +491,9 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 0,
     },
     notFound: {
-        textAlign: 'center',
-        color: 'grey',
         marginVertical: 10,
-        marginBottom: 15
+        marginBottom: 15,
+        alignItems: 'center'
     }
 });
 
