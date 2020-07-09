@@ -344,13 +344,14 @@ class DropDownPicker extends React.Component {
                       )
                     }
 
-                <FlatList 
-                    style={{width: '100%'}}  
-                    data={items}
-                    renderItem={this._renderItem}
-                    keyExtractor={(item, index) => index.toString()}
-                    ListEmptyComponent={this._renderEmptyContainer}>   
-                </FlatList>
+	                <FlatList 
+	                    style={{width: '100%'}}  
+	                    data={items}
+	                    renderItem={this._renderItem}
+	                    keyExtractor={(item, index) => index.toString()}
+	                    ListEmptyComponent={this._renderEmptyContainer}
+	                    nestedScrollEnabled={true}
+	                />
                 </View>
             </View>
         );
