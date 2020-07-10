@@ -205,60 +205,6 @@ class DropDownPicker extends React.Component {
         return this.props.multipleText.replace('%d', this.state.choice.length);
     }
 
-    _renderItem = ({item, index}) => {
-        return ( 
-            <TouchableOpacity
-                key={index}
-                onPress={() => this.select(item, index)}
-                style={[styles.dropDownItem, this.props.itemStyle, (
-                    this.state.choice.value === item.value && this.props.activeItemStyle
-                ), {
-                    opacity: item?.disabled || false === true ? 0.3 : 1,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    ...(
-                        this.state.props.multiple ? {
-                            justifyContent: 'space-between'
-                        } : {
-                            
-                        }
-                    )
-                }]}
-                disabled={item?.disabled || false === true}
-            >
-                <View style={{
-                    flexDirection: 'row',
-                    alignItems: 'center'
-                }}>
-                    {item.icon && item.icon()}
-                    <Text style={[
-                        this.props.labelStyle, 
-                        this.state.choice.value === item.value && this.props.activeLabelStyle,{
-                        ...(item.icon && {
-                            marginLeft: 5
-                        })
-                    }]}>
-                        {item.label}
-                    </Text>
-                </View>
-
-                {
-                    this.state.props.multiple && this.state.choice.findIndex(i => i.label === item.label && i.value === item.value) > -1 && (
-                        this.props.customTickIcon()
-                    )
-                }
-            </TouchableOpacity> 
-        )
-    }
-
-    _renderEmptyContainer = () => {
-        return (
-            <View style={styles.notFound}>
-                {this.props.searchableError()}
-            </View>
-        )
-    }
-
     render() {
         const { multiple, disabled } = this.state.props;
         const { placeholder } = this.props;
@@ -344,14 +290,57 @@ class DropDownPicker extends React.Component {
                       )
                     }
 
-	                <FlatList 
-	                    style={{width: '100%'}}  
-	                    data={items}
-	                    renderItem={this._renderItem}
-	                    keyExtractor={(item, index) => index.toString()}
-	                    ListEmptyComponent={this._renderEmptyContainer}
-	                    nestedScrollEnabled={true}
-	                />
+
+
+
+                    <ScrollView style={{width: '100%'}} nestedScrollEnabled={true}>
+                        {items.length > 0 ? items.map((item, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                onPress={() => this.select(item, index)}
+                                style={[styles.dropDownItem, this.props.itemStyle, (
+                                    this.state.choice.value === item.value && this.props.activeItemStyle
+                                ), {
+                                    opacity: item?.disabled || false === true ? 0.3 : 1,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    ...(
+                                        multiple ? {
+                                            justifyContent: 'space-between'
+                                        } : {
+                                            
+                                        }
+                                    )
+                                }]}
+                                disabled={item?.disabled || false === true}
+                            >
+                                <View style={{
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }}>
+                                    {item.icon && item.icon()}
+                                    <Text style={[
+                                        this.props.labelStyle, 
+                                        this.state.choice.value === item.value && this.props.activeLabelStyle,{
+                                        ...(item.icon && {
+                                            marginLeft: 5
+                                        })
+                                    }]}>
+                                        {item.label}
+                                    </Text>
+                                </View>
+                                {
+                                    this.state.props.multiple && this.state.choice.findIndex(i => i.label === item.label && i.value === item.value) > -1 && (
+                                        this.props.customTickIcon()
+                                    )
+                                }
+                            </TouchableOpacity>
+                        )) : (
+                            <View style={styles.notFound}>
+                                {this.props.searchableError()}
+                            </View>
+                        )}
+                    </ScrollView>
                 </View>
             </View>
         );
