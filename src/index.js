@@ -290,9 +290,6 @@ class DropDownPicker extends React.Component {
                       )
                     }
 
-
-
-
                     <ScrollView style={{width: '100%'}} nestedScrollEnabled={true}>
                         {items.length > 0 ? items.map((item, index) => (
                             <TouchableOpacity
