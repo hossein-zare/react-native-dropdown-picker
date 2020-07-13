@@ -1,6 +1,5 @@
 declare module 'react-native-dropdown-picker' {
   import { ComponentType } from 'react';
-
  
   type DropDownPicker = {
     items: {label: any, value: any, icon?: () => JSX.Element, disabled?: boolean, selected?: boolean}[];
