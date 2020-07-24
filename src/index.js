@@ -423,7 +423,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        textAlign: 'center',
         paddingVertical: 8,
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
@@ -451,7 +450,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center',
         position: 'absolute',
         width: '100%'
     },
