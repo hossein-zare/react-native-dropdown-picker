@@ -207,7 +207,7 @@ class DropDownPicker extends React.Component {
 
     render() {
         const { multiple, disabled } = this.state.props;
-        const { placeholder } = this.props;
+        const { placeholder, scrollViewProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
         const label = isPlaceholderActive ? (placeholder) : this.state.choice.label;
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
@@ -290,7 +290,7 @@ class DropDownPicker extends React.Component {
                       )
                     }
 
-                    <ScrollView style={{width: '100%'}} nestedScrollEnabled={true}>
+                    <ScrollView style={{width: '100%'}} nestedScrollEnabled={true} {...scrollViewProps}>
                         {items.length > 0 ? items.map((item, index) => (
                             <TouchableOpacity
                                 key={index}
