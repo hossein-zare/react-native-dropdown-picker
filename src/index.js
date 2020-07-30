@@ -304,7 +304,8 @@ class DropDownPicker extends React.Component {
                                     alignItems: 'center',
                                     ...(
                                         multiple ? {
-                                            justifyContent: 'space-between'
+                                            justifyContent: 'space-between',
+                                            ...(this.state.choice.includes(item.value) && this.props.activeItemStyle)
                                         } : {
                                             
                                         }
