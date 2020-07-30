@@ -1,21 +1,22 @@
 declare module 'react-native-dropdown-picker' {
   import { ComponentType } from 'react';
+  import { StyleProp, TextStyle, ViewStyle } from 'react-native';
  
   type DropDownPicker = {
     items: {label: any, value: any, icon?: () => JSX.Element, disabled?: boolean, selected?: boolean}[];
     defaultValue?: any;
     placeholder?: string;
     dropDownMaxHeight?: number;
-    style?: Object;
-    dropDownStyle?: Object;
-    containerStyle?: Object;
-    itemStyle?: Object;
-    labelStyle?: Object;
-    selectedLabelStyle?: Object;
-    placeholderStyle?: Object;
-    activeItemStyle?: Object;
-    activeLabelStyle?: Object;
-    arrowStyle?: Object;
+    style?: StyleProp<ViewStyle>;
+    dropDownStyle?: StyleProp<ViewStyle>;
+    containerStyle?: StyleProp<ViewStyle>;
+    itemStyle?: StyleProp<ViewStyle>;
+    labelStyle?: StyleProp<TextStyle>;
+    selectedLabelStyle?: StyleProp<TextStyle>;
+    placeholderStyle?: StyleProp<TextStyle>;
+    activeItemStyle?: StyleProp<ViewStyle>;
+    activeLabelStyle?: StyleProp<TextStyle>;
+    arrowStyle?: StyleProp<ViewStyle>;
     arrowColor?: string;
     arrowSize?: number;
     showArrow?: boolean;
@@ -33,7 +34,7 @@ declare module 'react-native-dropdown-picker' {
     searchable?: boolean;
     searchablePlaceholder?: string;
     searchablePlaceholderTextColor?: string;
-    searchableStyle?: Object;
+    searchableStyle?: StyleProp<TextStyle>;
     searchableError?: () => JSX.Element;
     onOpen?: () => void;
     onClose?: () => void;
