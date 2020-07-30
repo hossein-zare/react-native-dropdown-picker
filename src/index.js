@@ -8,7 +8,6 @@ import {
     Platform,
     TextInput,
     FlatList,
-    TextPropTypes,
     ViewPropTypes
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -394,11 +393,11 @@ DropDownPicker.propTypes = {
     dropDownStyle: ViewPropTypes.style,
     containerStyle: ViewPropTypes.style,
     itemStyle: ViewPropTypes.style,
-    labelStyle: TextPropTypes.style,
-    selectedLabelStyle: TextPropTypes.style,
-    placeholderStyle: TextPropTypes.style,
+    labelStyle: Text.propTypes.style,
+    selectedLabelStyle: Text.propTypes.style,
+    placeholderStyle: Text.propTypes.style,
     activeItemStyle: ViewPropTypes.style,
-    activeLabelStyle: TextPropTypes.style,
+    activeLabelStyle: Text.propTypes.style,
     showArrow: PropTypes.bool,
     arrowStyle: ViewPropTypes.style,
     arrowColor: PropTypes.string,
@@ -411,7 +410,7 @@ DropDownPicker.propTypes = {
     searchable: PropTypes.bool,
     searchablePlaceholder: PropTypes.string,
     searchableError: PropTypes.func,
-    searchableStyle: TextPropTypes.style,
+    searchableStyle: Text.propTypes.style,
     searchablePlaceholderTextColor: PropTypes.string,
     isVisible: PropTypes.bool,
     multiple: PropTypes.bool,
