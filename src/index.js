@@ -418,6 +418,7 @@ DropDownPicker.propTypes = {
     max: PropTypes.number,
     selectedLabelLength: PropTypes.number,
     labelLength: PropTypes.number,
+    scrollViewProps: PropTypes.object,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     onChangeItem: PropTypes.func
