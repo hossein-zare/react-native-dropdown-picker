@@ -210,7 +210,7 @@ class DropDownPicker extends React.Component {
         const { multiple, disabled } = this.state.props;
         const { placeholder, scrollViewProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
-        const label = isPlaceholderActive ? (placeholder) : this.state.choice.label;
+        const label = isPlaceholderActive ? (placeholder) : this.state.choice.label.substr(0, this.props.selectedLabelLength);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         const items = this.getItems();
@@ -324,7 +324,7 @@ class DropDownPicker extends React.Component {
                                             marginLeft: 5
                                         })
                                     }]}>
-                                        {item.label}
+                                        {item.label.substr(0, this.props.labelLength)}
                                     </Text>
                                 </View>
                                 {
@@ -376,6 +376,8 @@ DropDownPicker.defaultProps = {
     multipleText: '%d items have been selected',
     min: 0,
     max: 10000000,
+    selectedLabelLength: 1000,
+    labelLength: 1000,
     onOpen: () => {},
     onClose: () => {},
     onChangeItem: () => {},
@@ -414,6 +416,8 @@ DropDownPicker.propTypes = {
     multipleText: PropTypes.string,
     min: PropTypes.number,
     max: PropTypes.number,
+    selectedLabelLength: PropTypes.number,
+    labelLength: PropTypes.number,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     onChangeItem: PropTypes.func
