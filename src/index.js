@@ -379,6 +379,7 @@ DropDownPicker.defaultProps = {
     max: 10000000,
     selectedLabelLength: 1000,
     labelLength: 1000,
+    scrollViewProps: {},
     onOpen: () => {},
     onClose: () => {},
     onChangeItem: () => {},
