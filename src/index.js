@@ -211,8 +211,8 @@ class DropDownPicker extends React.Component {
     }
 
     getLabel(item) {
-        if (! item)
-            return;
+        if (typeof item !== 'object')
+            return item;
 
         const len = item.label.length;
         const label = item.label.substr(0, this.props.labelLength);
