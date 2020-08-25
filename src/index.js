@@ -206,11 +206,15 @@ class DropDownPicker extends React.Component {
         return this.props.multipleText.replace('%d', this.state.choice.length);
     }
 
+    isSelected(item) {
+      return this.state.choice.findIndex(a => a.value === item.value) > -1;
+    }
+
     render() {
         const { multiple, disabled } = this.state.props;
         const { placeholder, scrollViewProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
-        const label = isPlaceholderActive ? (placeholder) : this.state.choice.label.substr(0, this.props.selectedLabelLength);
+        const label = isPlaceholderActive ? (placeholder) : this.state.choice?.label?.substr(0, this.props.selectedLabelLength);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         const items = this.getItems();
@@ -218,9 +222,9 @@ class DropDownPicker extends React.Component {
         return (
             <View style={[this.props.containerStyle, {
 
-                    ...(Platform.OS !== 'android' && {
-                        zIndex: this.props.zIndex
-                    })
+              ...(Platform.OS !== 'android' && {
+                  zIndex: this.props.zIndex
+              })
 
             }]}>
                 <TouchableOpacity
@@ -305,7 +309,7 @@ class DropDownPicker extends React.Component {
                                     ...(
                                         multiple ? {
                                             justifyContent: 'space-between',
-                                            ...(this.state.choice.includes(item.value) && this.props.activeItemStyle)
+                                            ...(this.isSelected(item) && this.props.activeItemStyle)
                                         } : {
                                             
                                         }
@@ -320,7 +324,7 @@ class DropDownPicker extends React.Component {
                                     {item.icon && item.icon()}
                                     <Text style={[
                                         this.props.labelStyle, 
-                                        this.state.choice.value === item.value && this.props.activeLabelStyle,{
+                                        this.state.choice.value === item.value && this.props.activeLabelStyle, {
                                         ...(item.icon && {
                                             marginLeft: 5
                                         })
