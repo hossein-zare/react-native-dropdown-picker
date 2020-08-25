@@ -19,6 +19,9 @@ A single or multiple, searchable item picker (dropdown) component for react nati
 + The `searchableError` returns `jsx`.
 + Changed `FlatList` to `ScrollView`.
 + Added types file.
++ Added `labelLength` property.
++ Added `scrollViewProps` property.
++ Some bug-fixes.
 
 ## Getting Started
 ![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/1.png)
@@ -330,10 +333,10 @@ dropDownStyle={{
     </View>
     ```
     Demo: https://snack.expo.io/@hossein-zare/823437
-4. DropDownPicker wrapped by `<View style={{backgroundColor: '...'}}>`
-
-   Remove the `backgroundColor` from the parent element.  
-   https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
+4. DropDownPicker wrapped by `<View style={{backgroundColor: '...', borderRadius: ..., border: ..., elevation: ...}}>`
+    These props will make your dropdown untouchable.  
+    Remove all the `backgroundColor`, `borderRadius`, `border`, ... style properties from the parent element.  
+    https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
 
 5. Multiple Pickers
     ```javascript
@@ -384,6 +387,8 @@ dropDownStyle={{marginTop: 2}}
 |`searchablePlaceholderTextColor`|TextInput placeholder text color.|`string`|`gray`|No
 |`searchableStyle`|Additional styles for the `TextInput`.|`object`|`{}`|No
 |`searchableError`|Shows a jsx element when nothing found.|`func`|`() => <Text>Not Found</Text>`|No
+|`labelLength`|Specify length for the labels|`number`|`1000`|No
+|`scrollViewProps`|Add props to the `ScrollView`|`object`|`{}`|No
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
 |`onClose`|Fires when you close the picker.|`func`|`() => {}`|No
 |`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`|`(item, index) => {}`|No
