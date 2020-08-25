@@ -25,6 +25,7 @@ https://github.com/oblador/react-native-vector-icons
 + Added types file.
 + Added `labelLength` property.
 + Added `scrollViewProps` property.
++ Added `controller` property.
 + Some bug-fixes.
 
 ## Getting Started
@@ -232,6 +233,53 @@ You have 12 options to style the component.
     Assigns a new color to the placeholder text
     ```javacript
     searchablePlaceholderTextColor="silver"
+    ```
+
+### Controller
+The `controller` property gives you full access to the DropDownPicker methods and properties.  
+#### Usage
+```javascript
+constructor(props) {
+    ...
+    this.controller;
+    ...
+}
+
+<DropDownPicker
+    ...
+    controller={(instance) => this.controller = instance}
+    ...
+/>
+```
+1. Reset the state.
+    You may want to reset the state of your picker.
+    ```javascript
+    this.controller.reset();
+    ````
+2. Select an item manually.
+    You may want to select an item manually.
+    ```javascript
+    // Single
+    this.controller.select({
+        label: 'UK',
+        value: 'uk',
+        icon: () => {},
+    });
+
+    // Multiple
+    this.controller.select([
+        {
+            label: 'UK',
+            value: 'uk',
+            icon: () => {},
+        }
+    ]);
+    ```
+3. Open, close or toggle
+    ```javascript
+    this.controller.open();
+    this.controller.close();
+    this.controller.toggle();
     ```
 
 ### FAQ
