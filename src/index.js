@@ -120,6 +120,15 @@ class DropDownPicker extends React.Component {
         return null;
     }
 
+    componentDidMount() {
+        this.props.controller(this);
+    }
+
+    reset() {
+        const item = this.props.multiple ? [] : this.null();
+        this.props.onChangeItem(item, -1);
+    }
+
     null() {
         return {
             label: null,
@@ -135,14 +144,26 @@ class DropDownPicker extends React.Component {
             const isVisible = this.state.isVisible;
 
             if (isVisible) {
-        		this.props.onOpen();
+        		this.open(false);
         	} else {
-        		this.props.onClose();
+        		this.close(false);
         	}
         });
     }
 
-    select(item, index) {
+    open(setState = true) {
+        this.setState({
+            ...(setState && {isVisible: true})
+        }, () => this.props.onOpen());
+    }
+
+    close(setState = true) {
+        this.setState({
+            ...(setState && {isVisible: false})
+        }, () => this.props.onClose());
+    }
+
+    select(item) {
         const { multiple } = this.state.props;
         if (! multiple) {
             this.setState({
@@ -157,6 +178,8 @@ class DropDownPicker extends React.Component {
                     isVisible: false
                 }
             });
+
+            const index = this.state.props.items.findIndex(i => i.value === item.value);
 
             // onChangeItem callback
             this.props.onChangeItem(item, index);
@@ -209,12 +232,12 @@ class DropDownPicker extends React.Component {
       return this.state.choice.findIndex(a => a.value === item.value) > -1;
     }
 
-    getLabel(item) {
+    getLabel(item, selected = false) {
         if (typeof item !== 'object')
             return item;
 
         const len = item.label.length;
-        const label = item.label.substr(0, this.props.labelLength);
+        const label = item.label.substr(0, selected ? this.props.selectedLabelLength : this.props.labelLength);
         const len2 = label.length;
 
         return label + (len !== len2 ? '...' : '');
@@ -224,7 +247,7 @@ class DropDownPicker extends React.Component {
         const { multiple, disabled } = this.state.props;
         const { placeholder, scrollViewProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
-        const label = isPlaceholderActive ? (placeholder) : this.getLabel(this.state.choice?.label);
+        const label = isPlaceholderActive ? (placeholder) : this.getLabel(this.state.choice?.label, true);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         const items = this.getItems();
@@ -309,7 +332,7 @@ class DropDownPicker extends React.Component {
                         {items.length > 0 ? items.map((item, index) => (
                             <TouchableOpacity
                                 key={index}
-                                onPress={() => this.select(item, index)}
+                                onPress={() => this.select(item)}
                                 style={[styles.dropDownItem, this.props.itemStyle, (
                                     this.state.choice.value === item.value && this.props.activeItemStyle
                                 ), {
@@ -396,6 +419,7 @@ DropDownPicker.defaultProps = {
     selectedLabelLength: 1000,
     labelLength: 1000,
     scrollViewProps: {},
+    controller: () => {},
     onOpen: () => {},
     onClose: () => {},
     onChangeItem: () => {},
@@ -437,6 +461,7 @@ DropDownPicker.propTypes = {
     selectedLabelLength: PropTypes.number,
     labelLength: PropTypes.number,
     scrollViewProps: PropTypes.object,
+    controller: PropTypes.func,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     onChangeItem: PropTypes.func
