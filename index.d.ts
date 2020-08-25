@@ -22,7 +22,6 @@ declare module 'react-native-dropdown-picker' {
     arrowColor?: string;
     arrowSize?: number;
     showArrow?: boolean;
-    scrollViewProps?: Object;
     customArrowUp?: (size: number, color: string) => JSX.Element;
     customArrowDown?: (size: number, color: string) => JSX.Element;
     customTickIcon?: () => JSX.Element;
