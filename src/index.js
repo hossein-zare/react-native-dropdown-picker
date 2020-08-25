@@ -210,11 +210,22 @@ class DropDownPicker extends React.Component {
       return this.state.choice.findIndex(a => a.value === item.value) > -1;
     }
 
+    getLabel(item) {
+        if (! item)
+            return;
+
+        const len = item.label.length;
+        const label = item.label.substr(0, this.props.labelLength);
+        const len2 = label.length;
+
+        return label + (len !== len2 ? '...' : '');
+    }
+
     render() {
         const { multiple, disabled } = this.state.props;
         const { placeholder, scrollViewProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
-        const label = isPlaceholderActive ? (placeholder) : this.state.choice?.label?.substr(0, this.props.selectedLabelLength);
+        const label = isPlaceholderActive ? (placeholder) : this.getLabel(this.state.choice?.label);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         const items = this.getItems();
@@ -324,12 +335,14 @@ class DropDownPicker extends React.Component {
                                     {item.icon && item.icon()}
                                     <Text style={[
                                         this.props.labelStyle, 
-                                        this.state.choice.value === item.value && this.props.activeLabelStyle, {
+                                            multiple ?
+                                            (this.isSelected(item) && this.props.activeLabelStyle) : (this.state.choice.value === item.value && this.props.activeLabelStyle)
+                                        , {
                                         ...(item.icon && {
                                             marginLeft: 5
                                         })
                                     }]}>
-                                        {item.label.substr(0, this.props.labelLength)}
+                                        {this.getLabel(item)}
                                     </Text>
                                 </View>
                                 {
