@@ -7,7 +7,7 @@ A single or multiple, searchable item picker (dropdown) component for react nati
 
 **It's required to follow the docs in order to upgrade the package to v3.x**
 
-### Dependencies
+## Dependencies
 Our package only requires `react-native-vector-icons` to be installed.
 
 ## Changelog
