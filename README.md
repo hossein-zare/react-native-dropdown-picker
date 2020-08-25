@@ -23,6 +23,7 @@ https://github.com/oblador/react-native-vector-icons
 + The `searchableError` returns `jsx`.
 + Changed `FlatList` to `ScrollView`.
 + Added types file.
++ Added `selectedLabelLength` property.
 + Added `labelLength` property.
 + Added `scrollViewProps` property.
 + Added `controller` property.
@@ -440,9 +441,10 @@ dropDownStyle={{marginTop: 2}}
 |`searchable`|Shows a `TextInput` to search for specific items.|`bool`|`false`|No
 |`searchablePlaceholder`|Default text to be shown to the user.|`string`|`Search for an item`|No
 |`searchablePlaceholderTextColor`|TextInput placeholder text color.|`string`|`gray`|No
-|`searchableStyle`|Additional styles for the `TextInput`.|`object`|`{}`|No
+|`searchableStyle`|Additional styles for the `TextInput`|`object`|`{}`|No
 |`searchableError`|Shows a jsx element when nothing found.|`func`|`() => <Text>Not Found</Text>`|No
-|`labelLength`|Specify length for the labels|`number`|`1000`|No
+|`selectedLabelLength`|Specify length for the selected label.|`number`|`1000`|No
+|`labelLength`|Specify length for the labels.|`number`|`1000`|No
 |`scrollViewProps`|Add props to the `ScrollView`|`object`|`{}`|No
 |`controller`|Gives you access to the methods and properties.|`func`|`(instance) => {}`|No
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
