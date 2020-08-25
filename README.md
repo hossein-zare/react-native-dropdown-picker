@@ -251,13 +251,13 @@ constructor(props) {
     ...
 />
 ```
-1. Reset the state.
-    You may want to reset the state of your picker.
+1. Reset the state.  
+    You may want to reset the state of your picker.  
     ```javascript
     this.controller.reset();
     ````
-2. Select an item manually.
-    You may want to select an item manually.
+2. Select an item manually.  
+    You may want to select an item manually.  
     ```javascript
     // Single
     this.controller.select({
@@ -275,7 +275,7 @@ constructor(props) {
         }
     ]);
     ```
-3. Open, close or toggle
+3. Open, close or toggle  
     ```javascript
     this.controller.open();
     this.controller.close();
@@ -441,6 +441,7 @@ dropDownStyle={{marginTop: 2}}
 |`searchableError`|Shows a jsx element when nothing found.|`func`|`() => <Text>Not Found</Text>`|No
 |`labelLength`|Specify length for the labels|`number`|`1000`|No
 |`scrollViewProps`|Add props to the `ScrollView`|`object`|`{}`|No
+|`controller`|Gives you access to the methods and properties.|`func`|`(instance) => {}`|No
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
 |`onClose`|Fires when you close the picker.|`func`|`() => {}`|No
 |`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`|`(item, index) => {}`|No
