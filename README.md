@@ -150,6 +150,56 @@ placeholder="Select an item"
 ...
 ```
 
+### Controller
+The `controller` property gives you full access to the DropDownPicker methods and properties.  
+#### Usage
+```javascript
+constructor(props) {
+    ...
+    this.controller;
+    ...
+}
+
+<DropDownPicker
+    ...
+    controller={(instance) => this.controller = instance}
+    ...
+/>
+```
+1. Reset the state.
+
+    You may want to reset the state of your picker.  
+    ```javascript
+    this.controller.reset();
+    ````
+2. Select an item manually.
+
+    You may want to select an item manually.  
+    ```javascript
+    // Single
+    this.controller.select({
+        label: 'UK',
+        value: 'uk',
+        icon: () => {},
+    });
+
+    // Multiple
+    this.controller.select([
+        {
+            label: 'UK',
+            value: 'uk',
+            icon: () => {},
+        }
+    ]);
+    ```
+3. Open, close or toggle.
+
+    ```javascript
+    this.controller.open();
+    this.controller.close();
+    this.controller.toggle();
+    ```
+
 ### Styling the component
 You have 12 options to style the component.
 1. The `style` property.
@@ -230,56 +280,9 @@ You have 12 options to style the component.
     ```
 12. The `searchablePlaceholderTextColor` property.
 
-    Assigns a new color to the placeholder text
+    Assigns a new color to the placeholder text.
     ```javacript
     searchablePlaceholderTextColor="silver"
-    ```
-
-### Controller
-The `controller` property gives you full access to the DropDownPicker methods and properties.  
-#### Usage
-```javascript
-constructor(props) {
-    ...
-    this.controller;
-    ...
-}
-
-<DropDownPicker
-    ...
-    controller={(instance) => this.controller = instance}
-    ...
-/>
-```
-1. Reset the state.  
-    You may want to reset the state of your picker.  
-    ```javascript
-    this.controller.reset();
-    ````
-2. Select an item manually.  
-    You may want to select an item manually.  
-    ```javascript
-    // Single
-    this.controller.select({
-        label: 'UK',
-        value: 'uk',
-        icon: () => {},
-    });
-
-    // Multiple
-    this.controller.select([
-        {
-            label: 'UK',
-            value: 'uk',
-            icon: () => {},
-        }
-    ]);
-    ```
-3. Open, close or toggle  
-    ```javascript
-    this.controller.open();
-    this.controller.close();
-    this.controller.toggle();
     ```
 
 ### FAQ
