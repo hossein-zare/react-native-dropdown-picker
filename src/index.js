@@ -179,7 +179,7 @@ class DropDownPicker extends React.Component {
                 }
             });
 
-            const index = this.state.props.items.findIndex(i => i.value === item.value);
+            const index = this.props.items.findIndex(i => i.value === item.value);
 
             // onChangeItem callback
             this.props.onChangeItem(item, index);
