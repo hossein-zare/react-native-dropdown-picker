@@ -318,7 +318,8 @@ You have 12 options to style the component.
     ```
 
 ### RTL Support
-1. The selected item  
+1. The selected item
+
 ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-1.png)
     ```javascript
     style={{
@@ -329,7 +330,8 @@ You have 12 options to style the component.
     }}
     ```
 
-2. The dropdown items  
+2. The dropdown items
+
 ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-2.png)
     ```javascript
     itemStyle={{
