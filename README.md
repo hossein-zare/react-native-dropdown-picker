@@ -173,6 +173,13 @@ constructor(props) {
     ```javascript
     this.controller.reset();
     ````
+2. Reset items.
+
+    ```javascript
+    this.controller.resetItems([{}, {}, ...]);
+    this.controller.resetItems([{}, {}, ...], 'uk'); // Single
+    this.controller.resetItems([{}, {}, ...], ['uk', ...]); // Multiple
+    ```
 2. Select an item manually.
 
     You may want to select an item manually.  
@@ -193,7 +200,29 @@ constructor(props) {
         }
     ]);
     ```
-3. Open, close or toggle.
+3. Add items manually.
+
+    There are two methods to help you add items manually.
+    ```javascript
+    this.controller.addItem({
+        label: 'UK',
+        value: 'uk',
+        icon: () => {},
+    });
+    this.controller.addItems([{
+        label: 'UK',
+        value: 'uk',
+        icon: () => {},
+    }])
+    ```
+4. Remove items
+
+    ```javascript
+    this.controller.remove('uk', {
+        changeDefaultValue: true // Unselect if the removed item is the selected item
+    });
+    ```
+5. Open, close or toggle.
 
     ```javascript
     this.controller.open();
@@ -287,16 +316,19 @@ You have 12 options to style the component.
     ```
 
 ### RTL Support
-1. ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-1.png)
-```javascript
+1. The selected item
+![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-1.png)
+    ```javascript
     style={{
         flexDirection: 'row-reverse',
     }}
     labelStyle={{
         textAlign: 'right',
     }}
-```
-2. ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-2.png)
+    ```
+
+2. The dropdown items
+![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-2.png)
     ```javascript
     itemStyle={{
         flexDirection: 'row-reverse',
