@@ -172,8 +172,16 @@ class DropDownPicker extends React.Component {
             items
         }, () => {
             if (changeDefaultValue) {
-                if (this.state.choice.value === value) {
-                    items.length > 0 && this.select(items[0]);
+                if (this.state.props.multiple) {
+                    this.state.choice.forEach(item => {
+                        if (item.value === value) {
+                            this.select(item);
+                        }
+                    });
+                } else {
+                    if (this.state.choice.value === value) {
+                        items.length > 0 && this.select(items[0]);
+                    }
                 }
             }
         });
@@ -321,7 +329,10 @@ class DropDownPicker extends React.Component {
                         {this.state.choice.icon && ! multiple && this.state.choice.icon()}
                         <Text style={[
                             this.props.labelStyle,
-                            placeholderStyle, {opacity, flex: 1, marginRight: 5},
+                            placeholderStyle, {opacity, flex: 1}, {
+                                marginLeft: (this.props.labelStyle.hasOwnProperty('textAlign') && this.props.labelStyle.textAlign === 'left') || ! this.props.labelStyle.hasOwnProperty('textAlign') ? 5 : 0,
+                                marginRight: (this.props.labelStyle.hasOwnProperty('textAlign') && this.props.labelStyle.textAlign === 'right') ? 5 : 0,
+                            },
                             this.state.choice.label !== null && this.props.selectedLabelStyle,
                             this.state.choice.icon && {marginLeft: 5}
                         ]}>
@@ -381,7 +392,6 @@ class DropDownPicker extends React.Component {
                                     this.state.choice.value === item.value && this.props.activeItemStyle
                                 ), {
                                     opacity: item?.disabled || false === true ? 0.3 : 1,
-                                    flexDirection: 'row',
                                     alignItems: 'center',
                                     ...(
                                         multiple ? {
@@ -395,8 +405,11 @@ class DropDownPicker extends React.Component {
                                 disabled={item?.disabled || false === true}
                             >
                                 <View style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
+                                    flexDirection: this.props.itemStyle?.flexDirection ?? 'row',
+                                    ...(this.props.itemStyle.hasOwnProperty('justifyContent') && {
+                                        justifyContent: this.props.itemStyle.justifyContent
+                                    }),
+                                    alignContent: 'center'
                                 }}>
                                     {item.icon && item.icon()}
                                     <Text style={[
@@ -405,12 +418,13 @@ class DropDownPicker extends React.Component {
                                             (this.isSelected(item) && this.props.activeLabelStyle) : (this.state.choice.value === item.value && this.props.activeLabelStyle)
                                         , {
                                         ...(item.icon && {
-                                            marginLeft: 5
+                                            marginHorizontal: 5
                                         })
                                     }]}>
                                         {this.getLabel(item)}
                                     </Text>
                                 </View>
+
                                 {
                                     this.state.props.multiple && this.state.choice.findIndex(i => i.label === item.label && i.value === item.value) > -1 && (
                                         this.props.customTickIcon()
@@ -543,6 +557,7 @@ const styles = StyleSheet.create({
     dropDownItem: {
         paddingVertical: 8,
         width: '100%',
+        flexDirection: 'row',
         justifyContent: 'center'
     },
     input: {
