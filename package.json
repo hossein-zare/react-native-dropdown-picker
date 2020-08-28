@@ -19,6 +19,8 @@
     "menu",
     "context",
     "component",
+    "rtl",
+    "rtl-support",
     "react",
     "reactnative",
     "react-native",
