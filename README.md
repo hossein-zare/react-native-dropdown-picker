@@ -320,7 +320,8 @@ You have 12 options to style the component.
 ### RTL Support
 1. The selected item
 
-![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-1.png)
+    ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-1.png)
+
     ```javascript
     style={{
         flexDirection: 'row-reverse',
@@ -332,7 +333,8 @@ You have 12 options to style the component.
 
 2. The dropdown items
 
-![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-2.png)
+    ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-2.png)
+    
     ```javascript
     itemStyle={{
         flexDirection: 'row-reverse',
