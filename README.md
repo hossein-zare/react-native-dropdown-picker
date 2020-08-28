@@ -175,8 +175,10 @@ constructor(props) {
     ````
 2. Reset items.
 
+    The second argument is your default value. (Optional)
     ```javascript
     this.controller.resetItems([{}, {}, ...]);
+
     this.controller.resetItems([{}, {}, ...], 'uk'); // Single
     this.controller.resetItems([{}, {}, ...], ['uk', ...]); // Multiple
     ```
