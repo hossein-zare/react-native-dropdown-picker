@@ -65,7 +65,7 @@ class DropDownPicker extends React.Component {
                 label: null,
                 value: null,
                 icon: () => {}
-            } : props.items.find(item => item.value === props.defaultValue);
+            } : state.props.items.find(item => item.value === props.defaultValue);
             return {
                 choice: {
                     label, value, icon
@@ -83,7 +83,7 @@ class DropDownPicker extends React.Component {
             if (props.defaultValue && Array.isArray(props.defaultValue) && props.defaultValue.length > 0) {
                 props.defaultValue.forEach((value, index) => {
                     items.push(
-                        props.items.find(item => item.value === value)
+                        state.props.items.find(item => item.value === value)
                     )
                 });
             }
@@ -152,6 +152,32 @@ class DropDownPicker extends React.Component {
         });
     }
 
+    resetItems(items, defaultValue = null) {
+        this.setPropState({
+            items
+        }, () => {
+            if (defaultValue) {
+                if (this.state.props.multiple) {
+                    this.reset();
+
+                    (async () => {
+                        for (const value of defaultValue) {
+                            await new Promise((resolve, reject) => {
+                                resolve(
+                                    this.select(items.find(item => item.value === value))
+                                );
+                            });
+                        }
+                    })();
+                } else {
+                    this.select(items.find(item => item.value === defaultValue));
+                }
+            } else {
+                this.reset();
+            }
+        });
+    }
+
     addItem(item) {
         const items = [...this.state.props.items, item];
         this.setPropState({
@@ -166,7 +192,7 @@ class DropDownPicker extends React.Component {
         });
     }
 
-    removeItem(value, {changeDefaultValue = false}) {
+    removeItem(value, {changeDefaultValue = true} = {}) {
         const items = [...this.state.props.items].filter(item => item.value !== value);
         this.setPropState({
             items
@@ -180,7 +206,7 @@ class DropDownPicker extends React.Component {
                     });
                 } else {
                     if (this.state.choice.value === value) {
-                        items.length > 0 && this.select(items[0]);
+                        this.reset();
                     }
                 }
             }
@@ -296,6 +322,7 @@ class DropDownPicker extends React.Component {
     }
 
     render() {
+        this.props.controller(this);
         const { multiple, disabled } = this.state.props;
         const { placeholder, scrollViewProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
