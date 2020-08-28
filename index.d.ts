@@ -1,5 +1,4 @@
 declare module 'react-native-dropdown-picker' {
-  import { ScrollView } from 'react-native-gesture-handler';
   import React, { ComponentType } from 'react';
   import { StyleProp, TextStyle, ViewStyle, ScrollViewProps } from 'react-native';
  
