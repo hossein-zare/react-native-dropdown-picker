@@ -52,7 +52,8 @@ class DropDownPicker extends React.Component {
             props: {
                 multiple: props.multiple,
                 defaultValue: props.defaultValue,
-                isVisible: props.isVisible
+                isVisible: props.isVisible,
+                items: props.items
             }
         };
     }
@@ -151,6 +152,42 @@ class DropDownPicker extends React.Component {
         });
     }
 
+    addItem(item) {
+        const items = [...this.state.props.items, item];
+        this.setPropState({
+            items
+        });
+    }
+
+    addItems(array) {
+        const items = [...this.state.props.items, ...array];
+        this.setPropState({
+            items
+        });
+    }
+
+    removeItem(value, {changeDefaultValue = false}) {
+        const items = [...this.state.props.items].filter(item => item.value !== value);
+        this.setPropState({
+            items
+        }, () => {
+            if (changeDefaultValue) {
+                if (this.state.choice.value === value) {
+                    items.length > 0 && this.select(items[0]);
+                }
+            }
+        });
+    }
+
+    setPropState(data, callback = () => {}) {
+        this.setState({
+            props: {
+                ...this.state.props,
+                ...data
+            }
+        }, callback());
+    }
+
     open(setState = true) {
         this.setState({
             ...(setState && {isVisible: true})
@@ -179,7 +216,7 @@ class DropDownPicker extends React.Component {
                 }
             });
 
-            const index = this.props.items.findIndex(i => i.value === item.value);
+            const index = this.state.props.items.findIndex(i => i.value === item.value);
 
             // onChangeItem callback
             this.props.onChangeItem(item, index);
@@ -216,12 +253,12 @@ class DropDownPicker extends React.Component {
         if (this.state.searchableText) {
             const text = this.state.searchableText.toLowerCase();
 
-            return this.props.items.filter((item) => {
+            return this.state.props.items.filter((item) => {
                 return item.label && (item.label.toLowerCase()).indexOf(text) > -1;
             });
         }
 
-        return this.props.items;
+        return this.state.props.items;
     }
 
     getNumberOfItems() {
@@ -274,13 +311,13 @@ class DropDownPicker extends React.Component {
                     activeOpacity={1}
                     style={[
                         styles.dropDown,
-                        this.props.style,
                         this.state.isVisible && styles.noBottomRadius, {
                             flexDirection: 'row', flex: 1
-                        }
+                        },
+                        this.props.style,
                     ]}
                 >
-                    <View style={[styles.dropDownDisplay]}>
+
                         {this.state.choice.icon && ! multiple && this.state.choice.icon()}
                         <Text style={[
                             this.props.labelStyle,
@@ -292,7 +329,7 @@ class DropDownPicker extends React.Component {
                                 this.state.choice.length > 0 ? this.getNumberOfItems() : placeholder
                             ) : label}
                         </Text>
-                    </View>
+
                     {this.props.showArrow && (
                         <View style={[styles.arrow]}>
                             <View style={[this.props.arrowStyle, {opacity}]}>
@@ -493,13 +530,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 5,
         borderWidth: 1,
         borderColor: '#dfdfdf',
-    },
-    dropDownDisplay: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        flexGrow: 1
+        alignItems: 'center'
     },
     dropDownBox: {
         borderTopLeftRadius: 0,
