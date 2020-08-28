@@ -170,7 +170,9 @@ class DropDownPicker extends React.Component {
                         }
                     })();
                 } else {
-                    this.select(items.find(item => item.value === defaultValue));
+                    this.select(
+                        items.find(item => item.value === defaultValue)
+                    );
                 }
             } else {
                 this.reset();
@@ -232,6 +234,24 @@ class DropDownPicker extends React.Component {
         this.setState({
             ...(setState && {isVisible: false})
         }, () => this.props.onClose());
+    }
+
+    selectItem(defaultValue) {
+        if (this.state.props.multiple) {
+            (async () => {
+                for (const value of defaultValue) {
+                    await new Promise((resolve, reject) => {
+                        resolve(
+                            this.select(items.find(item => item.value === value))
+                        );
+                    });
+                }
+            })();
+        } else {
+            this.select(
+                this.state.props.items.find(item => item.value === defaultValue)  
+            );
+        }
     }
 
     select(item) {
