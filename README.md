@@ -185,20 +185,10 @@ constructor(props) {
     You may want to select an item manually.  
     ```javascript
     // Single
-    this.controller.select({
-        label: 'UK',
-        value: 'uk',
-        icon: () => {},
-    });
+    this.controller.selectItem('uk');
 
     // Multiple
-    this.controller.select([
-        {
-            label: 'UK',
-            value: 'uk',
-            icon: () => {},
-        }
-    ]);
+    this.controller.selectItem(['uk', 'france']);
     ```
 3. Add items manually.
 
