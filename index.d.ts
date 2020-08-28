@@ -1,6 +1,5 @@
-import { ScrollView } from 'react-native-gesture-handler';
-
 declare module 'react-native-dropdown-picker' {
+  import { ScrollView } from 'react-native-gesture-handler';
   import React, { ComponentType } from 'react';
   import { StyleProp, TextStyle, ViewStyle, ScrollViewProps } from 'react-native';
  
@@ -15,7 +14,7 @@ declare module 'react-native-dropdown-picker' {
     itemStyle?: StyleProp<ViewStyle>;
     labelStyle?: StyleProp<TextStyle>;
     selectedLabelStyle?: StyleProp<TextStyle>;
-    placeholderStyle?: StyleProp<TextStyle>;
+    placeholderStyle?: StyleProp<ViewStyle>;
     activeItemStyle?: StyleProp<ViewStyle>;
     activeLabelStyle?: StyleProp<TextStyle>;
     arrowStyle?: StyleProp<ViewStyle>;
@@ -39,7 +38,7 @@ declare module 'react-native-dropdown-picker' {
     searchableError?: () => JSX.Element;
     selectedLabelLength?: number,
     labelLength?: number,
-    scrollViewProps?: React.Props<ScrollViewProps>,
+    scrollViewProps?: ScrollViewProps,
     controller?: (instance: object) => void,
     onOpen?: () => void;
     onClose?: () => void;
