@@ -52,8 +52,7 @@ class DropDownPicker extends React.Component {
             props: {
                 multiple: props.multiple,
                 defaultValue: props.defaultValue,
-                isVisible: props.isVisible,
-                items: props.items
+                isVisible: props.isVisible
             }
         };
     }
@@ -65,7 +64,7 @@ class DropDownPicker extends React.Component {
                 label: null,
                 value: null,
                 icon: () => {}
-            } : state.props.items.find(item => item.value === props.defaultValue);
+            } : props.items.find(item => item.value === props.defaultValue);
             return {
                 choice: {
                     label, value, icon
@@ -83,7 +82,7 @@ class DropDownPicker extends React.Component {
             if (props.defaultValue && Array.isArray(props.defaultValue) && props.defaultValue.length > 0) {
                 props.defaultValue.forEach((value, index) => {
                     items.push(
-                        state.props.items.find(item => item.value === value)
+                        props.items.find(item => item.value === value)
                     )
                 });
             }
@@ -181,21 +180,21 @@ class DropDownPicker extends React.Component {
     }
 
     addItem(item) {
-        const items = [...this.state.props.items, item];
+        const items = [...this.props.items, item];
         this.setPropState({
             items
         });
     }
 
     addItems(array) {
-        const items = [...this.state.props.items, ...array];
+        const items = [...this.props.items, ...array];
         this.setPropState({
             items
         });
     }
 
     removeItem(value, {changeDefaultValue = true} = {}) {
-        const items = [...this.state.props.items].filter(item => item.value !== value);
+        const items = [...this.props.items].filter(item => item.value !== value);
         this.setPropState({
             items
         }, () => {
@@ -216,12 +215,7 @@ class DropDownPicker extends React.Component {
     }
 
     setPropState(data, callback = () => {}) {
-        this.setState({
-            props: {
-                ...this.state.props,
-                ...data
-            }
-        }, callback());
+        this.props.onChangeList(data.items, callback);
     }
 
     open(setState = true) {
@@ -240,17 +234,20 @@ class DropDownPicker extends React.Component {
         if (this.state.props.multiple) {
             (async () => {
                 for (const value of defaultValue) {
-                    await new Promise((resolve, reject) => {
-                        resolve(
-                            this.select(items.find(item => item.value === value))
-                        );
-                    });
+                    const item = this.props.items.find(item => item.value === value);
+                    if (item) {
+                        await new Promise((resolve, reject) => {
+                            resolve(
+                                this.select(item)
+                            );
+                        });
+                    }
                 }
             })();
         } else {
-            this.select(
-                this.state.props.items.find(item => item.value === defaultValue)  
-            );
+            const item = this.props.items.find(item => item.value === defaultValue);
+            if (item)
+                this.select(item);
         }
     }
 
@@ -270,7 +267,7 @@ class DropDownPicker extends React.Component {
                 }
             });
 
-            const index = this.state.props.items.findIndex(i => i.value === item.value);
+            const index = this.props.items.findIndex(i => i.value === item.value);
 
             // onChangeItem callback
             this.props.onChangeItem(item, index);
@@ -307,12 +304,12 @@ class DropDownPicker extends React.Component {
         if (this.state.searchableText) {
             const text = this.state.searchableText.toLowerCase();
 
-            return this.state.props.items.filter((item) => {
+            return this.props.items.filter((item) => {
                 return item.label && (item.label.toLowerCase()).indexOf(text) > -1;
             });
         }
 
-        return this.state.props.items;
+        return this.props.items;
     }
 
     getNumberOfItems() {
@@ -528,6 +525,7 @@ DropDownPicker.defaultProps = {
     onOpen: () => {},
     onClose: () => {},
     onChangeItem: () => {},
+    onChangeList: () => {},
 };
 
 DropDownPicker.propTypes = {
@@ -569,7 +567,8 @@ DropDownPicker.propTypes = {
     controller: PropTypes.func,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
-    onChangeItem: PropTypes.func
+    onChangeItem: PropTypes.func,
+    onChangeList: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
