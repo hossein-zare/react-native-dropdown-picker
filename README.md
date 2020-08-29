@@ -179,7 +179,8 @@ constructor(props) {
         value: item.value
     })}
 />
-
+```
+```javascript
 // for Functional components
 const [value, setValue] = useState(null);
 const [items, setItems] = useState([ {...}, ... ]);
