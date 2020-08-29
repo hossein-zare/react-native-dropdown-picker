@@ -42,6 +42,7 @@ declare module 'react-native-dropdown-picker' {
     onOpen?: () => void;
     onClose?: () => void;
     onChangeItem?: (item: any, index: number) => void;
+    onChangeItem?: (items: any, callback: () => void) => void;
   };
   const DropDownPicker: ComponentType<DropDownPicker>;
   export default DropDownPicker;
