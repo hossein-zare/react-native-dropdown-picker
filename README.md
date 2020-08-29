@@ -155,24 +155,51 @@ placeholder="Select an item"
 The `controller` property gives you full access to the DropDownPicker methods and properties.  
 #### Usage
 ```javascript
+// for Class components
 constructor(props) {
-    ...
+    this.state = {
+        value: null,
+        items: []
+    }
+
     this.controller;
-    ...
 }
 
 <DropDownPicker
-    ...
     items={this.state.items}
-    controller={(instance) => this.controller = instance}
+    controller={instance => this.controller = instance}
     onChangeList={(items, callback) => {
         this.setState({
             items // items: items
         }, callback);
     }}
-    ...
+
+    defaultValue={this.state.value}
+    onChangeItem={item => this.setState({
+        value: item.value
+    })}
+/>
+
+// for Functional components
+const [value, setValue] = useState(null);
+const [items, setItems] = useState([ {...}, ... ]);
+let controller;
+
+<DropDownPicker
+    items={items}
+    controller={instance => controller = instance}
+    onChangeList={(items, callback) => {
+        new Promise((resolve, reject) => resolve(setItems(items)))
+            .then(() => callback())
+            .catch(() => {});
+    }}
+
+    defaultValue={value}
+    onChangeItem={item => setItem(item.value)}
 />
 ```
+in Class components you can call methods using `this.controller.METHOD_NAME()` and `controller.METHOD_NAME()` in Functional components.
+
 1. Reset the state.
 
     You may want to reset the state of your picker.  
