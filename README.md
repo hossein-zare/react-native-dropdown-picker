@@ -503,3 +503,4 @@ dropDownStyle={{marginTop: 2}}
 |`onOpen`|Fires when you open the picker.|`func`|`() => {}`|No
 |`onClose`|Fires when you close the picker.|`func`|`() => {}`|No
 |`onChangeItem`|Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values.|`func`|`(item, index) => {}`|No
+|`onChangeList`|Changes the list of items.|`(items, callback) => {}`|No
