@@ -163,7 +163,13 @@ constructor(props) {
 
 <DropDownPicker
     ...
+    items={this.state.items}
     controller={(instance) => this.controller = instance}
+    onChangeList={(items, callback) => {
+        this.setState({
+            items // items: items
+        }, callback);
+    }}
     ...
 />
 ```
