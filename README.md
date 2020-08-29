@@ -154,8 +154,8 @@ placeholder="Select an item"
 ### Controller
 The `controller` property gives you full access to the DropDownPicker methods and properties.  
 #### Usage
+##### Class Components
 ```javascript
-// for Class components
 constructor(props) {
     this.state = {
         value: null,
@@ -180,8 +180,8 @@ constructor(props) {
     })}
 />
 ```
+##### Functional Components
 ```javascript
-// for Functional components
 const [value, setValue] = useState(null);
 const [items, setItems] = useState([ {...}, ... ]);
 let controller;
