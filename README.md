@@ -223,7 +223,7 @@ let controller;
     }}
 
     defaultValue={value}
-    onChangeItem={item => setItems(item.value)}
+    onChangeItem={item => setValue(item.value)}
 />
 ```
 
