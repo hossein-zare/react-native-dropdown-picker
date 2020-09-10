@@ -13,7 +13,7 @@ declare module 'react-native-dropdown-picker' {
     itemStyle?: StyleProp<ViewStyle>;
     labelStyle?: StyleProp<TextStyle>;
     selectedLabelStyle?: StyleProp<TextStyle>;
-    placeholderStyle?: StyleProp<ViewStyle>;
+    placeholderStyle?: StyleProp<TextStyle>;
     activeItemStyle?: StyleProp<ViewStyle>;
     activeLabelStyle?: StyleProp<TextStyle>;
     arrowStyle?: StyleProp<ViewStyle>;
