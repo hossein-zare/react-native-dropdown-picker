@@ -35,14 +35,14 @@ declare module 'react-native-dropdown-picker' {
     searchablePlaceholderTextColor?: string;
     searchableStyle?: StyleProp<TextStyle>;
     searchableError?: () => JSX.Element;
-    selectedLabelLength?: number,
-    labelLength?: number,
-    scrollViewProps?: ScrollViewProps,
-    controller?: (instance: object) => void,
+    selectedLabelLength?: number;
+    labelLength?: number;
+    scrollViewProps?: ScrollViewProps;
+    controller?: (instance: object) => void;
     onOpen?: () => void;
     onClose?: () => void;
     onChangeItem?: (item: any, index: number) => void;
-    onChangeItem?: (items: any, callback: () => void) => void;
+    onChangeList?: (items: any, callback: () => void) => void;
   };
   const DropDownPicker: ComponentType<DropDownPicker>;
   export default DropDownPicker;
