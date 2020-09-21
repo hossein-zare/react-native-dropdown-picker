@@ -246,7 +246,8 @@ class DropDownPicker extends React.Component {
 
     close(setState = true) {
         this.setState({
-            ...(setState && {isVisible: false})
+            ...(setState && {isVisible: false}),
+            searchableText: null
         }, () => this.props.onClose());
     }
 
@@ -284,7 +285,8 @@ class DropDownPicker extends React.Component {
                 props: {
                     ...this.state.props,
                     isVisible: false
-                }
+                },
+                searchableText: null
             });
 
             const index = this.props.items.findIndex(i => i.value === item.value);
