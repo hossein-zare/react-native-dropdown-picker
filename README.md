@@ -30,6 +30,7 @@ https://github.com/oblador/react-native-vector-icons
 - Added `labelLength` property.
 - Added `scrollViewProps` property.
 - Added `controller` property.
+- Added `autoScrollToDefaultValue` property.
 - Some bug-fixes.
 
 ## Getting Started
@@ -586,6 +587,7 @@ dropDownStyle={{marginTop: 2}}
 | `zIndex`                         | This property specifies the stack order of the component.                                                        | `number`                  | `5000`                         | No       |
 | `disabled`                       | Disables the component.                                                                                          | `bool`                    | `false`                        | No       |
 | `isVisible`                      | Open or close the dropdown box.                                                                                  | `bool`                    | `false`                        | No       |
+| `autoScrollToDefaultValue`       | If true, automatically scroll to `defaultValue`/first `defaultValue` (multiple) during first render of dropdown  | `bool`                    | `false`                        | No       |
 | `multiple`                       | If set to true selecting multiple items is possible.                                                             | `bool`                    | `false`                        | No       |
 | `multipleText`                   | a Text to inform the user how many items have been selected.                                                     | `string`                  | `%d items have been selected`  | No       |
 | `min`                            | Minimum number of items.                                                                                         | `number`                  | `0`                            | No       |
