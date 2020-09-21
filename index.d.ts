@@ -26,6 +26,7 @@ declare module 'react-native-dropdown-picker' {
     zIndex?: number;
     disabled?: boolean;
     isVisible?: boolean;
+    autoScrollToDefaultValue?: boolean;
     multiple?: boolean;
     multipleText?: string;
     min?: number;
