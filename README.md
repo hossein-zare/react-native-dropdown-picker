@@ -288,7 +288,13 @@ in Class components you can call methods using `this.controller.METHOD_NAME()` a
    });
    ```
 
-6. Open, close or toggle.
+6. Check if the dropdown is open
+
+    ```javascript
+    this.controller.isOpen(); // boolean
+    ```
+
+7. Open, close or toggle.
 
    ```javascript
    this.controller.open();

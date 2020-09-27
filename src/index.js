@@ -238,6 +238,10 @@ class DropDownPicker extends React.Component {
         this.props.onChangeList(data.items, callback);
     }
 
+    isOpen() {
+        return this.state.isVisible;
+    }
+
     open(setState = true) {
         this.setState({
             ...(setState && {isVisible: true})
