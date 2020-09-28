@@ -13,7 +13,7 @@ declare module 'react-native-dropdown-picker' {
     itemStyle?: StyleProp<ViewStyle>;
     labelStyle?: StyleProp<TextStyle>;
     selectedLabelStyle?: StyleProp<TextStyle>;
-    placeholderStyle?: StyleProp<ViewStyle>;
+    placeholderStyle?: StyleProp<TextStyle>;
     activeItemStyle?: StyleProp<ViewStyle>;
     activeLabelStyle?: StyleProp<TextStyle>;
     arrowStyle?: StyleProp<ViewStyle>;
@@ -26,6 +26,7 @@ declare module 'react-native-dropdown-picker' {
     zIndex?: number;
     disabled?: boolean;
     isVisible?: boolean;
+    autoScrollToDefaultValue?: boolean;
     multiple?: boolean;
     multipleText?: string;
     min?: number;
@@ -43,7 +44,7 @@ declare module 'react-native-dropdown-picker' {
     onOpen?: () => void;
     onClose?: () => void;
     onChangeItem?: (item: any, index: number) => void;
-    onChangeItem?: (items: any, callback: () => void) => void;
+    onChangeList?: (items: any, callback: () => void) => void;
   };
   const DropDownPicker: ComponentType<DropDownPicker>;
   export default DropDownPicker;
