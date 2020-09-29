@@ -31,6 +31,7 @@ https://github.com/oblador/react-native-vector-icons
 - Added `scrollViewProps` property.
 - Added `controller` property.
 - Added `autoScrollToDefaultValue` property.
+- Added `searchTextInputProps` property.
 - Some bug-fixes.
 
 ## Getting Started
