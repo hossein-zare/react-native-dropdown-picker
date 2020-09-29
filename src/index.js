@@ -367,7 +367,7 @@ class DropDownPicker extends React.Component {
     render() {
         this.props.controller(this);
         const { multiple, disabled } = this.state.props;
-        const { placeholder, scrollViewProps } = this.props;
+        const { placeholder, scrollViewProps, searchTextInputProps } = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
         const label = isPlaceholderActive ? (placeholder) : this.getLabel(this.state.choice?.label, true);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
@@ -443,10 +443,12 @@ class DropDownPicker extends React.Component {
                                 defaultValue={this.state.searchableText}
                                 placeholder={this.props.searchablePlaceholder}
                                 placeholderTextColor={this.props.searchablePlaceholderTextColor}
-                                onChangeText={(text) => {
+                                {...searchTextInputProps}
+                                onChangeText={ (text) => {
                                     this.setState({
                                         searchableText: text
                                     })
+                                    if(searchTextInputProps.onChangeText) searchTextInputProps.onChangeText(text);
                                 }}
                             />
                         </View>
@@ -562,6 +564,7 @@ DropDownPicker.defaultProps = {
     selectedLabelLength: 1000,
     labelLength: 1000,
     scrollViewProps: {},
+    searchTextInputProps: {},
     controller: () => {},
     onOpen: () => {},
     onClose: () => {},
@@ -606,6 +609,7 @@ DropDownPicker.propTypes = {
     selectedLabelLength: PropTypes.number,
     labelLength: PropTypes.number,
     scrollViewProps: PropTypes.object,
+    searchTextInputProps: PropTypes.object,
     controller: PropTypes.func,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
