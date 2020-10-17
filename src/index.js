@@ -3,12 +3,12 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity,
-    ScrollView,
     Platform,
     TextInput,
     ViewPropTypes
 } from 'react-native';
+import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
+
 import PropTypes from 'prop-types';
 
 // Icon
