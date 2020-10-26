@@ -367,7 +367,7 @@ class DropDownPicker extends React.Component {
     render() {
         this.props.controller(this);
         const { multiple, disabled } = this.state.props;
-        const { placeholder, scrollViewProps, searchTextInputProps } = this.props;
+        const { placeholder, scrollViewProps, searchTextInputProps, renderSeperator} = this.props;
         const isPlaceholderActive = this.state.choice.label === null;
         const label = isPlaceholderActive ? (placeholder) : this.getLabel(this.state.choice?.label, true);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
@@ -516,6 +516,7 @@ class DropDownPicker extends React.Component {
                                         )
                                     }
                                 </TouchableOpacity>
+                                {renderSeperator && index !== items.length - 1 && renderSeperator()}
                             </View>
                         )) : (
                             <View style={styles.notFound}>
