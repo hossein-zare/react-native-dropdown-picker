@@ -9,7 +9,6 @@ import {
     TextInput,
     ViewPropTypes
 } from 'react-native';
-import PropTypes from 'prop-types';
 
 // Icon
 import Feather from 'react-native-vector-icons/Feather';
@@ -133,7 +132,9 @@ class DropDownPicker extends React.Component {
     componentDidUpdate() {
         // ScrollView scrollTo() can only be used after the ScrollView is rendered
         // Automatic scrolling to first defaultValue occurs on first render of dropdown ScrollView
-        if (this.state.initialScroll && this.state.isVisible) {
+        const item = this.props.items[this.state.defaultValueIndex];
+        const isItemVisible = item && (typeof item.hidden === 'undefined' || item.hidden === false);
+        if (this.state.initialScroll && this.state.isVisible && isItemVisible) {
             setTimeout(() => {
                 this.scrollViewRef.scrollTo({
                     x: 0,
@@ -389,10 +390,11 @@ class DropDownPicker extends React.Component {
                     activeOpacity={1}
                     style={[
                         styles.dropDown,
-                        this.state.isVisible && styles.noBottomRadius, {
+                        {
                             flexDirection: 'row', flex: 1
                         },
                         this.props.style,
+                        this.state.isVisible && styles.noBottomRadius
                     ]}
                 >
 
@@ -462,7 +464,7 @@ class DropDownPicker extends React.Component {
                             this.scrollViewRef = ref;
                         }}
                         {...scrollViewProps}>
-                        {items.length > 0 ? items.map((item, index) => (
+                        {items.filter(item => typeof item.hidden === 'undefined' || item.hidden === false).length > 0 ? items.map((item, index) => (
                             <View
                                 key={index}
                                 onLayout={event => {
@@ -572,50 +574,50 @@ DropDownPicker.defaultProps = {
     onChangeList: () => {},
 };
 
-DropDownPicker.propTypes = {
-    items: PropTypes.array.isRequired,
-    defaultValue: PropTypes.any,
-    placeholder: PropTypes.string,
-    dropDownMaxHeight: PropTypes.number,
-    style: ViewPropTypes.style,
-    dropDownStyle: ViewPropTypes.style,
-    containerStyle: ViewPropTypes.style,
-    itemStyle: ViewPropTypes.style,
-    labelStyle: Text.propTypes.style,
-    selectedLabelStyle: Text.propTypes.style,
-    placeholderStyle: Text.propTypes.style,
-    activeItemStyle: ViewPropTypes.style,
-    activeLabelStyle: Text.propTypes.style,
-    showArrow: PropTypes.bool,
-    arrowStyle: ViewPropTypes.style,
-    arrowColor: PropTypes.string,
-    arrowSize: PropTypes.number,
-    customArrowUp: PropTypes.func,
-    customArrowDown: PropTypes.func,
-    customTickIcon: PropTypes.func,
-    zIndex: PropTypes.number,
-    disabled: PropTypes.bool,
-    searchable: PropTypes.bool,
-    searchablePlaceholder: PropTypes.string,
-    searchableError: PropTypes.func,
-    searchableStyle: Text.propTypes.style,
-    searchablePlaceholderTextColor: PropTypes.string,
-    isVisible: PropTypes.bool,
-    autoScrollToDefaultValue: PropTypes.bool,
-    multiple: PropTypes.bool,
-    multipleText: PropTypes.string,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    selectedLabelLength: PropTypes.number,
-    labelLength: PropTypes.number,
-    scrollViewProps: PropTypes.object,
-    searchTextInputProps: PropTypes.object,
-    controller: PropTypes.func,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    onChangeItem: PropTypes.func,
-    onChangeList: PropTypes.func,
-};
+// DropDownPicker.propTypes = {
+//     items: PropTypes.array.isRequired,
+//     defaultValue: PropTypes.any,
+//     placeholder: PropTypes.string,
+//     dropDownMaxHeight: PropTypes.number,
+//     style: ViewPropTypes.style,
+//     dropDownStyle: ViewPropTypes.style,
+//     containerStyle: ViewPropTypes.style,
+//     itemStyle: ViewPropTypes.style,
+//     labelStyle: Text.propTypes.style,
+//     selectedLabelStyle: Text.propTypes.style,
+//     placeholderStyle: Text.propTypes.style,
+//     activeItemStyle: ViewPropTypes.style,
+//     activeLabelStyle: Text.propTypes.style,
+//     showArrow: PropTypes.bool,
+//     arrowStyle: ViewPropTypes.style,
+//     arrowColor: PropTypes.string,
+//     arrowSize: PropTypes.number,
+//     customArrowUp: PropTypes.func,
+//     customArrowDown: PropTypes.func,
+//     customTickIcon: PropTypes.func,
+//     zIndex: PropTypes.number,
+//     disabled: PropTypes.bool,
+//     searchable: PropTypes.bool,
+//     searchablePlaceholder: PropTypes.string,
+//     searchableError: PropTypes.func,
+//     searchableStyle: Text.propTypes.style,
+//     searchablePlaceholderTextColor: PropTypes.string,
+//     isVisible: PropTypes.bool,
+//     autoScrollToDefaultValue: PropTypes.bool,
+//     multiple: PropTypes.bool,
+//     multipleText: PropTypes.string,
+//     min: PropTypes.number,
+//     max: PropTypes.number,
+//     selectedLabelLength: PropTypes.number,
+//     labelLength: PropTypes.number,
+//     scrollViewProps: PropTypes.object,
+//     searchTextInputProps: PropTypes.object,
+//     controller: PropTypes.func,
+//     onOpen: PropTypes.func,
+//     onClose: PropTypes.func,
+//     onChangeItem: PropTypes.func,
+//     onChangeList: PropTypes.func,
+// };
 
 const styles = StyleSheet.create({
     arrow: {
@@ -639,12 +641,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     dropDownBox: {
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        width: '100%'
+        width: '100%',
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
     },
     dropDownItem: {
         paddingVertical: 8,

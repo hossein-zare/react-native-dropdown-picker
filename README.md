@@ -74,6 +74,7 @@ this.state = {
 
 <DropDownPicker
     items={[
+        {label: 'USA', value: 'usa', icon: () => <Icon name="flag" size={18} color="#900" />, hidden: true},
         {label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900" />},
         {label: 'France', value: 'france', icon: () => <Icon name="flag" size={18} color="#900" />},
     ]}
