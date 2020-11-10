@@ -1,9 +1,22 @@
-declare module 'react-native-dropdown-picker' {
-  import React, { ComponentType } from 'react';
-  import { StyleProp, TextStyle, ViewStyle, ScrollViewProps, TextInputProps } from 'react-native';
+declare module "react-native-dropdown-picker" {
+  import React, { ComponentType } from "react";
+  import {
+    StyleProp,
+    TextStyle,
+    ViewStyle,
+    ScrollViewProps,
+    TextInputProps,
+  } from "react-native";
 
-  type DropDownPicker = {
-    items: { label: any, value: any, icon?: () => JSX.Element, hidden?: boolean, disabled?: boolean, selected?: boolean }[];
+  export type DropDownPickerProps = {
+    items: {
+      label: any;
+      value: any;
+      icon?: () => JSX.Element;
+      hidden?: boolean;
+      disabled?: boolean;
+      selected?: boolean;
+    }[];
     defaultValue?: any;
     placeholder?: string;
     dropDownMaxHeight?: number;
@@ -36,16 +49,16 @@ declare module 'react-native-dropdown-picker' {
     searchablePlaceholderTextColor?: string;
     searchableStyle?: StyleProp<TextStyle>;
     searchableError?: () => JSX.Element;
-    selectedLabelLength?: number,
-    labelLength?: number,
-    scrollViewProps?: ScrollViewProps,
-    searchTextInputProps?: TextInputProps,
-    controller?: (instance: object) => void,
+    selectedLabelLength?: number;
+    labelLength?: number;
+    scrollViewProps?: ScrollViewProps;
+    searchTextInputProps?: TextInputProps;
+    controller?: (instance: object) => void;
     onOpen?: () => void;
     onClose?: () => void;
     onChangeItem?: (item: any, index: number) => void;
     onChangeList?: (items: any, callback: () => void) => void;
   };
-  const DropDownPicker: ComponentType<DropDownPicker>;
+  const DropDownPicker: ComponentType<DropDownPickerProps>;
   export default DropDownPicker;
 }
