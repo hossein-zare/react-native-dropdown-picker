@@ -9,7 +9,7 @@ import {
     TextInput,
     FlatList,
     ViewPropTypes,
-    YellowBox
+    LogBox
 } from 'react-native';
 
 // Icon
@@ -368,7 +368,7 @@ class DropDownPicker extends React.Component {
     }
 
     componentDidMount() {
-        YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     }
 
     render() {
@@ -525,7 +525,7 @@ class DropDownPicker extends React.Component {
                         ?
                         <FlatList style={{width: '100%'}}
                             data={items}
-                            keyExtractor={(item) => item.value}
+                            keyExtractor={(item) => item.value.toString()}
                             renderItem={({ item, index }) => (
                                 <Item item={item} index={index} />
                             )}
