@@ -6,8 +6,7 @@ import {
     TouchableOpacity,
     ScrollView,
     Platform,
-    TextInput,
-    ViewPropTypes
+    TextInput
 } from 'react-native';
 
 // Icon
