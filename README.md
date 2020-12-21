@@ -15,6 +15,7 @@ https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
 
+- Added `containerProps`. [December 21, 2020]
 - Added multiple items feature.
 - Added searchable items feature.
 - Removed `defaultIndex` property.
@@ -609,6 +610,7 @@ dropDownStyle={{marginTop: 2}}
 | `labelLength`                    | Specify length for the labels.                                                                                   | `number`                  | `1000`                         | No       |
 | `scrollViewProps`                | Add props to the `ScrollView`                                                                                    | `object`                  | `{}`                           | No       |
 | `searchTextInputProps`                | Add props to the search `TextInput`                                                                                    | `object`                  | `{}`                           | No       |
+| `containerProps`                     | Add props to the container view.                                                                  | `object`                    | `{}`             | No       |
 | `controller`                     | Gives you access to the methods and properties.                                                                  | `func`                    | `(instance) => {}`             | No       |
 | `onOpen`                         | Fires when you open the picker.                                                                                  | `func`                    | `() => {}`                     | No       |
 | `onClose`                        | Fires when you close the picker.                                                                                 | `func`                    | `() => {}`                     | No       |
