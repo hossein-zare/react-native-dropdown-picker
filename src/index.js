@@ -381,7 +381,7 @@ class DropDownPicker extends React.Component {
                   zIndex: this.props.zIndex
               })
 
-            }]}>
+            }]} {...this.props.containerProps}>
                 <TouchableOpacity
                     onLayout={(event) => this.getLayout(event.nativeEvent.layout)}
                     disabled={disabled}
