@@ -1,6 +1,6 @@
 # React native dropdown picker v3
 
-A single or multiple, searchable item picker (dropdown) component for react native which supports both Android & iOS.
+A single / multiple, searchable item picker (dropdown) component for react native which supports both Android & iOS.
 
 ## Caution (incompatibility)
 
