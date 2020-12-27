@@ -563,7 +563,7 @@ dropDownStyle={{
 
 #### Dropdown Overflow
 
-Adding borders to the component will separate or overflow elements. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
+Adding borders to the component will separate elements or they will overflow. to solve this issue you just need to add `marginTop` to the `dropDownStyle` and specify the value which fits your component well.
 
 ```javascript
 dropDownStyle={{marginTop: 2}}
