@@ -2,6 +2,7 @@ declare module "react-native-dropdown-picker" {
   import React, { ComponentType } from "react";
   import {
     StyleProp,
+    TextProps,
     TextStyle,
     ViewStyle,
     ScrollViewProps,
@@ -52,6 +53,7 @@ declare module "react-native-dropdown-picker" {
     searchableError?: () => JSX.Element;
     selectedLabelLength?: number;
     labelLength?: number;
+    labelProps?: TextProps;
     scrollViewProps?: ScrollViewProps;
     searchTextInputProps?: TextInputProps;
     containerProps?: ViewProps;
