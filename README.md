@@ -16,24 +16,8 @@ https://github.com/oblador/react-native-vector-icons
 ## Changelog
 
 - Added `containerProps`. [December 21, 2020]
-- Added multiple items feature.
-- Added searchable items feature.
-- Removed `defaultIndex` property.
-- Removed `defaultNull` property.
-- The `defaultValue` is state-friendly.
-- Added `searchablePlaceholderTextColor` property.
-- Added `selectedLabelStyle` property.
-- Added `icon` property for items.
-- The `searchableError` returns `jsx`.
-- Changed `FlatList` to `ScrollView`.
-- Added types file.
-- Added `selectedLabelLength` property.
-- Added `labelLength` property.
-- Added `scrollViewProps` property.
-- Added `controller` property.
-- Added `autoScrollToDefaultValue` property.
-- Added `searchTextInputProps` property.
-- Some bug-fixes.
+- Added `labelProps`. [January 06, 2021]
+- Some bug-fixes. [January 06, 2021]
 
 ## Getting Started
 
@@ -608,6 +592,7 @@ dropDownStyle={{marginTop: 2}}
 | `searchableError`                | Shows a jsx element when nothing found.                                                                          | `func`                    | `() => <Text>Not Found</Text>` | No       |
 | `selectedLabelLength`            | Specify length for the selected label.                                                                           | `number`                  | `1000`                         | No       |
 | `labelLength`                    | Specify length for the labels.                                                                                   | `number`                  | `1000`                         | No       |
+| `labelProps`                    | Add props to the labels.                                                                                 | `object`                  | `{}`                         | No       |
 | `scrollViewProps`                | Add props to the `ScrollView`                                                                                    | `object`                  | `{}`                           | No       |
 | `searchTextInputProps`                | Add props to the search `TextInput`                                                                                    | `object`                  | `{}`                           | No       |
 | `containerProps`                     | Add props to the container view.                                                                  | `object`                    | `{}`             | No       |
