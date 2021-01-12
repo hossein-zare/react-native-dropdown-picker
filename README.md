@@ -342,7 +342,7 @@ You have 12 options to style the component.
    Changes the style of the selected item label.
 
    ```javacript
-   selectedtLabelStyle={{
+   selectedLabelStyle={{
        color: '#39739d'
    }}
    ```
