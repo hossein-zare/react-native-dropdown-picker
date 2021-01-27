@@ -122,7 +122,10 @@ seachableStyle={{}}
 searchableError={() => <Text>Not Found</Text>}
 onSearch={text => {
     // Example
-    this.fetchFromServer(text, (items) => {
+    if (this._API.isFetching())
+        this._API.abort();
+
+    this._API = this.fetchFromServer(text, (items) => {
         // See controller: https://github.com/hossein-zare/react-native-dropdown-picker#controller
         this.controller.resetItems(items); // Maybe a new method will be introduced for a better UX!
     });
