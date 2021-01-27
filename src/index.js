@@ -373,6 +373,7 @@ class DropDownPicker extends React.Component {
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         const items = this.getItems();
+        const dropdownItems = items.filter(item => typeof item.hidden === 'undefined' || item.hidden === false);
 
         return (
             <View style={[this.props.containerStyle, {
@@ -406,7 +407,7 @@ class DropDownPicker extends React.Component {
                                 marginRight: (this.props.labelStyle.hasOwnProperty('textAlign') && this.props.labelStyle.textAlign === 'right') ? 5 : 0,
                             },
                             this.state.choice.label !== null && this.props.selectedLabelStyle,
-                            this.state.choice.icon && {marginLeft: 5}
+                            this.state.choice.icon ?? {marginLeft: 5}
                         ]} {...this.props.labelProps}>
                             {multiple ? (
                                 this.state.choice.length > 0 ? this.getNumberOfItems() : placeholder
@@ -450,6 +451,7 @@ class DropDownPicker extends React.Component {
                                     this.setState({
                                         searchableText: text
                                     })
+                                    this.props.onSearch(text);
                                     if(searchTextInputProps.onChangeText) searchTextInputProps.onChangeText(text);
                                 }}
                             />
@@ -464,7 +466,7 @@ class DropDownPicker extends React.Component {
                             this.scrollViewRef = ref;
                         }}
                         {...scrollViewProps}>
-                        {items.filter(item => typeof item.hidden === 'undefined' || item.hidden === false).length > 0 ? items.map((item, index) => (
+                        {dropdownItems.length > 0 ? dropdownItems.map((item, index) => (
                             <View
                                 key={index}
                                 onLayout={event => {
@@ -558,6 +560,7 @@ DropDownPicker.defaultProps = {
     searchableError: () => <Text>Not Found</Text>,
     searchableStyle: {},
     searchablePlaceholderTextColor: 'gray',
+    onSearch: () => {},
     isVisible: false,
     autoScrollToDefaultValue: false,
     multiple: false,
