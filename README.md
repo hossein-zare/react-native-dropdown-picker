@@ -15,9 +15,10 @@ https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
 
-- Added `containerProps`. [December 21, 2020]
+- Added `onSearch`. [January 27, 2021]
 - Added `labelProps`. [January 06, 2021]
 - Some bug-fixes. [January 06, 2021]
+- Added `containerProps`. [December 21, 2020]
 
 ## Getting Started
 
@@ -119,6 +120,13 @@ searchablePlaceholder="Search for an item"
 searchablePlaceholderTextColor="gray"
 seachableStyle={{}}
 searchableError={() => <Text>Not Found</Text>}
+onSearch={text => {
+    // Example
+    this.fetchFromServer(text, (items) => {
+        // See controller: https://github.com/hossein-zare/react-native-dropdown-picker#controller
+        this.controller.resetItems(items); // Maybe a new method will be introduced for a better UX!
+    });
+}}
 ```
 
 ### Default item
@@ -590,6 +598,7 @@ dropDownStyle={{marginTop: 2}}
 | `searchablePlaceholderTextColor` | TextInput placeholder text color.                                                                                | `string`                  | `gray`                         | No       |
 | `searchableStyle`                | Additional styles for the `TextInput`                                                                            | `object`                  | `{}`                           | No       |
 | `searchableError`                | Shows a jsx element when nothing found.                                                                          | `func`                    | `() => <Text>Not Found</Text>` | No       |
+| `onSearch`                | Fires when you type something in the TextInput.                                                  | `func`                    | `(text) => {}` | No       |
 | `selectedLabelLength`            | Specify length for the selected label.                                                                           | `number`                  | `1000`                         | No       |
 | `labelLength`                    | Specify length for the labels.                                                                                   | `number`                  | `1000`                         | No       |
 | `labelProps`                    | Add props to the labels.                                                                                 | `object`                  | `{}`                         | No       |
