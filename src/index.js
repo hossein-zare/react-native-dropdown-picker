@@ -148,6 +148,12 @@ class DropDownPicker extends React.Component {
     reset() {
         const item = this.props.multiple ? [] : this.null();
         this.props.onChangeItem(item, -1);
+        this.props.multiple ? item :
+        this.setState({
+            choice:{
+                ...item
+            }
+        })
     }
 
     null() {
