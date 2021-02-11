@@ -415,7 +415,7 @@ There are 13 props to style the component.
 
     ```javascript
     globalTextStyle={{
-        fontFamily: "MyFontName"
+        fontFamily: "MyFontName",
         fontSize: 15
     }}
 
