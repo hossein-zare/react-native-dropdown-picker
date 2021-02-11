@@ -15,6 +15,7 @@ https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
 
+- Added `globalTextStyle`. [February 11, 2021]
 - Added `onSearch`. [January 27, 2021]
 - Added `labelProps`. [January 06, 2021]
 - Some bug-fixes. [January 06, 2021]
