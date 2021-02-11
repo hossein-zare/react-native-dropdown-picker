@@ -58,6 +58,7 @@ declare module "react-native-dropdown-picker" {
     scrollViewProps?: ScrollViewProps;
     searchTextInputProps?: TextInputProps;
     containerProps?: ViewProps;
+    globalTextStyle?: StyleProp<TextStyle>;
     controller?: (instance: object) => void;
     onOpen?: () => void;
     onClose?: () => void;

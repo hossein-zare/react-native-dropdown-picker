@@ -400,14 +400,16 @@ class DropDownPicker extends React.Component {
 
                         {this.state.choice.icon && ! multiple && this.state.choice.icon()}
                         <Text style={[
-                            { color: 'red' }, // default label color
+                            { color: '#000' }, // default label color
+                            this.props.globalTextStyle,
                             placeholderStyle, {opacity, flex: 1}, {
                                 marginLeft: (this.props.labelStyle.hasOwnProperty('textAlign') && this.props.labelStyle.textAlign === 'left') || ! this.props.labelStyle.hasOwnProperty('textAlign') ? 5 : 0,
                                 marginRight: (this.props.labelStyle.hasOwnProperty('textAlign') && this.props.labelStyle.textAlign === 'right') ? 5 : 0,
                             },
-                            this.state.choice.label !== null && this.props.selectedLabelStyle,
+                            
                             this.state.choice.icon ?? {marginLeft: 5},
-                            this.props.labelStyle
+                            this.props.labelStyle,
+                            this.state.choice.label !== null && this.props.selectedLabelStyle,
                         ]} {...this.props.labelProps}>
                             {multiple ? (
                                 this.state.choice.length > 0 ? this.getNumberOfItems() : placeholder
@@ -442,7 +444,7 @@ class DropDownPicker extends React.Component {
                       this.props.searchable && (
                         <View style={{width: '100%', flexDirection: 'row'}}>
                             <TextInput
-                                style={[styles.input, this.props.searchableStyle]}
+                                style={[styles.input, this.props.globalTextStyle, this.props.searchableStyle]}
                                 defaultValue={this.state.searchableText}
                                 placeholder={this.props.searchablePlaceholder}
                                 placeholderTextColor={this.props.searchablePlaceholderTextColor}
@@ -502,7 +504,8 @@ class DropDownPicker extends React.Component {
                                     }}>
                                         {item.icon && item.icon()}
                                         <Text style={[
-                                            this.props.labelStyle, 
+                                            this.props.globalTextStyle,
+                                            this.props.labelStyle,
                                                 multiple ?
                                                 (this.isSelected(item) && this.props.activeLabelStyle) : (this.state.choice.value === item.value && this.props.activeLabelStyle)
                                             , {
@@ -573,6 +576,7 @@ DropDownPicker.defaultProps = {
     scrollViewProps: {},
     searchTextInputProps: {},
     containerProps: {},
+    globalTextStyle: {},
     controller: () => {},
     onOpen: () => {},
     onClose: () => {},

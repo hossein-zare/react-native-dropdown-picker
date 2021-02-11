@@ -302,7 +302,7 @@ in Class components you can call methods using `this.controller.METHOD_NAME()` a
 
 ### Styling the component
 
-You have 12 options to style the component.
+There are 13 props to style the component.
 
 1. The `style` property.
 
@@ -408,6 +408,16 @@ You have 12 options to style the component.
     ```javacript
     searchablePlaceholderTextColor="silver"
     ```
+
+3. The `globalTextStyle` property.
+
+    You can style `<Text />` elements globally.
+
+    ```javascript
+    globalTextStyle={{
+        fontFamily: "MyFontName"
+        fontSize: 15
+    }}
 
 ### RTL Support
 
@@ -573,6 +583,7 @@ dropDownStyle={{marginTop: 2}}
 | `placeholder`                    | Default text to be shown to the user when `defaultValue={null}` or `defaultValue={[]}`                           | `string`                  | 'Select an item'               | No       |
 | `dropDownMaxHeight`              | Height of the dropdown box.                                                                                      | `number`                  | `150`                          | No       |
 | `style`                          | Additional styles for the picker.                                                                                | `object`                  | `{}`                           | No       |
+| `globalTextStyle`                          | Global text style.| `object`                  | `{}`                           | No       |
 | `dropDownStyle`                  | Additional styles for the dropdown box.                                                                          | `object`                  | `{}`                           | No       |
 | `containerStyle`                 | Additional styles for the container view.                                                                        | `object`                  | `{}`                           | No       |
 | `itemStyle`                      | Additional styles for the items.                                                                                 | `object`                  | `{}`                           | No       |
@@ -608,6 +619,7 @@ dropDownStyle={{marginTop: 2}}
 | `scrollViewProps`                | Add props to the `ScrollView`                                                                                    | `object`                  | `{}`                           | No       |
 | `searchTextInputProps`                | Add props to the search `TextInput`                                                                                    | `object`                  | `{}`                           | No       |
 | `containerProps`                     | Add props to the container view.                                                                  | `object`                    | `{}`             | No       |
+| `renderSeperator`                     | Separate items.                               | `func`                    | `undefined`             | No       |
 | `controller`                     | Gives you access to the methods and properties.                                                                  | `func`                    | `(instance) => {}`             | No       |
 | `onOpen`                         | Fires when you open the picker.                                                                                  | `func`                    | `() => {}`                     | No       |
 | `onClose`                        | Fires when you close the picker.                                                                                 | `func`                    | `() => {}`                     | No       |
