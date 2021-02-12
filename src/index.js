@@ -64,7 +64,7 @@ class DropDownPicker extends React.Component {
     static getDerivedStateFromProps(props, state) {
         // Change default value (! multiple)
         if (! state.props.multiple && props.defaultValue !== state.props.defaultValue) {
-            const { label, value, icon } = props.defaultValue === null ? {
+            const { label, value, icon } = props.defaultValue === null || props.defaultValue === undefined ? {
                 label: null,
                 value: null,
                 icon: () => {}
