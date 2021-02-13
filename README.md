@@ -550,7 +550,7 @@ changeVisibility(state) {
 
 #### borderRadius
 
-The only thing you have to avoid is `borderRadius`. All the corners must be set separately.
+Avoid using `borderRadius` and all the corners must be set separately.
 
 ```javascript
 style={{
