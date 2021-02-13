@@ -4,8 +4,8 @@ A single / multiple, categorizable & searchable item picker (dropdown) component
 
 ## Screenshot
 
-<img alt="Screenshot" src="https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png">
-<img alt="Screenshot" src="https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/2.png">
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/2.png)
 
 ## Table of contents
 * [Getting Started](#getting-started)
