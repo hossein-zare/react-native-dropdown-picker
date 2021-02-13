@@ -27,6 +27,8 @@ Our package only requires `react-native-vector-icons` to be installed.
 https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
+- Added `childrenContainerStyle`. [Februrary 13, 2021]
+- Added `textStyle` `viewStyle` & `untouchable` props to items. [Februrary 13, 2021]
 - Added category support. [Februrary 13, 2021]
 - Added `globalTextStyle`. [February 11, 2021]
 - Added `onSearch`. [January 27, 2021]
@@ -358,7 +360,7 @@ in Class components you can call methods using `this.controller.METHOD_NAME()` a
 
 ### Styling The Component
 
-There are 13 props to style the component.
+There are 14 props to style the component.
 
 1. The `style` property.
 
@@ -416,7 +418,7 @@ There are 13 props to style the component.
 
 7. The `placeholderStyle` property.
 
-   It is possible to style the placeholder text with this property.
+   Style the placeholder text with this property.
 
    ```javacript
    placeholderStyle={{
@@ -474,6 +476,16 @@ There are 13 props to style the component.
         fontFamily: "MyFontName",
         fontSize: 15
     }}
+    ```
+14. The `childrenContainerStyle` property.
+
+    Style the children container `View` (See [Category Support](#category-support))
+
+    ```javascript
+    childrenContainerStyle={{
+        paddingLeft: 30
+    }}
+    ```
 
 ### RTL Support
 

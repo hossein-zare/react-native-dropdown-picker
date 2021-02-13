@@ -445,9 +445,9 @@ class DropDownPicker extends React.Component {
                 </TouchableOpacity>
 
                 {children.length > 0 && (
-                    <View style={{
+                    <View style={[{
                         paddingLeft: 30,
-                    }}>
+                    }, this.props.childrenContainerStyle]}>
                         {renderSeperator()}
                         {children.map((child, childIndex) => this.renderItem(child, this.concatNums(index, childIndex), children.length))}
                     </View>
@@ -615,6 +615,7 @@ DropDownPicker.defaultProps = {
     searchTextInputProps: {},
     containerProps: {},
     globalTextStyle: {},
+    childrenContainerStyle: {},
     renderSeperator: () => {},
     controller: () => {},
     onOpen: () => {},
