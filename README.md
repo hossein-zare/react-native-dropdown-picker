@@ -444,7 +444,7 @@ There are 13 props to style the component.
     searchablePlaceholderTextColor="silver"
     ```
 
-3. The `globalTextStyle` property.
+13. The `globalTextStyle` property.
 
     You can style `<Text />` elements globally.
 

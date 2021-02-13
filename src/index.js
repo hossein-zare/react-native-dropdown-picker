@@ -394,7 +394,8 @@ class DropDownPicker extends React.Component {
                 <TouchableOpacity
                     key={index}
                     onPress={() => ! item.untouchable && this.select(item)}
-                    style={[styles.dropDownItem, this.props.itemStyle, (
+                    style={[styles.dropDownItem, this.props.itemStyle, item.viewStyle,
+                    (
                         this.state.choice.value === item.value && this.props.activeItemStyle
                     ), {
                         opacity: item?.disabled ? 0.3 : 1,
@@ -426,6 +427,7 @@ class DropDownPicker extends React.Component {
                         <Text style={[
                             this.props.globalTextStyle,
                             this.props.labelStyle,
+                            item.textStyle,
                                 multiple ?
                                 (this.isSelected(item) && this.props.activeLabelStyle) : (this.state.choice.value === item.value && this.props.activeLabelStyle)
                             , {

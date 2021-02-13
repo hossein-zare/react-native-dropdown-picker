@@ -19,6 +19,8 @@ declare module "react-native-dropdown-picker" {
     parent?: any;
     disabled?: boolean;
     selected?: boolean;
+    viewStyle?: StyleProp<ViewStyle>,
+    textStyle?: StyleProp<TextStyle>,
   };
 
   export type DropDownPickerProps = {
@@ -63,6 +65,8 @@ declare module "react-native-dropdown-picker" {
     searchTextInputProps?: TextInputProps;
     containerProps?: ViewProps;
     globalTextStyle?: StyleProp<TextStyle>;
+    parentViewStyle?: StyleProp<TextStyle>;
+    parentTextStyle?: StyleProp<TextStyle>;
     controller?: (instance: {
       open: () => void;
       close: () => void;
