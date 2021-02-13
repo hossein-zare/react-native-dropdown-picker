@@ -38,8 +38,8 @@ https://github.com/oblador/react-native-vector-icons
 
 ## Getting Started
 
-![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/1.png)
-![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/2.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/2.png)
 
 ### Installation
 
@@ -491,7 +491,7 @@ There are 14 props to style the component.
 
 1. The selected item
 
-   ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-1.png)
+   ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/rtl-1.png)
 
    ```javascript
    style={{
@@ -504,7 +504,7 @@ There are 14 props to style the component.
 
 2. The dropdown items
 
-   ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/3.x/screenshots/rtl-2.png)
+   ![RTL Support](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/rtl-2.png)
 
    ```javascript
    itemStyle={{
