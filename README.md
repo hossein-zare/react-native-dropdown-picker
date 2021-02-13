@@ -1,6 +1,6 @@
-# React native dropdown picker v3
+# React native dropdown picker v4
 
-A single / multiple, searchable item picker (dropdown) component for react native which supports both Android & iOS.
+A single / multiple, categorizable & searchable item picker (dropdown) component for react native which supports both Android & iOS.
 
 ## Caution (incompatibility)
 
@@ -14,7 +14,7 @@ Our package only requires `react-native-vector-icons` to be installed.
 https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
-
+- Added category support. [Februrary 13, 2021]
 - Added `globalTextStyle`. [February 11, 2021]
 - Added `onSearch`. [January 27, 2021]
 - Added `labelProps`. [January 06, 2021]
@@ -110,6 +110,30 @@ this.state = {
     })}
 />
 ```
+
+### Category support
+
+As of v4.x, You can simply categorize your items.
+
+```jsx
+<DropDownPicker
+    items={[
+        {label: 'North America', value: 'na', untouchable: true}, // North America
+        {label: 'United States', value: 'us', parent: 'na'},
+        {label: 'Canada', value: 'canada', parent: 'na'},
+        {label: 'Mexico', value: 'mexico', parent: 'na'},
+
+        {label: 'Europe', value: 'eu', untouchable: true}, // Europe
+        {label: 'UK', value: 'uk', parent: 'eu'},
+        {label: 'Germany', value: 'germany', parent: 'eu'},
+        {label: 'Russia', value: 'russia', parent: 'eu'},
+    ]}
+    
+    ...
+/>
+```
+> The `untouchable` property makes the item untouchable.
+
 
 ### Searchable items
 

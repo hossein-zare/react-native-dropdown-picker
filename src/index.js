@@ -326,16 +326,23 @@ class DropDownPicker extends React.Component {
         });
     }
 
-    getItems() {
+    getItems(parent = false) {
+        const items = this.props.items.filter(item => {
+            return ((parent !== false && item.parent === parent) || parent === false && ! item.hasOwnProperty('parent')) && (typeof item.hidden === 'undefined' || item.hidden === false);
+        });
+
+        if (parent)
+            return items;
+
         if (this.state.searchableText) {
             const text = this.state.searchableText.toLowerCase();
 
-            return this.props.items.filter((item) => {
+            return items.filter((item) => {
                 return item.label && (item.label.toLowerCase()).indexOf(text) > -1;
             });
         }
 
-        return this.props.items;
+        return items;
     }
 
     getNumberOfItems() {
@@ -364,16 +371,102 @@ class DropDownPicker extends React.Component {
         return label + (len !== len2 ? '...' : '');
     }
 
+    getChildren(parent) {
+        return this.getItems(parent);
+    }
+
+    concatNums(num1, num2) {
+        return Number(String(num1) + String(num2));
+    }
+
+    renderItem(item, index, itemsLength) {
+        const {renderSeperator, multiple} = this.props;
+        const children = this.getChildren(item.value);
+
+        return (
+            <View
+                key={index}
+                onLayout={event => {
+                    const layout = event.nativeEvent.layout;
+                    this.dropdownCoordinates[index] = layout.y;
+                }}
+            >
+                <TouchableOpacity
+                    key={index}
+                    onPress={() => ! item.untouchable && this.select(item)}
+                    style={[styles.dropDownItem, this.props.itemStyle, (
+                        this.state.choice.value === item.value && this.props.activeItemStyle
+                    ), {
+                        opacity: item?.disabled ? 0.3 : 1,
+                        alignItems: 'center',
+                        ...(
+                            multiple ? {
+                                justifyContent: 'space-between',
+                                ...(this.isSelected(item) && this.props.activeItemStyle)
+                            } : {
+                                
+                            }
+                        )
+                    }]}
+                    {...(item.untouchable && {
+                        activeOpacity: 1
+                    })}
+                    disabled={item?.disabled || false === true}
+                >
+                    <View style={{
+                        flexDirection: this.props.itemStyle?.flexDirection ?? 'row',
+                        ...(this.props.itemStyle.hasOwnProperty('justifyContent') && {
+                            justifyContent: this.props.itemStyle.justifyContent
+                        }),
+                        alignContent: 'center'
+                    }}>
+                        <View style={{justifyContent: 'center'}}>
+                            {item.icon && item.icon()}
+                        </View>
+                        <Text style={[
+                            this.props.globalTextStyle,
+                            this.props.labelStyle,
+                                multiple ?
+                                (this.isSelected(item) && this.props.activeLabelStyle) : (this.state.choice.value === item.value && this.props.activeLabelStyle)
+                            , {
+                            ...(item.icon && {
+                                marginHorizontal: 5
+                            })
+                        }]} {...this.props.labelProps}>
+                            {this.getLabel(item)}
+                        </Text>
+                    </View>
+
+                    {
+                        this.state.props.multiple && this.state.choice.findIndex(i => i.label === item.label && i.value === item.value) > -1 && (
+                            this.props.customTickIcon()
+                        )
+                    }
+                </TouchableOpacity>
+
+                {children.length > 0 && (
+                    <View style={{
+                        paddingLeft: 30,
+                    }}>
+                        {renderSeperator()}
+                        {children.map((child, childIndex) => this.renderItem(child, this.concatNums(index, childIndex), children.length))}
+                    </View>
+                )}
+
+                {index !== itemsLength - 1 && renderSeperator()}
+            </View>
+        );
+    }
+
     render() {
         this.props.controller(this);
         const { multiple, disabled } = this.state.props;
-        const { placeholder, scrollViewProps, searchTextInputProps, renderSeperator} = this.props;
+        const { placeholder, scrollViewProps, searchTextInputProps} = this.props;
         const isPlaceholderActive = this.state.choice.label === null || (Array.isArray(this.state.choice) && this.state.choice.length === 0);
         const label = isPlaceholderActive ? (placeholder) : this.getLabel(this.state.choice?.label, true);
         const placeholderStyle = isPlaceholderActive && this.props.placeholderStyle;
         const opacity = disabled ? 0.5 : 1;
         const items = this.getItems();
-        const dropdownItems = items.filter(item => typeof item.hidden === 'undefined' || item.hidden === false);
 
         return (
             <View style={[this.props.containerStyle, {
@@ -468,66 +561,11 @@ class DropDownPicker extends React.Component {
                             this.scrollViewRef = ref;
                         }}
                         {...scrollViewProps}>
-                        {dropdownItems.length > 0 ? dropdownItems.map((item, index) => (
-                            <View
-                                key={index}
-                                onLayout={event => {
-                                    const layout = event.nativeEvent.layout;
-                                    this.dropdownCoordinates[index] = layout.y;
-                                }}
-                            >
-                                <TouchableOpacity
-                                    key={index}
-                                    onPress={() => this.select(item)}
-                                    style={[styles.dropDownItem, this.props.itemStyle, (
-                                        this.state.choice.value === item.value && this.props.activeItemStyle
-                                    ), {
-                                        opacity: item?.disabled || false === true ? 0.3 : 1,
-                                        alignItems: 'center',
-                                        ...(
-                                            multiple ? {
-                                                justifyContent: 'space-between',
-                                                ...(this.isSelected(item) && this.props.activeItemStyle)
-                                            } : {
-                                                
-                                            }
-                                        )
-                                    }]}
-                                    disabled={item?.disabled || false === true}
-                                >
-                                    <View style={{
-                                        flexDirection: this.props.itemStyle?.flexDirection ?? 'row',
-                                        ...(this.props.itemStyle.hasOwnProperty('justifyContent') && {
-                                            justifyContent: this.props.itemStyle.justifyContent
-                                        }),
-                                        alignContent: 'center'
-                                    }}>
-                                        {item.icon && item.icon()}
-                                        <Text style={[
-                                            this.props.globalTextStyle,
-                                            this.props.labelStyle,
-                                                multiple ?
-                                                (this.isSelected(item) && this.props.activeLabelStyle) : (this.state.choice.value === item.value && this.props.activeLabelStyle)
-                                            , {
-                                            ...(item.icon && {
-                                                marginHorizontal: 5
-                                            })
-                                        }]} {...this.props.labelProps}>
-                                            {this.getLabel(item)}
-                                        </Text>
-                                    </View>
-
-                                    {
-                                        this.state.props.multiple && this.state.choice.findIndex(i => i.label === item.label && i.value === item.value) > -1 && (
-                                            this.props.customTickIcon()
-                                        )
-                                    }
-                                </TouchableOpacity>
-                                {renderSeperator && index !== items.length - 1 && renderSeperator()}
-                            </View>
-                        )) : (
+                        {items.length > 0 ? items.map((item, index) => 
+                            this.renderItem(item, index, items.length)
+                        ) : (
                             <View style={styles.notFound}>
-                                {this.props.searchableError()}
+                                {this.props.searchableError(this.style.globalTextStyle)}
                             </View>
                         )}
                     </ScrollView>
@@ -560,7 +598,7 @@ DropDownPicker.defaultProps = {
     disabled: false,
     searchable: false,
     searchablePlaceholder: 'Search for an item',
-    searchableError: () => <Text>Not Found</Text>,
+    searchableError: (globalTextStyle) => <Text style={globalTextStyle}>Not Found</Text>,
     searchableStyle: {},
     searchablePlaceholderTextColor: 'gray',
     onSearch: () => {},
@@ -577,6 +615,7 @@ DropDownPicker.defaultProps = {
     searchTextInputProps: {},
     containerProps: {},
     globalTextStyle: {},
+    renderSeperator: () => {},
     controller: () => {},
     onOpen: () => {},
     onClose: () => {},
