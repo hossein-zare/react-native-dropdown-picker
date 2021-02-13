@@ -4,7 +4,7 @@ A single / multiple, categorizable & searchable item picker (dropdown) component
 
 <div style="text-align: center">
 
-  ![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png)  
+  ![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png)
   ![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/2.png)  
 </div>
 
