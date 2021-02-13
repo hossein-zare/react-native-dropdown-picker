@@ -503,18 +503,14 @@ There are 13 props to style the component.
 
 ### FAQ
 
-#### Multiple pickers and the open dropdown issue
-
-Clicking on another picker doesn't close the other pickers?
-This can be fixed with the help of state.
+#### How to close other pickers when opening another picker?
 
 ```javascript
 this.state = {
-    itemA: null,
     isVisibleA: false,
+    isVisibleB: false,
 
-    itemB: null,
-    isVisibleB: false
+    ...
 }
 
 changeVisibility(state) {
@@ -527,13 +523,6 @@ changeVisibility(state) {
 
 // Picker A
 <DropDownPicker
-    items={[
-        {label: 'UK', value: 'uk'},
-        {label: 'France', value: 'france'},
-    ]}
-    defaultValue={this.state.itemA}
-    containerStyle={{height: 40}}
-
     isVisible={this.state.isVisibleA}
     onOpen={() => this.changeVisibility({
         isVisibleA: true
@@ -541,20 +530,12 @@ changeVisibility(state) {
     onClose={() => this.setState({
         isVisibleA: false
     })}
-    onChangeItem={item => this.setState({
-        itemA: item.value
-    })}
+
+    ...
 />
 
 // Picker B
 <DropDownPicker
-    items={[
-        {label: 'UK', value: 'uk'},
-        {label: 'France', value: 'france'},
-    ]}
-    defaultValue={this.state.itemB}
-    containerStyle={{height: 40}}
-
     isVisible={this.state.isVisibleB}
     onOpen={() => this.changeVisibility({
         isVisibleB: true
@@ -562,9 +543,8 @@ changeVisibility(state) {
     onClose={() => this.setState({
         isVisibleB: false
     })}
-    onChangeItem={item => this.setState({
-        itemB: item.value
-    })}
+
+    ...
 />
 ```
 
