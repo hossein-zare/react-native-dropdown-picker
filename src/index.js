@@ -9,6 +9,9 @@ import {
     TextInput
 } from 'react-native';
 
+// PR: https://github.com/hossein-zare/react-native-dropdown-picker/pull/132
+// import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
+
 // Icon
 import Feather from 'react-native-vector-icons/Feather';
 Feather.loadFont();
