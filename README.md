@@ -8,6 +8,7 @@ A single / multiple, categorizable & searchable item picker (dropdown) component
 * [Basic Usage](#basic-usage)
     * [Single Item](#single-item)
     * [Multiple Items](#multiple-items)
+* [Available Item Properties](#available-item-properties)
 * [Category Support](#category-support)
 * [Searchable Items](#searchable-items)
 * [Default Item](#default-item)
@@ -121,6 +122,25 @@ this.state = {
         countries: item // an array of the selected items
     })}
 />
+```
+
+### Available Item Properties
+
+Here's the type definition of an item.
+
+```ts
+type ItemType = {
+    label: any; // required
+    value: any; // required
+    icon?: () => JSX.Element;
+    hidden?: boolean;
+    untouchable?: boolean;
+    parent?: any;
+    disabled?: boolean;
+    selected?: boolean;
+    viewStyle?: StyleProp<ViewStyle>,
+    textStyle?: StyleProp<TextStyle>,
+};
 ```
 
 ### Category Support
