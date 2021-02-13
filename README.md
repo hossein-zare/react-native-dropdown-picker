@@ -132,6 +132,7 @@ As of v4.x, You can simply categorize your items.
     ...
 />
 ```
+> The `parent` property of children must be equal to the `value` property of the parent item.  
 > The `untouchable` property makes the item untouchable.
 
 
