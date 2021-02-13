@@ -20,12 +20,6 @@ A single / multiple, categorizable & searchable item picker (dropdown) component
 * [FAQ](#faq)
 * [Props](#props)
 
-## Caution (incompatibility)
-
-**x < 3.0.0 Versions are incompatible with the current version.**
-
-**It's required to follow the docs in order to upgrade the package to v3.x**
-
 ## Dependencies
 
 Our package only requires `react-native-vector-icons` to be installed.  
