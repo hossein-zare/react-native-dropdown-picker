@@ -2,6 +2,11 @@
 
 A single / multiple, categorizable & searchable item picker (dropdown) component for react native which supports both Android & iOS.
 
+<div style="text-align: center">
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png)
+![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/2.png)
+</div>
+
 ## Table of contents
 * [Getting Started](#getting-started)
 * [Installation](#installation)
@@ -23,7 +28,7 @@ A single / multiple, categorizable & searchable item picker (dropdown) component
 
 ## Dependencies
 
-Our package only requires `react-native-vector-icons` to be installed.  
+Make sure `react-native-vector-icons` is installed.  
 https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
@@ -37,9 +42,6 @@ https://github.com/oblador/react-native-vector-icons
 - Added `containerProps`. [December 21, 2020]
 
 ## Getting Started
-
-![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/1.png)
-![Screenshot](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/4.x/screenshots/2.png)
 
 ### Installation
 
@@ -196,14 +198,14 @@ onSearch={text => {
 
 You may want to select one of the items as default.
 
-**Use one of these ways:**
+**Use one of the following options:**
 
 1. Add `selected: true` to the object. **(This method is not state-friendly!)**
 
    ```javascript
    items={[
        {label: 'Item 1', value: 'item1'},
-       {label: 'Item 2', value: 'item2', selected: true, disabled: true},
+       {label: 'Item 2', value: 'item2', selected: true},
    ]}
    ```
 
