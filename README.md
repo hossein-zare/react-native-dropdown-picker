@@ -14,7 +14,7 @@ A single / multiple, categorizable & searchable item picker (dropdown) component
 * [Placeholder](#placeholder)
 * [Controller](#controller)
     * [Class Components](#class-components)
-    * [Class Components](#functional-components)
+    * [Functional Components](#functional-components)
 * [Styling The Component](#styling-the-component)
 * [RTL Support](#rtl-support)
 * [FAQ](#faq)
