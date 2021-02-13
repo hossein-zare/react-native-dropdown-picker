@@ -2,6 +2,24 @@
 
 A single / multiple, categorizable & searchable item picker (dropdown) component for react native which supports both Android & iOS.
 
+## Table of contents
+* [Getting Started](#getting-started)
+* [Installation](#installation)
+* [Basic Usage](#basic-usage)
+    * [Single Item](#single-item)
+    * [Multiple Items](#multiple-items)
+* [Category Support](#category-support)
+* [Searchable Items](#searchable-items)
+* [Default Item](#default-item)
+* [Placeholder](#placeholder)
+* [Controller](#controller)
+    * [Class Components](#class-components)
+    * [Class Components](#functional-components)
+* [Styling The Component](#styling-the-component)
+* [RTL Support](#rtl-support)
+* [FAQ](#faq)
+* [Props](#props)
+
 ## Caution (incompatibility)
 
 **x < 3.0.0 Versions are incompatible with the current version.**
@@ -48,7 +66,7 @@ The first step is to import the package.
 import DropDownPicker from 'react-native-dropdown-picker';
 ```
 
-#### Single
+#### Single Item
 
 Select a single item.
 
@@ -78,7 +96,7 @@ this.state = {
 />
 ```
 
-#### Multiple
+#### Multiple Items
 
 Select multiple items.
 
@@ -111,7 +129,7 @@ this.state = {
 />
 ```
 
-### Category support
+### Category Support
 
 As of v4.x, You can simply categorize your items.
 
@@ -135,7 +153,7 @@ As of v4.x, You can simply categorize your items.
 > The `untouchable` property makes the item untouchable.
 
 
-### Searchable items
+### Searchable Items
 
 Search for specific items.
 
@@ -157,7 +175,7 @@ onSearch={text => {
 }}
 ```
 
-### Default item
+### Default Item
 
 You may want to select one of the items as default.
 
@@ -199,8 +217,6 @@ placeholder="Select an item"
 ### Controller
 
 The `controller` property gives you full access to the DropDownPicker methods and properties.
-
-#### Usage
 
 ##### Class Components
 
@@ -325,7 +341,7 @@ in Class components you can call methods using `this.controller.METHOD_NAME()` a
    this.controller.toggle();
    ```
 
-### Styling the component
+### Styling The Component
 
 There are 13 props to style the component.
 
