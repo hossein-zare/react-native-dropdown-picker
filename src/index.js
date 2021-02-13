@@ -576,6 +576,7 @@ class DropDownPicker extends React.Component {
 }
 
 DropDownPicker.defaultProps = {
+    items: [],
     placeholder: 'Select an item',
     dropDownMaxHeight: 150,
     style: {},
