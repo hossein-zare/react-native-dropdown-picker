@@ -568,7 +568,7 @@ class DropDownPicker extends React.Component {
                             this.renderItem(item, index, items.length)
                         ) : (
                             <View style={styles.notFound}>
-                                {this.props.searchableError(this.style.globalTextStyle)}
+                                {this.props.searchableError(this.props.style.globalTextStyle)}
                             </View>
                         )}
                     </ScrollView>
