@@ -189,6 +189,7 @@ class DropDownPicker extends React.Component {
   }
 
   async toggle() {
+
     const [, positionY] = await new Promise((resolve) =>
       this.ref.measureInWindow((...rect) => resolve(rect)),
     );
