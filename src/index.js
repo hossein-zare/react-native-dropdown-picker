@@ -521,11 +521,10 @@ class DropDownPicker extends React.Component {
               })
 
             }]}
-                onLayout={() => {}} // Without this .measure will not work
-                ref={(ref) => (this.ref = ref)}
                 {...this.props.containerProps}>
                 <TouchableOpacity
                     onLayout={(event) => this.getLayout(event.nativeEvent.layout)}
+                    ref={(ref) => (this.ref = ref)}
                     disabled={disabled}
                     onPress={() => this.toggle()}
                     activeOpacity={1}
