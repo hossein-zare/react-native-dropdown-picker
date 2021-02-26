@@ -167,7 +167,7 @@ class DropDownPicker extends React.Component {
     async toggle() {
 
         const [, positionY] = await new Promise((resolve) =>
-            this.ref.measureInWindow((...rect) => resolve(rect)),
+            this.layoutRef.measureInWindow((...rect) => resolve(rect)),
         );
 
         const screenHeight = Dimensions.get('window').height;
@@ -524,7 +524,7 @@ class DropDownPicker extends React.Component {
                 {...this.props.containerProps}>
                 <TouchableOpacity
                     onLayout={(event) => this.getLayout(event.nativeEvent.layout)}
-                    ref={(ref) => (this.ref = ref)}
+                    ref={(ref) => (this.layoutRef = ref)}
                     disabled={disabled}
                     onPress={() => this.toggle()}
                     activeOpacity={1}
