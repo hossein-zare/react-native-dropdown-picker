@@ -151,6 +151,7 @@ class DropDownPicker extends React.Component {
     reset() {
         const item = this.props.multiple ? [] : this.null();
         this.props.onChangeItem(item, -1);
+        if (this.props.multiple) this.props.onChangeItemMultiple(item)
     }
 
     null() {
@@ -316,6 +317,7 @@ class DropDownPicker extends React.Component {
 
             // onChangeItem callback
             this.props.onChangeItem(choice.map(i => i.value));
+            this.props.onChangeItemMultiple(choice);
         }
 
         // onClose callback (! multiple)
@@ -625,6 +627,7 @@ DropDownPicker.defaultProps = {
     onOpen: () => {},
     onClose: () => {},
     onChangeItem: () => {},
+    onChangeItemMultiple: () => {},
     onChangeList: () => {},
 };
 

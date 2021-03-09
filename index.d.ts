@@ -88,6 +88,7 @@ declare module "react-native-dropdown-picker" {
     onOpen?: () => void;
     onClose?: () => void;
     onChangeItem?: (item: any, index: number) => void;
+    onChangeItemMultiple?: (item: any) => void;
     onChangeList?: (items: any, callback: () => void) => void;
     renderSeperator?: () => JSX.Element;
   };
