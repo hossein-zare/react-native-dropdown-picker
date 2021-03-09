@@ -103,7 +103,8 @@ Select multiple items.
 import Icon from 'react-native-vector-icons/Feather';
 
 this.state = {
-    countries: ['uk']
+    countryValues: ['uk'],
+    countries: [{label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900"/> }]
 }
 
 <DropDownPicker
@@ -123,6 +124,9 @@ this.state = {
         justifyContent: 'flex-start'
     }}
     onChangeItem={item => this.setState({
+        countryValues: item // an array of the selected items values
+    })}
+    onChangeItemMultiple={item => this.setState({
         countries: item // an array of the selected items
     })}
 />
@@ -674,4 +678,5 @@ dropDownStyle={{marginTop: 2}}
 | `onOpen`                         | Fires when you open the picker.                                                                                  | `func`                    | `() => {}`                     | No       |
 | `onClose`                        | Fires when you close the picker.                                                                                 | `func`                    | `() => {}`                     | No       |
 | `onChangeItem`                   | Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values. | `func`                    | `(item, index) => {}`          | No       |
+| `onChangeItemMultiple`                   | Callback which returns `item`. The `item` is an array of the selected objects. Only when `multiple={true}`. | `func`                    | `(item, index) => {}`          | No       |
 | `onChangeList`                   | Changes the list of items.                                                                                       | `(items, callback) => {}` | No                             |
