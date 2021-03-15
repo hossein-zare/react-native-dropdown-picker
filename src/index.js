@@ -46,10 +46,10 @@ class DropDownPicker extends React.Component {
         }
 
         this.state = {
-            choice: props.multiple ? items : {
-                label: choice.label,
-                value: choice.value,
-                icon: choice.icon
+               choice: props.multiple ? items : {
+                label: choice !== undefined ? choice.label : null,
+                value: choice !== undefined ? choice.value : null,
+                icon: choice !== undefined ? choice.icon : null,
             },
             searchableText: null,
             isVisible: props.isVisible,
