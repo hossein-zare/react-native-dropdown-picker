@@ -103,8 +103,8 @@ Select multiple items.
 import Icon from 'react-native-vector-icons/Feather';
 
 this.state = {
-    countryValues: ['uk'],
-    countries: [{label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900"/> }]
+    selectedCountriesValues: ['uk'],
+    selectedCountries: [{label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900"/> }]
 }
 
 <DropDownPicker
@@ -124,10 +124,10 @@ this.state = {
         justifyContent: 'flex-start'
     }}
     onChangeItem={item => this.setState({
-        countryValues: item // an array of the selected items values
+        selectedCountriesValues: item // an array of the selected items values
     })}
     onChangeItemMultiple={item => this.setState({
-        countries: item // an array of the selected items
+        selectedCountries: item // an array of the selected items
     })}
 />
 ```
