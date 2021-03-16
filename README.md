@@ -675,3 +675,5 @@ dropDownStyle={{marginTop: 2}}
 | `onClose`                        | Fires when you close the picker.                                                                                 | `func`                    | `() => {}`                     | No       |
 | `onChangeItem`                   | Callback which returns `item` and `index`. The `item` is the selected object or an array of the selected values. | `func`                    | `(item, index) => {}`          | No       |
 | `onChangeList`                   | Changes the list of items.                                                                                       | `(items, callback) => {}` | No                             |
+| `noTopRadius`                   | Removes the top radius when the picker is open.                                                                                       | `boolean` | `true` |No                             |
+| `noBottomRadius`                   | Removes the bottom radius when the picker is open.                                                                                       | `boolean` | `true` |No                             |

@@ -490,7 +490,7 @@ class DropDownPicker extends React.Component {
                             flexDirection: 'row', flex: 1
                         },
                         this.props.style,
-                        this.state.isVisible && styles.noBottomRadius
+                        (this.state.isVisible && this.props.noBottomRadius) && styles.noBottomRadius
                     ]}
                 >
 
@@ -529,6 +529,7 @@ class DropDownPicker extends React.Component {
                 <View style={[
                     styles.dropDown,
                     styles.dropDownBox,
+                    this.props.noTopRadius && styles.noTopRadius,
                     this.props.dropDownStyle,
                     ! this.state.isVisible && styles.hidden, {
                         top: this.state.top,
@@ -620,6 +621,8 @@ DropDownPicker.defaultProps = {
     containerProps: {},
     globalTextStyle: {},
     childrenContainerStyle: {},
+    noTopRadius: true,
+    noBottomRadius: true,
     renderSeperator: () => {},
     controller: () => {},
     onOpen: () => {},
@@ -654,8 +657,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         width: '100%',
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
     },
     dropDownItem: {
         paddingVertical: 8,
@@ -664,17 +665,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     input: {
-      flex: 1,
-      borderColor: '#dfdfdf',
-      borderBottomWidth: 1,
-      paddingHorizontal: 0,
-      paddingVertical: 8,
-      marginBottom: 10,
+        flex: 1,
+        borderColor: '#dfdfdf',
+        borderBottomWidth: 1,
+        paddingHorizontal: 0,
+        paddingVertical: 8,
+        marginBottom: 10,
     },
     hidden: {
         position: 'relative',
         display: 'none',
         borderWidth: 0
+    },
+    noTopRadius: {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
     },
     noBottomRadius: {
         borderBottomLeftRadius: 0,

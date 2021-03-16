@@ -66,6 +66,8 @@ declare module "react-native-dropdown-picker" {
     containerProps?: ViewProps;
     globalTextStyle?: StyleProp<TextStyle>;
     childrenContainerStyle?: StyleProp<ViewStyle>;
+    noTopRadius?: Boolean;
+    noBottomRadius?: Boolean;
     controller?: (instance: {
       open: () => void;
       close: () => void;
