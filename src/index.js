@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     ScrollView,
     Platform,
-    TextInput
+    TextInput,
+    Dimensions,
 } from 'react-native';
 
 // PR: https://github.com/hossein-zare/react-native-dropdown-picker/pull/132
@@ -46,10 +47,10 @@ class DropDownPicker extends React.Component {
         }
 
         this.state = {
-            choice: props.multiple ? items : {
-                label: choice.label,
-                value: choice.value,
-                icon: choice.icon
+               choice: props.multiple ? items : {
+                label: choice !== undefined ? choice.label : null,
+                value: choice !== undefined ? choice.value : null,
+                icon: choice !== undefined ? choice.icon : null,
             },
             searchableText: null,
             isVisible: props.isVisible,
@@ -59,7 +60,9 @@ class DropDownPicker extends React.Component {
                 isVisible: props.isVisible
             },
             initialScroll: props?.autoScrollToDefaultValue,
-            defaultValueIndex
+            defaultValueIndex,
+            top: 0,
+            direction: 'top',
         };
         this.dropdownCoordinates = [];
     }
@@ -99,7 +102,7 @@ class DropDownPicker extends React.Component {
                props: {
                    ...state.props,
                    defaultValue: props.defaultValue
-               } 
+               }
             }
         }
 
@@ -161,16 +164,31 @@ class DropDownPicker extends React.Component {
         }
     }
 
-    toggle() {
+    async toggle() {
+
+        const [, positionY] = await new Promise((resolve) =>
+            this.layoutRef.measureInWindow((...rect) => resolve(rect)),
+        );
+
+        const screenHeight = Dimensions.get('window').height;
+        const dropdownHeight = this.props.dropDownMaxHeight;
+
+        const lowestPointOfDropdown =
+            positionY + // Position in window
+            this.state.top + // Size of input
+            dropdownHeight + // Height of dropdown
+            this.props.bottomOffset; // Extra space, if we have bottom tab or something
+
         this.setState({
             isVisible: ! this.state.isVisible,
+            direction: lowestPointOfDropdown < screenHeight ? 'top' : 'bottom',
         }, () => {
             const isVisible = this.state.isVisible;
             if (isVisible) {
-        		this.open(false);
-        	} else {
-        		this.close(false);
-        	}
+            this.open(false);
+          } else {
+            this.close(false);
+          }
         });
     }
 
@@ -369,7 +387,7 @@ class DropDownPicker extends React.Component {
         } else {
             return item;
         }
-        
+
         let len2 = label.length;
         return label + (len !== len2 ? '...' : '');
     }
@@ -380,6 +398,30 @@ class DropDownPicker extends React.Component {
 
     concatNums(num1, num2) {
         return Number(String(num1) + String(num2));
+    }
+
+    adjustStylesToDirection(...presets) {
+        let merged = Object.assign({}, ...presets);
+
+        // if we show dropdown box above, we need to invert border radius
+        if (this.state.direction === 'bottom') {
+            const {
+                borderBottomLeftRadius = 0,
+                borderBottomRightRadius = 0,
+                borderTopLeftRadius = 0,
+                borderTopRightRadius = 0,
+            } = merged;
+
+            merged = {
+                ...merged,
+                borderBottomLeftRadius: borderTopLeftRadius,
+                borderBottomRightRadius: borderTopRightRadius,
+                borderTopLeftRadius: borderBottomLeftRadius,
+                borderTopRightRadius: borderBottomRightRadius,
+            };
+        }
+
+        return merged;
     }
 
     renderItem(item, index, itemsLength) {
@@ -478,19 +520,23 @@ class DropDownPicker extends React.Component {
                   zIndex: this.props.zIndex
               })
 
-            }]} {...this.props.containerProps}>
+            }]}
+                {...this.props.containerProps}>
                 <TouchableOpacity
                     onLayout={(event) => this.getLayout(event.nativeEvent.layout)}
+                    ref={(ref) => (this.layoutRef = ref)}
                     disabled={disabled}
                     onPress={() => this.toggle()}
                     activeOpacity={1}
                     style={[
-                        styles.dropDown,
-                        {
-                            flexDirection: 'row', flex: 1
-                        },
-                        this.props.style,
-                        (this.state.isVisible && this.props.noBottomRadius) && styles.noBottomRadius
+                        this.adjustStylesToDirection(
+                            styles.dropDown,
+                            {
+                                flexDirection: 'row', flex: 1
+                            },
+                            this.props.style,
+                            (this.state.isVisible && this.props.noBottomRadius) && styles.noBottomRadius,
+                        ),
                     ]}
                 >
 
@@ -527,12 +573,15 @@ class DropDownPicker extends React.Component {
                     )}
                 </TouchableOpacity>
                 <View style={[
-                    styles.dropDown,
-                    styles.dropDownBox,
-                    this.props.noTopRadius && styles.noTopRadius,
-                    this.props.dropDownStyle,
+                    this.adjustStylesToDirection(
+                        styles.dropDown,
+                        styles.dropDownBox,
+                        this.props.noTopRadius && styles.noTopRadius,
+                        this.props.dropDownStyle,
+                    ),
+
                     ! this.state.isVisible && styles.hidden, {
-                        top: this.state.top,
+                        [this.state.direction]: this.state.top,
                         maxHeight: this.props.dropDownMaxHeight,
                         zIndex: this.props.zIndex
                     }
@@ -565,7 +614,7 @@ class DropDownPicker extends React.Component {
                             this.scrollViewRef = ref;
                         }}
                         {...scrollViewProps}>
-                        {items.length > 0 ? items.map((item, index) => 
+                        {items.length > 0 ? items.map((item, index) =>
                             this.renderItem(item, index, items.length)
                         ) : (
                             <View style={styles.notFound}>
@@ -623,6 +672,7 @@ DropDownPicker.defaultProps = {
     childrenContainerStyle: {},
     noTopRadius: true,
     noBottomRadius: true,
+    bottomOffset: 0,
     renderSeperator: () => {},
     controller: () => {},
     onOpen: () => {},

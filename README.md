@@ -668,6 +668,7 @@ dropDownStyle={{marginTop: 2}}
 | `labelProps`                    | Add props to the labels.                                                                                 | `object`                  | `{}`                         | No       |
 | `scrollViewProps`                | Add props to the `ScrollView`                                                                                    | `object`                  | `{}`                           | No       |
 | `searchTextInputProps`                | Add props to the search `TextInput`                                                                                    | `object`                  | `{}`                           | No       |
+| `offsetBottom`                    | Extra space on the bottom of the screen which is not possible to show dropdown on (bottom bar)                                                                                    | `number`                  | `0`                           | No       |
 | `containerProps`                     | Add props to the container view.                                                                  | `object`                    | `{}`             | No       |
 | `renderSeperator`                     | Separate items.                               | `func`                    | `undefined`             | No       |
 | `controller`                     | Gives you access to the methods and properties.                                                                  | `func`                    | `(instance) => {}`             | No       |
