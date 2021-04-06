@@ -32,9 +32,6 @@
     "ios",
     "javascript"
   ],
-  "dependencies": {
-    "react-native-vector-icons": "^7.0.0"
-  },
   "author": "Hossein Zare",
   "license": "MIT",
   "bugs": {
