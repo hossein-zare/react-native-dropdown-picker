@@ -610,7 +610,7 @@ class DropDownPicker extends React.Component {
                     }
 
                     <ScrollView
-                        persistentScrollbar={true}
+                        persistentScrollbar={this.props.persistentScrollbar || false}
                         style={{width: '100%'}}
                         nestedScrollEnabled={true}
                         ref={ref => {

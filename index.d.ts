@@ -46,6 +46,7 @@ declare module "react-native-dropdown-picker" {
     defaultValue?: any;
     placeholder?: string;
     dropDownMaxHeight?: number;
+    persistentScrollbar?: boolean;
     style?: StyleProp<ViewStyle>;
     dropDownStyle?: StyleProp<ViewStyle>;
     containerStyle?: StyleProp<ViewStyle>;
