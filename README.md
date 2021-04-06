@@ -32,11 +32,11 @@ Make sure `react-native-vector-icons` is installed.
 https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
-- [@petkovv](https://github.com/petkovv) https://github.com/hossein-zare/react-native-dropdown-picker/pull/228 [March 20, 2021]
+- [@petkovv](https://github.com/petkovv) (PR #228)[https://github.com/hossein-zare/react-native-dropdown-picker/pull/228] [March 20, 2021]
 - Added `noTopRadius`. [March 17, 2021]
 - Added `noBottomRadius`. [March 17, 2021]
-- [@antoinebrtd](https://github.com/antoinebrtd) added `onChangeItemMultiple`. [March 09, 2021]
-- [@Maclay74](https://github.com/Maclay74) added "show the dropdown above the picker, if there's no enough space" [Februrary 26, 2021]
+- [@antoinebrtd](https://github.com/antoinebrtd) (PR #218)[https://github.com/hossein-zare/react-native-dropdown-picker/pull/218] [March 09, 2021]
+- [@Maclay74](https://github.com/Maclay74) (PR #216)[https://github.com/hossein-zare/react-native-dropdown-picker/pull/216] [Februrary 26, 2021]
 - Added `childrenContainerStyle`. [Februrary 13, 2021]
 - Added `textStyle` `viewStyle` & `untouchable` props to items. [Februrary 13, 2021]
 - Added category support. [Februrary 13, 2021]
