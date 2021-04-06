@@ -32,7 +32,7 @@ Make sure `react-native-vector-icons` is installed.
 https://github.com/oblador/react-native-vector-icons
 
 ## Changelog
-- [@petkovv](https://github.com/perkovv) added `Accessibility-Labels-And-Test-Ids-For-Automation-Testing` [March 20, 2021]
+- [@petkovv](https://github.com/petkovv) added `Accessibility-Labels-And-Test-Ids-For-Automation-Testing` [March 20, 2021]
 - Added `noTopRadius`. [March 17, 2021]
 - Added `noBottomRadius`. [March 17, 2021]
 - [@antoinebrtd](https://github.com/antoinebrtd) added `onChangeItemMultiple`. [March 09, 2021]
