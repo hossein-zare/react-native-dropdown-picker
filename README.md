@@ -637,8 +637,8 @@ dropDownStyle={{marginTop: 2}}
 
 | Name                             | Description                                                                                                      | Type                      | Default                        | Required |
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------ | -------- |
-| **`items`**                      | The items for the component.                                                                                     | `array`                   |                                | Yes      |
-| `defaultValue`                   | The value of the default item. (If `multiple={true}`, it takes an array of pre-selected values: `['uk']`)        | `any`                     |                                | No       |
+| **`items`**                      | The items for the component.                                                                                     | `array`                   |                                | **Yes**      |
+| `defaultValue`                   | The value of the default item. (If `multiple={true}`, it takes an array of pre-selected values: `['uk']`)        | `any`                     |                                | **Yes**       |
 | `placeholder`                    | Default text to be shown to the user when `defaultValue={null}` or `defaultValue={[]}`                           | `string`                  | 'Select an item'               | No       |
 | `dropDownMaxHeight`              | Height of the dropdown box.                                                                                      | `number`                  | `150`                          | No       |
 | `style`                          | Additional styles for the picker.                                                                                | `object`                  | `{}`                           | No       |
