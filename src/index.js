@@ -8,6 +8,7 @@ import {
     Platform,
     TextInput,
     Dimensions,
+    Keyboard,
 } from 'react-native';
 
 // PR: https://github.com/hossein-zare/react-native-dropdown-picker/pull/132
@@ -63,6 +64,7 @@ class DropDownPicker extends React.Component {
             defaultValueIndex,
             top: 0,
             direction: 'top',
+            keyboardHeight: 0,
         };
         this.dropdownCoordinates = [];
     }
@@ -131,6 +133,8 @@ class DropDownPicker extends React.Component {
     }
 
     componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
         this.props.controller(this);
     }
 
@@ -178,7 +182,8 @@ class DropDownPicker extends React.Component {
             positionY + // Position in window
             this.state.top + // Size of input
             dropdownHeight + // Height of dropdown
-            this.props.bottomOffset; // Extra space, if we have bottom tab or something
+            this.props.bottomOffset + // Extra space, if we have bottom tab or something
+            this.state.keyboardHeight; // Height of keyboard (0 if not showing)
 
         this.setState({
             isVisible: !this.state.isVisible,
@@ -523,6 +528,18 @@ class DropDownPicker extends React.Component {
         }
         return { accessibilityLabel: testID, accessible };
     };
+
+    keyboardDidShow(keyboardEvent) {
+        this.setState({
+            keyboardHeight: keyboardEvent.endCoordinates.height
+        });
+    }
+
+    keyboardDidHide(keyboardEvent) {
+        this.setState({
+            keyboardHeight: 0
+        });
+    }
 
     render() {
         this.props.controller(this);
