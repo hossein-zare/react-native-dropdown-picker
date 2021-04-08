@@ -286,9 +286,8 @@ const controller = useRef(null);
     items={items}
     controller={instance => controller.current = instance}
     onChangeList={(items, callback) => {
-        new Promise((resolve, reject) => resolve(setItems(items)))
-            .then(() => callback())
-            .catch(() => {});
+        Promise.resolve(setItems(items))
+            .then(() => callback());
     }}
 
     defaultValue={value}
