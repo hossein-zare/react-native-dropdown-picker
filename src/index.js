@@ -403,6 +403,7 @@ class DropDownPicker extends React.Component {
     }
 
     adjustStylesToDirection(...presets) {
+        presets = presets.map((style) => StyleSheet.flatten(style));
         let merged = Object.assign({}, ...presets);
 
         // if we show dropdown box above, we need to invert border radius
