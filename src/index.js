@@ -155,6 +155,11 @@ class DropDownPicker extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
     reset() {
         const item = this.props.multiple ? [] : this.null();
         this.props.onChangeItem(item, -1);
