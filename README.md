@@ -279,15 +279,15 @@ constructor(props) {
 ```javascript
 const [value, setValue] = useState(null);
 const [items, setItems] = useState([ {...}, ... ]);
-let controller;
+
+const controller = useRef(null);
 
 <DropDownPicker
     items={items}
-    controller={instance => controller = instance}
+    controller={instance => controller.current = instance}
     onChangeList={(items, callback) => {
-        new Promise((resolve, reject) => resolve(setItems(items)))
-            .then(() => callback())
-            .catch(() => {});
+        Promise.resolve(setItems(items))
+            .then(() => callback());
     }}
 
     defaultValue={value}
@@ -295,7 +295,7 @@ let controller;
 />
 ```
 
-in Class components you can call methods using `this.controller.METHOD_NAME()` and `controller.METHOD_NAME()` in Functional components.
+in Class components you can call methods using `this.controller.METHOD_NAME()` and `controller.current.METHOD_NAME()` in Functional components.
 
 1. Reset the state.
 
