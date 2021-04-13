@@ -619,7 +619,7 @@ dropDownStyle={{
    https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
 
 4. Multiple Pickers  
-   The `zIndexInverse` must be greater than the first `zIndex` which is `5000`
+   The `zIndexInverse` prop must be greater than the first `zIndex` which is `5000`
 
    ```javascript
    <DropDownPicker zIndex={5000} zIndexInverse={6000} />
