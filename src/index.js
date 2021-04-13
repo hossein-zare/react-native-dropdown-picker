@@ -627,7 +627,7 @@ class DropDownPicker extends React.Component {
                     !this.state.isVisible && styles.hidden, {
                         [this.state.direction]: this.state.top,
                         maxHeight: this.props.dropDownMaxHeight,
-                        zIndex: this.props.zIndex
+                        zIndex: this.state.direction === 'top' ? this.props.zIndex : this.props.zIndexInverse
                     }
                 ]}>
                     {
@@ -693,6 +693,7 @@ DropDownPicker.defaultProps = {
     customArrowDown: (size, color) => <Feather name="chevron-down" size={size} color={color} />,
     customTickIcon: () => <Feather name="check" size={15} />,
     zIndex: 5000,
+    zIndexInverse: 5000,
     disabled: false,
     searchable: false,
     searchablePlaceholder: 'Search for an item',

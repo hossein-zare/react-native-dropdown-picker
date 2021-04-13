@@ -63,6 +63,7 @@ declare module "react-native-dropdown-picker" {
     customArrowDown?: (size: number, color: string) => JSX.Element;
     customTickIcon?: () => JSX.Element;
     zIndex?: number;
+    zIndexInverse?: number;
     disabled?: boolean;
     isVisible?: boolean;
     autoScrollToDefaultValue?: boolean;
