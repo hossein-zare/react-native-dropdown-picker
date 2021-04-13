@@ -618,7 +618,7 @@ dropDownStyle={{
    Remove all the `backgroundColor`, `border[...]`, `elevation`, ... style properties from the parent element.  
    https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
 
-4. Multiple Pickers
+4. Multiple Pickers  
    The `zIndexInverse` must be greater than the first `zIndex` which is `5000`
 
    ```javascript
