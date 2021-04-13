@@ -613,7 +613,7 @@ dropDownStyle={{
 
    Demo: https://snack.expo.io/@hossein-zare/823437
 
-3. DropDownPicker wrapped by `<View style={{backgroundColor: ..., border[...]: ..., elevation: ...}}>`  
+3. DropDownPicker wrapped with `<View style={{backgroundColor: ..., border[...]: ..., elevation: ...}}>`  
    These props will make your dropdown untouchable.  
    Remove all the `backgroundColor`, `border[...]`, `elevation`, ... style properties from the parent element.  
    https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
