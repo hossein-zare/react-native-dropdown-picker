@@ -619,10 +619,12 @@ dropDownStyle={{
    https://github.com/hossein-zare/react-native-dropdown-picker/issues/40#issuecomment-651744446
 
 4. Multiple Pickers
+   The `zIndexInverse` must be greater than the first `zIndex` which is `5000`
+
    ```javascript
-   <DropDownPicker zIndex={5000} />
-   <DropDownPicker zIndex={4000} />
-   <DropDownPicker zIndex={3000} />
+   <DropDownPicker zIndex={5000} zIndexInverse={6000} />
+   <DropDownPicker zIndex={4000} zIndexInverse={6000} />
+   <DropDownPicker zIndex={3000} zIndexInverse={6000} />
    ```
 
 #### Dropdown Overflow
@@ -659,6 +661,7 @@ dropDownStyle={{marginTop: 2}}
 | `customArrowDown`                | Customize the arrow-down.                                                                                        | `func`                    | `(size, color) => ...`         | No       |
 | `customTickIcon`                 | Customize the tick icon for multiple item picker.                                                                | `func`                    | `() => ...`                    | No       |
 | `zIndex`                         | This property specifies the stack order of the component.                                                        | `number`                  | `5000`                         | No       |
+| `zIndexInverse`                         | Adds a different zIndex to the dropdown box when showing it above the picker.                                                        | `number`                  | `5000`                         | No       |
 | `disabled`                       | Disables the component.                                                                                          | `bool`                    | `false`                        | No       |
 | `isVisible`                      | Open or close the dropdown box.                                                                                  | `bool`                    | `false`                        | No       |
 | `autoScrollToDefaultValue`       | If true, automatically scroll to `defaultValue`/first `defaultValue` (multiple) during first render of dropdown  | `bool`                    | `false`                        | No       |

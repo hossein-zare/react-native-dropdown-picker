@@ -693,7 +693,7 @@ DropDownPicker.defaultProps = {
     customArrowDown: (size, color) => <Feather name="chevron-down" size={size} color={color} />,
     customTickIcon: () => <Feather name="check" size={15} />,
     zIndex: 5000,
-    zIndexInverse: 5000,
+    zIndexInverse: 6000,
     disabled: false,
     searchable: false,
     searchablePlaceholder: 'Search for an item',
