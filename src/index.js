@@ -437,7 +437,7 @@ class DropDownPicker extends React.Component {
         return merged;
     }
 
-    renderItem(item, index, itemsLength) {
+    renderItem(item, index, itemsLength, child_index = false) {
         const { renderSeperator, multiple } = this.props;
         const children = this.getChildren(item.value);
 
@@ -516,11 +516,11 @@ class DropDownPicker extends React.Component {
                         paddingLeft: 30,
                     }, this.props.childrenContainerStyle]}>
                         {renderSeperator()}
-                        {children.map((child, childIndex) => this.renderItem(child, this.concatNums(index, childIndex), children.length))}
+                        {children.map((child, childIndex) => this.renderItem(child, this.concatNums(index, childIndex), children.length, childIndex))}
                     </View>
                 )}
 
-                {index !== itemsLength - 1 && renderSeperator()}
+                {((child_index !== false ? child_index : index) !== itemsLength - 1) && renderSeperator()}
             </View>
         );
     }
