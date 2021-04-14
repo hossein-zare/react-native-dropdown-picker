@@ -561,7 +561,7 @@ class DropDownPicker extends React.Component {
             <View style={[this.props.containerStyle, {
 
                 ...(Platform.OS !== 'android' && {
-                    zIndex: this.props.zIndex
+                    zIndex: this.state.direction === 'top' ? this.props.zIndex : this.props.zIndexInverse
                 })
 
             }]}
