@@ -3,11 +3,10 @@ import {
     StyleSheet,
     Text,
     View,
-    ScrollView,
     Platform,
     TextInput
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler'
+import {TouchableOpacity,ScrollView} from 'react-native-gesture-handler'
 // Icon
 import Feather from 'react-native-vector-icons/Feather';
 Feather.loadFont();
