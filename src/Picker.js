@@ -48,6 +48,7 @@ function Picker({
     open,
     placeholder = null,
     closeAfterSelecting = true,
+    labelProps = {},
     disabled = false,
     disabledStyle = {},
     placeholderStyle = {},
@@ -55,7 +56,6 @@ function Picker({
     style = {},
     textStyle = {},
     labelStyle = {},
-    labelProps = {},
     arrowIconStyle = {},
     tickIconStyle = {},
     closeIconStyle = {},
@@ -71,7 +71,7 @@ function Picker({
     closeIconContainerStyle = {},
     tickIconContainerStyle = {},
     listItemContainerStyle = {},
-    listItemStyle = {},
+    listItemLabelStyle = {},
     listChildContainerStyle = {},
     listChildLabelStyle = {},
     listParentContainerStyle = {},
@@ -117,6 +117,7 @@ function Picker({
     modalProps = {},
     flatListProps = {},
     scrollViewProps = {},
+    searchTextInputProps = {},
     loading = false,
     min = null,
     max = null,
@@ -814,8 +815,8 @@ function Picker({
     const _listItemLabelStyle = useMemo(() => ([
         Styles.listItemLabel,
         ...[textStyle].flat(),
-        ...[listItemStyle].flat()
-    ]), [textStyle, listItemStyle]);
+        ...[listItemLabelStyle].flat()
+    ]), [textStyle, listItemLabelStyle]);
 
     /**
      * The tick icon style.
@@ -1073,6 +1074,7 @@ function Picker({
                 style={_searchTextInputStyle}
                 placeholder={_searchPlaceholder}
                 placeholderTextColor={searchPlaceholderTextColor}
+                {...searchTextInputProps}
             />
             {_CloseIconComponent}
         </View>
@@ -1083,7 +1085,8 @@ function Picker({
         _searchTextInputStyle,
         _searchPlaceholder,
         searchPlaceholderTextColor,
-        searchText
+        searchText,
+        searchTextInputProps
     ]);
 
     /**
