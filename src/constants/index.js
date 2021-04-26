@@ -75,7 +75,7 @@ export const HASH = (str) => {
     return hash;
 }
 
-export const HELPER = {
+export const HELPERS = {
     GET_SELECTED_ITEM: (items, value, key = "value") => {
         return items.find(item => item[key] === value);
     },
