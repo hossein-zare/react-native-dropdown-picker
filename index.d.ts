@@ -91,9 +91,9 @@ declare module "react-native-dropdown-picker" {
     controller?: (instance: DropDownPickerInstanceType) => void;
     onOpen?: () => void;
     onClose?: () => void;
-    onChangeItem?: (item: any, index: number) => void;
-    onChangeItemMultiple?: (item: any) => void;
-    onChangeList?: (items: any, callback: () => void) => void;
+    onChangeItem?: (item: ItemType, index: number) => void;
+    onChangeItemMultiple?: (item: ItemType) => void;
+    onChangeList?: (items: ItemType[], callback: () => void) => void;
     renderSeperator?: () => JSX.Element;
   };
   const DropDownPicker: ComponentType<DropDownPickerProps>;
