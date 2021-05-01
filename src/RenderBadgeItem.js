@@ -38,7 +38,7 @@ function RenderBadge({
         ...[badgeStyle].flat(), {
             backgroundColor: getBadgeColor(value)
         }
-    ]), [rtl, badgeStyle, getBadgeColor]);
+    ]), [THEME, rtl, badgeStyle, getBadgeColor]);
 
     /**
      * The badge dot style.
@@ -49,7 +49,7 @@ function RenderBadge({
         ...[badgeDotStyle].flat(), {
             backgroundColor: getBadgeDotColor(value)
         }
-    ]), [rtl, badgeDotStyle, getBadgeDotColor]);
+    ]), [THEME, rtl, badgeDotStyle, getBadgeDotColor]);
 
     /**
      * The badge text style.

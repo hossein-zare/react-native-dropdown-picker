@@ -116,20 +116,17 @@ export const BADGE_COLORS = [Colors.ALTO];
 
 export const BADGE_DOT_COLORS = [Colors.GREY];
 
-export const HASH = (str) => {
-    let hash = 0;
-    let chr;
+export const ASCII_CODE = (str) => {
+    let chr = 0;
 
     if (str.length === 0)
-        return hash;
+        return chr;
 
     for (let i = 0; i < str.length; i++) {
-        chr   = str.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0;
+        chr+= str.charCodeAt(i);
     }
 
-    return hash;
+    return chr;
 }
 
 export const HELPERS = {

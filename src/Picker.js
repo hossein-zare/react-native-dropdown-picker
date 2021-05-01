@@ -31,7 +31,7 @@ import {
     GET_TRANSLATION,
     BADGE_COLORS,
     BADGE_DOT_COLORS,
-    HASH,
+    ASCII_CODE,
     TRANSLATIONS,
     MODE,
     LIST_MODE,
@@ -793,7 +793,7 @@ function Picker({
      const getBadgeColor = useCallback((str) => {
         str = `${str}`;
 
-        const index = HASH(str) % _badgeColors.length;
+        const index = Math.abs(HASH(str)) % _badgeColors.length;
         return _badgeColors[index];
     }, [_badgeColors]);
 
@@ -805,7 +805,7 @@ function Picker({
      const getBadgeDotColor = useCallback((str) => {
         str = `${str}`;
 
-        const index = HASH(str) % _badgeDotColors.length;
+        const index = Math.abs(HASH(str)) % _badgeDotColors.length;
         return _badgeDotColors[index];
     }, [_badgeDotColors]);
 

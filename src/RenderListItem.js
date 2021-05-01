@@ -55,7 +55,7 @@ function RenderListItem({
     ] : [
         THEME.listParentContainer,
         ...[listParentContainerStyle].flat()
-    ]), [rtl, listChildContainerStyle, listParentContainerStyle, parent])
+    ]), [THEME, rtl, listChildContainerStyle, listParentContainerStyle, parent])
 
     /**
      * The selected item container style.
@@ -76,7 +76,7 @@ function RenderListItem({
     const _customItemContainerStyle = useMemo(() => custom && ([
         THEME.customItemContainer,
         ...[customItemContainerStyle].flat()
-    ]), [custom, customItemContainerStyle]);
+    ]), [THEME, custom, customItemContainerStyle]);
 
     /**
      * The list item container style.
@@ -100,7 +100,7 @@ function RenderListItem({
     ] : [
         THEME.listParentLabel,
         ...[listParentLabelStyle].flat(),
-    ]), [listChildLabelStyle, listParentLabelStyle, parent]);
+    ]), [THEME, listChildLabelStyle, listParentLabelStyle, parent]);
 
     /**
      * The selected item label style.
@@ -121,7 +121,7 @@ function RenderListItem({
      const _customItemLabelStyle = useMemo(() => custom && ([
         THEME.customItemLabel,
         ...[customItemLabelStyle].flat()
-    ]), [custom, customItemLabelStyle]);
+    ]), [THEME, custom, customItemLabelStyle]);
 
     /**
      * The list item label style.
