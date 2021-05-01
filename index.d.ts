@@ -24,7 +24,7 @@ declare module "react-native-dropdown-picker" {
       disabled?: boolean;
     };
 
-    export type ModeType  = "SIMPLE" | "BADGE";
+    export type ModeType  = "DEFAULT" | "SIMPLE" | "BADGE";
 
     export interface ModeInterface {
       DEFAULT: string;
@@ -32,7 +32,7 @@ declare module "react-native-dropdown-picker" {
       BADGE: string;
     };
 
-    export type ListModeType = "FLATLIST" | "SCROLLVIEW" | "MODAL";
+    export type ListModeType = "DEFAULT" | "FLATLIST" | "SCROLLVIEW" | "MODAL";
 
     export interface ListModeInterface {
       DEFAULT: string;
@@ -50,7 +50,7 @@ declare module "react-native-dropdown-picker" {
       disabled: string;
     };
 
-    export type LanguageType = "EN" | "AR" | "FA" | "TR";
+    export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR";
     
     export interface TranslationInterface {
       PLACEHOLDER: string;
@@ -71,6 +71,38 @@ declare module "react-native-dropdown-picker" {
       getBadgeDotColor: (value: string) => string;
       showBadgeDot: boolean;
       onPress: (value: ValueType) => void;
+      rtl: boolean;
+      thene: string;
+      THEME: object;
+    };
+
+    export interface RenderListItemPropsInterface {
+      rtl: boolean;
+      item: ItemType;
+      label: string;
+      value: ValueType;
+      parent: ValueType;
+      selectable: boolean;
+      disabled: boolean;
+      custom: boolean;
+      isSelected: boolean;
+      IconComponent: () => JSX;
+      TickIconComponent: () => JSX;
+      listItemContainerStyle: StyleProp<ViewStyle>;
+      listItemLabelStyle,
+      listChildContainerStyle: StyleProp<ViewStyle>;
+      listParentContainerStyle: StyleProp<ViewStyle>;
+      listChildLabelStyle,
+      listParentLabelStyle,
+      customItemContainerStyle: StyleProp<ViewStyle>;
+      customItemLabelStyle,
+      selectedItemContainerStyle: StyleProp<ViewStyle>;
+      selectedItemLabelStyle,
+      disabledItemContainerStyle: StyleProp<ViewStyle>;
+      disabledItemLabelStyle,
+      categorySelectable: boolean;
+      onPress: () => void;
+      THEME: object
     };
 
     export interface ActivityIndicatorComponentPropsInterface {
@@ -85,10 +117,13 @@ declare module "react-native-dropdown-picker" {
       loading: boolean;
       message: string;
     };
+
+    export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
+    export type ThemeType = "DEFAULT" | "LIGHT" | "DARK";
   
     export type DropDownPickerProps = {
       items: ItemType[];
-      value?: string | number;
+      value?: string | number | boolean;
       open: boolean;
       placeholder?: string;
       closeAfterSelecting?: boolean;
@@ -112,6 +147,7 @@ declare module "react-native-dropdown-picker" {
       searchPlaceholderTextColor?: string;
       dropDownContainerStyle?: StyleProp<ViewStyle>;
       modalContentContainerStyle?: StyleProp<ViewStyle>;
+      arrowIconContainerStyle?: StyleProp<ViewStyle>;
       closeIconContainerStyle?: StyleProp<ViewStyle>;
       tickIconContainerStyle?: StyleProp<ViewStyle>;
       listItemContainerStyle?: StyleProp<ViewStyle>;
@@ -142,13 +178,14 @@ declare module "react-native-dropdown-picker" {
       key?: string;
       maxHeight?: number;
       renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX,
-      renderListItem?: (props: object) => JSX,
+      renderListItem?: (props: RenderListItemPropsInterface) => JSX,
       itemSeparator?: boolean;
       bottomOffset?: number;
       badgeColors?: string[] | string;
       badgeDotColors?: string[] | string;
-      showArrowIcons?: boolean;
+      showArrowIcon?: boolean;
       showBadgeDot?: boolean;
+      showTickIcon?: boolean;
       ArrowUpComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
       ArrowDownComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
       TickIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
@@ -168,16 +205,20 @@ declare module "react-native-dropdown-picker" {
       addCustomItem?: boolean;
       setOpen: () => void;
       setItems: () => void;
+      setValue: (item: ValueType | ValueType[]) => void;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
-      onPressStart?: (open: boolean) => void;
-      onPressEnd?: (open: boolean) => void;
+      onPress?: (open: boolean) => void;
       onOpen?: () => void;
       onClose?: () => void;
-      onChangeValue: (item: ValueType | ValueType[]) => void;
       onChangeSearchText?: (text: string) => void;
       zIndex?: number;
+      zIndexInverse?: number;
+      disableLocalSearch?: boolean;
+      dropDownDirection?: DropDownDirectionType;
+      theme?: ThemeType;
+      rtl?: boolean;
     };
 
     type GetSelectedItemOutputType = ItemType | undefined | null;
