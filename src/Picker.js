@@ -1157,6 +1157,42 @@ function Picker({
     }, [renderListItem]);
 
     /**
+     * The selected item container style.
+     * @returns {object}
+     */
+    const _selectedItemContainerStyle = useMemo(() => ([
+        THEME.selectedItemContainer,
+        selectedItemContainerStyle
+    ]), [THEME, selectedItemContainerStyle]);
+
+    /**
+     * The selected item label style.
+     * @returns {object}
+     */
+    const _selectedItemLabelStyle = useMemo(() => ([
+        THEME.selectedItemLabel,
+        selectedItemLabelStyle
+    ]), [THEME, selectedItemLabelStyle]);
+
+    /**
+     * The disabled item container style.
+     * @returns {object}
+     */
+    const _disabledItemContainerStyle = useMemo(() => ([
+        THEME.disabledItemContainer,
+        disabledItemContainerStyle
+    ]), [THEME, disabledItemContainerStyle]);
+
+    /**
+     * The disabled item label style.
+     * @returns {object}
+     */
+    const _disabledItemLabelStyle = useMemo(() => ([
+        THEME.disabledItemContainer,
+        disabledItemLabelStyle
+    ]), [THEME, disabledItemLabelStyle]);
+
+    /**
      * Render list item.
      * @returns {JSX}
      */
@@ -1192,10 +1228,10 @@ function Picker({
                 listParentLabelStyle={listParentLabelStyle}
                 customItemContainerStyle={customItemContainerStyle}
                 customItemLabelStyle={customItemLabelStyle}
-                selectedItemContainerStyle={selectedItemContainerStyle}
-                selectedItemLabelStyle={selectedItemLabelStyle}
-                disabledItemContainerStyle={disabledItemContainerStyle}
-                disabledItemLabelStyle={disabledItemLabelStyle}
+                selectedItemContainerStyle={_selectedItemContainerStyle}
+                selectedItemLabelStyle={_selectedItemLabelStyle}
+                disabledItemContainerStyle={_disabledItemContainerStyle}
+                disabledItemLabelStyle={_disabledItemLabelStyle}
                 categorySelectable={categorySelectable}
                 onPress={onPressItem}
                 theme={theme}
@@ -1215,10 +1251,10 @@ function Picker({
         _listItemLabelStyle,
         customItemContainerStyle,
         customItemLabelStyle,
-        selectedItemContainerStyle,
-        selectedItemLabelStyle,
-        disabledItemContainerStyle,
-        disabledItemLabelStyle,
+        _selectedItemContainerStyle,
+        _selectedItemLabelStyle,
+        _disabledItemContainerStyle,
+        _disabledItemLabelStyle,
         _TickIconComponent,
         _schema,
         _value,

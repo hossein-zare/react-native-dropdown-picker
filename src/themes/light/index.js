@@ -159,5 +159,11 @@ export default StyleSheet.create({
     },
     listMessageText: {
 
+    },
+    selectedItemContainer: {
+
+    },
+    selectedItemLabel: {
+
     }
 });
