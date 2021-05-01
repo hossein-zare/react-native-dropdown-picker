@@ -29,7 +29,6 @@ import Colors from './constants/colors';
 import {
     SCHEMA,
     GET_TRANSLATION,
-    ICON,
     BADGE_COLORS,
     BADGE_DOT_COLORS,
     HASH,

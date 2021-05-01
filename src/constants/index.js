@@ -116,13 +116,6 @@ export const BADGE_COLORS = [Colors.ALTO];
 
 export const BADGE_DOT_COLORS = [Colors.GREY];
 
-export const ASSETS = {
-    ARROW_DOWN: require('../assets/images/arrow-down.png'),
-    ARROW_UP: require('../assets/images/arrow-up.png'),
-    TICK: require('../assets/images/tick.png'),
-    CLOSE: require('../assets/images/close.png')
-}
-
 export const HASH = (str) => {
     let hash = 0;
     let chr;
