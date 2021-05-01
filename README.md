@@ -10,7 +10,7 @@
 **The documentation has been moved to https://hossein-zare.github.io/react-native-dropdown-picker-website/**
 
 # Caution
-Previous version of this package are deprecated and incompatible with the current version.
+Previous versions of this package are deprecated and incompatible with the current version.
 
 # Contribution
 If you want to contribute to this package, Create a new issue and let us know about it.
