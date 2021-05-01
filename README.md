@@ -1,7 +1,7 @@
 # React Native DropDown Picker 5.x
 
-![Screenshot](https://user-images.githubusercontent.com/56504893/116789802-faec4700-aac5-11eb-837b-86f18cbfcf3d.png)
-![Screenshot](https://user-images.githubusercontent.com/56504893/116789839-2c651280-aac6-11eb-99e0-b43b608ed8c7.png)
+<img src="https://user-images.githubusercontent.com/56504893/116789802-faec4700-aac5-11eb-837b-86f18cbfcf3d.png" width="300" alt="Screenshot">
+<img src="https://user-images.githubusercontent.com/56504893/116789839-2c651280-aac6-11eb-99e0-b43b608ed8c7.png" width="300" alt="Screenshot">
 
 # Documentation
 **The documentation has been moved to https://hossein-zare.github.io/react-native-dropdown-picker-website/**
