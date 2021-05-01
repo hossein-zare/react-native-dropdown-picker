@@ -1,4 +1,4 @@
-# React Native DropDown Picker 5.x
+# React Native Dropdown Picker 5.x
 
 <p float="left">
     <img src="https://user-images.githubusercontent.com/56504893/116790110-e0b36880-aac7-11eb-9ebd-196acee64f7a.png" width="270" alt="Screenshot">
