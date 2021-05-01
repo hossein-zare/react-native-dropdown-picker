@@ -121,7 +121,6 @@ declare module "react-native-dropdown-picker" {
       listParentContainerStyle?: StyleProp<ViewStyle>;
       listParentLabelStyle?: StyleProp<TextStyle>;
       selectedItemContainerStyle?: StyleProp<ViewStyle>;
-      listItemContainerStyle?: StyleProp<ViewStyle>;
       selectedItemLabelStyle?: StyleProp<TextStyle>;
       disabledItemContainerStyle?: StyleProp<ViewStyle>;
       disabledItemLabelStyle?: StyleProp<TextStyle>;

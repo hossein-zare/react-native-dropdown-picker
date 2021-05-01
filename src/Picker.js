@@ -25,22 +25,27 @@ import {
 
 const {height: WINDOW_HEIGHT} = Dimensions.get('window');
 
-import Styles from './assets/styles';
-import Colors from './assets/styles/colors';
+import Colors from './constants/colors';
 import {
     SCHEMA,
     GET_TRANSLATION,
-    ASSETS,
+    ICON,
     BADGE_COLORS,
     BADGE_DOT_COLORS,
     HASH,
     TRANSLATIONS,
     MODE,
     LIST_MODE,
-    LANGUAGE
+    DROPDOWN_DIRECTION,
+    GET_DROPDOWN_DIRECTION,
+    LANGUAGE,
+    RTL_DIRECTION,
+    RTL_STYLE
 } from './constants';
+import { THEMES } from './themes';
 import RenderBadgeItem from './RenderBadgeItem';
 import RenderListItem from './RenderListItem';
+import ListEmpty from './ListEmpty';
 
 function Picker({
     value = null,
@@ -68,6 +73,7 @@ function Picker({
     searchPlaceholderTextColor = Colors.GREY,
     dropDownContainerStyle = {},
     modalContentContainerStyle = {},
+    arrowIconContainerStyle = {},
     closeIconContainerStyle = {},
     tickIconContainerStyle = {},
     listItemContainerStyle = {},
@@ -103,8 +109,9 @@ function Picker({
     bottomOffset = 0,
     badgeColors = BADGE_COLORS,
     badgeDotColors = BADGE_DOT_COLORS,
-    showArrowIcons = true,
+    showArrowIcon = true,
     showBadgeDot = true,
+    showTickIcon = true,
     ArrowUpComponent = null,
     ArrowDownComponent = null,
     TickIconComponent = null,
@@ -127,29 +134,125 @@ function Picker({
     disableBorderRadius = true,
     containerProps = {},
     onLayout = (e) => {},
-    onPressStart = (open) => {},
-    onPressEnd = (open) => {},
+    onPress = (open) => {},
     onOpen = () => {},
     onClose = () => {},
-    onChangeValue = (item) => {},
+    setValue = (item) => {},
     onChangeSearchText = (text) => {},
-    zIndex = 5000
+    zIndex = 5000,
+    zIndexInverse = 6000,
+    rtl = false,
+    dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
+    disableLocalSearch = false,
+    theme = THEMES.DEFAULT
 }) {
+    const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [pickerHeight, setPickerHeight] = useState(0);
-    const [direction, setDirection] = useState('top');
+    const [direction, setDirection] = useState(GET_DROPDOWN_DIRECTION(dropDownDirection));
     const badgeFlatListRef = useRef();
     const pickerRef = useRef(null);
+
+    const THEME = useMemo(() => THEMES[theme].default, [theme]);
+    const ICON = useMemo(() => THEMES[theme].ICONS, [theme])
+
+    /**
+     * The item schema.
+     * @returns {object}
+     */
+     const _schema = useMemo(() => ({...SCHEMA, ...schema}), [schema]);
 
     /**
      * componentDidMount.
      */
     useEffect(() => {
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        
+        // Get initial seleted items
+        let initialSelectedItems = [];
+        const valueNotNull = value !== null && (Array.isArray(value) && value.length !== 0);
+
+        if (valueNotNull) {
+            if (multiple) {
+                initialSelectedItems = items.filter(item => value.includes(item[_schema.value]));
+            } else {
+                initialSelectedItems = items.find(item => item[_schema.value] === value);
+            }
+        }
+
+        setNecessaryItems(initialSelectedItems);
     }, []);
 
     /**
-     * Mode property changed.
+     * Update necessary items.
+     */
+    useEffect(() => {
+        setNecessaryItems(state => {
+            return [...state].map(item => {
+                const _item = items.find(x => x[_schema.value] === item[_schema.value]);
+                
+                if (_item) {
+                    return {...item, ..._item};
+                }
+                
+                return item;
+            });
+        });
+    }, [items]);
+
+    /**
+     * Sync necessary items.
+     */
+    useEffect(() => {
+        if (multiple) {
+            setNecessaryItems(state => {
+                if (value === null || (Array.isArray(value) && value.length === 0))
+                    return [];
+                
+                let _state = [...state].filter(item => value.includes(item[_schema.value]));
+
+                const newItems = value.reduce((acc, currentValue) => {
+                    const index = _state.findIndex(item => item[_schema.value] === currentValue);
+
+                    if (index === -1) {
+                        const item = items.find(item => item[_schema.value] === currentValue);
+                    
+                        if (item) {
+                            return [...acc, item];
+                        }
+
+                        return acc;
+                    }
+
+                    return acc;
+                }, []);
+
+                return [..._state, ...newItems];
+            });
+        } else {
+            let state = [];
+
+            if (value !== null) {
+                const item = items.find(item => item[_schema.value] === value);
+
+                if (item) {
+                    state.push(item);
+                }
+            }
+            
+            setNecessaryItems(state);
+        }
+    }, [value]);
+
+    /**
+     * dropDownDirection changed.
+     */
+    useEffect(() => {
+        setDirection(GET_DROPDOWN_DIRECTION(dropDownDirection));
+    }, [dropDownDirection]);
+
+    /**
+     * mode changed.
      */
     useEffect(() => {
         if (mode === MODE.SIMPLE)
@@ -191,12 +294,6 @@ function Picker({
     }, [open, setOpen, onOpen, onClose]);
 
     /**
-     * The item schema.
-     * @returns {object}
-     */
-    const _schema = useMemo(() => ({...SCHEMA, ...schema}), [schema]);
-
-    /**
      * The sorted items.
      * @returns {object}
      */
@@ -223,6 +320,9 @@ function Picker({
         if (searchText.length === 0) {
             return sortedItems;
         } else {
+            if (disableLocalSearch)
+                return sortedItems;
+    
             const values = [];
             let results = sortedItems.filter(item => {
                 if (item[_schema.label].toLowerCase().includes(searchText.toLowerCase())) {
@@ -278,8 +378,8 @@ function Picker({
         if (! multiple)
             return [];
 
-        return sortedItems.filter(item => _value.includes(item[_schema.value]));
-    }, [sortedItems, _value, _schema, multiple]);
+        return necessaryItems.filter(item => _value.includes(item[_schema.value]));
+    }, [necessaryItems, _value, _schema, multiple]);
 
     /**
      * The language.
@@ -321,7 +421,12 @@ function Picker({
      * Indicates whether the value is null.
      * @returns {boolean}
      */
-     const isNull = useMemo(() => _value === null || (Array.isArray(_value) && _value.length === 0), [_value]);
+     const isNull = useMemo(() => {
+        if (_value === null || (Array.isArray(_value) && _value.length === 0))
+            return true;
+
+        return necessaryItems.length === 0;
+     }, [necessaryItems, _value]);
 
     /**
      * Get the selected item.
@@ -333,13 +438,13 @@ function Picker({
 
         if (isNull)
             return null;
-
+        
         try {
-            return _items.find(item => item[_schema.value] === _value);
+            return necessaryItems.find(item => item[_schema.value] === _value);
         } catch (e) {
             return null;
         }
-    }, [_value, _items, isNull, multiple]);
+    }, [_value, necessaryItems, isNull, multiple]);
 
     /**
      * Get the label of the selected item.
@@ -388,11 +493,11 @@ function Picker({
      * onPress.
      */
     const __onPress = useCallback(async () => {
-        onPressStart(open);
-
         const isOpen = ! open;
 
-        if (isOpen) {
+        onPress(isOpen);
+
+        if (isOpen && dropDownDirection === DROPDOWN_DIRECTION.AUTO) {
             const [, y] = await new Promise((resolve) =>
                 pickerRef.current.measureInWindow((...args) => resolve(args))
             );
@@ -402,19 +507,17 @@ function Picker({
         }
 
         onPressToggle();
-
-        onPressEnd(isOpen);
     }, [
         open,
         onPressToggle,
-        onPressStart,
-        onPressEnd,
+        onPress,
         onOpen,
         onClose,
         pickerRef,
         maxHeight,
         pickerHeight,
-        bottomOffset
+        bottomOffset,
+        dropDownDirection
     ]);
 
     /**
@@ -475,16 +578,24 @@ function Picker({
     const _disabledStyle = useMemo(() => disabled && disabledStyle, [disabled, disabledStyle]);
 
     /**
+     * The zIndex.
+     * @returns {number}
+     */
+    const _zIndex = useMemo(() => {
+        return direction === 'top' ? zIndex : zIndexInverse;
+    }, [zIndex, zIndexInverse, direction]);
+
+    /**
      * The style.
      * @returns {object}
      */
     const _style = useMemo(() => ([
-        Styles.style, {
-            zIndex
+        RTL_DIRECTION(rtl, THEME.style), {
+            zIndex: _zIndex
         },
         ...[style].flat(),
         pickerNoBorderRadius
-    ]), [style, pickerNoBorderRadius, zIndex]);
+    ]), [rtl, style, pickerNoBorderRadius, _zIndex, THEME]);
 
     /**
      * The placeholder style.
@@ -499,87 +610,119 @@ function Picker({
      * @returns {object}
      */
     const _labelStyle = useMemo(() => ([
-        Styles.label,
+        THEME.label,
         ...[textStyle].flat(),
-        ...[labelStyle].flat(),
+        ...[! isNull && labelStyle].flat(),
         ...[_placeholderStyle].flat(),
-    ]), [textStyle, _placeholderStyle, labelStyle]);
+    ]), [textStyle, _placeholderStyle, labelStyle, THEME]);
 
     /**
      * The arrow icon style.
      * @returns {object}
      */
     const _arrowIconStyle = useMemo(() => ([
-        Styles.arrowIcon,
+        THEME.arrowIcon,
         ...[arrowIconStyle].flat()
-    ]), [arrowIconStyle]);
+    ]), [arrowIconStyle, THEME]);
 
     /**
      * The dropdown container style.
      * @returns {object}
      */
     const _dropDownContainerStyle = useMemo(() => ([
-        Styles.dropDownContainer, {
+        THEME.dropDownContainer, {
             [direction]: pickerHeight - 1,
             maxHeight,
-            zIndex
+            zIndex: _zIndex
         },
         ...[dropDownContainerStyle].flat(),
         dropDownNoBorderRadius
-    ]), [dropDownContainerStyle, pickerHeight, maxHeight, dropDownNoBorderRadius, direction, zIndex]);
+    ]), [
+        dropDownContainerStyle,
+        pickerHeight,
+        maxHeight,
+        dropDownNoBorderRadius,
+        direction,
+        _zIndex,
+        THEME
+    ]);
 
     /**
      * The modal content container style.
      * @returns {object}
      */
      const _modalContentContainerStyle = useMemo(() => ([
-        Styles.modalContentContainer,
+        THEME.modalContentContainer,
         ...[modalContentContainerStyle].flat()
-    ]), [modalContentContainerStyle]);
+    ]), [modalContentContainerStyle, THEME]);
 
     /**
-     * The zIndex.
+     * The zIndex of the container.
      * @returns {object}
      */
-    const _zIndex = useMemo(() => Platform.OS !== 'android' && {
-        zIndex
-    }, [zIndex]);
+    const zIndexContainer = useMemo(() => Platform.OS !== 'android' && {
+        zIndex: _zIndex
+    }, [_zIndex]);
 
     /**
      * The container style.
      * @returns {object}
      */
     const _containerStyle = useMemo(() => ([
-        Styles.container,
-        _zIndex,
+        THEME.container,
+        zIndexContainer,
         ...[containerStyle].flat(),
         ...[_disabledStyle].flat()
-    ]), [_zIndex, containerStyle, _disabledStyle]);
+    ]), [zIndexContainer, containerStyle, _disabledStyle, THEME]);
+
+    /**
+     * The arrow icon container style.
+     * @returns {object}
+     */
+    const _arrowIconContainerStyle = useMemo(() => ([
+        RTL_STYLE(rtl, THEME.arrowIconContainer),
+        ...[arrowIconContainerStyle].flat()
+    ]), [rtl, arrowIconContainerStyle, THEME]);
 
     /**
      * The arrow component.
      * @returns {JSX}
      */
     const _ArrowComponent = useMemo(() => {
-        if (! showArrowIcons)
+        if (! showArrowIcon)
             return null;
 
+        let Component;
         if (open && ArrowUpComponent !== null)
-            return <ArrowUpComponent style={_arrowIconStyle} />;
+            Component = <ArrowUpComponent style={_arrowIconStyle} />;
         else if (! open && ArrowDownComponent !== null)
-            return <ArrowDownComponent style={_arrowIconStyle} />;
+            Component = <ArrowDownComponent style={_arrowIconStyle} />;
+        else
+            Component = <Image source={open ? ICON.ARROW_UP : ICON.ARROW_DOWN} style={_arrowIconStyle} />;
 
-        return <Image source={open ? ASSETS.ARROW_UP : ASSETS.ARROW_DOWN} style={_arrowIconStyle} />;
-    }, [showArrowIcons, open, ArrowUpComponent, ArrowDownComponent, _arrowIconStyle]);
+        return (
+            <View style={_arrowIconContainerStyle}>
+                {Component}
+            </View>
+        );
+    }, [
+        showArrowIcon,
+        open,
+        ArrowUpComponent,
+        ArrowDownComponent,
+        _arrowIconStyle,
+        _arrowIconContainerStyle,
+        ICON
+    ]);
 
     /**
      * The icon container style.
      * @returns {object}
      */
      const _iconContainerStyle = useMemo(() => ([
-        Styles.iconContainer,
+        RTL_STYLE(rtl, THEME.iconContainer),
         ...[iconContainerStyle].flat()
-    ]), [iconContainerStyle]);
+    ]), [rtl, iconContainerStyle, THEME]);
 
     /**
      * The selected item icon component.
@@ -612,14 +755,14 @@ function Picker({
      * onPress badge.
      */
     const onPressBadge = useCallback((value) => {
-        onChangeValue(state => {
+        setValue(state => {
             let _state = [...state];
             const index = _state.findIndex(item => item === value);
                 _state.splice(index, 1);
 
             return _state;
         });
-    }, [onChangeValue]);
+    }, [setValue]);
 
     /**
      * The badge colors.
@@ -681,6 +824,7 @@ function Picker({
      */
     const __renderBadge = useCallback(({item}) => (
         <RenderBadgeComponent
+            rtl={rtl}
             label={item[_schema.label]}
             value={item[_schema.value]}
             IconComponent={item[_schema.icon] ?? null}
@@ -691,8 +835,12 @@ function Picker({
             getBadgeColor={getBadgeColor}
             getBadgeDotColor={getBadgeDotColor}
             showBadgeDot={showBadgeDot}
-            onPress={onPressBadge} />
+            onPress={onPressBadge}
+            theme={theme}
+            THEME={THEME}
+        />
     ), [
+        rtl,
         _schema,
         textStyle,
         badgeStyle,
@@ -701,7 +849,9 @@ function Picker({
         getBadgeColor,
         getBadgeDotColor,
         showBadgeDot,
-        onPressBadge
+        onPressBadge,
+        theme,
+        THEME
     ]);
 
     /**
@@ -726,9 +876,9 @@ function Picker({
      * @returns {object}
      */
     const _badgeSeparatorStyle = useMemo(() => ([
-        Styles.badgeSeparator,
+        THEME.badgeSeparator,
         ...[badgeSeparatorStyle].flat()
-    ]), [badgeSeparatorStyle]);
+    ]), [badgeSeparatorStyle, THEME]);
 
     /**
      * The badge separator component.
@@ -739,14 +889,28 @@ function Picker({
     ), [badgeSeparatorStyle]);
 
     /**
+     * The label container.
+     * @returns {object}
+     */
+    const labelContainer = useMemo(() => ([
+        THEME.labelContainer, rtl && {
+            transform: [
+                {scaleX: -1}
+            ]
+        }
+    ]), [rtl, THEME]);
+
+    /**
      * Badge list empty component.
      * @returns {JSX}
      */
     const BadgeListEmptyComponent = useCallback(() => (
-        <Text style={_labelStyle} {...labelProps}>
-            {_placeholder}
-        </Text>
-    ), [_labelStyle, labelProps, _placeholder]);
+        <View style={labelContainer}>
+            <Text style={_labelStyle} {...labelProps}>
+                {_placeholder}
+            </Text>
+        </View>
+    ), [_labelStyle, labelContainer, labelProps, _placeholder]);
 
     /**
      * Set ref.
@@ -769,14 +933,18 @@ function Picker({
             keyExtractor={keyExtractor}
             ItemSeparatorComponent={BadgeSeparatorComponent}
             ListEmptyComponent={BadgeListEmptyComponent}
-            contentContainerStyle={Styles.bodyContainer}
+            style={THEME.listBody}
+            contentContainerStyle={THEME.listBodyContainer}
+            inverted={rtl}
         />
     ), [
+        rtl,
         selectedItems,
         __renderBadge,
         keyExtractor,
         BadgeSeparatorComponent,
-        BadgeListEmptyComponent
+        BadgeListEmptyComponent,
+        THEME
     ]);
 
     /**
@@ -795,130 +963,161 @@ function Picker({
      * @returns {object}
      */
     const _listItemContainerStyle = useMemo(() => ([
-        Styles.listItemContainer,
+        RTL_DIRECTION(rtl, THEME.listItemContainer),
         ...[listItemContainerStyle].flat()
-    ]), [listItemContainerStyle]);
+    ]), [rtl, listItemContainerStyle, THEME]);
 
     /**
      * The tick icon container style.
      * @returns {object}
      */
     const _tickIconContainerStyle = useMemo(() => ([
-        Styles.tickIconContainer,
+        RTL_STYLE(rtl, THEME.tickIconContainer),
         ...[tickIconContainerStyle].flat()
-    ]), [tickIconContainerStyle]);
+    ]), [rtl, tickIconContainerStyle,THEME]);
 
     /**
      * The list item label style.
      * @returns {object}
      */
     const _listItemLabelStyle = useMemo(() => ([
-        Styles.listItemLabel,
+        THEME.listItemLabel,
         ...[textStyle].flat(),
         ...[listItemLabelStyle].flat()
-    ]), [textStyle, listItemLabelStyle]);
+    ]), [textStyle, listItemLabelStyle, THEME]);
 
     /**
      * The tick icon style.
      * @returns {object}
      */
     const _tickIconStyle = useMemo(() => ([
-        Styles.tickIcon,
+        THEME.tickIcon,
         ...[tickIconStyle].flat()
-    ]), [tickIconStyle]);
+    ]), [tickIconStyle, THEME]);
 
     /**
      * The search container style.
      * @returns {object}
      */
     const _searchContainerStyle = useMemo(() => ([
-        Styles.searchContainer,
+        RTL_DIRECTION(rtl, THEME.searchContainer),
         ...[searchContainerStyle].flat()
-    ]), [searchContainerStyle]);
+    ]), [rtl, searchContainerStyle, THEME]);
 
     /**
      * The search text input style.
      * @returns {object}
      */
     const _searchTextInputStyle = useMemo(() => ([
-        Styles.searchTextInput,
+        THEME.searchTextInput,
         ...[searchTextInputStyle].flat()
-    ]), [searchTextInputStyle]);
+    ]), [searchTextInputStyle, THEME]);
 
     /**
      * The close icon container style.
      * @returns {object}
      */
     const _closeIconContainerStyle = useMemo(() => ([
-        Styles.closeIconContainer,
+        RTL_STYLE(rtl, THEME.closeIconContainer),
         ...[closeIconContainerStyle].flat()
-    ]), [closeIconContainerStyle]);
+    ]), [rtl, closeIconContainerStyle, THEME]);
 
     /**
      * The close icon style.
      * @returns {object}
      */
     const _closeIconStyle = useMemo(() => ([
-        Styles.closeIcon,
+        THEME.closeIcon,
         ...[closeIconStyle].flat()
-    ]), [closeIconStyle]);
+    ]), [closeIconStyle, THEME]);
 
     /**
      * The list message container style.
      * @returns {objects}
      */
     const _listMessageContainerStyle = useMemo(() => ([
-        Styles.listMessageContainer,
+        THEME.listMessageContainer,
         ...[listMessageContainerStyle].flat()
-    ]), [listMessageContainerStyle]);
+    ]), [listMessageContainerStyle, THEME]);
 
     /**
      * The list message text style.
      * @returns {object}
      */
     const _listMessageTextStyle = useMemo(() => ([
-        Styles.listMessageText,
+        THEME.listMessageText,
         ...[listMessageTextStyle].flat()
-    ]), [listMessageTextStyle]);
+    ]), [listMessageTextStyle, THEME]);
     
 
     /**
      * onPress item.
      */
-    const onPressItem = useCallback((val, customItem = false) => {
+    const onPressItem = useCallback((item, customItem = false) => {
         if (customItem !== false) {
-            setItems(state => [...state, customItem]);
+            setItems(state => [...state, item]);
         }
 
-        onChangeValue(state => {
+        setValue(state => {
             if (multiple) {
                 let _state = state !== null ? [...state] : [];
 
-                if (_state.includes(val)) {
+                if (_state.includes(item[_schema.value])) {
+                    // Remove the value
                     if (Number.isInteger(min) && min >= _state.length) {
                         return state;
                     }
 
-                    const index = _state.findIndex(item => item === val);
+                    const index = _state.findIndex(x => x === item[_schema.value]);
                     _state.splice(index, 1);
                 } else {
+                    // Add the value
                     if (Number.isInteger(max) && max <= _state.length) {
                         return state;
                     }
 
-                    _state.push(val);
+                    _state.push(item[_schema.value]);
                 }
 
                 return _state;
             } else {
-                return val;
+                return item[_schema.value];
+            }
+        });
+
+        setNecessaryItems(state => {
+            if (multiple) {
+                const _state = [...state];
+
+                if (_state.findIndex(x => x[_schema.value] === item[_schema.value]) > -1) {
+                    // Remove the item
+                    if (Number.isInteger(min) && min >= _state.length) {
+                        return state;
+                    }
+
+                    const index = _state.findIndex(x => x[_schema.value] === item[_schema.value]);
+                    _state.splice(index, 1);
+
+                    return _state;
+                } else {
+                    // Add the item
+                    if (Number.isInteger(max) && max <= _state.length) {
+                        return state;
+                    }
+
+                    _state.push(item);
+
+                    return _state;
+                }
+            } else {
+                return [item];
             }
         });
 
         if (closeAfterSelecting && ! multiple)
             onPressClose();
     }, [
-        onChangeValue,
+        setValue,
         multiple,
         min,
         max,
@@ -934,11 +1133,21 @@ function Picker({
      * @returns {JSX}
      */
     const _TickIconComponent = useCallback(() => {
-        if (TickIconComponent !== null)
-            return <TickIconComponent style={_tickIconStyle} />;
+        if (! showTickIcon)
+            return null;
 
-        return <Image source={ASSETS.TICK} style={_tickIconStyle} />;
-    }, [TickIconComponent, _tickIconStyle]);
+        let Component;
+        if (TickIconComponent !== null)
+            Component = <TickIconComponent style={_tickIconStyle} />;
+        else
+            Component = <Image source={ICON.TICK} style={_tickIconStyle} />;
+
+        return (
+            <View style={_tickIconContainerStyle}>
+                {Component}
+            </View>
+        );
+    }, [TickIconComponent, _tickIconStyle, _tickIconContainerStyle, showTickIcon, ICON]);
 
     /**
      * The renderItem component.
@@ -952,35 +1161,50 @@ function Picker({
      * Render list item.
      * @returns {JSX}
      */
-    const __renderListItem = useCallback(({item}) => (
-        <RenderItemComponent
-            label={item[_schema.label]}
-            value={item[_schema.value]}
-            parent={item[_schema.parent] ?? null}
-            selectable={item[_schema.selectable] ?? null}
-            disabled={item[_schema.disabled] ?? false}
-            custom={item.custom ?? false}
-            isSelected={_value !== null ? _value.includes(item[_schema.value]) : false}
-            IconComponent={item[_schema.icon] ?? null}
-            TickIconComponent={_TickIconComponent}
-            iconContainerStyle={_iconContainerStyle}
-            tickIconContainerStyle={_tickIconContainerStyle}
-            listItemContainerStyle={_listItemContainerStyle}
-            listItemLabelStyle={_listItemLabelStyle}
-            listChildContainerStyle={listChildContainerStyle}
-            listChildLabelStyle={listChildLabelStyle}
-            listParentContainerStyle={listParentContainerStyle}
-            listParentLabelStyle={listParentLabelStyle}
-            customItemContainerStyle={customItemContainerStyle}
-            customItemLabelStyle={customItemLabelStyle}
-            selectedItemContainerStyle={selectedItemContainerStyle}
-            selectedItemLabelStyle={selectedItemLabelStyle}
-            disabledItemContainerStyle={disabledItemContainerStyle}
-            disabledItemLabelStyle={disabledItemLabelStyle}
-            categorySelectable={categorySelectable}
-            onPress={onPressItem}
-        />
-    ), [
+    const __renderListItem = useCallback(({item}) => {
+        let IconComponent = item[_schema.icon] ?? null;
+
+        if (IconComponent) {
+            IconComponent = (
+                <View style={_iconContainerStyle}>
+                    <IconComponent />
+                </View>
+            );
+        }
+
+        return (
+            <RenderItemComponent
+                rtl={rtl}
+                item={item}
+                label={item[_schema.label]}
+                value={item[_schema.value]}
+                parent={item[_schema.parent] ?? null}
+                selectable={item[_schema.selectable] ?? null}
+                disabled={item[_schema.disabled] ?? false}
+                custom={item.custom ?? false}
+                isSelected={_value !== null ? _value.includes(item[_schema.value]) : false}
+                IconComponent={IconComponent}
+                TickIconComponent={_TickIconComponent}
+                listItemContainerStyle={_listItemContainerStyle}
+                listItemLabelStyle={_listItemLabelStyle}
+                listChildContainerStyle={listChildContainerStyle}
+                listChildLabelStyle={listChildLabelStyle}
+                listParentContainerStyle={listParentContainerStyle}
+                listParentLabelStyle={listParentLabelStyle}
+                customItemContainerStyle={customItemContainerStyle}
+                customItemLabelStyle={customItemLabelStyle}
+                selectedItemContainerStyle={selectedItemContainerStyle}
+                selectedItemLabelStyle={selectedItemLabelStyle}
+                disabledItemContainerStyle={disabledItemContainerStyle}
+                disabledItemLabelStyle={disabledItemLabelStyle}
+                categorySelectable={categorySelectable}
+                onPress={onPressItem}
+                theme={theme}
+                THEME={THEME}
+            />
+        );
+    }, [
+        rtl,
         RenderItemComponent,
         _listItemLabelStyle,
         _iconContainerStyle,
@@ -989,7 +1213,6 @@ function Picker({
         listParentContainerStyle,
         listParentLabelStyle,
         _listItemContainerStyle,
-        _tickIconContainerStyle,
         _listItemLabelStyle,
         customItemContainerStyle,
         customItemLabelStyle,
@@ -1001,7 +1224,9 @@ function Picker({
         _schema,
         _value,
         categorySelectable,
-        onPressItem
+        onPressItem,
+        theme,
+        THEME
     ]);
 
     /**
@@ -1014,11 +1239,11 @@ function Picker({
 
         return (
             <View style={[
-                Styles.itemSeparator,
+                THEME.itemSeparator,
                 ...[itemSeparatorStyle].flat()
             ]} />
         );
-    }, [itemSeparator, itemSeparatorStyle]);
+    }, [itemSeparator, itemSeparatorStyle, THEME]);
 
     /**
      * The search placeholder.
@@ -1053,14 +1278,14 @@ function Picker({
         if (CloseIconComponent !== null)
             Component = <CloseIconComponent style={_closeIconStyle} />;
         else
-            Component = <Image source={ASSETS.CLOSE} style={_closeIconStyle} />;
+            Component = <Image source={ICON.CLOSE} style={_closeIconStyle} />;
 
         return (
             <TouchableOpacity style={_closeIconContainerStyle} onPress={onPressClose}>
                 {Component}
             </TouchableOpacity>
         );
-    }, [listMode, CloseIconComponent, _closeIconStyle, _closeIconContainerStyle, onPressClose]);
+    }, [listMode, CloseIconComponent, _closeIconStyle, _closeIconContainerStyle, onPressClose, ICON]);
 
     /**
      * The search component.
@@ -1107,7 +1332,7 @@ function Picker({
     const _ActivityIndicatorComponent = useCallback(() => {
         let Component;
 
-        if (ActivityIndicatorComponent)
+        if (ActivityIndicatorComponent !== null)
             Component = ActivityIndicatorComponent;
         else
             Component = ActivityIndicator
@@ -1120,28 +1345,21 @@ function Picker({
      * @returns {JSX}
      */
     const _ListEmptyComponent = useCallback(() => {
+        let Component;
         const message = _('NOTHING_TO_SHOW');
 
-        if (ListEmptyComponent)
-            return (
-                <ListEmptyComponent
-                    listMessageContainer={_listMessageContainerStyle}
-                    listMessageTextStyle={_listMessageTextStyle}
-                    ActivityIndicatorComponent={_ActivityIndicatorComponent}
-                    loading={loading}
-                    message={message} />
-            );
+        if (ListEmptyComponent !== null)
+            Component = ListEmptyComponent;
+        else
+            Component = ListEmpty;
 
         return (
-            <View style={_listMessageContainerStyle}>
-                {loading ? (
-                    <_ActivityIndicatorComponent />
-                ) : (
-                    <Text style={_listMessageTextStyle}>
-                        {message}
-                    </Text>
-                )}
-            </View>
+            <Component
+                listMessageContainerStyle={_listMessageContainerStyle}
+                listMessageTextStyle={_listMessageTextStyle}
+                ActivityIndicatorComponent={_ActivityIndicatorComponent}
+                loading={loading}
+                message={message} />
         );
     }, [
         _,
@@ -1158,7 +1376,7 @@ function Picker({
      */
     const DropDownFlatListComponent = useMemo(() => (
         <FlatList
-            contentContainerStyle={Styles.flatListContentContainer}
+            contentContainerStyle={THEME.flatListContentContainer}
             ListEmptyComponent={_ListEmptyComponent}
             data={_items}
             renderItem={__renderListItem}
@@ -1174,7 +1392,8 @@ function Picker({
         keyExtractor,
         ItemSeparatorComponent,
         flatListProps,
-        _ListEmptyComponent
+        _ListEmptyComponent,
+        THEME
     ]);
 
     /**
@@ -1203,10 +1422,10 @@ function Picker({
      */
     const DropDownModalComponent = useMemo(() => (
         <Modal visible={open} presentationStyle="fullScreen" {...modalProps}>
-                <View style={_modalContentContainerStyle}>
-                    {SearchComponent}
-                    {DropDownFlatListComponent}
-                </View>
+            <View style={_modalContentContainerStyle}>
+                {SearchComponent}
+                {DropDownFlatListComponent}
+            </View>
         </Modal>
     ), [open, SearchComponent, DropDownComponentWrapper, _modalContentContainerStyle, modalProps]);
 
@@ -1234,7 +1453,7 @@ function Picker({
      * @returns {JSX}
      */
     const DropDownBodyComponent = useMemo(() => {
-        if (open || listMode == LIST_MODE.MODAL)
+        if (open || listMode === LIST_MODE.MODAL)
             return DropDownComponent;
         return null;
     }, [open, listMode, DropDownComponent]);

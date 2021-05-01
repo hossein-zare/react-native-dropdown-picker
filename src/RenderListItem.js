@@ -6,13 +6,12 @@ import React, {
 
 import {
     Text,
-    View,
     TouchableOpacity
 } from 'react-native';
 
-import Styles from './assets/styles';
-
 function RenderListItem({
+    rtl,
+    item,
     label,
     value,
     parent,
@@ -22,8 +21,6 @@ function RenderListItem({
     isSelected,
     IconComponent,
     TickIconComponent,
-    iconContainerStyle,
-    tickIconContainerStyle,
     listItemContainerStyle,
     listItemLabelStyle,
     listChildContainerStyle,
@@ -37,41 +34,28 @@ function RenderListItem({
     disabledItemContainerStyle,
     disabledItemLabelStyle,
     categorySelectable,
-    onPress
+    onPress,
+    THEME
 }) {
-    /**
-     * The icon component.
-     * @returns {JSX|null}
-     */
-    const _IconComponent = useMemo(() => {
-        return IconComponent !== null && (
-            <View style={iconContainerStyle}>
-                <IconComponent />
-            </View>
-        );
-    }, [IconComponent, iconContainerStyle]);
-
     /**
      * The tick icon component.
      * @returns {JSX|null}
      */
     const _TickIconComponent = useMemo(() => isSelected && (
-        <View style={tickIconContainerStyle}>
-            <TickIconComponent />
-        </View>
-    ), [isSelected, tickIconContainerStyle, TickIconComponent]);
+        <TickIconComponent />
+    ), [isSelected, TickIconComponent]);
 
     /**
      * The list category container style.
      * @returns {object}
      */
     const _listParentChildContainerStyle = useMemo(() => (parent !== null ? [
-        Styles.listChildContainer,
+        THEME.listChildContainer,
         ...[listChildContainerStyle].flat()
     ] : [
-        Styles.listParentContainer,
+        THEME.listParentContainer,
         ...[listParentContainerStyle].flat()
-    ]), [listChildContainerStyle, listParentContainerStyle, parent])
+    ]), [rtl, listChildContainerStyle, listParentContainerStyle, parent])
 
     /**
      * The selected item container style.
@@ -90,7 +74,7 @@ function RenderListItem({
      * @returns {JSX}
      */
     const _customItemContainerStyle = useMemo(() => custom && ([
-        Styles.customItemContainer,
+        THEME.customItemContainer,
         ...[customItemContainerStyle].flat()
     ]), [custom, customItemContainerStyle]);
 
@@ -111,10 +95,10 @@ function RenderListItem({
      * @returns {object}
      */
     const _listParentChildLabelStyle = useMemo(() => (parent !== null ? [
-        Styles.listChildLabel,
+        THEME.listChildLabel,
         ...[listChildLabelStyle].flat(),
     ] : [
-        Styles.listParentLabel,
+        THEME.listParentLabel,
         ...[listParentLabelStyle].flat(),
     ]), [listChildLabelStyle, listParentLabelStyle, parent]);
 
@@ -135,7 +119,7 @@ function RenderListItem({
      * @returns {JSX}
      */
      const _customItemLabelStyle = useMemo(() => custom && ([
-        Styles.customItemLabel,
+        THEME.customItemLabel,
         ...[customItemLabelStyle].flat()
     ]), [custom, customItemLabelStyle]);
 
@@ -159,15 +143,12 @@ function RenderListItem({
             return;
         }
 
-        onPress(value, custom ? {
-            label,
-            value
-        } : false);
+        onPress(item, custom);
     }, [onPress, parent, categorySelectable, label, value, custom]);
 
     return (
         <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable || disabled}>
-            {_IconComponent}
+            {IconComponent}
             <Text style={_listItemLabelStyle}>
                 {label}
             </Text>
@@ -192,6 +173,10 @@ const areEqual = (nextProps, prevProps) => {
     if (nextProps.isSelected !== prevProps.isSelected)
         return false;
     if (nextProps.categorySelectable !== prevProps.categorySelectable)
+        return false;
+    if (nextProps.rtl !== prevProps.rtl)
+        return false;
+    if (nextProps.theme !== prevProps.rtl)
         return false;
     
     return true;

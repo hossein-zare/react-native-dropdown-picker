@@ -8,9 +8,10 @@ import {
     Text,
 } from 'react-native';
 
-import Styles from './assets/styles';
+import { RTL_DIRECTION, RTL_STYLE } from './constants';
 
 function RenderBadge({
+    rtl,
     label,
     value,
     textStyle,
@@ -20,7 +21,8 @@ function RenderBadge({
     getBadgeColor,
     getBadgeDotColor,
     showBadgeDot,
-    onPress
+    onPress,
+    THEME
 }) {
     /**
      * onPress.
@@ -32,22 +34,22 @@ function RenderBadge({
      * @returns {object}
      */
     const _badgeStyle = useMemo(() => ([
-        Styles.badgeStyle,
+        RTL_DIRECTION(rtl, THEME.badgeStyle),
         ...[badgeStyle].flat(), {
             backgroundColor: getBadgeColor(value)
         }
-    ]), [badgeStyle, getBadgeColor]);
+    ]), [rtl, badgeStyle, getBadgeColor]);
 
     /**
      * The badge dot style.
      * @return {object}
      */
     const _badgeDotStyle = useMemo(() => ([
-        Styles.badgeDotStyle,
+        RTL_STYLE(rtl, THEME.badgeDotStyle),
         ...[badgeDotStyle].flat(), {
             backgroundColor: getBadgeDotColor(value)
         }
-    ]), [badgeDotStyle, getBadgeDotColor]);
+    ]), [rtl, badgeDotStyle, getBadgeDotColor]);
 
     /**
      * The badge text style.
@@ -72,6 +74,10 @@ const areEqual = (nextProps, prevProps) => {
     if (nextProps.value !== prevProps.value)
         return false;
     if (nextProps.showBadgeDot !== prevProps.showBadgeDot)
+        return false;
+    if (nextProps.rtl !== prevProps.rtl)
+        return false;
+    if (nextProps.theme !== prevProps.theme)
         return false;
 
     return true;

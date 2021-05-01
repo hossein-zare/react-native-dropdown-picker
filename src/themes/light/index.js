@@ -4,6 +4,13 @@ import {
 
 import Colors from '../../constants/colors';
 
+export const ICONS = {
+    ARROW_DOWN: require('./icons/arrow-down.png'),
+    ARROW_UP: require('./icons/arrow-up.png'),
+    TICK: require('./icons/tick.png'),
+    CLOSE: require('./icons/close.png')
+};
+
 export default StyleSheet.create({
     container: {
         width: '100%',
@@ -18,10 +25,11 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.BLACK,
         paddingHorizontal: 10,
-        backgroundColor: Colors.WHITE,
+        backgroundColor: Colors.WHITE
     },
     label: {
-        flex: 1
+        flex: 1,
+        color: Colors.BLACK
     },
     labelContainer: {
         flex: 1,
@@ -75,7 +83,7 @@ export default StyleSheet.create({
         zIndex: 1000
     },
     modalContentContainer: {
-        flex: 1,
+        flexGrow: 1,
     },
     listItemContainer: {
         flexDirection: 'row',
@@ -85,7 +93,8 @@ export default StyleSheet.create({
         height: 40
     },
     listItemLabel: {
-        flex: 1
+        flex: 1,
+        color: Colors.BLACK
     },
     iconContainer: {
         marginRight: 10
@@ -127,6 +136,7 @@ export default StyleSheet.create({
         borderRadius: 8,
         borderColor: Colors.BLACK,
         borderWidth: 1,
+        color: Colors.BLACK
     },
     itemSeparator: {
         height: 1,
