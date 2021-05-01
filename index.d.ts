@@ -13,7 +13,7 @@ declare module "react-native-dropdown-picker" {
       LayoutChangeEvent
     } from "react-native";
   
-    export type ValueType = string | number;
+    export type ValueType = string | number | boolean;
 
     export type ItemType = {
       label?: any;
@@ -89,20 +89,20 @@ declare module "react-native-dropdown-picker" {
       IconComponent: () => JSX;
       TickIconComponent: () => JSX;
       listItemContainerStyle: StyleProp<ViewStyle>;
-      listItemLabelStyle,
+      listItemLabelStyle: StyleProp<TextStyle>;
       listChildContainerStyle: StyleProp<ViewStyle>;
       listParentContainerStyle: StyleProp<ViewStyle>;
-      listChildLabelStyle,
-      listParentLabelStyle,
+      listChildLabelStyle: StyleProp<TextStyle>;
+      listParentLabelStyle: StyleProp<TextStyle>;
       customItemContainerStyle: StyleProp<ViewStyle>;
-      customItemLabelStyle,
+      customItemLabelStyle: StyleProp<TextStyle>;
       selectedItemContainerStyle: StyleProp<ViewStyle>;
-      selectedItemLabelStyle,
+      selectedItemLabelStyle: StyleProp<TextStyle>;
       disabledItemContainerStyle: StyleProp<ViewStyle>;
-      disabledItemLabelStyle,
+      disabledItemLabelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
-      THEME: object
+      THEME: object;
     };
 
     export interface ActivityIndicatorComponentPropsInterface {
@@ -123,7 +123,7 @@ declare module "react-native-dropdown-picker" {
   
     export type DropDownPickerProps = {
       items: ItemType[];
-      value?: string | number | boolean;
+      value?: ValueType;
       open: boolean;
       placeholder?: string;
       closeAfterSelecting?: boolean;
@@ -177,8 +177,8 @@ declare module "react-native-dropdown-picker" {
       mode?: ModeType;
       key?: string;
       maxHeight?: number;
-      renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX,
-      renderListItem?: (props: RenderListItemPropsInterface) => JSX,
+      renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX;
+      renderListItem?: (props: RenderListItemPropsInterface) => JSX;
       itemSeparator?: boolean;
       bottomOffset?: number;
       badgeColors?: string[] | string;
@@ -225,18 +225,24 @@ declare module "react-native-dropdown-picker" {
     type GetSelectedItemsOutputType = ItemType[] | undefined;
 
     interface DropDownPickerInterface {
-      MODE: ModeInterface,
-      LIST_MODE: ListModeInterface,
-      SCHEMA: SchemaInterface,
-      LANGUAGE: LanguageInterface,
+      MODE: ModeInterface;
+      LIST_MODE: ListModeInterface;
+      DROPDOWN_DIRECTION: DropDownDirectionType;
+      SCHEMA: SchemaInterface;
+      LANGUAGE: LanguageInterface;
+      THEMES: ThemeType;
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
         GET_SELECTED_ITEMS: (items: ItemType[], values: string[] | number[] | null, key?: string) => GetSelectedItemsOutputType;
-      },
+      };
       setMode: (mode: string) => void;
       setListMode: (mode: string) => void;
+      setDropDownDirection: (direction: DropDownDirectionType) => void;
+      setTheme: (name: string) => void;
+      addTheme: (name: string, theme: any) => void;
       setLanguage: (language: string) => void;
       addTranslation: (language: string, translation: TranslationInterface) => void;
+      modifyTranslation: (language: string, translation: TranslationInterface) => void;
     }
 
     const DropDownPicker: ComponentType<DropDownPickerProps> & DropDownPickerInterface;
