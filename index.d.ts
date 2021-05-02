@@ -123,7 +123,7 @@ declare module "react-native-dropdown-picker" {
   
     export type DropDownPickerProps = {
       items: ItemType[];
-      value?: ValueType;
+      value: ValueType | ValueType[];
       open: boolean;
       placeholder?: string;
       closeAfterSelecting?: boolean;
@@ -203,9 +203,9 @@ declare module "react-native-dropdown-picker" {
       min?: number;
       max?: number;
       addCustomItem?: boolean;
-      setOpen: () => void;
-      setItems: () => void;
-      setValue: (item: ValueType | ValueType[]) => void;
+      setOpen: (open: boolean) => void;
+      setItems: (items: ItemType[]) => void;
+      setValue: (values: ValueType | ValueType[]) => void;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
