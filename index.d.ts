@@ -123,7 +123,7 @@ declare module "react-native-dropdown-picker" {
   
     export type DropDownPickerProps = {
       items: ItemType[];
-      value: ValueType | ValueType[];
+      value: ValueType | ValueType[] | undefined;
       open: boolean;
       placeholder?: string;
       closeAfterSelecting?: boolean;
