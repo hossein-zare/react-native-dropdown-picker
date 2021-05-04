@@ -119,7 +119,6 @@ declare module "react-native-dropdown-picker" {
     }
 
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
-    export type LanguagesType = "DEFAULT" | "FALLBACK" | "ENGLISH" | "ARABIC" | "FARSI" | "TURKISH";
     export type ThemeType = "DEFAULT" | "LIGHT" | "DARK";
   
     export type DropDownPickerProps = {
@@ -230,7 +229,7 @@ declare module "react-native-dropdown-picker" {
       LIST_MODE: ListModeInterface;
       DROPDOWN_DIRECTION: DropDownDirectionType;
       SCHEMA: SchemaInterface;
-      LANGUAGE: LanguagesType;
+      LANGUAGE: LanguageType;
       THEMES: ThemeType;
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
