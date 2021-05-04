@@ -30,7 +30,7 @@ declare module "react-native-dropdown-picker" {
       DEFAULT: string;
       SIMPLE: string;
       BADGE: string;
-    };
+    }
 
     export type ListModeType = "DEFAULT" | "FLATLIST" | "SCROLLVIEW" | "MODAL";
 
@@ -39,7 +39,7 @@ declare module "react-native-dropdown-picker" {
       FLATLIST: string;
       SCROLLVIEW: string;
       MODAL: string;
-    };
+    }
 
     export interface SchemaInterface {
       label: string;
@@ -48,7 +48,7 @@ declare module "react-native-dropdown-picker" {
       parent: string;
       selectable: string;
       disabled: string;
-    };
+    }
 
     export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR";
     
@@ -57,7 +57,7 @@ declare module "react-native-dropdown-picker" {
       SEARCH_PLACEHOLDER: string;
       SELECTED_ITEMS_COUNT_TEXT: string;
       NOTHING_TO_SHOW: string;
-    };
+    }
 
     export interface RenderBadgeItemPropsInterface {
       label: string;
@@ -74,7 +74,7 @@ declare module "react-native-dropdown-picker" {
       rtl: boolean;
       thene: string;
       THEME: object;
-    };
+    }
 
     export interface RenderListItemPropsInterface {
       rtl: boolean;
@@ -103,12 +103,12 @@ declare module "react-native-dropdown-picker" {
       categorySelectable: boolean;
       onPress: () => void;
       THEME: object;
-    };
+    }
 
     export interface ActivityIndicatorComponentPropsInterface {
       size: number;
       color: string;
-    };
+    }
 
     export interface ListEmptyComponentPropsInterface {
       listMessageContainer: StyleProp<ViewStyle>;
@@ -116,7 +116,7 @@ declare module "react-native-dropdown-picker" {
       ActivityIndicatorComponent: (props: ActivityIndicatorComponentPropsInterface) => JSX
       loading: boolean;
       message: string;
-    };
+    }
 
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
     export type ThemeType = "DEFAULT" | "LIGHT" | "DARK";
