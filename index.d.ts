@@ -1,5 +1,5 @@
 declare module "react-native-dropdown-picker" {
-    import React, { ComponentType } from "react";
+    import {ComponentType} from "react";
     import {
       StyleProp,
       TextProps,
