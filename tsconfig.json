@@ -1,0 +1,70 @@
+/* documentation at: https://www.typescriptlang.org/tsconfig */
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    "sourceMap": true,
+    /* Generates corresponding '.map' file. */
+    "noEmit": true,
+    /* Do not emit compiler output files like JavaScript source code, source-maps or declarations. */
+    "skipLibCheck": false,
+    /* Skip type checking of declaration files. */
+    "resolveJsonModule": true,
+    /* Allow importing modules with a ‘.json’ extension? */
+    "target": "ESNext",
+    /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "jsx": "react-native",
+    /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    "types": [
+      /* Type declaration files to be included in compilation. */
+      "react"
+    ],
+    "lib": [
+      /* which versions of type defs for built-in JavaScript libraries to use */
+      "dom",
+      "esnext"
+    ],
+    "module": "esNext",
+    /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "moduleResolution": "node",
+    /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "experimentalDecorators": true,
+    /* Enables experimental support for ES7 decorators. */
+    "declaration": false,
+    /* Generates corresponding '.d.ts' file. */
+    "removeComments": true,
+    /* Whether to emit comments from output. */
+    "noFallthroughCasesInSwitch": true,
+    /* Report errors for fallthrough cases in switch statements. */
+    "noImplicitOverride": true,
+    /* Ensure that the sub-classes never go out of sync, by ensuring that functions which override include the keyword override. */
+    "noImplicitReturns": true,
+    /* Report error when not all code paths in function return a value. */
+    "noPropertyAccessFromIndexSignature": true,
+    /* This setting ensures consistency between accessing a field via the “dot” (obj.key) syntax, and “indexed” (obj["key"]) and the way which the property is declared in the type. */
+    "noUncheckedIndexedAccess": true,
+    /* Turning on noUncheckedIndexedAccess will add undefined to any un-declared field in the type. */
+    "noUnusedLocals": true,
+    /* Report errors on unused local variables. */
+    "noUnusedParameters": true,
+    /* Report errors on unused parameters in functions. */
+    "strict": true,
+    /* Enable all strict type-checking options. */
+    "outDir": "dist",
+    /* Redirect output structure to the directory. */
+    "baseUrl": "src",
+    /* Base directory to resolve non-absolute module names. */
+    "typeRoots": [
+      /* List of folders from which to include type definitions. */
+      "./types",
+      "node_modules/@types"
+    ],
+    "allowJs": true
+    /* Allow javascript files to be compiled. */
+  },
+  "exclude": [
+    /* Filenames or patterns that should be skipped when resolving include. */
+    "dist",
+    "node_modules"
+  ]
+}
