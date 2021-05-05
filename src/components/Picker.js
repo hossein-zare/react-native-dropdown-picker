@@ -688,7 +688,7 @@ function Picker({
 
     /**
      * The arrow component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const _ArrowComponent = useMemo(() => {
         if (! showArrowIcon)
@@ -728,7 +728,7 @@ function Picker({
 
     /**
      * The selected item icon component.
-     * @returns {JSX|null}
+     * @returns {JSX.Element|null}
      */
      const SelectedItemIconComponent = useMemo(() => {
         const Component = _selectedItemIcon();
@@ -742,7 +742,7 @@ function Picker({
 
     /**
      * The simple body component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const SimpleBodyComponent = useMemo(() => (
         <>
@@ -814,7 +814,7 @@ function Picker({
 
     /**
      * The render badge component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const RenderBadgeComponent = useMemo(() => {
         return renderBadgeItem !== null ? renderBadgeItem : RenderBadgeItem;
@@ -822,7 +822,7 @@ function Picker({
 
     /**
      * Render badge.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const __renderBadge = useCallback(({item}) => (
         <RenderBadgeComponent
@@ -884,7 +884,7 @@ function Picker({
 
     /**
      * The badge separator component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const BadgeSeparatorComponent = useCallback(() => (
         <View style={_badgeSeparatorStyle} />
@@ -904,7 +904,7 @@ function Picker({
 
     /**
      * Badge list empty component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const BadgeListEmptyComponent = useCallback(() => (
         <View style={labelContainer}>
@@ -923,7 +923,7 @@ function Picker({
 
     /**
      * The badge body component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
      const BadgeBodyComponent = useMemo(() => (
         <FlatList
@@ -1132,7 +1132,7 @@ function Picker({
 
     /**
      * The tick icon component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const _TickIconComponent = useCallback(() => {
         if (! showTickIcon)
@@ -1153,7 +1153,7 @@ function Picker({
 
     /**
      * The renderItem component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const RenderItemComponent = useMemo(() => {
         return renderListItem !== null ? renderListItem : RenderListItem;
@@ -1197,7 +1197,7 @@ function Picker({
 
     /**
      * Render list item.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const __renderListItem = useCallback(({item}) => {
         let IconComponent = item[_schema.icon] ?? null;
@@ -1269,7 +1269,7 @@ function Picker({
 
     /**
      * The item separator.
-     * @returns {JSX|null}
+     * @returns {JSX.Element|null}
      */
     const ItemSeparatorComponent = useCallback(() => {
         if (! itemSeparator)
@@ -1305,7 +1305,7 @@ function Picker({
 
     /**
      * The close icon component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const _CloseIconComponent = useMemo(() => {
         if (listMode !== LIST_MODE.MODAL)
@@ -1338,7 +1338,7 @@ function Picker({
 
     /**
      * The search component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const SearchComponent = useMemo(() => isSearchComponentVisible && (
         <View style={_searchContainerStyle}>
@@ -1370,7 +1370,7 @@ function Picker({
 
     /**
      * The dropdown component wrapper.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const DropDownComponentWrapper = useCallback((Component) => (
         <View style={_dropDownContainerStyle}>
@@ -1381,7 +1381,7 @@ function Picker({
 
     /**
      * The ActivityIndicatorComponent.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const _ActivityIndicatorComponent = useCallback(() => {
         let Component;
@@ -1396,7 +1396,7 @@ function Picker({
 
     /**
      * The ListEmptyComponent.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const _ListEmptyComponent = useCallback(() => {
         let Component;
@@ -1426,7 +1426,7 @@ function Picker({
     
     /**
      * The dropdown flatlist component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const DropDownFlatListComponent = useMemo(() => (
         <FlatList
@@ -1452,7 +1452,7 @@ function Picker({
 
     /**
      * The dropdown scrollview component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const DropDownScrollViewComponent = useMemo(() => {
         return (
@@ -1472,7 +1472,7 @@ function Picker({
 
     /**
      * The dropdown modal component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const DropDownModalComponent = useMemo(() => (
         <Modal visible={open} presentationStyle="fullScreen" {...modalProps}>
@@ -1485,7 +1485,7 @@ function Picker({
 
     /**
      * The dropdown component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const DropDownComponent = useMemo(() => {
         switch (listMode) {
@@ -1504,7 +1504,7 @@ function Picker({
 
     /**
      * The body of the dropdown component.
-     * @returns {JSX}
+     * @returns {JSX.Element}
      */
     const DropDownBodyComponent = useMemo(() => {
         if (open || listMode === LIST_MODE.MODAL)
