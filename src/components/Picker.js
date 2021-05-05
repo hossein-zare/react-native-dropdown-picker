@@ -25,7 +25,7 @@ import {
 
 const {height: WINDOW_HEIGHT} = Dimensions.get('window');
 
-import Colors from './constants/colors';
+import Colors from '../constants/colors';
 import {
     SCHEMA,
     GET_TRANSLATION,
@@ -40,8 +40,8 @@ import {
     LANGUAGE,
     RTL_DIRECTION,
     RTL_STYLE
-} from './constants';
-import { THEMES } from './themes';
+} from '../constants';
+import { THEMES } from '../themes';
 import RenderBadgeItem from './RenderBadgeItem';
 import RenderListItem from './RenderListItem';
 import ListEmpty from './ListEmpty';

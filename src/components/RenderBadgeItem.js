@@ -8,7 +8,7 @@ import {
     Text,
 } from 'react-native';
 
-import { RTL_DIRECTION, RTL_STYLE } from './constants';
+import { RTL_DIRECTION, RTL_STYLE } from '../constants';
 
 function RenderBadge({
     rtl,
