@@ -196,7 +196,7 @@ declare module "react-native-dropdown-picker" {
       activityIndicatorColor?: string;
       props?: ViewProps;
       modalProps?: ModalProps;
-      flatListProps?: FlatListProps;
+      flatListProps?: FlatListProps<ItemType>;
       scrollViewProps?: ScrollViewProps;
       searchTextInputProps?: TextInputProps;
       loading?: boolean;
