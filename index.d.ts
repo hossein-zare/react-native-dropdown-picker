@@ -223,6 +223,7 @@ declare module "react-native-dropdown-picker" {
 
     type GetSelectedItemOutputType = ItemType | undefined | null;
     type GetSelectedItemsOutputType = ItemType[] | undefined;
+    type SetStateType = (state: any, callback?: () => void) => void;
 
     interface DropDownPickerInterface {
       MODE: ModeInterface;
@@ -234,7 +235,7 @@ declare module "react-native-dropdown-picker" {
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
         GET_SELECTED_ITEMS: (items: ItemType[], values: string[] | number[] | null, key?: string) => GetSelectedItemsOutputType;
-        SET_STATE: (setState: (state) => void, valueProperty: string) =>  void;
+        SET_STATE: (setState: SetStateType, valueProperty: string) =>  void;
       };
       setMode: (mode: string) => void;
       setListMode: (mode: string) => void;
