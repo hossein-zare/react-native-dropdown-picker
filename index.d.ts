@@ -51,7 +51,7 @@ declare module "react-native-dropdown-picker" {
     }
 
     export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR";
-    
+
     export interface TranslationInterface {
       PLACEHOLDER: string;
       SEARCH_PLACEHOLDER: string;
@@ -120,8 +120,15 @@ declare module "react-native-dropdown-picker" {
 
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
     export type ThemeType = "DEFAULT" | "LIGHT" | "DARK";
-    export type SetStateType = (state: any, callback?: () => void) => void;
-  
+    export type SetDropDownPickerStateFunctionType = (state: DropDownPickerStateType, callback?: () => void) => void;
+    export type DropDownPickerStateType = {
+      necessaryItems?: ItemType[];
+      searchText?: string;
+      pickerHeight?: number;
+      direction?: DropdownDirection;
+    }
+    export type DropdownDirection = "top" | "bottom";
+
     export type DropDownPickerProps = {
       items: ItemType[];
       value: ValueType | ValueType[] | null;
@@ -236,7 +243,7 @@ declare module "react-native-dropdown-picker" {
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
         GET_SELECTED_ITEMS: (items: ItemType[], values: string[] | number[] | null, key?: string) => GetSelectedItemsOutputType;
-        SET_STATE: (setState: SetStateType, valueProperty: string) =>  void;
+        SET_STATE: (setState: SetDropDownPickerStateFunctionType, valueProperty: string) =>  void;
       };
       setMode: (mode: string) => void;
       setListMode: (mode: string) => void;
