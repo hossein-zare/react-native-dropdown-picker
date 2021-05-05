@@ -1,47 +1,47 @@
 {
-    "name": "react-native-dropdown-picker",
-    "version": "5.0.0",
-    "description": "A single / multiple, categorizable, customizable, localizable and searchable item picker (drop-down) component for react native which supports both Android & iOS.",
-    "main": "index.js",
-    "types": "index.d.ts",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/hossein-zare/react-native-dropdown-picker.git"
-    },
-    "keywords": [
-      "picker",
-      "dropdown",
-      "drop-down",
-      "menu",
-      "item",
-      "multiple",
-      "single",
-      "theme",
-      "localization",
-      "customizable",
-      "placeholder",
-      "categorizable",
-      "category",
-      "search",
-      "searchable",
-      "sub-item",
-      "menu",
-      "context",
-      "component",
-      "rtl",
-      "rtl-support",
-      "react",
-      "reactnative",
-      "react-native",
-      "react native",
-      "android",
-      "ios",
-      "javascript"
-    ],
-    "author": "Hossein Zare",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/hossein-zare/react-native-dropdown-picker/issues"
-    },
-    "homepage": "https://hossein-zare.github.io/react-native-dropdown-picker-website/"
-  }
+  "name": "react-native-dropdown-picker",
+  "version": "5.1.0-beta.0",
+  "description": "A single / multiple, categorizable, customizable, localizable and searchable item picker (drop-down) component for react native which supports both Android & iOS.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hossein-zare/react-native-dropdown-picker.git"
+  },
+  "keywords": [
+    "picker",
+    "dropdown",
+    "drop-down",
+    "menu",
+    "item",
+    "multiple",
+    "single",
+    "theme",
+    "localization",
+    "customizable",
+    "placeholder",
+    "categorizable",
+    "category",
+    "search",
+    "searchable",
+    "sub-item",
+    "menu",
+    "context",
+    "component",
+    "rtl",
+    "rtl-support",
+    "react",
+    "reactnative",
+    "react-native",
+    "react native",
+    "android",
+    "ios",
+    "javascript"
+  ],
+  "author": "Hossein Zare",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hossein-zare/react-native-dropdown-picker/issues"
+  },
+  "homepage": "https://hossein-zare.github.io/react-native-dropdown-picker-website/"
+}
