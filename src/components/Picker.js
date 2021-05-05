@@ -211,20 +211,20 @@ function Picker({
                 
                 let _state = [...state].filter(item => value.includes(item[_schema.value]));
 
-                const newItems = value.reduce((acc, currentValue) => {
+                const newItems = value.reduce((accumulator, currentValue) => {
                     const index = _state.findIndex(item => item[_schema.value] === currentValue);
 
                     if (index === -1) {
                         const item = items.find(item => item[_schema.value] === currentValue);
                     
                         if (item) {
-                            return [...acc, item];
+                            return [...accumulator, item];
                         }
 
-                        return acc;
+                        return accumulator;
                     }
 
-                    return acc;
+                    return accumulator;
                 }, []);
 
                 return [..._state, ...newItems];
