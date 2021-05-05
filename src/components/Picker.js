@@ -41,7 +41,7 @@ import {
     RTL_DIRECTION,
     RTL_STYLE
 } from '../constants';
-import { THEMES } from '../themes';
+import THEMES from '../themes';
 import RenderBadgeItem from './RenderBadgeItem';
 import RenderListItem from './RenderListItem';
 import ListEmpty from './ListEmpty';
