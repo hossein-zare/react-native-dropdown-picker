@@ -152,6 +152,7 @@ function Picker({
     const [direction, setDirection] = useState(GET_DROPDOWN_DIRECTION(dropDownDirection));
     const badgeFlatListRef = useRef();
     const pickerRef = useRef(null);
+    const initialization = useRef(false);
 
     const THEME = useMemo(() => THEMES[theme].default, [theme]);
     const ICON = useMemo(() => THEMES[theme].ICONS, [theme])
@@ -243,7 +244,11 @@ function Picker({
             setNecessaryItems(state);
         }
 
-        onChangeValue(value);
+        if (initialization.current) {
+            onChangeValue(value);
+        } else {
+            initialization.current = true;
+        }
     }, [value]);
 
     /**

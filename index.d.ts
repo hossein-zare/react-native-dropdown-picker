@@ -1,15 +1,15 @@
 import {ComponentType, SetStateAction} from "react";
 import {
-  StyleProp,
-  TextProps,
-  TextStyle,
-  ViewStyle,
-  ScrollViewProps,
-  ModalProps,
-  FlatListProps,
-  ViewProps,
-  TextInputProps,
-  LayoutChangeEvent
+    FlatListProps,
+    LayoutChangeEvent,
+    ModalProps,
+    ScrollViewProps,
+    StyleProp,
+    TextInputProps,
+    TextProps,
+    TextStyle,
+    ViewProps,
+    ViewStyle
 } from "react-native";
 
 declare module "react-native-dropdown-picker" {
