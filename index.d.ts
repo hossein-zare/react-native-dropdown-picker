@@ -16,7 +16,7 @@ declare module "react-native-dropdown-picker" {
     export type ValueType = string | number | boolean;
 
     export type ItemType = {
-      label?: any;
+      label?: string;
       value?: ValueType;
       icon?: () => void;
       parent?: any;
@@ -248,3 +248,5 @@ declare module "react-native-dropdown-picker" {
     const DropDownPicker: ComponentType<DropDownPickerProps> & DropDownPickerInterface;
     export default DropDownPicker;
   }
+
+  //TODO: remove uses of the ambiguous "any" and "object" types
