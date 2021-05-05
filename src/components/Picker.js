@@ -1322,6 +1322,10 @@ function Picker({
         );
     }, [listMode, CloseIconComponent, _closeIconStyle, _closeIconContainerStyle, onPressClose, ICON]);
 
+    /**
+     * Indicates if the search component is visible.
+     * @returns {boolean}
+     */
     const isSearchComponentVisible = useMemo(() => {
         if (listMode === LIST_MODE.MODAL)
             return true;
