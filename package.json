@@ -2,12 +2,6 @@
   "name": "react-native-dropdown-picker",
   "version": "5.1.0-beta.0",
   "description": "A single / multiple, categorizable, customizable, localizable and searchable item picker (drop-down) component for react native which supports both Android & iOS.",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hossein-zare/react-native-dropdown-picker.git"
-  },
   "keywords": [
     "picker",
     "dropdown",
@@ -25,7 +19,6 @@
     "search",
     "searchable",
     "sub-item",
-    "menu",
     "context",
     "component",
     "rtl",
@@ -38,12 +31,18 @@
     "ios",
     "javascript"
   ],
-  "author": "Hossein Zare",
-  "license": "MIT",
+  "homepage": "https://hossein-zare.github.io/react-native-dropdown-picker-website/",
   "bugs": {
     "url": "https://github.com/hossein-zare/react-native-dropdown-picker/issues"
   },
-  "homepage": "https://hossein-zare.github.io/react-native-dropdown-picker-website/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hossein-zare/react-native-dropdown-picker.git"
+  },
+  "license": "MIT",
+  "author": "Hossein Zare",
+  "main": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
     "react": "^17.0.2",
     "react-native": "^0.64.1"
