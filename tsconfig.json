@@ -1,4 +1,3 @@
-/* documentation at: https://www.typescriptlang.org/tsconfig */
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
@@ -35,8 +34,6 @@
     "removeComments": true,
     /* Whether to emit comments from output. */
     "noFallthroughCasesInSwitch": true,
-    /* Report errors for fallthrough cases in switch statements. */
-    "noImplicitOverride": true,
     /* Ensure that the sub-classes never go out of sync, by ensuring that functions which override include the keyword override. */
     "noImplicitReturns": true,
     /* Report error when not all code paths in function return a value. */
