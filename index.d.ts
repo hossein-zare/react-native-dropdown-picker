@@ -229,7 +229,7 @@ declare module "react-native-dropdown-picker" {
       LIST_MODE: ListModeInterface;
       DROPDOWN_DIRECTION: DropDownDirectionType;
       SCHEMA: SchemaInterface;
-      LANGUAGE: LanguageInterface;
+      LANGUAGE: LanguageType;
       THEMES: ThemeType;
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
