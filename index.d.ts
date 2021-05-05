@@ -1,4 +1,4 @@
-import {ComponentType} from "react";
+import {ComponentType, SetStateAction} from "react";
 import {
   StyleProp,
   TextProps,
@@ -120,6 +120,7 @@ declare module "react-native-dropdown-picker" {
 
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
     export type ThemeType = "DEFAULT" | "LIGHT" | "DARK";
+    export type SetStateType = (state: any, callback?: () => void) => void;
   
     export type DropDownPickerProps = {
       items: ItemType[];
@@ -205,7 +206,7 @@ declare module "react-native-dropdown-picker" {
       addCustomItem?: boolean;
       setOpen: (open: boolean) => void;
       setItems: (items: ItemType[]) => void;
-      setValue: (values: ValueType | ValueType[] | null) => void;
+      setValue: (value: SetStateAction<any[]>) => void;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
@@ -223,7 +224,6 @@ declare module "react-native-dropdown-picker" {
 
     type GetSelectedItemOutputType = ItemType | undefined | null;
     type GetSelectedItemsOutputType = ItemType[] | undefined;
-    type SetStateType = (state: any, callback?: () => void) => void;
 
     interface DropDownPickerInterface {
       MODE: ModeInterface;
