@@ -242,6 +242,8 @@ function Picker({
             
             setNecessaryItems(state);
         }
+
+        onChangeValue(value);
     }, [value]);
 
     /**
