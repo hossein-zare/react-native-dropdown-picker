@@ -1,9 +1,9 @@
 name: "🚀 publish"
 
 on:
-  pull_request:
-    branches:
-      - 5.x
+  release:
+    types: [created]
+
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
