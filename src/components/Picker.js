@@ -1322,24 +1322,36 @@ function Picker({
         );
     }, [listMode, CloseIconComponent, _closeIconStyle, _closeIconContainerStyle, onPressClose, ICON]);
 
+    const isSearchComponentVisible = useMemo(() => {
+        if (listMode === LIST_MODE.MODAL)
+            return true;
+
+        return searchable;
+    }, [listMode, searchable]);
+
     /**
      * The search component.
      * @returns {JSX}
      */
-    const SearchComponent = useMemo(() => searchable && (
+    const SearchComponent = useMemo(() => isSearchComponentVisible && (
         <View style={_searchContainerStyle}>
-            <TextInput
-                value={searchText}
-                onChangeText={_onChangeSearchText}
-                style={_searchTextInputStyle}
-                placeholder={_searchPlaceholder}
-                placeholderTextColor={searchPlaceholderTextColor}
-                {...searchTextInputProps}
-            />
+            {
+                searchable && (
+                    <TextInput
+                        value={searchText}
+                        onChangeText={_onChangeSearchText}
+                        style={_searchTextInputStyle}
+                        placeholder={_searchPlaceholder}
+                        placeholderTextColor={searchPlaceholderTextColor}
+                        {...searchTextInputProps}
+                    />
+                )
+            }
             {_CloseIconComponent}
         </View>
     ), [
         searchable,
+        isSearchComponentVisible,
         _onChangeSearchText,
         _searchContainerStyle,
         _searchTextInputStyle,
