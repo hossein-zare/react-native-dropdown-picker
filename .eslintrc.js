@@ -24,6 +24,6 @@ module.exports = {
         }
     },
     "rules": {
-        "@typescript-eslint/no-explicit-any": ["error"]
+        "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": false, "fixToUnknown": false }]
     }
 };
