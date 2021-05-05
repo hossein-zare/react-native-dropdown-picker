@@ -101,6 +101,7 @@ declare module "react-native-dropdown-picker" {
       disabledItemLabelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
+      theme: string;
       THEME: object;
     }
 
