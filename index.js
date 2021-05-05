@@ -1,5 +1,5 @@
-import {MODE, LIST_MODE, DROPDOWN_DIRECTION, LANGUAGE, TRANSLATIONS, HELPERS} from './src/constants';
-import {THEMES} from './src/themes';
+import { MODE, LIST_MODE, DROPDOWN_DIRECTION, LANGUAGE, TRANSLATIONS, HELPERS } from './src/constants';
+import { THEMES } from './src/themes';
 import Picker from './src/components/Picker';
 
 Picker.MODE = MODE;
