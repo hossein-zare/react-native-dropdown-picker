@@ -214,6 +214,7 @@ declare module "react-native-dropdown-picker" {
       onOpen?: () => void;
       onClose?: () => void;
       onChangeSearchText?: (text: string) => void;
+      onChangeValue?: (value: ValueType | ValueType[] | null) => void;
       zIndex?: number;
       zIndexInverse?: number;
       disableLocalSearch?: boolean;
