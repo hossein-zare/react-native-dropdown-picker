@@ -122,9 +122,8 @@ export const ASCII_CODE = (str) => {
     if (str.length === 0)
         return chr;
 
-    for (let i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length; i++)
         chr+= str.charCodeAt(i);
-    }
 
     return chr;
 }
