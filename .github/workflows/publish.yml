@@ -1,0 +1,57 @@
+name: "🚀 publish"
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
+
+  # build-android:
+  #   needs: install-and-test
+  #   runs-on: ubuntu-latest
+  #   steps: 
+  #     - uses: actions/checkout@v2
+  #     - name: Install npm dependencies
+  #       run: |
+  #         npm install
+  #     - name: Build Android Release
+  #       run: |
+  #         cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}'
+  #     - name: Upload Artifact
+  #       uses: actions/upload-artifact@v1
+  #       with:
+  #         name: app-release.apk
+  #         path: android/app/build/outputs/apk/release/
+
+  # build-ios:
+  #   needs: install-and-test
+  #   runs-on: [self-hosted, macos]
+  #   steps: 
+  #     - uses: actions/checkout@v2
+  #     - name: Install npm dependencies
+  #       run: |
+  #         npm install
+  #     - name: Install pod dependencies
+  #       run: |
+  #         cd ios && pod install
+  #     - name: Build app
+  #       run: |       
+  #         xcodebuild -workspace myapp.xcworkspace -scheme myapp archive -archivePath myapp.xcarchive -allowProvisioningUpdates
+  #         xcodebuild -exportArchive -archivePath ./myapp.xcarchive -exportPath . -exportOptionsPlist myapp/Info.plist
+  #         mv myapp.ipa ../myapp.ipa
+  #     - name: Upload Artifact
+  #       uses: actions/upload-artifact@v1
+  #       with:
+  #         name: myapp.ipa
+  #         path: ios/build/
