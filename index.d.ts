@@ -72,7 +72,6 @@ declare module "react-native-dropdown-picker" {
       showBadgeDot: boolean;
       onPress: (value: ValueType) => void;
       rtl: boolean;
-      thene: string;
       THEME: object;
     }
 
@@ -102,6 +101,7 @@ declare module "react-native-dropdown-picker" {
       disabledItemLabelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
+      theme: string;
       THEME: object;
     }
 
