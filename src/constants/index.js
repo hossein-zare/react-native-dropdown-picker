@@ -138,9 +138,9 @@ export const HELPERS = {
 
         return items.filter(item => values.includes(item[key]));
     },
-    SET_STATE: (setState, property) => {
+    SET_STATE: (setState, valueProperty) => {
         setState(state => ({
-            [property]: state[property]
+            [valueProperty]: state[valueProperty]
         }));
     }
 }
