@@ -62,7 +62,7 @@ declare module "react-native-dropdown-picker" {
     export interface RenderBadgeItemPropsInterface {
       label: string;
       value: ValueType;
-      IconComponent: () => JSX;
+      IconComponent: () => JSX.Element;
       textStyle: StyleProp<TextStyle>;
       badgeStyle: StyleProp<ViewStyle>;
       badgeTextStyle: StyleProp<TextStyle>;
@@ -85,8 +85,8 @@ declare module "react-native-dropdown-picker" {
       disabled: boolean;
       custom: boolean;
       isSelected: boolean;
-      IconComponent: () => JSX;
-      TickIconComponent: () => JSX;
+      IconComponent: () => JSX.Element;
+      TickIconComponent: () => JSX.Element;
       listItemContainerStyle: StyleProp<ViewStyle>;
       listItemLabelStyle: StyleProp<TextStyle>;
       listChildContainerStyle: StyleProp<ViewStyle>;
@@ -113,7 +113,7 @@ declare module "react-native-dropdown-picker" {
     export interface ListEmptyComponentPropsInterface {
       listMessageContainer: StyleProp<ViewStyle>;
       listMessageTextStyle: StyleProp<TextStyle>;
-      ActivityIndicatorComponent: (props: ActivityIndicatorComponentPropsInterface) => JSX
+      ActivityIndicatorComponent: (props: ActivityIndicatorComponentPropsInterface) => JSX.Element
       loading: boolean;
       message: string;
     }
@@ -177,8 +177,8 @@ declare module "react-native-dropdown-picker" {
       mode?: ModeType;
       key?: string;
       maxHeight?: number;
-      renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX;
-      renderListItem?: (props: RenderListItemPropsInterface) => JSX;
+      renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX.Element;
+      renderListItem?: (props: RenderListItemPropsInterface) => JSX.Element;
       itemSeparator?: boolean;
       bottomOffset?: number;
       badgeColors?: string[] | string;
@@ -186,12 +186,12 @@ declare module "react-native-dropdown-picker" {
       showArrowIcon?: boolean;
       showBadgeDot?: boolean;
       showTickIcon?: boolean;
-      ArrowUpComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
-      ArrowDownComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
-      TickIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
-      CloseIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX;
-      ListEmptyComponent?: (props: ListEmptyComponentPropsInterface) => JSX;
-      ActivityIndicatorComponent?: (props: ActivityIndicatorComponentPropsInterface) => JSX;
+      ArrowUpComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
+      ArrowDownComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
+      TickIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
+      CloseIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
+      ListEmptyComponent?: (props: ListEmptyComponentPropsInterface) => JSX.Element;
+      ActivityIndicatorComponent?: (props: ActivityIndicatorComponentPropsInterface) => JSX.Element;
       activityIndicatorSize?: number;
       activityIndicatorColor?: string;
       props?: ViewProps;
