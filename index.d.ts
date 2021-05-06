@@ -72,7 +72,7 @@ declare module "react-native-dropdown-picker" {
       showBadgeDot: boolean;
       onPress: (value: ValueType) => void;
       rtl: boolean;
-      THEME: object;
+      THEME: ThemeType;
     }
 
     export interface RenderListItemPropsInterface {
@@ -102,7 +102,7 @@ declare module "react-native-dropdown-picker" {
       categorySelectable: boolean;
       onPress: () => void;
       theme: ThemeNameType;
-      THEME: object;
+      THEME: ThemeType;
     }
 
     export interface ActivityIndicatorComponentPropsInterface {
@@ -120,6 +120,7 @@ declare module "react-native-dropdown-picker" {
 
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
     export type ThemeNameType = "DEFAULT" | "LIGHT" | "DARK" | string;
+    export type ThemeType = object; //TODO: give this a specific type; maybe something like StyleSheet.Styles? or an object of all the fields in each type definition in the source files
     export type SetStateType = (state: any, callback?: () => void) => void;
   
     export type DropDownPickerProps = {
