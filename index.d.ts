@@ -101,7 +101,7 @@ declare module "react-native-dropdown-picker" {
       disabledItemLabelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
-      theme: ThemeType;
+      theme: ThemeNameType;
       THEME: object;
     }
 
@@ -119,7 +119,7 @@ declare module "react-native-dropdown-picker" {
     }
 
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
-    export type ThemeType = "DEFAULT" | "LIGHT" | "DARK" | string;
+    export type ThemeNameType = "DEFAULT" | "LIGHT" | "DARK" | string;
     export type SetStateType = (state: any, callback?: () => void) => void;
   
     export type DropDownPickerProps = {
@@ -219,7 +219,7 @@ declare module "react-native-dropdown-picker" {
       zIndexInverse?: number;
       disableLocalSearch?: boolean;
       dropDownDirection?: DropDownDirectionType;
-      theme?: ThemeType;
+      theme?: ThemeNameType;
       rtl?: boolean;
     };
 
@@ -232,7 +232,7 @@ declare module "react-native-dropdown-picker" {
       DROPDOWN_DIRECTION: DropDownDirectionType;
       SCHEMA: SchemaInterface;
       LANGUAGE: LanguageType;
-      THEMES: ThemeType;
+      THEMES: ThemeNameType;
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
         GET_SELECTED_ITEMS: (items: ItemType[], values: string[] | number[] | null, key?: string) => GetSelectedItemsOutputType;
@@ -242,7 +242,7 @@ declare module "react-native-dropdown-picker" {
       setListMode: (mode: string) => void;
       setDropDownDirection: (direction: DropDownDirectionType) => void;
       setTheme: (name: string) => void;
-      addTheme: (name: string, theme: ThemeType) => void;
+      addTheme: (name: string, theme: ThemeNameType) => void;
       setLanguage: (language: string) => void;
       addTranslation: (language: string, translation: TranslationInterface) => void;
       modifyTranslation: (language: string, translation: TranslationInterface) => void;
