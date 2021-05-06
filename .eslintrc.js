@@ -5,14 +5,16 @@ module.exports = {
         '@typescript-eslint',
         'react',
         "react-hooks",
-        "react-native"
+        "react-native",
+        "jsx-a11y"
     ],
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:react-native/all"
+        "plugin:react-native/all",
+        "plugin:jsx-a11y/strict"
     ],
     env: {
         node: true,
