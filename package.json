@@ -43,7 +43,7 @@
   "author": "Hossein Zare",
   "main": "index.js",
   "types": "index.d.ts",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^17.0.2",
     "react-native": "^0.64.1"
   },
