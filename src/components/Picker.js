@@ -1215,6 +1215,13 @@ function Picker({
             );
         }
 
+        let isSelected;
+        if (multiple) {
+            isSelected = _value.includes(item[_schema.value]);
+        } else {
+            isSelected = _value === item[_schema.value]
+        }
+
         return (
             <RenderItemComponent
                 rtl={rtl}
@@ -1225,7 +1232,7 @@ function Picker({
                 selectable={item[_schema.selectable] ?? null}
                 disabled={item[_schema.disabled] ?? false}
                 custom={item.custom ?? false}
-                isSelected={_value !== null ? _value.includes(item[_schema.value]) : false}
+                isSelected={isSelected}
                 IconComponent={IconComponent}
                 TickIconComponent={_TickIconComponent}
                 listItemContainerStyle={_listItemContainerStyle}
@@ -1266,6 +1273,7 @@ function Picker({
         _TickIconComponent,
         _schema,
         _value,
+        multiple,
         categorySelectable,
         onPressItem,
         theme,
