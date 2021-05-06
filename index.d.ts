@@ -19,7 +19,7 @@ declare module "react-native-dropdown-picker" {
       label?: string;
       value?: ValueType;
       icon?: () => void;
-      parent?: any;
+      parent?: ValueType;
       selectable?: boolean;
       disabled?: boolean;
     };
