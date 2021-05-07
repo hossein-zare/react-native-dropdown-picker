@@ -207,7 +207,7 @@ declare module "react-native-dropdown-picker" {
       addCustomItem?: boolean;
       setOpen: (open: boolean) => void;
       setItems: (items: ItemType[]) => void;
-      setValue<ParentComponentStateType>(): (value: SetStateAction<ParentComponentStateType>) => void;
+      setValue<ParentComponentStateType>(value: SetStateAction<ParentComponentStateType>): void;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
