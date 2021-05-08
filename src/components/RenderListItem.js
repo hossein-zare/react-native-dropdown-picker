@@ -176,7 +176,7 @@ const areEqual = (nextProps, prevProps) => {
         return false;
     if (nextProps.rtl !== prevProps.rtl)
         return false;
-    if (nextProps.theme !== prevProps.rtl)
+    if (nextProps.theme !== prevProps.theme)
         return false;
     
     return true;
