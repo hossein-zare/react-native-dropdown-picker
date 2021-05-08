@@ -121,7 +121,6 @@ declare module "react-native-dropdown-picker" {
     export type DropDownDirectionType = "DEFAULT" | "TOP" | "BOTTOM" | "AUTO";
     export type ThemeNameType = "DEFAULT" | "LIGHT" | "DARK" | string;
     export type ThemeType = object; //TODO: give this a specific type; maybe something like StyleSheet.Styles? or an object of all the fields in each type definition in the source files
-    export type SetStateType<ParentComponentStateType> = (state: ParentComponentStateType, callback?: () => void) => void;
   
     export type DropDownPickerProps = {
       items: ItemType[];
@@ -176,6 +175,7 @@ declare module "react-native-dropdown-picker" {
       language?: LanguageType;
       translation?: TranslationInterface;
       multiple?: boolean;
+      multipleText?: string;
       mode?: ModeType;
       key?: string;
       maxHeight?: number;
@@ -207,7 +207,7 @@ declare module "react-native-dropdown-picker" {
       addCustomItem?: boolean;
       setOpen: (open: boolean) => void;
       setItems: (items: ItemType[]) => void;
-      setValue<ParentComponentStateType>(): (value: SetStateAction<ParentComponentStateType>) => void;
+      setValue<ParentComponentStateType>(value: SetStateAction<ParentComponentStateType>): void;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
@@ -237,7 +237,6 @@ declare module "react-native-dropdown-picker" {
       HELPER: {
         GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
         GET_SELECTED_ITEMS: (items: ItemType[], values: string[] | number[] | null, key?: string) => GetSelectedItemsOutputType;
-        SET_STATE<ParentComponentStateType>(): (setState: SetStateType<ParentComponentStateType>, valueProperty: string) =>  void;
       };
       setMode: (mode: string) => void;
       setListMode: (mode: string) => void;
