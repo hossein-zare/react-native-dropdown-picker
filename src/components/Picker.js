@@ -99,6 +99,7 @@ function Picker({
     language = LANGUAGE.DEFAULT,
     translation = {},
     multiple = false,
+    multipleText = null,
     mode = MODE.DEFAULT,
     key = null,
     maxHeight = 200,
@@ -413,6 +414,12 @@ function Picker({
     const _placeholder = useMemo(() => placeholder ?? _('PLACEHOLDER'), [placeholder, _]);
 
     /**
+     * The multiple text.
+     * @returns {string}
+     */
+     const _multipleText = useMemo(() => multipleText ?? _('SELECTED_ITEMS_COUNT_TEXT'), [multipleText, _]);
+
+    /**
      * The mode.
      * @returns {string}
      */
@@ -463,7 +470,7 @@ function Picker({
 
         if (multiple)
             if (item.length > 0)
-                return _('SELECTED_ITEMS_COUNT_TEXT').replace('\d', item.length);
+                return _multipleText.replace('\d', item.length);
             else
                 return fallback;
 
@@ -472,7 +479,7 @@ function Picker({
         } catch (e) {
             return fallback;
         }
-    }, [getSelectedItem, multiple, _, _schema]);
+    }, [getSelectedItem, multiple, _multipleText, _schema]);
 
     /**
      * The label of the selected item / placeholder.
