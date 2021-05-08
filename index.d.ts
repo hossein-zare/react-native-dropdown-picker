@@ -175,6 +175,7 @@ declare module "react-native-dropdown-picker" {
       language?: LanguageType;
       translation?: TranslationInterface;
       multiple?: boolean;
+      multipleText?: string;
       mode?: ModeType;
       key?: string;
       maxHeight?: number;
