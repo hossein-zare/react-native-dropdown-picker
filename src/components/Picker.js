@@ -470,7 +470,7 @@ function Picker({
 
         if (multiple)
             if (item.length > 0)
-                return _multipleText.replace('\d', item.length);
+                return _multipleText.replace('{count}', item.length);
             else
                 return fallback;
 
