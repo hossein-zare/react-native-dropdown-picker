@@ -113,8 +113,8 @@ function Picker({
     showArrowIcon = true,
     showBadgeDot = true,
     showTickIcon = true,
-    ArrowUpComponent = null,
-    ArrowDownComponent = null,
+    ArrowUpIconComponent = null,
+    ArrowDownIconComponent = null,
     TickIconComponent = null,
     CloseIconComponent = null,
     ListEmptyComponent = null,
@@ -708,10 +708,10 @@ function Picker({
             return null;
 
         let Component;
-        if (open && ArrowUpComponent !== null)
-            Component = <ArrowUpComponent style={_arrowIconStyle} />;
-        else if (! open && ArrowDownComponent !== null)
-            Component = <ArrowDownComponent style={_arrowIconStyle} />;
+        if (open && ArrowUpIconComponent !== null)
+            Component = <ArrowUpIconComponent style={_arrowIconStyle} />;
+        else if (! open && ArrowDownIconComponent !== null)
+            Component = <ArrowDownIconComponent style={_arrowIconStyle} />;
         else
             Component = <Image source={open ? ICON.ARROW_UP : ICON.ARROW_DOWN} style={_arrowIconStyle} />;
 
@@ -723,8 +723,8 @@ function Picker({
     }, [
         showArrowIcon,
         open,
-        ArrowUpComponent,
-        ArrowDownComponent,
+        ArrowUpIconComponent,
+        ArrowDownIconComponent,
         _arrowIconStyle,
         _arrowIconContainerStyle,
         ICON
