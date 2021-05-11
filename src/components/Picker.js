@@ -21,6 +21,7 @@ import {
     Modal,
     ActivityIndicator,
     Platform,
+    StyleSheet
 } from 'react-native';
 
 const {height: WINDOW_HEIGHT} = Dimensions.get('window');
@@ -1450,6 +1451,7 @@ function Picker({
      */
     const DropDownFlatListComponent = useMemo(() => (
         <FlatList
+            style={styles.flexGrow}
             contentContainerStyle={THEME.flatListContentContainer}
             ListEmptyComponent={_ListEmptyComponent}
             data={_items}
@@ -1555,5 +1557,11 @@ function Picker({
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    flexGrow: {
+        flexGrow: 1
+    }
+});
 
 export default memo(Picker);
