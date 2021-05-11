@@ -1024,9 +1024,10 @@ function Picker({
      * @returns {object}
      */
     const _searchTextInputStyle = useMemo(() => ([
+        textStyle,
         THEME.searchTextInput,
         ...[searchTextInputStyle].flat()
-    ]), [searchTextInputStyle, THEME]);
+    ]), [textStyle, searchTextInputStyle, THEME]);
 
     /**
      * The close icon container style.
