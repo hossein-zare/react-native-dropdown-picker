@@ -177,7 +177,7 @@ declare module "react-native-dropdown-picker" {
       multiple?: boolean;
       multipleText?: string;
       mode?: ModeType;
-      key?: string;
+      itemKey?: string;
       maxHeight?: number;
       renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX.Element;
       renderListItem?: (props: RenderListItemPropsInterface) => JSX.Element;
