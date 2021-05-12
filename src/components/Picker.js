@@ -102,7 +102,7 @@ function Picker({
     multiple = false,
     multipleText = null,
     mode = MODE.DEFAULT,
-    key = null,
+    itemKey = null,
     maxHeight = 200,
     renderBadgeItem = null,
     renderListItem = null,
@@ -873,18 +873,18 @@ function Picker({
      * The badge key.
      * @returns {string}
      */
-    const _key = useMemo(() => {
-        if (key === null)
+    const _itemKey = useMemo(() => {
+        if (itemKey === null)
             return _schema.value;
         
-        return key;
-    }, [key, _schema]);
+        return itemKey;
+    }, [itemKey, _schema]);
 
     /**
      * The key extractor.
      * @returns {string}
      */
-    const keyExtractor = useCallback((item) => `${item[_key]}`, [_key]);
+    const keyExtractor = useCallback((item) => `${item[_itemKey]}`, [_itemKey]);
 
     /**
      * The badge separator style.
@@ -1482,7 +1482,7 @@ function Picker({
             <ScrollView nestedScrollEnabled={true} {...scrollViewProps}>
                 {_items.map((item, index) => { 
                     return (
-                        <Fragment key={item[_key]}>
+                        <Fragment key={item[_itemKey]}>
                             {index > 0 && ItemSeparatorComponent()}
                             {__renderListItem({item})}
                         </Fragment>
@@ -1491,7 +1491,7 @@ function Picker({
                 {_items.length === 0 && _ListEmptyComponent()}
             </ScrollView>
         );
-    }, [renderListItem, __renderListItem, _key, scrollViewProps, _ListEmptyComponent]);
+    }, [renderListItem, __renderListItem, _itemKey, scrollViewProps, _ListEmptyComponent]);
 
     /**
      * The dropdown modal component.
