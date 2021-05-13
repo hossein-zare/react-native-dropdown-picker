@@ -13,7 +13,6 @@ import {
     Text,
     TouchableOpacity,
     Image,
-    LogBox,
     FlatList,
     TextInput,
     Dimensions,
@@ -169,7 +168,7 @@ function Picker({
      * componentDidMount.
      */
     useEffect(() => {
-        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         
         // Get initial seleted items
         let initialSelectedItems = [];
