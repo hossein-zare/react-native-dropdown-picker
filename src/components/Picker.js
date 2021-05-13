@@ -13,7 +13,6 @@ import {
     Text,
     TouchableOpacity,
     Image,
-    LogBox,
     FlatList,
     TextInput,
     Dimensions,
@@ -169,7 +168,7 @@ function Picker({
      * componentDidMount.
      */
     useEffect(() => {
-        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         
         // Get initial seleted items
         let initialSelectedItems = [];
@@ -1452,7 +1451,7 @@ function Picker({
      */
     const DropDownFlatListComponent = useMemo(() => (
         <FlatList
-            style={styles.flexGrow}
+            style={styles.flex}
             contentContainerStyle={THEME.flatListContentContainer}
             ListEmptyComponent={_ListEmptyComponent}
             data={_items}
@@ -1560,8 +1559,8 @@ function Picker({
 }
 
 const styles = StyleSheet.create({
-    flexGrow: {
-        flexGrow: 1
+    flex: {
+        flex: 1
     }
 });
 
