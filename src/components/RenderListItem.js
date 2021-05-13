@@ -139,7 +139,7 @@ function RenderListItem({
      * onPress.
      */
     const __onPress = useCallback(() => {
-        if (parent === null && ! categorySelectable) {
+        if (parent === null && ! categorySelectable && selectable !== true) {
             return;
         }
 
@@ -147,7 +147,7 @@ function RenderListItem({
     }, [onPress, parent, categorySelectable, label, value, custom]);
 
     return (
-        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable || disabled}>
+        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable === false || disabled}>
             {IconComponent}
             <Text style={_listItemLabelStyle}>
                 {label}
