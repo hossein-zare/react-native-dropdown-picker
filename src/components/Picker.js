@@ -598,9 +598,9 @@ function Picker({
     const _zIndex = useMemo(() => {
         if (open) {
             return direction === 'top' ? zIndex : zIndexInverse;
-        } else {
-            return zIndex;
         }
+
+        return zIndex;
     }, [zIndex, zIndexInverse, direction, open]);
 
     /**
