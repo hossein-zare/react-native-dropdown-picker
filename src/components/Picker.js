@@ -1542,9 +1542,15 @@ function Picker({
         pickerRef.current = ref
     }, []);
 
+    /**
+     * Pointer events.
+     * @returns {string}
+     */
+    const pointerEvents = useMemo(() => disabled ? "none" : "auto", [disabled]);
+
     return (
         <View style={_containerStyle} {...containerProps}>
-            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} disabled={disabled}>
+            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled}>
                 {_BodyComponent}
                 {_ArrowComponent}
             </TouchableOpacity>
