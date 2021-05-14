@@ -93,7 +93,7 @@ function Picker({
     badgeSeparatorStyle = {},
     listMode = LIST_MODE.DEFAULT,
     categorySelectable = true,
-    searchable = true,
+    searchable = false,
     searchPlaceholder = null,
     schema = {},
     language = LANGUAGE.DEFAULT,
