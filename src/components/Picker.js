@@ -100,6 +100,7 @@ function Picker({
     translation = {},
     multiple = false,
     multipleText = null,
+    listEmptyText = null,
     mode = MODE.DEFAULT,
     itemKey = null,
     maxHeight = 200,
@@ -1425,7 +1426,7 @@ function Picker({
      */
     const _ListEmptyComponent = useCallback(() => {
         let Component;
-        const message = _('NOTHING_TO_SHOW');
+        const message = listEmptyText ?? _('NOTHING_TO_SHOW');
 
         if (ListEmptyComponent !== null)
             Component = ListEmptyComponent;
@@ -1446,7 +1447,8 @@ function Picker({
         _listMessageTextStyle,
         ListEmptyComponent,
         _ActivityIndicatorComponent,
-        loading
+        loading,
+        listEmptyText
     ]);
     
     /**
