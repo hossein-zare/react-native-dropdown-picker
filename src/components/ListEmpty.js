@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 
 import {
-    View, Text
+    View,
+    Text
 } from 'react-native';
 
 function ListEmpty({loading, message, ActivityIndicatorComponent, listMessageContainerStyle, listMessageTextStyle}) {
