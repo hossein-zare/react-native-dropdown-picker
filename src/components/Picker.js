@@ -11,7 +11,6 @@ import React, {
 import {
     View,
     Text,
-    TouchableOpacity,
     Image,
     FlatList,
     TextInput,
@@ -22,6 +21,8 @@ import {
     Platform,
     StyleSheet
 } from 'react-native';
+
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const {height: WINDOW_HEIGHT} = Dimensions.get('window');
 
@@ -351,7 +352,7 @@ function Picker({
                 results.splice(index, 0, parent);
             });
 
-            if (results.length === 0 && addCustomItem) {
+            if ((results.length === 0 || results.findIndex(item => item[_schema.label].toLowerCase() === searchText.toLowerCase()) === -1) && addCustomItem) {
                 results.push({
                     [_schema.label]: searchText,
                     [_schema.value]: searchText.replace(' ', '-'),

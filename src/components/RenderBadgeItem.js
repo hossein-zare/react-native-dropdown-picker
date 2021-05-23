@@ -3,10 +3,11 @@ import React, {
 } from 'react';
 
 import {
-    TouchableOpacity,
     View,
     Text,
 } from 'react-native';
+
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { RTL_DIRECTION, RTL_STYLE } from '../constants';
 
