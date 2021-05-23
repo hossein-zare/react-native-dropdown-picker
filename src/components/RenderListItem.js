@@ -6,8 +6,9 @@ import React, {
 
 import {
     Text,
-    TouchableOpacity
 } from 'react-native';
+
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function RenderListItem({
     rtl,
