@@ -43,6 +43,9 @@
   "author": "Hossein Zare",
   "main": "index.js",
   "types": "index.d.ts",
+  "dependencies": {
+    "react-native-gesture-handler": "*"
+  },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
