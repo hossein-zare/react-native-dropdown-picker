@@ -1,4 +1,4 @@
-import {ComponentType, SetStateAction} from "react";
+import {ComponentType, SetStateAction, Dispatch} from "react";
 import {
     FlatListProps,
     LayoutChangeEvent,
@@ -206,9 +206,7 @@ declare module "react-native-dropdown-picker" {
       max?: number;
       addCustomItem?: boolean;
       setOpen: (open: boolean) => void;
-      //setItems<ParentComponentStateType>(callback: SetStateAction<ParentComponentStateType>): void;
-      setItems?: (callback: (state: ItemType[]) => ItemType[]) => void;
-      //setValue<ParentComponentStateType>(callback: SetStateAction<ParentComponentStateType>): void;
+      setItems?: Dispatch<SetStateAction<any[]>>;
       setValue: (callback: (state: ValueType | ValueType[] | null) => ValueType | ValueType[] | null) => void;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
