@@ -1,4 +1,3 @@
-import { LIST_MODE } from 'constants';
 import React, {
     useMemo,
     useCallback,
@@ -13,6 +12,8 @@ import {
 import {
     TouchableOpacity as TouchableOpacityGestureHandler
 } from 'react-native-gesture-handler';
+
+import { LIST_MODE } from '../constants';
 
 function RenderListItem({
     rtl,
