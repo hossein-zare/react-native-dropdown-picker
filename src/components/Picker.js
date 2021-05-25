@@ -1019,8 +1019,10 @@ function Picker({
      */
     const _searchContainerStyle = useMemo(() => ([
         RTL_DIRECTION(rtl, THEME.searchContainer),
-        ...[searchContainerStyle].flat()
-    ]), [rtl, searchContainerStyle, THEME]);
+        ...[searchContainerStyle].flat(), ! searchable && listMode === LIST_MODE.MODAL && {
+            flexDirection: 'row-reverse'
+        }
+    ]), [rtl, listMode, searchable, searchContainerStyle, THEME]);
 
     /**
      * The search text input style.
@@ -1260,6 +1262,7 @@ function Picker({
                 disabledItemContainerStyle={_disabledItemContainerStyle}
                 disabledItemLabelStyle={_disabledItemLabelStyle}
                 categorySelectable={categorySelectable}
+                listMode={listMode}
                 onPress={onPressItem}
                 theme={theme}
                 THEME={THEME}
@@ -1287,6 +1290,7 @@ function Picker({
         _value,
         multiple,
         categorySelectable,
+        listMode,
         onPressItem,
         theme,
         THEME
