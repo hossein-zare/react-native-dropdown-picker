@@ -1,18 +1,18 @@
-import {ComponentType, SetStateAction, Dispatch} from "react";
-import {
-    FlatListProps,
-    LayoutChangeEvent,
-    ModalProps,
-    ScrollViewProps,
-    StyleProp,
-    TextInputProps,
-    TextProps,
-    TextStyle,
-    ViewProps,
-    ViewStyle
-} from "react-native";
-
 declare module "react-native-dropdown-picker" {
+    import type {ComponentType, SetStateAction, Dispatch} from "react";
+    import type {
+        FlatListProps,
+        LayoutChangeEvent,
+        ModalProps,
+        ScrollViewProps,
+        StyleProp,
+        TextInputProps,
+        TextProps,
+        TextStyle,
+        ViewProps,
+        ViewStyle
+    } from "react-native";
+
     export type ValueType = string | number | boolean;
 
     export type ItemType = {
