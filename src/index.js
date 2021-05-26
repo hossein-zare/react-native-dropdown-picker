@@ -639,6 +639,7 @@ class DropDownPicker extends React.Component {
                                     placeholder={this.props.searchablePlaceholder}
                                     placeholderTextColor={this.props.searchablePlaceholderTextColor}
                                     {...searchTextInputProps}
+                                    keyboardAppearance={"dark"}
                                     onChangeText={(text) => {
                                         this.setState({
                                             searchableText: text
