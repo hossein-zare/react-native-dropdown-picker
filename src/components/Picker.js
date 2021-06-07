@@ -525,8 +525,6 @@ function Picker({
         open,
         onPressToggle,
         onPress,
-        onOpen,
-        onClose,
         pickerRef,
         maxHeight,
         pickerHeight,
@@ -632,7 +630,7 @@ function Picker({
         ...[textStyle].flat(),
         ...[! isNull && labelStyle].flat(),
         ...[_placeholderStyle].flat(),
-    ]), [textStyle, _placeholderStyle, labelStyle, THEME]);
+    ]), [textStyle, _placeholderStyle, labelStyle, isNull, THEME]);
 
     /**
      * The arrow icon style.
@@ -904,7 +902,7 @@ function Picker({
      */
     const BadgeSeparatorComponent = useCallback(() => (
         <View style={_badgeSeparatorStyle} />
-    ), [badgeSeparatorStyle]);
+    ), [_badgeSeparatorStyle]);
 
     /**
      * The label container.
@@ -1496,7 +1494,7 @@ function Picker({
                 {_items.length === 0 && _ListEmptyComponent()}
             </ScrollView>
         );
-    }, [renderListItem, __renderListItem, _itemKey, scrollViewProps, _ListEmptyComponent]);
+    }, [__renderListItem, _itemKey, scrollViewProps, _ListEmptyComponent]);
 
     /**
      * The dropdown modal component.
@@ -1509,7 +1507,7 @@ function Picker({
                 {DropDownFlatListComponent}
             </View>
         </Modal>
-    ), [open, SearchComponent, DropDownComponentWrapper, _modalContentContainerStyle, modalProps]);
+    ), [open, SearchComponent, _modalContentContainerStyle, modalProps]);
 
     /**
      * The dropdown component.
