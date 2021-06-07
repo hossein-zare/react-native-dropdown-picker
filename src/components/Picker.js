@@ -10,6 +10,7 @@ import React, {
 
 import {
     View,
+    SafeAreaView,
     TouchableOpacity,
     Text,
     Image,
@@ -1502,10 +1503,10 @@ function Picker({
      */
     const DropDownModalComponent = useMemo(() => (
         <Modal visible={open} presentationStyle="fullScreen" {...modalProps}>
-            <View style={_modalContentContainerStyle}>
+            <SafeAreaView style={_modalContentContainerStyle}>
                 {SearchComponent}
                 {DropDownFlatListComponent}
-            </View>
+            </SafeAreaView>
         </Modal>
     ), [open, SearchComponent, _modalContentContainerStyle, modalProps]);
 
