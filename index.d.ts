@@ -1,18 +1,18 @@
-import {ComponentType, SetStateAction, Dispatch} from "react";
-import {
-    FlatListProps,
-    LayoutChangeEvent,
-    ModalProps,
-    ScrollViewProps,
-    StyleProp,
-    TextInputProps,
-    TextProps,
-    TextStyle,
-    ViewProps,
-    ViewStyle
-} from "react-native";
-
 declare module "react-native-dropdown-picker" {
+    import type {ComponentType, SetStateAction, Dispatch} from "react";
+    import type {
+        FlatListProps,
+        LayoutChangeEvent,
+        ModalProps,
+        ScrollViewProps,
+        StyleProp,
+        TextInputProps,
+        TextProps,
+        TextStyle,
+        ViewProps,
+        ViewStyle
+    } from "react-native";
+
     export type ValueType = string | number | boolean;
 
     export type ItemType = {
@@ -205,9 +205,9 @@ declare module "react-native-dropdown-picker" {
       min?: number;
       max?: number;
       addCustomItem?: boolean;
-      setOpen: (open: boolean) => void;
+      setOpen: Dispatch<SetStateAction<boolean>>;
       setItems?: Dispatch<SetStateAction<any[]>>;
-      setValue: (callback: (state: ValueType | ValueType[] | null) => ValueType | ValueType[] | null) => void;
+      setValue: Dispatch<any>;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
@@ -251,5 +251,5 @@ declare module "react-native-dropdown-picker" {
     const DropDownPicker: ComponentType<DropDownPickerProps> & DropDownPickerInterface;
     export default DropDownPicker;
   }
-
+    
   //TODO: remove uses of the ambiguous "any" and "object" types

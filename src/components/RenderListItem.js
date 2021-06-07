@@ -9,10 +9,6 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import {
-    TouchableOpacity as TouchableOpacityGestureHandler
-} from 'react-native-gesture-handler';
-
 import { LIST_MODE } from '../constants';
 
 function RenderListItem({
@@ -40,7 +36,6 @@ function RenderListItem({
     disabledItemContainerStyle,
     disabledItemLabelStyle,
     categorySelectable,
-    listMode,
     onPress,
     THEME
 }) {
@@ -151,22 +146,16 @@ function RenderListItem({
         }
 
         onPress(item, custom);
-    }, [onPress, parent, categorySelectable, label, value, custom]);
-
-    const _TouchableOpacity = useMemo(() => {
-        if (listMode === LIST_MODE.MODAL)
-            return TouchableOpacity;
-        return TouchableOpacityGestureHandler;
-    }, [listMode]);
+    }, [onPress, parent, categorySelectable, custom]);
 
     return (
-        <_TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable === false || disabled}>
+        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable === false || disabled}>
             {IconComponent}
             <Text style={_listItemLabelStyle}>
                 {label}
             </Text>
             {_TickIconComponent}
-        </_TouchableOpacity>
+        </TouchableOpacity>
     );
 }
 
@@ -186,8 +175,6 @@ const areEqual = (nextProps, prevProps) => {
     if (nextProps.isSelected !== prevProps.isSelected)
         return false;
     if (nextProps.categorySelectable !== prevProps.categorySelectable)
-        return false;
-    if (nextProps.listMode !== prevProps.listMode)
         return false;
     if (nextProps.rtl !== prevProps.rtl)
         return false;

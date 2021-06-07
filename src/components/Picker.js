@@ -10,6 +10,7 @@ import React, {
 
 import {
     View,
+    SafeAreaView,
     TouchableOpacity,
     Text,
     Image,
@@ -525,8 +526,6 @@ function Picker({
         open,
         onPressToggle,
         onPress,
-        onOpen,
-        onClose,
         pickerRef,
         maxHeight,
         pickerHeight,
@@ -632,7 +631,7 @@ function Picker({
         ...[textStyle].flat(),
         ...[! isNull && labelStyle].flat(),
         ...[_placeholderStyle].flat(),
-    ]), [textStyle, _placeholderStyle, labelStyle, THEME]);
+    ]), [textStyle, _placeholderStyle, labelStyle, isNull, THEME]);
 
     /**
      * The arrow icon style.
@@ -904,7 +903,7 @@ function Picker({
      */
     const BadgeSeparatorComponent = useCallback(() => (
         <View style={_badgeSeparatorStyle} />
-    ), [badgeSeparatorStyle]);
+    ), [_badgeSeparatorStyle]);
 
     /**
      * The label container.
@@ -1262,7 +1261,6 @@ function Picker({
                 disabledItemContainerStyle={_disabledItemContainerStyle}
                 disabledItemLabelStyle={_disabledItemLabelStyle}
                 categorySelectable={categorySelectable}
-                listMode={listMode}
                 onPress={onPressItem}
                 theme={theme}
                 THEME={THEME}
@@ -1290,7 +1288,6 @@ function Picker({
         _value,
         multiple,
         categorySelectable,
-        listMode,
         onPressItem,
         theme,
         THEME
@@ -1498,7 +1495,7 @@ function Picker({
                 {_items.length === 0 && _ListEmptyComponent()}
             </ScrollView>
         );
-    }, [renderListItem, __renderListItem, _itemKey, scrollViewProps, _ListEmptyComponent]);
+    }, [__renderListItem, _itemKey, scrollViewProps, _ListEmptyComponent]);
 
     /**
      * The dropdown modal component.
@@ -1506,12 +1503,12 @@ function Picker({
      */
     const DropDownModalComponent = useMemo(() => (
         <Modal visible={open} presentationStyle="fullScreen" {...modalProps}>
-            <View style={_modalContentContainerStyle}>
+            <SafeAreaView style={_modalContentContainerStyle}>
                 {SearchComponent}
                 {DropDownFlatListComponent}
-            </View>
+            </SafeAreaView>
         </Modal>
-    ), [open, SearchComponent, DropDownComponentWrapper, _modalContentContainerStyle, modalProps]);
+    ), [open, SearchComponent, _modalContentContainerStyle, modalProps]);
 
     /**
      * The dropdown component.
