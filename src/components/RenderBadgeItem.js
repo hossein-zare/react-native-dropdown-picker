@@ -5,9 +5,8 @@ import React, {
 import {
     View,
     Text,
+    TouchableOpacity
 } from 'react-native';
-
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { RTL_DIRECTION, RTL_STYLE } from '../constants';
 

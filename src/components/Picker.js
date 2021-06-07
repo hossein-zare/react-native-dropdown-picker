@@ -1262,7 +1262,6 @@ function Picker({
                 disabledItemContainerStyle={_disabledItemContainerStyle}
                 disabledItemLabelStyle={_disabledItemLabelStyle}
                 categorySelectable={categorySelectable}
-                listMode={listMode}
                 onPress={onPressItem}
                 theme={theme}
                 THEME={THEME}
@@ -1290,7 +1289,6 @@ function Picker({
         _value,
         multiple,
         categorySelectable,
-        listMode,
         onPressItem,
         theme,
         THEME
