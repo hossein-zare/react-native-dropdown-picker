@@ -251,7 +251,7 @@ function Picker({
         } else {
             initialization.current = true;
         }
-    }, [value]);
+    }, [value, items]);
 
     /**
      * dropDownDirection changed.
