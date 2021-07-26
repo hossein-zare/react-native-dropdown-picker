@@ -537,7 +537,7 @@ function Picker({
      * onLayout.
      */
     const __onLayout = useCallback((e) => {
-        if(Platform !== "web")
+        if(Platform.OS !== "web")
             e.persist();
 
         onLayout(e);
