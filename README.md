@@ -32,7 +32,7 @@ PRs should be made against and merged into the [`dev-5.x`](https://github.com/ho
 
 ### Release
 
-Releases are currently made from teh [`5.x`](https://github.com/hossein-zare/react-native-dropdown-picker/tree/5.x) branch.
+Releases are currently made from the [`5.x`](https://github.com/hossein-zare/react-native-dropdown-picker/tree/5.x) branch.
 
 ## Release Process
 
