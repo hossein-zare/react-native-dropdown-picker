@@ -192,7 +192,7 @@ class DropDownPicker extends React.Component {
 
         this.setState({
             isVisible: !this.state.isVisible,
-            direction: this.props.dropDownDirection || lowestPointOfDropdown < screenHeight ? 'top' : 'bottom',
+            direction: this.props.dropDownDirection ? this.props.dropDownDirection : lowestPointOfDropdown < screenHeight ? 'top' : 'bottom',
         }, () => {
             const isVisible = this.state.isVisible;
             if (isVisible) {
