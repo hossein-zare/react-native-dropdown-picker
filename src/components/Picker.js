@@ -311,7 +311,7 @@ function Picker({
         const children = items.filter(item => item[_schema.parent] !== undefined && item[_schema.parent] !== null);
 
         children.forEach((child) => {
-            const index = items.findIndex(item => item[_schema.parent] === child[_schema.parent] || item[_schema.value] === child[_schema.parent]);
+            const index = sortedItems.findIndex(item => item[_schema.parent] === child[_schema.parent] || item[_schema.value] === child[_schema.parent]);
 
             if (index > -1) {
                 sortedItems.splice(index + 1, 0, child);
