@@ -188,6 +188,7 @@ declare module "react-native-dropdown-picker" {
       showArrowIcon?: boolean;
       showBadgeDot?: boolean;
       showTickIcon?: boolean;
+      stickyHeader?: boolean;
       ArrowUpIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
       ArrowDownIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
       TickIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
