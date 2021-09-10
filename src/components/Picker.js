@@ -545,7 +545,6 @@ function Picker({
         open,
         onPressToggle,
         onPress,
-        pickerRef,
         maxHeight,
         pickerHeight,
         bottomOffset,
