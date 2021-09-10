@@ -24,7 +24,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-const {height: WINDOW_HEIGHT} = Dimensions.get('window');
+const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 
 import Colors from '../constants/colors';
 import {
