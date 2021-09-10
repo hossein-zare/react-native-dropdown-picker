@@ -24,7 +24,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-const {height: WINDOW_HEIGHT} = Dimensions.get('window');
+const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 
 import Colors from '../constants/colors';
 import {
@@ -113,6 +113,7 @@ function Picker({
     showArrowIcon = true,
     showBadgeDot = true,
     showTickIcon = true,
+    stickyHeader = false,
     ArrowUpIconComponent = null,
     ArrowDownIconComponent = null,
     TickIconComponent = null,
@@ -311,7 +312,7 @@ function Picker({
         const children = items.filter(item => item[_schema.parent] !== undefined && item[_schema.parent] !== null);
 
         children.forEach((child) => {
-            const index = items.findIndex(item => item[_schema.parent] === child[_schema.parent] || item[_schema.value] === child[_schema.parent]);
+            const index = sortedItems.findIndex(item => item[_schema.parent] === child[_schema.parent] || item[_schema.value] === child[_schema.parent]);
 
             if (index > -1) {
                 sortedItems.splice(index + 1, 0, child);
@@ -319,7 +320,25 @@ function Picker({
         });
 
         return sortedItems;
-    }, [items, _schema])
+    }, [items, _schema]);
+
+    /**
+     * The indices of all parent items.
+     * @returns {object}
+     */
+     const stickyHeaderIndices = useMemo(() => {
+        const stickyHeaderIndices = [];
+        if (stickyHeader) {
+            const parents = sortedItems.filter(item => item[_schema.parent] === undefined || item[_schema.parent] === null);
+            parents.forEach((parent) => {
+                const index = sortedItems.findIndex(item => item[_schema.value] === parent[_schema.value]);
+                if (index > -1) stickyHeaderIndices.push(index);
+            })
+
+        }
+        return stickyHeaderIndices;
+
+    }, [stickyHeader, sortedItems])
 
     /**
      * The items.
@@ -526,7 +545,6 @@ function Picker({
         open,
         onPressToggle,
         onPress,
-        pickerRef,
         maxHeight,
         pickerHeight,
         bottomOffset,
@@ -982,7 +1000,8 @@ function Picker({
      */
     const _listItemContainerStyle = useMemo(() => ([
         RTL_DIRECTION(rtl, THEME.listItemContainer),
-        ...[listItemContainerStyle].flat()
+        ...[listItemContainerStyle].flat(),
+        stickyHeader && {backgroundColor: THEME.style.backgroundColor},
     ]), [rtl, listItemContainerStyle, THEME]);
 
     /**
@@ -1465,6 +1484,7 @@ function Picker({
             keyExtractor={keyExtractor}
             extraData={_value}
             ItemSeparatorComponent={ItemSeparatorComponent}
+            stickyHeaderIndices={stickyHeaderIndices}
             {...flatListProps}
         />
     ), [
@@ -1484,7 +1504,7 @@ function Picker({
      */
     const DropDownScrollViewComponent = useMemo(() => {
         return (
-            <ScrollView nestedScrollEnabled={true} {...scrollViewProps}>
+            <ScrollView nestedScrollEnabled={true} stickyHeaderIndices={stickyHeaderIndices} {...scrollViewProps} >
                 {_items.map((item, index) => { 
                     return (
                         <Fragment key={item[_itemKey]}>
