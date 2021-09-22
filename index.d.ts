@@ -22,6 +22,7 @@ declare module "react-native-dropdown-picker" {
       parent?: ValueType;
       selectable?: boolean;
       disabled?: boolean;
+      testID?: string;
     };
 
     export type ModeType  = "DEFAULT" | "SIMPLE" | "BADGE";
