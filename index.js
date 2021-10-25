@@ -1,4 +1,4 @@
-import { MODE, LIST_MODE, DROPDOWN_DIRECTION, LANGUAGE, TRANSLATIONS, HELPERS } from './src/constants';
+import { MODE, LIST_MODE, DROPDOWN_DIRECTION, LANGUAGE, TRANSLATIONS } from './src/constants';
 import THEMES from './src/themes';
 import Picker from './src/components/Picker';
 
@@ -39,7 +39,5 @@ Picker.setTheme = (name) => {
 Picker.addTheme = (name, theme) => {
     Picker.THEMES[name] = theme;
 }
-
-Picker.HELPERS = HELPERS;
 
 export default Picker;

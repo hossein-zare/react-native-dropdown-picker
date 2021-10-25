@@ -127,15 +127,3 @@ export const ASCII_CODE = (str) => {
 
     return chr;
 }
-
-export const HELPERS = {
-    GET_SELECTED_ITEM: (items, value, key = "value") => {
-        return items.find(item => item[key] === value);
-    },
-    GET_SELECTED_ITEMS: (items, values, key = "value") => {
-        if (values === null)
-            return [];
-
-        return items.filter(item => values.includes(item[key]));
-    }
-}
