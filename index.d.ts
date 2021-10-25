@@ -10,6 +10,7 @@ declare module "react-native-dropdown-picker" {
         TextProps,
         TextStyle,
         ViewProps,
+        TouchableOpacityProps,
         ViewStyle
     } from "react-native";
 
@@ -203,8 +204,8 @@ declare module "react-native-dropdown-picker" {
       ActivityIndicatorComponent?: (props: ActivityIndicatorComponentPropsInterface) => JSX.Element;
       activityIndicatorSize?: number;
       activityIndicatorColor?: string;
-      props?: ViewProps;
-      itemProps?: ViewProps;
+      props?: TouchableOpacityProps;
+      itemProps?: TouchableOpacityProps;
       modalProps?: ModalProps;
       flatListProps?: FlatListProps<ItemType>;
       scrollViewProps?: ScrollViewProps;
