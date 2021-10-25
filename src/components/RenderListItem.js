@@ -133,6 +133,7 @@ function RenderListItem({
     const _listItemLabelStyle = useMemo(() => ([
         ...[listItemLabelStyle].flat(),
         ...[_listParentChildLabelStyle].flat(),
+        ...[item?.labelStyle ?? {}].flat(),
         ...[_selectedItemLabelStyle].flat(),
         ...[_customItemLabelStyle].flat(),
         ...[_disabledItemLabelStyle].flat(),
