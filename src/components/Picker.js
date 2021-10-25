@@ -1548,6 +1548,13 @@ function Picker({
         _ActivityIndicatorComponent,
         loading
     ]);
+
+    /**
+     * onRequestCloseModal.
+     */
+    const onRequestCloseModal = useCallback(() => {
+        setOpen(false);
+    }, []);
     
     /**
      * The dropdown flatlist component.
@@ -1604,7 +1611,7 @@ function Picker({
      * @returns {JSX.Element}
      */
     const DropDownModalComponent = useMemo(() => (
-        <Modal visible={open} presentationStyle="fullScreen" {...modalProps}>
+        <Modal visible={open} presentationStyle="fullScreen" onRequestClose={onRequestCloseModal} {...modalProps}>
             <SafeAreaView style={_modalContentContainerStyle}>
                 {SearchComponent}
                 {DropDownFlatListComponent}
