@@ -52,6 +52,9 @@ declare module "react-native-dropdown-picker" {
       parent: string;
       selectable: string;
       disabled: string;
+      testID: string;
+      containerStyle: string;
+      labelStyle: string;
     }
 
     export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR";
