@@ -12,6 +12,9 @@ export const SCHEMA = {
     parent: 'parent',
     selectable: 'selectable',
     disabled: 'disabled',
+    testID: 'testID',
+    containerStyle: 'containerStyle',
+    labelStyle: 'labelStyle'
 }
 
 export const MODE = {
