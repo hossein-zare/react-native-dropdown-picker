@@ -86,6 +86,7 @@ declare module "react-native-dropdown-picker" {
       parent: ValueType;
       selectable: boolean;
       disabled: boolean;
+      props: ViewProps;
       custom: boolean;
       isSelected: boolean;
       IconComponent: () => JSX.Element;
