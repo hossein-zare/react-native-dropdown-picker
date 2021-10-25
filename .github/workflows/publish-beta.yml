@@ -1,0 +1,30 @@
+name: "🚀 publish-beta"
+
+on:
+  pull_request:
+    branches:
+      - 5.x
+    types: [closed]
+
+jobs:
+  publish-npm:
+    if: github.event.pull_request.merged == true && github.event.pull_request.title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: deepakputhraya/action-pr-title@master
+        with:
+          regex: "\bbeta\b"
+      # - id: get_version
+      #   run:  echo "::set-output name=version::`echo "${{ github.event.pull_request.title }}" | sed -n 's/#beta:\s\{0,1\}\(.*\),.*/\1/p'`"
+      - name: 'Change version'
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: ${{ github.event.pull_request.title }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
