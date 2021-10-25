@@ -107,6 +107,8 @@ declare module "react-native-dropdown-picker" {
       selectedItemLabelStyle: StyleProp<TextStyle>;
       disabledItemContainerStyle: StyleProp<ViewStyle>;
       disabledItemLabelStyle: StyleProp<TextStyle>;
+      containerStyle: StyleProp<ViewStyle>;
+      labelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
       setPosition: (value: ValueType, y: number) => void;
@@ -238,9 +240,6 @@ declare module "react-native-dropdown-picker" {
       rtl?: boolean;
     };
 
-    type GetSelectedItemOutputType = ItemType | undefined | null;
-    type GetSelectedItemsOutputType = ItemType[] | undefined;
-
     interface DropDownPickerInterface {
       MODE: ModeInterface;
       LIST_MODE: ListModeInterface;
@@ -248,10 +247,6 @@ declare module "react-native-dropdown-picker" {
       SCHEMA: SchemaInterface;
       LANGUAGE: LanguageType;
       THEMES: ThemeNameType;
-      HELPER: {
-        GET_SELECTED_ITEM: (items: ItemType[], value: string | number | null, key?: string) => GetSelectedItemOutputType;
-        GET_SELECTED_ITEMS: (items: ItemType[], values: string[] | number[] | null, key?: string) => GetSelectedItemsOutputType;
-      };
       setMode: (mode: string) => void;
       setListMode: (mode: string) => void;
       setDropDownDirection: (direction: DropDownDirectionType) => void;

@@ -1329,9 +1329,9 @@ function Picker({
                 item={item}
                 label={item[_schema.label]}
                 value={item[_schema.value]}
-                parent={item[_schema.parent] ?? null}
-                selectable={item[_schema.selectable] ?? null}
-                disabled={item[_schema.disabled] ?? false}
+                parent={item?.[_schema.parent] ?? null}
+                selectable={item?.[_schema.selectable] ?? null}
+                disabled={item?.[_schema.disabled] ?? false}
                 custom={item.custom ?? false}
                 props={itemProps}
                 isSelected={isSelected}
@@ -1349,6 +1349,8 @@ function Picker({
                 selectedItemLabelStyle={_selectedItemLabelStyle}
                 disabledItemContainerStyle={_disabledItemContainerStyle}
                 disabledItemLabelStyle={_disabledItemLabelStyle}
+                labelStyle={item?.[_schema.labelStyle] ?? {}}
+                containerStyle={item?.[_schema.containerStyle] ?? {}}
                 categorySelectable={categorySelectable}
                 onPress={onPressItem}
                 setPosition={setItemPosition}

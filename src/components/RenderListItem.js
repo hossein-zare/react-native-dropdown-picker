@@ -36,6 +36,8 @@ function RenderListItem({
     selectedItemLabelStyle,
     disabledItemContainerStyle,
     disabledItemLabelStyle,
+    containerStyle,
+    labelStyle,
     categorySelectable,
     onPress,
     setPosition,
@@ -89,11 +91,11 @@ function RenderListItem({
     const _listItemContainerStyle = useMemo(() => ([
         ...[listItemContainerStyle].flat(),
         ...[_listParentChildContainerStyle].flat(),
-        ...[item?.containerStyle ?? {}].flat(),
+        ...[containerStyle].flat(),
         ...[_selectedItemContainerStyle].flat(),
         ...[_customItemContainerStyle].flat(),
         ...[_disabledItemContainerStyle].flat(),
-    ]), [listItemContainerStyle, _listParentChildContainerStyle, _selectedItemContainerStyle, _customItemContainerStyle, _disabledItemContainerStyle]);
+    ]), [listItemContainerStyle, _listParentChildContainerStyle, _selectedItemContainerStyle, _customItemContainerStyle, _disabledItemContainerStyle, containerStyle]);
 
     /**
      * The list category label style.
@@ -135,11 +137,11 @@ function RenderListItem({
     const _listItemLabelStyle = useMemo(() => ([
         ...[listItemLabelStyle].flat(),
         ...[_listParentChildLabelStyle].flat(),
-        ...[item?.labelStyle ?? {}].flat(),
+        ...[labelStyle].flat(),
         ...[_selectedItemLabelStyle].flat(),
         ...[_customItemLabelStyle].flat(),
         ...[_disabledItemLabelStyle].flat(),
-    ]), [listItemLabelStyle, _listParentChildLabelStyle, _selectedItemLabelStyle, _customItemLabelStyle, _disabledItemLabelStyle]);
+    ]), [listItemLabelStyle, _listParentChildLabelStyle, _selectedItemLabelStyle, _customItemLabelStyle, _disabledItemLabelStyle, labelStyle]);
 
     /**
      * onPress.
