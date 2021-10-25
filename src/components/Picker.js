@@ -278,30 +278,6 @@ function Picker({
     }, [open]);
 
     /**
-     * Scroll the the first selected item.
-     */
-    const scroll = useCallback(() => {
-        setTimeout(() => {
-            if ((scrollViewRef.current || flatListRef.current)) {
-                const isArray = Array.isArray(valueRef.current);
-
-                if (valueRef.current === null || (isArray && valueRef.current.length === 0))
-                    return;
-
-                const value = isArray ? valueRef.current[0] : valueRef.current;
-
-                if (itemPositionsRef.current.hasOwnProperty(value)) {
-                    (scrollViewRef.current ?? flatListRef.current).scrollTo({
-                        x: 0,
-                        y: itemPositionsRef.current[value],
-                        animated: true,
-                    });
-                }
-            }
-        }, 200);
-    }, []);
-
-    /**
      * dropDownDirection changed.
      */
     useEffect(() => {
@@ -368,6 +344,48 @@ function Picker({
 
         return sortedItems;
     }, [items, _schema]);
+
+    /**
+     * Scroll the the first selected item.
+     */
+    const scroll = useCallback(() => {
+        setTimeout(() => {
+            if ((scrollViewRef.current || flatListRef.current)) {
+                const isArray = Array.isArray(valueRef.current);
+
+                if (valueRef.current === null || (isArray && valueRef.current.length === 0))
+                    return;
+
+                const value = isArray ? valueRef.current[0] : valueRef.current;
+
+                if (scrollViewRef.current && itemPositionsRef.current.hasOwnProperty(value)) {
+                    scrollViewRef.current?.scrollTo?.({
+                        x: 0,
+                        y: itemPositionsRef.current[value],
+                        animated: true,
+                    });
+                } else {
+                    const index = sortedItems.findIndex(item => item[_schema["value"]] === value);
+                    
+                    if (index > -1)
+                        flatListRef.current?.scrollToIndex?.({
+                            index,
+                            animated: true,
+                        });
+                }
+            }
+        }, 200);
+    }, [sortedItems]);
+
+    /**
+     * onScrollToIndexFailed.
+     */
+     const onScrollToIndexFailed = useCallback(({averageItemLength, index}) => {
+        flatListRef.current.scrollToOffset?.({
+            offset: averageItemLength * index,
+            animated: true
+        });
+    }, []);
 
     /**
      * The indices of all parent items.
@@ -1369,9 +1387,10 @@ function Picker({
      * @param {string|number|boolean} value
      * @param {number} y
      */
-    const setItemPosition = useCallback(autoScroll && ((value, y) => {
-        itemPositionsRef.current[value] = y;
-    }), []);
+    const setItemPosition = useCallback((value, y) => {
+        if (autoScroll && listMode === LIST_MODE.SCROLLVIEW)
+            itemPositionsRef.current[value] = y;
+    }, []);
 
     /**
      * The item separator.
@@ -1546,6 +1565,7 @@ function Picker({
             extraData={_value}
             ItemSeparatorComponent={ItemSeparatorComponent}
             stickyHeaderIndices={stickyHeaderIndices}
+            onScrollToIndexFailed={onScrollToIndexFailed}
             {...flatListProps}
         />
     ), [
