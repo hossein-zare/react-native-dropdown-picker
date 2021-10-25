@@ -166,5 +166,9 @@ export default StyleSheet.create({
     },
     selectedItemLabel: {
 
+    },
+    modalTitle: {
+        fontSize: 18,
+        color: Colors.HEATHER
     }
 });
