@@ -92,10 +92,12 @@ function Picker({
     listMessageTextStyle = {},
     itemSeparatorStyle = {},
     badgeSeparatorStyle = {},
+    modalTitleStyle = {},
     listMode = LIST_MODE.DEFAULT,
     categorySelectable = true,
     searchable = false,
     searchPlaceholder = null,
+    modalTitle,
     schema = {},
     language = LANGUAGE.DEFAULT,
     translation = {},
@@ -1103,10 +1105,10 @@ function Picker({
      */
     const _searchContainerStyle = useMemo(() => ([
         RTL_DIRECTION(rtl, THEME.searchContainer),
-        ...[searchContainerStyle].flat(), ! searchable && listMode === LIST_MODE.MODAL && {
+        ...[searchContainerStyle].flat(), ! searchable && ! modalTitle && listMode === LIST_MODE.MODAL && {
             flexDirection: 'row-reverse'
         }
-    ]), [rtl, listMode, searchable, searchContainerStyle, THEME]);
+    ]), [rtl, listMode, searchable, modalTitle, searchContainerStyle, THEME]);
 
     /**
      * The search text input style.
@@ -1462,13 +1464,23 @@ function Picker({
     }, [listMode, searchable]);
 
     /**
+     * modalTitleStyle.
+     * @returns {object}
+     */
+     const _modalTitleStyle = useMemo(() => ([
+        THEME.modalTitle,
+        ...[modalTitleStyle].flat(),
+        ...[textStyle].flat(),
+    ]), [textStyle, modalTitleStyle, THEME]);
+
+    /**
      * The search component.
      * @returns {JSX.Element}
      */
     const SearchComponent = useMemo(() => isSearchComponentVisible && (
         <View style={_searchContainerStyle}>
             {
-                searchable && (
+                searchable ? (
                     <TextInput
                         value={searchText}
                         onChangeText={_onChangeSearchText}
@@ -1477,14 +1489,23 @@ function Picker({
                         placeholderTextColor={searchPlaceholderTextColor}
                         {...searchTextInputProps}
                     />
+                ) : listMode === LIST_MODE.MODAL && (
+                    <View style={styles.flex}>
+                        <Text style={_modalTitleStyle}>
+                            {modalTitle}
+                        </Text>
+                    </View>
                 )
             }
             {_CloseIconComponent}
         </View>
     ), [
         searchable,
+        listMode,
+        modalTitle,
         isSearchComponentVisible,
         _onChangeSearchText,
+        _modalTitleStyle,
         _searchContainerStyle,
         _searchTextInputStyle,
         _searchPlaceholder,
