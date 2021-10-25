@@ -24,8 +24,8 @@ declare module "react-native-dropdown-picker" {
       selectable?: boolean;
       disabled?: boolean;
       testID?: string;
-      containerStyle?: ViewStyle;
-      labelStyle?: TextStyle;
+      containerStyle?: StyleProp<ViewStyle>;
+      labelStyle?: StyleProp<TextStyle>;
     };
 
     export type ModeType  = "DEFAULT" | "SIMPLE" | "BADGE";
@@ -210,6 +210,8 @@ declare module "react-native-dropdown-picker" {
       flatListProps?: FlatListProps<ItemType>;
       scrollViewProps?: ScrollViewProps;
       searchTextInputProps?: TextInputProps;
+      modalTitle?: string;
+      modalTitleStyle?: StyleProp<TextStyle>;
       loading?: boolean;
       min?: number;
       max?: number;
