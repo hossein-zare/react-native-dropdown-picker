@@ -123,6 +123,7 @@ function Picker({
     activityIndicatorSize = 30,
     activityIndicatorColor = Colors.GREY,
     props = {},
+    itemProps = {},
     modalProps = {},
     flatListProps = {},
     scrollViewProps = {},
@@ -1265,6 +1266,7 @@ function Picker({
                 selectable={item[_schema.selectable] ?? null}
                 disabled={item[_schema.disabled] ?? false}
                 custom={item.custom ?? false}
+                props={itemProps}
                 isSelected={isSelected}
                 IconComponent={IconComponent}
                 TickIconComponent={_TickIconComponent}
@@ -1307,6 +1309,7 @@ function Picker({
         _schema,
         _value,
         multiple,
+        itemProps,
         categorySelectable,
         onPressItem,
         theme,

@@ -19,6 +19,7 @@ function RenderListItem({
     parent,
     selectable,
     disabled,
+    props,
     custom,
     isSelected,
     IconComponent,
@@ -149,7 +150,7 @@ function RenderListItem({
     }, [onPress, parent, categorySelectable, custom]);
 
     return (
-        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable === false || disabled} testID={item.testID}>
+        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} {...props} disabled={selectable === false || disabled} testID={item.testID}>
             {IconComponent}
             <Text style={_listItemLabelStyle}>
                 {label}
