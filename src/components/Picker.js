@@ -1133,6 +1133,7 @@ function Picker({
      */
     const _listMessageTextStyle = useMemo(() => ([
         THEME.listMessageText,
+        ...[textStyle].flat(),
         ...[listMessageTextStyle].flat()
     ]), [listMessageTextStyle, THEME]);
     
