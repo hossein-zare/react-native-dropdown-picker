@@ -19,6 +19,7 @@ function RenderListItem({
     parent,
     selectable,
     disabled,
+    props,
     custom,
     isSelected,
     IconComponent,
@@ -37,6 +38,7 @@ function RenderListItem({
     disabledItemLabelStyle,
     categorySelectable,
     onPress,
+    setPosition,
     THEME
 }) {
     /**
@@ -87,6 +89,7 @@ function RenderListItem({
     const _listItemContainerStyle = useMemo(() => ([
         ...[listItemContainerStyle].flat(),
         ...[_listParentChildContainerStyle].flat(),
+        ...[item?.containerStyle ?? {}].flat(),
         ...[_selectedItemContainerStyle].flat(),
         ...[_customItemContainerStyle].flat(),
         ...[_disabledItemContainerStyle].flat(),
@@ -132,6 +135,7 @@ function RenderListItem({
     const _listItemLabelStyle = useMemo(() => ([
         ...[listItemLabelStyle].flat(),
         ...[_listParentChildLabelStyle].flat(),
+        ...[item?.labelStyle ?? {}].flat(),
         ...[_selectedItemLabelStyle].flat(),
         ...[_customItemLabelStyle].flat(),
         ...[_disabledItemLabelStyle].flat(),
@@ -148,8 +152,15 @@ function RenderListItem({
         onPress(item, custom);
     }, [onPress, parent, categorySelectable, custom]);
 
+    /**
+     * onLayout.
+     */
+    const onLayout = useCallback(({nativeEvent: {layout: {y}}}) => {
+        setPosition(value, y);
+    }, [value]);
+
     return (
-        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} disabled={selectable === false || disabled} testID={item.testID}>
+        <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} onLayout={onLayout} {...props} disabled={selectable === false || disabled} testID={item.testID}>
             {IconComponent}
             <Text style={_listItemLabelStyle}>
                 {label}

@@ -114,6 +114,7 @@ function Picker({
     showBadgeDot = true,
     showTickIcon = true,
     stickyHeader = false,
+    autoScroll = false,
     ArrowUpIconComponent = null,
     ArrowDownIconComponent = null,
     TickIconComponent = null,
@@ -123,6 +124,7 @@ function Picker({
     activityIndicatorSize = 30,
     activityIndicatorColor = Colors.GREY,
     props = {},
+    itemProps = {},
     modalProps = {},
     flatListProps = {},
     scrollViewProps = {},
@@ -153,9 +155,14 @@ function Picker({
     const [searchText, setSearchText] = useState('');
     const [pickerHeight, setPickerHeight] = useState(0);
     const [direction, setDirection] = useState(GET_DROPDOWN_DIRECTION(dropDownDirection));
+
     const badgeFlatListRef = useRef();
     const pickerRef = useRef(null);
-    const initialization = useRef(false);
+    const initializationRef = useRef(false);
+    const itemPositionsRef = useRef({});
+    const flatListRef = useRef();
+    const scrollViewRef = useRef();
+    const valueRef = useRef(null);
 
     const THEME = useMemo(() => THEMES[theme].default, [theme]);
     const ICON = useMemo(() => THEMES[theme].ICONS, [theme])
@@ -247,12 +254,52 @@ function Picker({
             setNecessaryItems(state);
         }
 
-        if (initialization.current) {
+        if (initializationRef.current) {
             onChangeValue(value);
         } else {
-            initialization.current = true;
+            initializationRef.current = true;
         }
     }, [value, items]);
+
+    /**
+     * Keep a ref of the value.
+     */
+    useEffect(() => {
+        valueRef.current = value;
+    }, [value]);
+
+    /**
+     * Automatically scroll to the first selected item.
+     */
+    useEffect(() => {
+        if (open && autoScroll) {
+            scroll();
+        }
+    }, [open]);
+
+    /**
+     * Scroll the the first selected item.
+     */
+    const scroll = useCallback(() => {
+        setTimeout(() => {
+            if ((scrollViewRef.current || flatListRef.current)) {
+                const isArray = Array.isArray(valueRef.current);
+
+                if (valueRef.current === null || (isArray && valueRef.current.length === 0))
+                    return;
+
+                const value = isArray ? valueRef.current[0] : valueRef.current;
+
+                if (itemPositionsRef.current.hasOwnProperty(value)) {
+                    (scrollViewRef.current ?? flatListRef.current).scrollTo({
+                        x: 0,
+                        y: itemPositionsRef.current[value],
+                        animated: true,
+                    });
+                }
+            }
+        }, 200);
+    }, []);
 
     /**
      * dropDownDirection changed.
@@ -1265,6 +1312,7 @@ function Picker({
                 selectable={item[_schema.selectable] ?? null}
                 disabled={item[_schema.disabled] ?? false}
                 custom={item.custom ?? false}
+                props={itemProps}
                 isSelected={isSelected}
                 IconComponent={IconComponent}
                 TickIconComponent={_TickIconComponent}
@@ -1282,6 +1330,7 @@ function Picker({
                 disabledItemLabelStyle={_disabledItemLabelStyle}
                 categorySelectable={categorySelectable}
                 onPress={onPressItem}
+                setPosition={setItemPosition}
                 theme={theme}
                 THEME={THEME}
             />
@@ -1307,11 +1356,21 @@ function Picker({
         _schema,
         _value,
         multiple,
+        itemProps,
         categorySelectable,
         onPressItem,
         theme,
         THEME
     ]);
+
+    /**
+     * Set item position.
+     * @param {string|number|boolean} value
+     * @param {number} y
+     */
+    const setItemPosition = useCallback(autoScroll && ((value, y) => {
+        itemPositionsRef.current[value] = y;
+    }), []);
 
     /**
      * The item separator.
@@ -1476,6 +1535,7 @@ function Picker({
      */
     const DropDownFlatListComponent = useMemo(() => (
         <FlatList
+            ref={flatListRef}
             style={styles.flex}
             contentContainerStyle={THEME.flatListContentContainer}
             ListEmptyComponent={_ListEmptyComponent}
@@ -1504,7 +1564,7 @@ function Picker({
      */
     const DropDownScrollViewComponent = useMemo(() => {
         return (
-            <ScrollView nestedScrollEnabled={true} stickyHeaderIndices={stickyHeaderIndices} {...scrollViewProps} >
+            <ScrollView ref={scrollViewRef} nestedScrollEnabled={true} stickyHeaderIndices={stickyHeaderIndices} {...scrollViewProps}>
                 {_items.map((item, index) => { 
                     return (
                         <Fragment key={item[_itemKey]}>

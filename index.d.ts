@@ -23,6 +23,8 @@ declare module "react-native-dropdown-picker" {
       selectable?: boolean;
       disabled?: boolean;
       testID?: string;
+      containerStyle?: ViewStyle;
+      labelStyle?: TextStyle;
     };
 
     export type ModeType  = "DEFAULT" | "SIMPLE" | "BADGE";
@@ -84,6 +86,7 @@ declare module "react-native-dropdown-picker" {
       parent: ValueType;
       selectable: boolean;
       disabled: boolean;
+      props: ViewProps;
       custom: boolean;
       isSelected: boolean;
       IconComponent: () => JSX.Element;
@@ -102,6 +105,7 @@ declare module "react-native-dropdown-picker" {
       disabledItemLabelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
+      setPosition: (value: ValueType, y: number) => void;
       theme: ThemeNameType;
       THEME: ThemeType;
     }
@@ -190,6 +194,7 @@ declare module "react-native-dropdown-picker" {
       showBadgeDot?: boolean;
       showTickIcon?: boolean;
       stickyHeader?: boolean;
+      autoScroll?: boolean;
       ArrowUpIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
       ArrowDownIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
       TickIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
@@ -199,6 +204,7 @@ declare module "react-native-dropdown-picker" {
       activityIndicatorSize?: number;
       activityIndicatorColor?: string;
       props?: ViewProps;
+      itemProps?: ViewProps;
       modalProps?: ModalProps;
       flatListProps?: FlatListProps<ItemType>;
       scrollViewProps?: ScrollViewProps;
