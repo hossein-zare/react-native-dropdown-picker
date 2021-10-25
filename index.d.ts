@@ -134,7 +134,7 @@ declare module "react-native-dropdown-picker" {
       open: boolean;
       placeholder?: string;
       closeAfterSelecting?: boolean;
-      labelProps?: StyleProp<TextProps>;
+      labelProps?: TextProps;
       disabled?: boolean;
       disabledStyle?: StyleProp<ViewStyle>;
       placeholderStyle?: StyleProp<TextStyle>;
