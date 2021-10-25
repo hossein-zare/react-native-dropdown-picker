@@ -88,6 +88,7 @@ function RenderListItem({
     const _listItemContainerStyle = useMemo(() => ([
         ...[listItemContainerStyle].flat(),
         ...[_listParentChildContainerStyle].flat(),
+        ...[item?.containerStyle ?? {}].flat(),
         ...[_selectedItemContainerStyle].flat(),
         ...[_customItemContainerStyle].flat(),
         ...[_disabledItemContainerStyle].flat(),
