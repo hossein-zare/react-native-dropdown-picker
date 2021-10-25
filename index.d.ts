@@ -105,6 +105,7 @@ declare module "react-native-dropdown-picker" {
       disabledItemLabelStyle: StyleProp<TextStyle>;
       categorySelectable: boolean;
       onPress: () => void;
+      setPosition: (value: ValueType, y: number) => void;
       theme: ThemeNameType;
       THEME: ThemeType;
     }
@@ -193,6 +194,7 @@ declare module "react-native-dropdown-picker" {
       showBadgeDot?: boolean;
       showTickIcon?: boolean;
       stickyHeader?: boolean;
+      autoScroll?: boolean;
       ArrowUpIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
       ArrowDownIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
       TickIconComponent?: (props: {style: StyleProp<ViewStyle>}) => JSX.Element;
