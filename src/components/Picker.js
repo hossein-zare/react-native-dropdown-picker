@@ -151,7 +151,8 @@ function Picker({
     rtl = false,
     dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
     disableLocalSearch = false,
-    theme = THEMES.DEFAULT
+    theme = THEMES.DEFAULT,
+    testID = {testID}
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -1686,7 +1687,7 @@ function Picker({
 
     return (
         <View style={_containerStyle} {...containerProps}>
-            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled}>
+            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled} testID={testID}>
                 {_BodyComponent}
                 {_ArrowComponent}
             </TouchableOpacity>
