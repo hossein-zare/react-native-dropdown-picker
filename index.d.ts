@@ -238,7 +238,7 @@ declare module "react-native-dropdown-picker" {
       dropDownDirection?: DropDownDirectionType;
       theme?: ThemeNameType;
       rtl?: boolean;
-      testId: string;
+      testID?: string;
     };
 
     interface DropDownPickerInterface {
