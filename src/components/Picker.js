@@ -152,7 +152,7 @@ function Picker({
     dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
     disableLocalSearch = false,
     theme = THEMES.DEFAULT,
-    testID = {testID}
+    testID
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
