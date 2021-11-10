@@ -50,7 +50,7 @@ declare module "react-native-dropdown-picker" {
       disabled: string;
     }
 
-    export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR";
+    export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR" | "RU";
     
     export interface TranslationInterface {
       PLACEHOLDER: string;
