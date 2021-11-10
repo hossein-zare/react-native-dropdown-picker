@@ -41,7 +41,8 @@ export const LANGUAGE = {
     ENGLISH: 'EN',
     ARABIC: 'AR',
     FARSI: 'FA',
-    TURKISH: 'TR'
+    TURKISH: 'TR',
+    RUSSIAN: 'RU'
 }
 
 export const GET_DROPDOWN_DIRECTION = (direction) => {
