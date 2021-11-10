@@ -57,7 +57,7 @@ declare module "react-native-dropdown-picker" {
       labelStyle: string;
     }
 
-    export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR";
+    export type LanguageType = "DEFAULT" | "FALLBACK" | "EN" | "AR" | "FA" | "TR" | "RU";
     
     export interface TranslationInterface {
       PLACEHOLDER: string;
