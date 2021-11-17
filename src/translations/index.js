@@ -28,5 +28,11 @@ export default {
         SEARCH_PLACEHOLDER: 'Введите текст...',
         SELECTED_ITEMS_COUNT_TEXT: 'Выбрано элементов: {count}',
         NOTHING_TO_SHOW: 'Элементы не найдены!'
+    },
+    ES: {
+        PLACEHOLDER: 'Selecciona un elemento',
+        SEARCH_SOMETHING: 'Escribe algo...',
+        SELECTED_ITEMS_COUNT_TEXT: 'Se han seleccionado {count} elemento(s)',
+        NOTHING_TO_SHOW: '¡No hay nada que mostrar!'
     }
 }
