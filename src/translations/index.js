@@ -31,7 +31,7 @@ export default {
     },
     ES: {
         PLACEHOLDER: 'Selecciona un elemento',
-        SEARCH_SOMETHING: 'Escribe algo...',
+        SEARCH_PLACEHOLDER: 'Escribe algo...',
         SELECTED_ITEMS_COUNT_TEXT: 'Se han seleccionado {count} elemento(s)',
         NOTHING_TO_SHOW: '¡No hay nada que mostrar!'
     }
