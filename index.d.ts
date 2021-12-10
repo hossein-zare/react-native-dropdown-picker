@@ -133,9 +133,8 @@ declare module "react-native-dropdown-picker" {
     export type ThemeNameType = "DEFAULT" | "LIGHT" | "DARK";
     export type ThemeType = object;
   
-    export type DropDownPickerProps = {
+    interface DropDownPickerBaseProps {
       items: ItemType[];
-      value: ValueType | ValueType[] | null;
       open: boolean;
       placeholder?: string;
       closeAfterSelecting?: boolean;
@@ -185,7 +184,6 @@ declare module "react-native-dropdown-picker" {
       schema?: Partial<SchemaInterface>;
       language?: LanguageType;
       translation?: Partial<TranslationInterface>;
-      multiple?: boolean;
       multipleText?: string;
       mode?: ModeType;
       itemKey?: string;
@@ -223,7 +221,6 @@ declare module "react-native-dropdown-picker" {
       addCustomItem?: boolean;
       setOpen: Dispatch<SetStateAction<boolean>>;
       setItems?: Dispatch<SetStateAction<any[]>>;
-      setValue: Dispatch<any>;
       disableBorderRadius?: boolean;
       containerProps?: ViewProps;
       onLayout?: (e: LayoutChangeEvent) => void;
@@ -231,15 +228,28 @@ declare module "react-native-dropdown-picker" {
       onOpen?: () => void;
       onClose?: () => void;
       onChangeSearchText?: (text: string) => void;
-      onChangeValue?: (value: ValueType | ValueType[] | null) => void;
       zIndex?: number;
       zIndexInverse?: number;
       disableLocalSearch?: boolean;
       dropDownDirection?: DropDownDirectionType;
       theme?: ThemeNameType;
       rtl?: boolean;
-      testID?: string;
-    };
+    }
+
+    interface DropDownPickerSingleProps {
+      multiple?: false;
+      onChangeValue?: (value: ValueType | null) => void;
+      setValue: Dispatch<SetStateAction<ValueType | null>>;
+      value: ValueType | null;
+    }
+
+    interface DropDownPickerMultipleProps {
+      multiple: true;
+      onChangeValue?: (value: ValueType[] | null) => void;
+      setValue: Dispatch<SetStateAction<ValueType[] | null>>;
+      value: ValueType[] | null;
+    }
+
 
     interface DropDownPickerInterface {
       MODE: ModeInterface;
@@ -257,6 +267,8 @@ declare module "react-native-dropdown-picker" {
       addTranslation: (language: string, translation: TranslationInterface) => void;
       modifyTranslation: (language: string, translation: TranslationInterface) => void;
     }
+
+    export type DropDownPickerProps = (DropDownPickerSingleProps | DropDownPickerMultipleProps) & DropDownPickerBaseProps
 
     const DropDownPicker: ComponentType<DropDownPickerProps> & DropDownPickerInterface;
     export default DropDownPicker;
