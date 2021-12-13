@@ -1188,7 +1188,8 @@ function Picker({
         }
 
         // Not a reliable method for external value changes.
-        onSelectItem(item);
+        if (! multiple)
+            onSelectItem(item);
 
         setValue(state => {
             if (multiple) {
