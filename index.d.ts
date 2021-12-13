@@ -248,7 +248,6 @@ declare module 'react-native-dropdown-picker' {
     onOpen?: () => void;
     onClose?: () => void;
     onChangeSearchText?: (text: string) => void;
-    onSelectItem?: (item: ItemType) => void;
     zIndex?: number;
     zIndexInverse?: number;
     disableLocalSearch?: boolean;
@@ -262,6 +261,7 @@ declare module 'react-native-dropdown-picker' {
   interface DropDownPickerSingleProps {
     multiple?: false;
     onChangeValue?: (value: ValueType | null) => void;
+    onSelectItem?: (item: ItemType) => void;
     setValue: Dispatch<SetStateAction<ValueType | null>>;
     value: ValueType | null;
   }
