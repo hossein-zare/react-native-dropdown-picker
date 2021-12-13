@@ -20,8 +20,9 @@ import {
     ScrollView,
     Modal,
     ActivityIndicator,
+    BackHandler,
     Platform,
-    StyleSheet
+    StyleSheet,
 } from 'react-native';
 
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
@@ -152,7 +153,8 @@ function Picker({
     dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
     disableLocalSearch = false,
     theme = THEMES.DEFAULT,
-    testID
+    testID,
+    closeOnBackPressed = false,
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -195,6 +197,22 @@ function Picker({
         }
 
         setNecessaryItems(initialSelectedItems);
+    }, []);
+
+    useEffect(() => {
+        if (closeOnBackPressed) {
+            const backAction = () => {
+                setOpen(false);
+
+                return true;
+            };
+            const backHandler = BackHandler.addEventListener(
+                "hardwareBackPress",
+                backAction
+            );
+
+            return () => backHandler.remove();
+        }
     }, []);
 
     /**

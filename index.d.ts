@@ -255,6 +255,7 @@ declare module 'react-native-dropdown-picker' {
     theme?: ThemeNameType;
     rtl?: boolean;
     testID?: string;
+    closeOnBackPressed?: boolean;
   }
 
   interface DropDownPickerSingleProps {
