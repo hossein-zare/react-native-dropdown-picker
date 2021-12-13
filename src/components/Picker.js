@@ -1164,6 +1164,7 @@ function Picker({
      */
     const onPressItem = useCallback((item, customItem = false) => {
         if (customItem !== false) {
+            item.custom = false;
             setItems(state => [...state, item]);
         }
 
