@@ -168,7 +168,10 @@ function Picker({
     const itemPositionsRef = useRef({});
     const flatListRef = useRef();
     const scrollViewRef = useRef();
-    const valueRef = useRef(null);
+    const memoryRef = useRef({
+        value: null,
+        items: []
+    });
 
     const THEME = useMemo(() => THEMES[theme].default, [theme]);
     const ICON = useMemo(() => THEMES[theme].ICONS, [theme])
@@ -185,6 +188,8 @@ function Picker({
     useEffect(() => {
         // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         
+        memoryRef.current.value = multiple ? (Array.isArray(value) ? value : []) : value;
+
         // Get initial seleted items
         let initialSelectedItems = [];
         const valueNotNull = value !== null && (Array.isArray(value) && value.length !== 0);
@@ -284,11 +289,18 @@ function Picker({
     }, [value, items]);
 
     /**
-     * Keep a ref of the value.
+     * Update value in the memory.
      */
     useEffect(() => {
-        valueRef.current = value;
+        memoryRef.current.value = value;
     }, [value]);
+
+    /**
+     * Update items in the memory.
+     */
+     useEffect(() => {
+        memoryRef.current.items = necessaryItems;
+    }, [necessaryItems]);
 
     /**
      * Automatically scroll to the first selected item.
@@ -373,12 +385,12 @@ function Picker({
     const scroll = useCallback(() => {
         setTimeout(() => {
             if ((scrollViewRef.current || flatListRef.current)) {
-                const isArray = Array.isArray(valueRef.current);
+                const isArray = Array.isArray(memoryRef.current.value);
 
-                if (valueRef.current === null || (isArray && valueRef.current.length === 0))
+                if (memoryRef.current.value === null || (isArray && memoryRef.current.value.length === 0))
                     return;
 
-                const value = isArray ? valueRef.current[0] : valueRef.current;
+                const value = isArray ? memoryRef.current.value[0] : memoryRef.current.value;
 
                 if (scrollViewRef.current && itemPositionsRef.current.hasOwnProperty(value)) {
                     scrollViewRef.current?.scrollTo?.({
@@ -1188,8 +1200,20 @@ function Picker({
         }
 
         // Not a reliable method for external value changes.
-        if (! multiple)
+        if (multiple) {
+            if (memoryRef.current.value.includes(item[_schema.value])) {
+                const index = memoryRef.current.items.findIndex(x => x[_schema.value] === item[_schema.value]);
+
+                if (index > -1) {
+                    memoryRef.current.items.splice(index, 1);
+                    onSelectItem(memoryRef.current.items.slice());
+                }
+            } else {
+                onSelectItem([...memoryRef.current.items, item]);
+            }
+        } else {
             onSelectItem(item);
+        }
 
         setValue(state => {
             if (multiple) {

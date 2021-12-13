@@ -269,6 +269,7 @@ declare module 'react-native-dropdown-picker' {
   interface DropDownPickerMultipleProps {
     multiple: true;
     onChangeValue?: (value: ValueType[] | null) => void;
+    onSelectItem?: (items: ItemType[]) => void;
     setValue: Dispatch<SetStateAction<ValueType[] | null>>;
     value: ValueType[] | null;
   }
