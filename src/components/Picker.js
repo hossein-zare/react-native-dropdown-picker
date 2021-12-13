@@ -155,6 +155,7 @@ function Picker({
     theme = THEMES.DEFAULT,
     testID,
     closeOnBackPressed = false,
+    onSelectItem = (item) => {}
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -1186,6 +1187,9 @@ function Picker({
             setItems(state => [...state, item]);
         }
 
+        // Not a reliable method for external value changes.
+        onSelectItem(item);
+
         setValue(state => {
             if (multiple) {
                 let _state = state !== null ? [...state] : [];
@@ -1250,6 +1254,7 @@ function Picker({
         min,
         max,
         onPressClose,
+        onSelectItem,
         closeAfterSelecting,
         multiple,
         setItems,
