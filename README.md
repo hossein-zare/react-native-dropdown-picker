@@ -10,7 +10,7 @@
 **The documentation has been moved to https://hossein-zare.github.io/react-native-dropdown-picker-website/**
 
 # Donation
-**[✨ Support us to devote more time to this project - Buy me a coffee](https://www.buymeacoffee.com/settings/notifications)**
+**[✨ Support us to devote more time to this project - Buy me a coffee](https://www.buymeacoffee.com/hossein_zare)**
 
 # Merge and Release Process
 
