@@ -9,8 +9,8 @@
 # Documentation
 **The documentation has been moved to https://hossein-zare.github.io/react-native-dropdown-picker-website/**
 
-# Caution
-Previous versions of this package are deprecated and incompatible with the current version.
+# Donation
+**[✨ Support us to devote more time to this project - Buy me a coffee](https://www.buymeacoffee.com/settings/notifications)**
 
 # Merge and Release Process
 
