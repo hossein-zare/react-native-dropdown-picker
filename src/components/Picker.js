@@ -186,8 +186,6 @@ function Picker({
      * componentDidMount.
      */
     useEffect(() => {
-        // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-        
         memoryRef.current.value = multiple ? (Array.isArray(value) ? value : []) : value;
 
         // Get initial seleted items
@@ -206,7 +204,7 @@ function Picker({
     }, []);
 
     useEffect(() => {
-        if (closeOnBackPressed) {
+        if (closeOnBackPressed && open) {
             const backAction = () => {
                 setOpen(false);
 
@@ -219,7 +217,7 @@ function Picker({
 
             return () => backHandler.remove();
         }
-    }, []);
+    }, [open]);
 
     /**
      * Update necessary items.
