@@ -20,8 +20,9 @@ import {
     ScrollView,
     Modal,
     ActivityIndicator,
+    BackHandler,
     Platform,
-    StyleSheet
+    StyleSheet,
 } from 'react-native';
 
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
@@ -151,7 +152,10 @@ function Picker({
     rtl = false,
     dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
     disableLocalSearch = false,
-    theme = THEMES.DEFAULT
+    theme = THEMES.DEFAULT,
+    testID,
+    closeOnBackPressed = false,
+    onSelectItem = (item) => {}
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -164,7 +168,10 @@ function Picker({
     const itemPositionsRef = useRef({});
     const flatListRef = useRef();
     const scrollViewRef = useRef();
-    const valueRef = useRef(null);
+    const memoryRef = useRef({
+        value: null,
+        items: []
+    });
 
     const THEME = useMemo(() => THEMES[theme].default, [theme]);
     const ICON = useMemo(() => THEMES[theme].ICONS, [theme])
@@ -179,8 +186,8 @@ function Picker({
      * componentDidMount.
      */
     useEffect(() => {
-        // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-        
+        memoryRef.current.value = multiple ? (Array.isArray(value) ? value : []) : value;
+
         // Get initial seleted items
         let initialSelectedItems = [];
         const valueNotNull = value !== null && (Array.isArray(value) && value.length !== 0);
@@ -195,6 +202,22 @@ function Picker({
 
         setNecessaryItems(initialSelectedItems);
     }, []);
+
+    useEffect(() => {
+        if (closeOnBackPressed && open) {
+            const backAction = () => {
+                setOpen(false);
+
+                return true;
+            };
+            const backHandler = BackHandler.addEventListener(
+                "hardwareBackPress",
+                backAction
+            );
+
+            return () => backHandler.remove();
+        }
+    }, [open]);
 
     /**
      * Update necessary items.
@@ -264,11 +287,18 @@ function Picker({
     }, [value, items]);
 
     /**
-     * Keep a ref of the value.
+     * Update value in the memory.
      */
     useEffect(() => {
-        valueRef.current = value;
+        memoryRef.current.value = value;
     }, [value]);
+
+    /**
+     * Update items in the memory.
+     */
+     useEffect(() => {
+        memoryRef.current.items = necessaryItems;
+    }, [necessaryItems]);
 
     /**
      * Automatically scroll to the first selected item.
@@ -353,12 +383,12 @@ function Picker({
     const scroll = useCallback(() => {
         setTimeout(() => {
             if ((scrollViewRef.current || flatListRef.current)) {
-                const isArray = Array.isArray(valueRef.current);
+                const isArray = Array.isArray(memoryRef.current.value);
 
-                if (valueRef.current === null || (isArray && valueRef.current.length === 0))
+                if (memoryRef.current.value === null || (isArray && memoryRef.current.value.length === 0))
                     return;
 
-                const value = isArray ? valueRef.current[0] : valueRef.current;
+                const value = isArray ? memoryRef.current.value[0] : memoryRef.current.value;
 
                 if (scrollViewRef.current && itemPositionsRef.current.hasOwnProperty(value)) {
                     scrollViewRef.current?.scrollTo?.({
@@ -1163,7 +1193,24 @@ function Picker({
      */
     const onPressItem = useCallback((item, customItem = false) => {
         if (customItem !== false) {
+            item.custom = false;
             setItems(state => [...state, item]);
+        }
+
+        // Not a reliable method for external value changes.
+        if (multiple) {
+            if (memoryRef.current.value.includes(item[_schema.value])) {
+                const index = memoryRef.current.items.findIndex(x => x[_schema.value] === item[_schema.value]);
+
+                if (index > -1) {
+                    memoryRef.current.items.splice(index, 1);
+                    onSelectItem(memoryRef.current.items.slice());
+                }
+            } else {
+                onSelectItem([...memoryRef.current.items, item]);
+            }
+        } else {
+            onSelectItem(item);
         }
 
         setValue(state => {
@@ -1230,6 +1277,7 @@ function Picker({
         min,
         max,
         onPressClose,
+        onSelectItem,
         closeAfterSelecting,
         multiple,
         setItems,
@@ -1686,7 +1734,7 @@ function Picker({
 
     return (
         <View style={_containerStyle} {...containerProps}>
-            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled}>
+            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled} testID={testID}>
                 {_BodyComponent}
                 {_ArrowComponent}
             </TouchableOpacity>

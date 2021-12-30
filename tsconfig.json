@@ -16,7 +16,7 @@
     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "types": [
       /* Type declaration files to be included in compilation. */
-      "react"
+      "react-native"
     ],
     "lib": [
       /* which versions of type defs for built-in JavaScript libraries to use */
