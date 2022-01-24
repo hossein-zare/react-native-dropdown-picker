@@ -34,5 +34,11 @@ export default {
         SEARCH_PLACEHOLDER: 'Escribe algo...',
         SELECTED_ITEMS_COUNT_TEXT: 'Se han seleccionado {count} elemento(s)',
         NOTHING_TO_SHOW: '¡No hay nada que mostrar!'
+    },
+    ID: {
+        PLACEHOLDER: 'Pilih item',
+        SEARCH_PLACEHOLDER: 'Ketik sesuatu...',
+        SELECTED_ITEMS_COUNT_TEXT: '{count} item telah dipilih',
+        NOTHING_TO_SHOW: 'Tidak ada yang bisa ditampilkan!'
     }
 }
