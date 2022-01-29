@@ -128,6 +128,7 @@ function Picker({
     activityIndicatorColor = Colors.GREY,
     props = {},
     itemProps = {},
+    badgeProps= {},
     modalProps = {},
     flatListProps = {},
     scrollViewProps = {},
@@ -957,6 +958,7 @@ function Picker({
      */
     const __renderBadge = useCallback(({item}) => (
         <RenderBadgeComponent
+            props={badgeProps}
             rtl={rtl}
             label={item[_schema.label]}
             value={item[_schema.value]}

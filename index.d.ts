@@ -78,6 +78,7 @@ declare module 'react-native-dropdown-picker' {
   export interface RenderBadgeItemPropsInterface {
     label: string;
     value: ValueType;
+    props: TouchableOpacityProps,
     IconComponent: () => JSX.Element;
     textStyle: StyleProp<TextStyle>;
     badgeStyle: StyleProp<ViewStyle>;
@@ -230,6 +231,7 @@ declare module 'react-native-dropdown-picker' {
     activityIndicatorColor?: string;
     props?: TouchableOpacityProps;
     itemProps?: TouchableOpacityProps;
+    badgeProps?: TouchableOpacityProps;
     modalProps?: ModalProps;
     flatListProps?: Partial<FlatListProps<ItemType>>;
     scrollViewProps?: ScrollViewProps;
