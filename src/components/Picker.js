@@ -148,6 +148,7 @@ function Picker({
     setValue = (callback) => {},
     onChangeValue = (value) => {},
     onChangeSearchText = (text) => {},
+    onDirectionChanged = (direction) => {},
     zIndex = 5000,
     zIndexInverse = 6000,
     rtl = false,
@@ -635,7 +636,10 @@ function Picker({
             );
             const size = y + maxHeight + pickerHeight + bottomOffset;
 
-            setDirection(size < WINDOW_HEIGHT ? 'top' : 'bottom');
+            const direction = size < WINDOW_HEIGHT ? 'top' : 'bottom';
+
+            onDirectionChanged(direction);
+            setDirection(direction);
         }
 
         onPressToggle();
@@ -643,6 +647,7 @@ function Picker({
         open,
         onPressToggle,
         onPress,
+        onDirectionChanged,
         maxHeight,
         pickerHeight,
         bottomOffset,
