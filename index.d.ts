@@ -120,7 +120,7 @@ declare module 'react-native-dropdown-picker' {
     containerStyle: StyleProp<ViewStyle>;
     labelStyle: StyleProp<TextStyle>;
     categorySelectable: boolean;
-    onPress: () => void;
+    onPress: (value: ValueType) => void;
     setPosition: (value: ValueType, y: number) => void;
     theme: ThemeNameType;
     THEME: ThemeType;
