@@ -1,5 +1,5 @@
 declare module 'react-native-dropdown-picker' {
-  import type { ComponentType, SetStateAction, Dispatch } from 'react';
+  import type { SetStateAction, Dispatch, PropsWithoutRef } from 'react';
   import type {
     FlatListProps,
     LayoutChangeEvent,
@@ -16,11 +16,11 @@ declare module 'react-native-dropdown-picker' {
 
   export type ValueType = string | number | boolean;
 
-  export type ItemType = {
+  export type ItemType<T> = {
     label?: string;
-    value?: ValueType;
+    value?: T;
     icon?: () => void;
-    parent?: ValueType;
+    parent?: T;
     selectable?: boolean;
     disabled?: boolean;
     testID?: string;
@@ -75,10 +75,10 @@ declare module 'react-native-dropdown-picker' {
     NOTHING_TO_SHOW: string;
   }
 
-  export interface RenderBadgeItemPropsInterface {
+  export interface RenderBadgeItemPropsInterface<T> {
     label: string;
-    value: ValueType;
-    props: TouchableOpacityProps,
+    value: T;
+    props: TouchableOpacityProps;
     IconComponent: () => JSX.Element;
     textStyle: StyleProp<TextStyle>;
     badgeStyle: StyleProp<ViewStyle>;
@@ -87,17 +87,17 @@ declare module 'react-native-dropdown-picker' {
     getBadgeColor: (value: string) => string;
     getBadgeDotColor: (value: string) => string;
     showBadgeDot: boolean;
-    onPress: (value: ValueType) => void;
+    onPress: (value: T) => void;
     rtl: boolean;
     THEME: ThemeType;
   }
 
-  export interface RenderListItemPropsInterface {
+  export interface RenderListItemPropsInterface<T> {
     rtl: boolean;
-    item: ItemType;
+    item: ItemType<T>;
     label: string;
-    value: ValueType;
-    parent: ValueType;
+    value: T;
+    parent: T;
     selectable: boolean;
     disabled: boolean;
     props: ViewProps;
@@ -120,8 +120,8 @@ declare module 'react-native-dropdown-picker' {
     containerStyle: StyleProp<ViewStyle>;
     labelStyle: StyleProp<TextStyle>;
     categorySelectable: boolean;
-    onPress: (value: ValueType) => void;
-    setPosition: (value: ValueType, y: number) => void;
+    onPress: (value: T) => void;
+    setPosition: (value: T, y: number) => void;
     theme: ThemeNameType;
     THEME: ThemeType;
   }
@@ -145,8 +145,8 @@ declare module 'react-native-dropdown-picker' {
   export type ThemeNameType = 'DEFAULT' | 'LIGHT' | 'DARK';
   export type ThemeType = object;
 
-  interface DropDownPickerBaseProps {
-    items: ItemType[];
+  interface DropDownPickerBaseProps<T> {
+    items: ItemType<T>[];
     open: boolean;
     placeholder?: string;
     closeAfterSelecting?: boolean;
@@ -200,8 +200,8 @@ declare module 'react-native-dropdown-picker' {
     mode?: ModeType;
     itemKey?: string;
     maxHeight?: number;
-    renderBadgeItem?: (props: RenderBadgeItemPropsInterface) => JSX.Element;
-    renderListItem?: (props: RenderListItemPropsInterface) => JSX.Element;
+    renderBadgeItem?: (props: RenderBadgeItemPropsInterface<T>) => JSX.Element;
+    renderListItem?: (props: RenderListItemPropsInterface<T>) => JSX.Element;
     itemSeparator?: boolean;
     bottomOffset?: number;
     badgeColors?: string[] | string;
@@ -233,7 +233,7 @@ declare module 'react-native-dropdown-picker' {
     itemProps?: TouchableOpacityProps;
     badgeProps?: TouchableOpacityProps;
     modalProps?: ModalProps;
-    flatListProps?: Partial<FlatListProps<ItemType>>;
+    flatListProps?: Partial<FlatListProps<ItemType<T>>>;
     scrollViewProps?: ScrollViewProps;
     searchTextInputProps?: TextInputProps;
     modalTitle?: string;
@@ -262,20 +262,20 @@ declare module 'react-native-dropdown-picker' {
     closeOnBackPressed?: boolean;
   }
 
-  interface DropDownPickerSingleProps {
+  interface DropDownPickerSingleProps<T> {
     multiple?: false;
-    onChangeValue?: (value: ValueType | null) => void;
-    onSelectItem?: (item: ItemType) => void;
-    setValue: Dispatch<SetStateAction<ValueType | null>>;
-    value: ValueType | null;
+    onChangeValue?: (value: T | null) => void;
+    onSelectItem?: (item: ItemType<T>) => void;
+    setValue: Dispatch<SetStateAction<T | null>>;
+    value: T | null;
   }
 
-  interface DropDownPickerMultipleProps {
+  interface DropDownPickerMultipleProps<T> {
     multiple: true;
-    onChangeValue?: (value: ValueType[] | null) => void;
-    onSelectItem?: (items: ItemType[]) => void;
-    setValue: Dispatch<SetStateAction<ValueType[] | null>>;
-    value: ValueType[] | null;
+    onChangeValue?: (value: T[] | null) => void;
+    onSelectItem?: (items: ItemType<T>[]) => void;
+    setValue: Dispatch<SetStateAction<T[] | null>>;
+    value: T[] | null;
   }
 
   interface DropDownPickerInterface {
@@ -301,13 +301,16 @@ declare module 'react-native-dropdown-picker' {
     ) => void;
   }
 
-  export type DropDownPickerProps = (
-    | DropDownPickerSingleProps
-    | DropDownPickerMultipleProps
+  export type DropDownPickerProps<T> = (
+    | DropDownPickerSingleProps<T>
+    | DropDownPickerMultipleProps<T>
   ) &
-    DropDownPickerBaseProps;
+    DropDownPickerBaseProps<T>;
 
-  const DropDownPicker: ComponentType<DropDownPickerProps> &
+  const DropDownPicker: (<T extends ValueType>(
+    props: PropsWithoutRef<DropDownPickerProps<T>>,
+  ) => React.ReactElement) &
     DropDownPickerInterface;
+
   export default DropDownPicker;
 }
