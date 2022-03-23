@@ -1,4 +1,4 @@
-# React Native Dropdown Picker 5.x
+# React Native Dropdown Picker 5.x [![Verified on Openbase](https://badges.openbase.com/js/verified/react-native-dropdown-picker.svg?token=Z1kyT9XFZj/yUB3urbRXWJEt/4f2e3yjjbPIlhhotNo=)](https://openbase.com/js/react-native-dropdown-picker?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 
 <p float="left">
     <img src="https://user-images.githubusercontent.com/56504893/116790110-e0b36880-aac7-11eb-9ebd-196acee64f7a.png" width="270" alt="Screenshot">
