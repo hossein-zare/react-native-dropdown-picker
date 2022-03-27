@@ -588,9 +588,15 @@ function Picker({
         const item = getSelectedItem();
 
         if (multiple)
-            if (item.length > 0)
-                return _multipleText.replace('{count}', item.length);
-            else
+            if (item.length > 0) {
+                let mtext = _multipleText;
+                
+                if (typeof mtext !== 'string') {
+                    mtext = mtext[item.length] ?? mtext.n;
+                }
+                
+                return mtext.replace('{count}', item.length);
+            } else
                 return fallback;
 
         try {
