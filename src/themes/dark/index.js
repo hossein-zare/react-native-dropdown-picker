@@ -159,7 +159,7 @@ export default StyleSheet.create({
         padding: 10,
     },
     listMessageText: {
-
+        color: Colors.HEATHER
     },
     selectedItemContainer: {
 
