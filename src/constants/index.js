@@ -37,6 +37,11 @@ export const DROPDOWN_DIRECTION = {
     AUTO: 'AUTO'
 }
 
+export const ARROW_ICON_POSITION = {
+    LEFT: 'LEFT',
+    RIGHT: 'RIGHT'
+}
+
 export const LANGUAGE = {
     DEFAULT: 'EN',
     FALLBACK: 'EN',

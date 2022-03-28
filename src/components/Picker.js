@@ -41,7 +41,8 @@ import {
     GET_DROPDOWN_DIRECTION,
     LANGUAGE,
     RTL_DIRECTION,
-    RTL_STYLE
+    RTL_STYLE,
+    ARROW_ICON_POSITION
 } from '../constants';
 import THEMES from '../themes';
 import RenderBadgeItem from './RenderBadgeItem';
@@ -157,7 +158,8 @@ function Picker({
     theme = THEMES.DEFAULT,
     testID,
     closeOnBackPressed = false,
-    onSelectItem = (item) => {}
+    onSelectItem = (item) => {},
+    arrowIconPosition = ARROW_ICON_POSITION.RIGHT
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -1733,6 +1735,19 @@ function Picker({
     }, [open, listMode, DropDownComponent]);
 
     /**
+     * The top component.
+     * @returns {JSX.Element}
+     */
+    const TopComponent = useMemo(() => {
+        switch (arrowIconPosition) {
+            case ARROW_ICON_POSITION.LEFT: return [_ArrowComponent, _BodyComponent];
+            case ARROW_ICON_POSITION.RIGHT: return [_BodyComponent, _ArrowComponent];
+            default: //
+        }
+    }, [arrowIconPosition, _ArrowComponent, _BodyComponent]);
+
+
+    /**
      * onRef.
      */
     const onRef = useCallback((ref) => {
@@ -1747,9 +1762,8 @@ function Picker({
 
     return (
         <View style={_containerStyle} {...containerProps}>
-            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled} testID={testID}>
-                {_BodyComponent}
-                {_ArrowComponent}
+            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled}>
+                {TopComponent}
             </TouchableOpacity>
             {DropDownBodyComponent}
         </View>
