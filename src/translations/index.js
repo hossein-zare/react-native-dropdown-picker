@@ -45,7 +45,7 @@ export default {
         PLACEHOLDER: 'Seleziona un elemento',
         SEARCH_PLACEHOLDER: 'Digita qualcosa...',
         SELECTED_ITEMS_COUNT_TEXT: {
-            1: '1 elemento è stato selezionato',
+            1: 'Un elemento è stato selezionato',
             n: '{count} elementi sono stati selezionati'
         },
         NOTHING_TO_SHOW: 'Non c\'è nulla da mostrare!'
