@@ -66,7 +66,8 @@ declare module 'react-native-dropdown-picker' {
     | 'TR'
     | 'RU'
     | 'ES'
-    | 'ID';
+    | 'ID'
+    | 'IT';
 
   export interface TranslationInterface {
     PLACEHOLDER: string;
