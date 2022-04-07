@@ -65,6 +65,7 @@ function Picker({
     arrowIconStyle = {},
     tickIconStyle = {},
     closeIconStyle = {},
+    hideSelectedItemIcon = false,
     badgeStyle = {},
     badgeTextStyle = {},
     badgeDotStyle = {},
@@ -876,12 +877,15 @@ function Picker({
      const SelectedItemIconComponent = useMemo(() => {
         const Component = _selectedItemIcon();
 
+        if (hideSelectedItemIcon)
+            return null;
+
         return Component !== null && (
             <View style={_iconContainerStyle}>
                 <Component />
             </View>
         );
-     }, [_selectedItemIcon, _iconContainerStyle]);
+     }, [_selectedItemIcon, hideSelectedItemIcon, _iconContainerStyle]);
 
     /**
      * The simple body component.
@@ -1199,7 +1203,6 @@ function Picker({
         ...[textStyle].flat(),
         ...[listMessageTextStyle].flat()
     ]), [listMessageTextStyle, THEME]);
-    
 
     /**
      * onPress item.
