@@ -1,5 +1,5 @@
 declare module 'react-native-dropdown-picker' {
-  import type { SetStateAction, Dispatch, PropsWithoutRef } from 'react';
+  import type { Dispatch, PropsWithoutRef } from 'react';
   import type {
     FlatListProps,
     LayoutChangeEvent,
@@ -13,6 +13,9 @@ declare module 'react-native-dropdown-picker' {
     TouchableOpacityProps,
     ViewStyle,
   } from 'react-native';
+
+  type SetStateCallback<S> = ((prevState: S) => S);
+  type SetStateValue<S> = ((prevState: S) => S);
 
   export type ValueType = string | number | boolean;
 
@@ -243,8 +246,8 @@ declare module 'react-native-dropdown-picker' {
     min?: number;
     max?: number;
     addCustomItem?: boolean;
-    setOpen: Dispatch<SetStateAction<boolean>>;
-    setItems?: Dispatch<SetStateAction<any[]>>;
+    setOpen: Dispatch<SetStateValue<boolean>>;
+    setItems?: Dispatch<SetStateCallback<any[]>>;
     disableBorderRadius?: boolean;
     containerProps?: ViewProps;
     onLayout?: (e: LayoutChangeEvent) => void;
@@ -268,7 +271,7 @@ declare module 'react-native-dropdown-picker' {
     multiple?: false;
     onChangeValue?: (value: T | null) => void;
     onSelectItem?: (item: ItemType<T>) => void;
-    setValue: Dispatch<SetStateAction<T | null>>;
+    setValue: Dispatch<SetStateCallback<T | null | any>>;
     value: T | null;
   }
 
@@ -276,7 +279,7 @@ declare module 'react-native-dropdown-picker' {
     multiple: true;
     onChangeValue?: (value: T[] | null) => void;
     onSelectItem?: (items: ItemType<T>[]) => void;
-    setValue: Dispatch<SetStateAction<T[] | null>>;
+    setValue: Dispatch<SetStateCallback<T[] | null | any>>;
     value: T[] | null;
   }
 
