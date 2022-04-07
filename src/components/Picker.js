@@ -158,6 +158,7 @@ function Picker({
     theme = THEMES.DEFAULT,
     testID,
     closeOnBackPressed = false,
+    extendableBadgeContainer = false,
     onSelectItem = (item) => {}
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
@@ -1039,10 +1040,10 @@ function Picker({
     ), [_badgeSeparatorStyle]);
 
     /**
-     * The label container.
+     * The label container style.
      * @returns {object}
      */
-    const labelContainer = useMemo(() => ([
+    const labelContainerStyle = useMemo(() => ([
         THEME.labelContainer, rtl && {
             transform: [
                 {scaleX: -1}
@@ -1055,12 +1056,12 @@ function Picker({
      * @returns {JSX.Element}
      */
     const BadgeListEmptyComponent = useCallback(() => (
-        <View style={labelContainer}>
+        <View style={labelContainerStyle}>
             <Text style={_labelStyle} {...labelProps}>
                 {_placeholder}
             </Text>
         </View>
-    ), [_labelStyle, labelContainer, labelProps, _placeholder]);
+    ), [_labelStyle, labelContainerStyle, labelProps, _placeholder]);
 
     /**
      * Set ref.
@@ -1070,25 +1071,72 @@ function Picker({
     }, []);
 
     /**
+     * The extendable badge container style.
+     * @returns {object}
+     */
+    const extendableBadgeContainerStyle = useMemo(() => ([
+        RTL_DIRECTION(rtl, THEME.extendableBadgeContainer)
+    ]), [rtl, THEME]);
+
+    /**
+     * The extendable badge item container style.
+     * @returns {object}
+     */
+    const extendableBadgeItemContainerStyle = useMemo(() => ([
+        THEME.extendableBadgeItemContainer, rtl && {
+            marginEnd: 0,
+            marginStart: THEME.extendableBadgeItemContainer.marginEnd
+        }
+    ]), [rtl, THEME]);
+
+    /**
+     * Extendable badge container.
+     * @returns {JSX.Element}
+     */
+    const ExtendableBadgeContainer = useCallback(({selectedItems}) => {
+        if (selectedItems.length > 0) {
+            return (
+                <View style={extendableBadgeContainerStyle}>
+                    {selectedItems.map((item, index) => (
+                        <View key={index} style={extendableBadgeItemContainerStyle}>
+                            <__renderBadge item={item} />
+                        </View>
+                    ))}
+                </View>
+            );
+        }
+        
+        return <BadgeListEmptyComponent />;
+    }, [__renderBadge, extendableBadgeContainerStyle, extendableBadgeItemContainerStyle]);
+
+    /**
      * The badge body component.
      * @returns {JSX.Element}
      */
-     const BadgeBodyComponent = useMemo(() => (
-        <FlatList
-            ref={setBadgeFlatListRef}
-            data={selectedItems}
-            renderItem={__renderBadge}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={keyExtractor}
-            ItemSeparatorComponent={BadgeSeparatorComponent}
-            ListEmptyComponent={BadgeListEmptyComponent}
-            style={THEME.listBody}
-            contentContainerStyle={THEME.listBodyContainer}
-            inverted={rtl}
-        />
-    ), [
+     const BadgeBodyComponent = useMemo(() => {
+        if (extendableBadgeContainer) { 
+            return <ExtendableBadgeContainer selectedItems={selectedItems} />
+        }
+        
+        return (
+            <FlatList
+                ref={setBadgeFlatListRef}
+                data={selectedItems}
+                renderItem={__renderBadge}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={keyExtractor}
+                ItemSeparatorComponent={BadgeSeparatorComponent}
+                ListEmptyComponent={BadgeListEmptyComponent}
+                style={THEME.listBody}
+                contentContainerStyle={THEME.listBodyContainer}
+                inverted={rtl}
+            />
+        );
+    }, [
         rtl,
+        extendableBadgeContainer,
+        ExtendableBadgeContainer,
         selectedItems,
         __renderBadge,
         keyExtractor,

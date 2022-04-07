@@ -265,6 +265,7 @@ declare module 'react-native-dropdown-picker' {
     testID?: string;
     closeOnBackPressed?: boolean;
     hideSelectedItemIcon?: boolean;
+    extendableBadgeContainer?: boolean;
   }
 
   interface DropDownPickerSingleProps<T> {

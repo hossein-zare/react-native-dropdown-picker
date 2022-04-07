@@ -20,11 +20,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        height: 50,
+        minHeight: 50,
         borderRadius: 8,
         borderWidth: 1,
         borderColor: Colors.BLACK,
         paddingHorizontal: 10,
+        paddingVertical: 3,
         backgroundColor: Colors.EBONY_CLAY,
     },
     label: {
@@ -170,5 +171,14 @@ export default StyleSheet.create({
     modalTitle: {
         fontSize: 18,
         color: Colors.HEATHER
+    },
+    extendableBadgeContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        flex: 1
+    },
+    extendableBadgeItemContainer: {
+        marginVertical: 3,
+        marginEnd: 7
     }
 });
