@@ -270,7 +270,7 @@ declare module 'react-native-dropdown-picker' {
     multiple?: false;
     onChangeValue?: (value: T | null) => void;
     onSelectItem?: (item: ItemType<T>) => void;
-    setValue: Dispatch<SetStateCallback<T | null>>;
+    setValue: Dispatch<SetStateCallback<T | null | any>>;
     value: T | null;
   }
 
@@ -278,7 +278,7 @@ declare module 'react-native-dropdown-picker' {
     multiple: true;
     onChangeValue?: (value: T[] | null) => void;
     onSelectItem?: (items: ItemType<T>[]) => void;
-    setValue: Dispatch<SetStateCallback<T[] | null>>;
+    setValue: Dispatch<SetStateCallback<T[] | null | any>>;
     value: T[] | null;
   }
 
