@@ -75,7 +75,9 @@ declare module 'react-native-dropdown-picker' {
   export interface TranslationInterface {
     PLACEHOLDER: string;
     SEARCH_PLACEHOLDER: string;
-    SELECTED_ITEMS_COUNT_TEXT: string;
+    SELECTED_ITEMS_COUNT_TEXT: string | {
+      [key in (number | "n")]: string;
+    };
     NOTHING_TO_SHOW: string;
   }
 
