@@ -6,6 +6,8 @@
     <img src="https://user-images.githubusercontent.com/56504893/116789839-2c651280-aac6-11eb-99e0-b43b608ed8c7.png" width="270" alt="Screenshot">
 </p>
 
+The example in the screenshots: https://snack.expo.dev/8mHmLfcZf
+
 # Documentation
 **The documentation has been moved to https://hossein-zare.github.io/react-native-dropdown-picker-website/**
 

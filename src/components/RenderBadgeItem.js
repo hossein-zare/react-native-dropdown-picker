@@ -13,6 +13,7 @@ import { RTL_DIRECTION, RTL_STYLE } from '../constants';
 function RenderBadge({
     rtl,
     label,
+    props,
     value,
     textStyle,
     badgeStyle,
@@ -61,7 +62,7 @@ function RenderBadge({
     ]), [textStyle, badgeTextStyle]);
 
     return (
-        <TouchableOpacity style={_badgeStyle} onPress={__onPress}>
+        <TouchableOpacity style={_badgeStyle} {...props} onPress={__onPress}>
             {showBadgeDot && <View style={_badgeDotStyle} />}
             <Text style={_badgeTextStyle}>{label}</Text>
         </TouchableOpacity>
