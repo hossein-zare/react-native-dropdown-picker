@@ -820,7 +820,7 @@ function Picker({
         zIndexContainer,
         ...[containerStyle].flat(),
         ...[_disabledStyle].flat()
-    ]), [zIndexContainer, containerStyle, _disabledStyle, THEME]);
+    ]), [zIndexContainer, containerStyle, disabled, _disabledStyle, THEME]);
 
     /**
      * The arrow icon container style.
