@@ -741,8 +741,9 @@ function Picker({
             zIndex: _zIndex
         },
         ...[style].flat(),
+        ...[_disabledStyle].flat(),
         pickerNoBorderRadius
-    ]), [rtl, style, pickerNoBorderRadius, _zIndex, THEME]);
+    ]), [rtl, style, _disabledStyle, pickerNoBorderRadius, _zIndex, THEME]);
 
     /**
      * The placeholder style.
@@ -818,9 +819,8 @@ function Picker({
     const _containerStyle = useMemo(() => ([
         THEME.container,
         zIndexContainer,
-        ...[containerStyle].flat(),
-        ...[_disabledStyle].flat()
-    ]), [zIndexContainer, containerStyle, disabled, _disabledStyle, THEME]);
+        ...[containerStyle].flat()
+    ]), [zIndexContainer, containerStyle, THEME]);
 
     /**
      * The arrow icon container style.
