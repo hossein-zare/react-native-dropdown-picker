@@ -20,7 +20,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        minHeight: 50,
+        minHeight: 30,
         borderRadius: 8,
         borderWidth: 1,
         borderColor: Colors.BLACK,
