@@ -32,3 +32,32 @@ To make a new release, follow these steps:
 * Make and merge a PR from the development branch to the release branch
 * Using the GitHub web UI, draft a new release using tag name `vx.x.x` (replace the `x` values as appropriate of course), with the release branch as the target, with release name `vx.x.x` (again, with appropriate numbers in place of `x` of course)
 * Verify in the GitHub Actions panel for the repository that NPM publish succeeded
+
+### Example code with adding a new item/option 
+
+I tried adding this section as a new tutirial to the documentation website. However, I failed. While on the last page of the documentation, I clicking on `Edit this page`, which leads to `https://hossein-zare.github.io/react-native-dropdown-picker-website/versioned_docs/version-5.4/tutorials/multiple-pickers.md`. The page is NOT found. Moreover, if the previous step worked, I don't think I would be able to add a new section. So, if you like the following example, please, (1) let me know how I can add it to the documentation, or (2) add it yourself. It took me a while to figure out how this functionality can be achieved. I think an example woud be usefult to others. 
+
+Example code with adding a new item/option to the list of items/options, which the user selects from. 
+```javascript
+const ExampleScreen = () => {
+	const [open, setOpen] = useState(false);
+	const [value, setValue] = useState(null); 
+	const [items, setItems] = useState([
+		{label: "North America", value: "North America"},
+		{label: "Europe", value: "Europe"},
+	]);
+	
+	return (
+	<DropDownPicker
+		open={open} 			
+		value={value} 			
+		items={items}			
+		searchable={true}
+		addCustomItem={true} 
+		setItems={setItems}
+		setValue={setValue}
+		setOpen={setOpen}			
+	/>
+	);	
+}; 
+```
