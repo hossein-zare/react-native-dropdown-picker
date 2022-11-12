@@ -20,6 +20,7 @@ function RenderListItem({
     selectable,
     disabled,
     props,
+    labelProps,
     custom,
     isSelected,
     IconComponent,
@@ -164,7 +165,7 @@ function RenderListItem({
     return (
         <TouchableOpacity style={_listItemContainerStyle} onPress={__onPress} onLayout={onLayout} {...props} disabled={selectable === false || disabled} testID={item.testID}>
             {IconComponent}
-            <Text style={_listItemLabelStyle}>
+            <Text style={_listItemLabelStyle} {...labelProps}>
                 {label}
             </Text>
             {_TickIconComponent}

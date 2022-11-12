@@ -129,6 +129,7 @@ function Picker({
     activityIndicatorColor = Colors.GREY,
     props = {},
     itemProps = {},
+    itemLabelProps = {},
     badgeProps= {},
     modalProps = {},
     flatListProps = {},
@@ -1263,7 +1264,7 @@ function Picker({
 
         // Not a reliable method for external value changes.
         if (multiple) {
-            if (memoryRef.current.value.includes(item[_schema.value])) {
+            if (memoryRef.current.value?.includes(item[_schema.value])) {
                 const index = memoryRef.current.items.findIndex(x => x[_schema.value] === item[_schema.value]);
 
                 if (index > -1) {
@@ -1279,7 +1280,7 @@ function Picker({
 
         setValue(state => {
             if (multiple) {
-                let _state = state !== null ? [...state] : [];
+                let _state = state !== null && state !== undefined  ? [...state] : [];
 
                 if (_state.includes(item[_schema.value])) {
                     // Remove the value
@@ -1446,6 +1447,7 @@ function Picker({
                 disabled={item?.[_schema.disabled] ?? false}
                 custom={item.custom ?? false}
                 props={itemProps}
+                labelProps={itemLabelProps}
                 isSelected={isSelected}
                 IconComponent={IconComponent}
                 TickIconComponent={_TickIconComponent}
@@ -1492,6 +1494,7 @@ function Picker({
         _value,
         multiple,
         itemProps,
+        itemLabelProps,
         categorySelectable,
         onPressItem,
         theme,
