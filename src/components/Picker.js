@@ -75,6 +75,7 @@ function Picker({
     searchPlaceholderTextColor = Colors.GREY,
     dropDownContainerStyle = {},
     modalContentContainerStyle = {},
+    modalAnimationType = 'none',
     arrowIconContainerStyle = {},
     closeIconContainerStyle = {},
     tickIconContainerStyle = {},
@@ -1749,7 +1750,7 @@ function Picker({
      * @returns {JSX.Element}
      */
     const DropDownModalComponent = useMemo(() => (
-        <Modal visible={open} presentationStyle="fullScreen" onRequestClose={onRequestCloseModal} {...modalProps}>
+        <Modal animationType={modalAnimationType} visible={open} presentationStyle="fullScreen" onRequestClose={onRequestCloseModal} {...modalProps}>
             <SafeAreaView style={_modalContentContainerStyle}>
                 {SearchComponent}
                 {DropDownFlatListComponent}
