@@ -59,4 +59,13 @@ export default {
         },
         NOTHING_TO_SHOW: 'Non c\'è nulla da mostrare!'
     },
+    PT: {
+        PLACEHOLDER: 'Selecione um item',
+        SEARCH_PLACEHOLDER: 'Faça sua busca...',
+        SELECTED_ITEMS_COUNT_TEXT: {
+            1: 'Um item selecionado',
+            n: '{count} alguns itens selecionados'
+        },
+        NOTHING_TO_SHOW: 'Nada a ser mostrado!'
+    },
 }
