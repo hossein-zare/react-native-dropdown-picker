@@ -68,4 +68,13 @@ export default {
         },
         NOTHING_TO_SHOW: 'Nada a ser mostrado!'
     },
+    FR: {
+        PLACEHOLDER: 'Sélectionnez un élément',
+        SEARCH_PLACEHOLDER: 'Tapez quelque chose...',
+        SELECTED_ITEMS_COUNT_TEXT: {
+            1: 'Un élément a été sélectionné',
+            n: '{count} éléments ont été sélectionnés'
+        },
+        NOTHING_TO_SHOW: 'Il n\'y a rien à montrer!'
+    },
 }
