@@ -456,7 +456,7 @@ function Picker({
                 return sortedItems;
     
             const values = [];
-            const normalizeText = (text) => label.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             let results = sortedItems.filter(item => {
                 const label = item[_schema.label].toLowerCase();
