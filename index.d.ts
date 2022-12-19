@@ -174,6 +174,7 @@ declare module 'react-native-dropdown-picker' {
     searchContainerStyle?: StyleProp<ViewStyle>;
     searchTextInputStyle?: StyleProp<TextStyle>;
     searchPlaceholderTextColor?: string;
+    searchWithRegionalAccents?: boolean;
     dropDownContainerStyle?: StyleProp<ViewStyle>;
     modalContentContainerStyle?: StyleProp<ViewStyle>;
     modalAnimationType?: 'none' | 'slide' | 'fade';
