@@ -99,6 +99,7 @@ function Picker({
     listMode = LIST_MODE.DEFAULT,
     categorySelectable = true,
     searchable = false,
+    searchWithRegionalAccents = false,
     searchPlaceholder = null,
     modalTitle,
     schema = {},
@@ -455,8 +456,14 @@ function Picker({
                 return sortedItems;
     
             const values = [];
+            const normalizeText = (text) => label.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
             let results = sortedItems.filter(item => {
-                if (item[_schema.label].toLowerCase().includes(searchText.toLowerCase())) {
+                const label = item[_schema.label].toLowerCase();
+                if (
+                    label.includes(searchText.toLowerCase())
+                    || searchWithRegionalAccents && normalizeText(label).includes(searchText.toLowerCase())
+                ) {
                     values.push(item[_schema.value]);
                     return true;
                 }
