@@ -22,7 +22,7 @@ declare module 'react-native-dropdown-picker' {
   export type ItemType<T> = {
     label?: string;
     value?: T;
-    icon?: () => void;
+    icon?: () => JSX.Element;
     parent?: T;
     selectable?: boolean;
     disabled?: boolean;
