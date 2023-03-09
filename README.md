@@ -9,7 +9,7 @@
 The example in the screenshots: https://snack.expo.dev/8mHmLfcZf
 
 # Documentation
-**The documentation has been moved to https://hossein-zare.github.io/react-native-dropdown-picker-website/**
+**Visit https://hossein-zare.github.io/react-native-dropdown-picker-website/**
 
 # Merge and Release Process
 
