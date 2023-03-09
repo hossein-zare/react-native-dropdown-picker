@@ -1815,9 +1815,9 @@ function Picker({
                     {_BodyComponent}
                     {_ArrowComponent}
                 </TouchableOpacity>
-            </View>
 
-            {DropDownBodyComponent}
+                {DropDownBodyComponent}
+            </View>
         </>
     );
 }
