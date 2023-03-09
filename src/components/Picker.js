@@ -459,7 +459,8 @@ function Picker({
             const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             let results = sortedItems.filter(item => {
-                const label = item[_schema.label].toLowerCase();
+                const label = String(item[_schema.label]).toLowerCase();
+
                 if (
                     label.includes(searchText.toLowerCase())
                     || searchWithRegionalAccents && normalizeText(label).includes(searchText.toLowerCase())
@@ -481,7 +482,7 @@ function Picker({
                 results.splice(index, 0, parent);
             });
 
-            if ((results.length === 0 || results.findIndex(item => item[_schema.label].toLowerCase() === searchText.toLowerCase()) === -1) && addCustomItem) {
+            if ((results.length === 0 || results.findIndex(item => String(item[_schema.label]).toLowerCase() === searchText.toLowerCase()) === -1) && addCustomItem) {
                 results.push({
                     [_schema.label]: searchText,
                     [_schema.value]: searchText.replace(' ', '-'),
