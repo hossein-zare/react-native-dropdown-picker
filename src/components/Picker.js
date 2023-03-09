@@ -1808,13 +1808,16 @@ function Picker({
     const pointerEvents = useMemo(() => disabled ? "none" : "auto", [disabled]);
 
     return (
-        <View style={_containerStyle} {...containerProps}>
-            <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled} testID={testID}>
-                {_BodyComponent}
-                {_ArrowComponent}
-            </TouchableOpacity>
+        <>
+            <View style={_containerStyle} {...containerProps}>
+                <TouchableOpacity style={_style} onPress={__onPress} onLayout={__onLayout} {...props} ref={onRef} pointerEvents={pointerEvents} disabled={disabled} testID={testID}>
+                    {_BodyComponent}
+                    {_ArrowComponent}
+                </TouchableOpacity>
+            </View>
+
             {DropDownBodyComponent}
-        </View>
+        </>
     );
 }
 
