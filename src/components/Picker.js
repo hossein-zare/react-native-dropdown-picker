@@ -14,16 +14,16 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    FlatList,
     TextInput,
     Dimensions,
-    ScrollView,
     Modal,
     ActivityIndicator,
     BackHandler,
     Platform,
     StyleSheet,
 } from 'react-native';
+
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 
