@@ -44,7 +44,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "react-native-gesture-handler": "^2.9.0"
+    "react-native-gesture-handler": "*"
   },
   "peerDependencies": {
     "react": "*",
