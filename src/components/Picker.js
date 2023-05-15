@@ -486,7 +486,7 @@ function Picker({
             if ((results.length === 0 || results.findIndex(item => String(item[_schema.label]).toLowerCase() === searchText.toLowerCase()) === -1) && addCustomItem) {
                 results.push({
                     [_schema.label]: searchText,
-                    [_schema.value]: customItemValueDelimiter ? searchText.replace(' ', customItemValueDelimiter) : searchText,
+                    [_schema.value]: customItemValueDelimiter ? searchText.replaceAll(' ', customItemValueDelimiter) : searchText,
                     custom: true
                 });
             }
