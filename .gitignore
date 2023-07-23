@@ -1,4 +1,6 @@
 node_modules
-
-package-lock.json
+#package-lock.json
+# package-lock.json should be in source control.
+# see here: https://stackoverflow.com/questions/44206782/do-i-commit-the-package-lock-json-file-created-by-npm-5
 .vscode/*
+.idea

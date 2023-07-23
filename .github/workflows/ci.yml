@@ -1,0 +1,88 @@
+---
+# docs at: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  run-eslint:
+    name: Lint source files with ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - name: Run ESLint
+        run: >
+          npx eslint
+          .
+          --config
+          .eslintrc.yaml
+          --ignore-path
+          .eslintignore
+
+  run-prettier:
+    name: Lint source files with Prettier
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: >
+          npx prettier --check
+          .
+          --config
+          .prettierrc.yaml
+          --ignore-path
+          .prettierignore
+
+  run-npm-audit:
+    name: Scan for known vulnerabilities in dependencies with npm audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: >
+          npm audit
+          --audit-level
+          critical
+
+  run-npm-depcheck:
+    name: Check for unused and missing dependencies with depcheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: >
+          npx depcheck
+          --ignores
+          typescript,prettier
+
+  run-npm-outdated:
+    name: Check for outdated packages with npm outdated
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm outdated
+
+# TODO: check project builds/compiles correctly
+# TODO: add tests
