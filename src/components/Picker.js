@@ -1760,8 +1760,10 @@ function Picker({
     const DropDownModalComponent = useMemo(() => (
         <Modal animationType={modalAnimationType} visible={open} presentationStyle="fullScreen" onRequestClose={onRequestCloseModal} {...modalProps}>
             <SafeAreaView style={_modalContentContainerStyle}>
+                <ScrollView keyboardShouldPersistTaps="handled" nestedScrollEnabled={true} {...scrollViewProps}>
                 {SearchComponent}
                 {DropDownFlatListComponent}
+                </ScrollView>
             </SafeAreaView>
         </Modal>
     ), [open, SearchComponent, _modalContentContainerStyle, modalProps]);
