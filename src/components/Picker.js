@@ -11,6 +11,7 @@ import React, {
 import {
   ActivityIndicator,
   BackHandler,
+  Dimensions,
   Image,
   Modal,
   Platform,
@@ -38,12 +39,13 @@ import {
   SCHEMA,
   TRANSLATIONS,
 } from '../constants';
-
 import Colors from '../constants/colors';
 import THEMES from '../themes';
 import ListEmpty from './ListEmpty';
 import RenderBadgeItem from './RenderBadgeItem';
 import RenderListItem from './RenderListItem';
+
+const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 
 function Picker({
   value = null,
@@ -138,15 +140,15 @@ function Picker({
   min = null,
   max = null,
   addCustomItem = false,
-  setOpen = () => {},
-  setItems = () => {},
+  setOpen = (open) => {},
+  setItems = (items) => {},
   disableBorderRadius = true,
   containerProps = {},
   onLayout = (e) => {},
   onPress = (open) => {},
   onOpen = () => {},
   onClose = () => {},
-  setValue = (callback) => {},
+  setValue = (value) => {},
   onChangeValue = (value) => {},
   onChangeSearchText = (text) => {},
   onDirectionChanged = (direction) => {},
@@ -232,7 +234,7 @@ function Picker({
 
       return () => backHandler.remove();
     }
-  }, [open]);
+  }, [open, setOpen]);
 
   /**
    * Update necessary items.
@@ -925,7 +927,7 @@ function Picker({
 
   /**
    * The arrow component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const _ArrowComponent = useMemo(() => {
     if (!showArrowIcon) return null;
@@ -965,7 +967,7 @@ function Picker({
 
   /**
    * The selected item icon component.
-   * @returns {JSX.Element|null}
+   * @returns {React.JSX.Element|null}
    */
   const SelectedItemIconComponent = useMemo(() => {
     const Component = _selectedItemIcon();
@@ -983,7 +985,7 @@ function Picker({
 
   /**
    * The simple body component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const SimpleBodyComponent = useMemo(
     () => (
@@ -1001,16 +1003,10 @@ function Picker({
    * onPress badge.
    */
   const onPressBadge = useCallback(
-    (value) => {
-      setValue((state) => {
-        const _state = [...state];
-        const index = _state.findIndex((item) => item === value);
-        _state.splice(index, 1);
-
-        return _state;
-      });
+    (badgeValue) => {
+      setValue(value.filter((valItem) => valItem !== badgeValue));
     },
-    [setValue],
+    [value, setValue],
   );
 
   /**
@@ -1065,7 +1061,7 @@ function Picker({
 
   /**
    * The render badge component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const RenderBadgeComponent = useMemo(
     () => (renderBadgeItem !== null ? renderBadgeItem : RenderBadgeItem),
@@ -1074,7 +1070,7 @@ function Picker({
 
   /**
    * Render badge.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const __renderBadge = useCallback(
     ({ item }) => (
@@ -1139,7 +1135,7 @@ function Picker({
 
   /**
    * The badge separator component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const BadgeSeparatorComponent = useCallback(
     () => <View style={_badgeSeparatorStyle} />,
@@ -1162,7 +1158,7 @@ function Picker({
 
   /**
    * Badge list empty component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const BadgeListEmptyComponent = useCallback(
     () => (
@@ -1208,7 +1204,7 @@ function Picker({
 
   /**
    * Extendable badge container.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const ExtendableBadgeContainer = useCallback(
     ({ selectedItems }) => {
@@ -1235,7 +1231,7 @@ function Picker({
 
   /**
    * The badge body component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const BadgeBodyComponent = useMemo(() => {
     if (extendableBadgeContainer) {
@@ -1405,7 +1401,8 @@ function Picker({
     (item, customItem = false) => {
       if (customItem !== false) {
         item.custom = false;
-        setItems((state) => [...state, item]);
+        // item should already be in items array
+        setItems(items);
       }
 
       // Not a reliable method for external value changes.
@@ -1426,32 +1423,21 @@ function Picker({
         onSelectItem(item);
       }
 
-      setValue((state) => {
-        if (multiple) {
-          const _state =
-            state !== null && state !== undefined ? [...state] : [];
+      if (multiple) {
+        const newValue = value === null || value === undefined ? [] : value;
 
-          if (_state.includes(item[_schema.value])) {
-            // Remove the value
-            if (Number.isInteger(min) && min >= _state.length) {
-              return state;
-            }
-
-            const index = _state.findIndex((x) => x === item[_schema.value]);
-            _state.splice(index, 1);
-          } else {
-            // Add the value
-            if (Number.isInteger(max) && max <= _state.length) {
-              return state;
-            }
-
-            _state.push(item[_schema.value]);
+        if (newValue.includes(item)) {
+          // Remove the value
+          if (!Number.isInteger(min) || min < newValue.length) {
+            newValue.splice(newValue.indexOf(item), 1);
           }
-
-          return _state;
+        } else if (!Number.isInteger(max) || max > newValue.length) {
+          // Add the value
+          newValue.push(item);
         }
-        return item[_schema.value];
-      });
+
+        setValue(newValue);
+      } else setValue(value === item.value ? null : item);
 
       setNecessaryItems((state) => {
         if (multiple) {
@@ -1489,7 +1475,7 @@ function Picker({
     },
     [
       setValue,
-      multiple,
+      value,
       min,
       max,
       onPressClose,
@@ -1498,12 +1484,13 @@ function Picker({
       multiple,
       setItems,
       _schema,
+      items,
     ],
   );
 
   /**
    * The tick icon component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const _TickIconComponent = useCallback(() => {
     if (!showTickIcon) return null;
@@ -1524,7 +1511,7 @@ function Picker({
 
   /**
    * The renderItem component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const RenderItemComponent = useMemo(
     () => (renderListItem !== null ? renderListItem : RenderListItem),
@@ -1569,7 +1556,7 @@ function Picker({
 
   /**
    * Render list item.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const __renderListItem = useCallback(
     ({ item }) => {
@@ -1669,7 +1656,7 @@ function Picker({
 
   /**
    * The item separator.
-   * @returns {JSX.Element|null}
+   * @returns {React.JSX.Element|null}
    */
   const ItemSeparatorComponent = useCallback(() => {
     if (!itemSeparator) return null;
@@ -1703,7 +1690,7 @@ function Picker({
 
   /**
    * The close icon component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const _CloseIconComponent = useMemo(() => {
     if (listMode !== LIST_MODE.MODAL) return null;
@@ -1753,7 +1740,7 @@ function Picker({
 
   /**
    * The search component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const SearchComponent = useMemo(
     () =>
@@ -1796,7 +1783,7 @@ function Picker({
 
   /**
    * The dropdown component wrapper.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const DropDownComponentWrapper = useCallback(
     (Component) => (
@@ -1810,7 +1797,7 @@ function Picker({
 
   /**
    * The ActivityIndicatorComponent.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const _ActivityIndicatorComponent = useCallback(() => {
     let Component;
@@ -1830,7 +1817,7 @@ function Picker({
 
   /**
    * The ListEmptyComponent.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const _ListEmptyComponent = useCallback(() => {
     let Component;
@@ -1862,11 +1849,11 @@ function Picker({
    */
   const onRequestCloseModal = useCallback(() => {
     setOpen(false);
-  }, []);
+  }, [setOpen]);
 
   /**
    * The dropdown flatlist component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const DropDownFlatListComponent = useMemo(
     () => (
@@ -1899,7 +1886,7 @@ function Picker({
 
   /**
    * The dropdown scrollview component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const DropDownScrollViewComponent = useMemo(
     () => (
@@ -1922,7 +1909,7 @@ function Picker({
 
   /**
    * The dropdown modal component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const DropDownModalComponent = useMemo(
     () => (
@@ -1943,7 +1930,7 @@ function Picker({
 
   /**
    * The dropdown component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const DropDownComponent = useMemo(() => {
     switch (listMode) {
@@ -1965,7 +1952,7 @@ function Picker({
 
   /**
    * The body of the dropdown component.
-   * @returns {JSX.Element}
+   * @returns {React.JSX.Element}
    */
   const DropDownBodyComponent = useMemo(() => {
     if (open || listMode === LIST_MODE.MODAL) return DropDownComponent;
