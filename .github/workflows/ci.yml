@@ -73,7 +73,7 @@ jobs:
           typescript,prettier
 
   run-npm-outdated:
-    name: Check for outdated packages with npm outdated
+    name: Check for outdated packages with npm outdated and npm-check-updates
     runs-on: ubuntu-latest
 
     steps:
@@ -83,6 +83,7 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm outdated
+      - run: npx npm-check-updates
 
 # TODO: check project builds/compiles correctly
 # TODO: add tests
