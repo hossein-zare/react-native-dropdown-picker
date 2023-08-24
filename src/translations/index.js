@@ -77,7 +77,7 @@ export default {
     },
     NOTHING_TO_SHOW: "Il n'y a rien à montrer!",
   },
-  EN: {
+  KR: {
     PLACEHOLDER: '아이템을 선택해주세요',
     SEARCH_PLACEHOLDER: '입력 중...',
     SELECTED_ITEMS_COUNT_TEXT: {
