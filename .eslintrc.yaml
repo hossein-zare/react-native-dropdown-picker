@@ -78,6 +78,7 @@ rules:
   max-lines-per-function:
     - error
     - max: 20
+  no-console: error
   no-duplicate-imports: error
   no-multi-spaces: error
   no-shadow: error
