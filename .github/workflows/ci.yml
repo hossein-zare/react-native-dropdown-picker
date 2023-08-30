@@ -85,5 +85,26 @@ jobs:
       - run: npm outdated
       - run: npx npm-check-updates
 
+  typos_spell_check:
+    name: Spell Check with Typos
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check spelling with typos
+        uses: crate-ci/typos@master
+        with:
+          config: .typos.toml
+
+  commitlint:
+    name: Check the commit conforms to the Conventional Commits specification with commitlint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: wagoid/commitlint-github-action@v5
+
+# TODO: check commits squashed into one (i.e. all changes in a PR are in one commit after last one in primary branch)
+# TODO: use release-please to increment version number, update changelog, and publish releases automatically if CI passes
 # TODO: check project builds/compiles correctly
-# TODO: add tests
+# TODO: add tests including coverage

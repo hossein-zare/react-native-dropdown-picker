@@ -1,5 +1,6 @@
 import React, {
   Fragment,
+  JSX,
   memo,
   useCallback,
   useEffect,
@@ -11,6 +12,7 @@ import React, {
 import {
   ActivityIndicator,
   BackHandler,
+  Dimensions,
   Image,
   Modal,
   Platform,
@@ -45,121 +47,144 @@ import ListEmpty from './ListEmpty';
 import RenderBadgeItem from './RenderBadgeItem';
 import RenderListItem from './RenderListItem';
 
+const { height: WINDOW_HEIGHT } = Dimensions.get('window');
+
+/**
+ * Find whether two value arrays (value prop and memoryRef.current.value) have the same values.
+ * === will just check if arrays are the same reference, not if their values are the same.
+ * @param valueOne first array
+ * @param valueTwo second array
+ * @returns boolean representing whether the two values are the same.
+ */
+function areValueArraysEqual(valueOne, valueTwo) {
+  if (Array.isArray(valueOne) !== Array.isArray(valueTwo)) return false;
+
+  if (!Array.isArray(valueOne)) return valueOne === valueTwo;
+
+  if (valueOne.length !== valueTwo.length) return false;
+
+  for (let i = 0; i < valueOne.length; i += 1) {
+    if (valueOne[i] !== valueTwo[i]) return false;
+  }
+
+  return true;
+}
+
 function Picker({
-  value = null,
   items = [],
+  setItems = () => {},
   open,
-  placeholder = null,
-  closeAfterSelecting = true,
-  labelProps = {},
-  disabled = false,
-  disabledStyle = {},
-  placeholderStyle = {},
-  containerStyle = {},
-  style = {},
-  textStyle = {},
-  labelStyle = {},
-  arrowIconStyle = {},
-  tickIconStyle = {},
-  closeIconStyle = {},
-  hideSelectedItemIcon = false,
-  badgeStyle = {},
-  badgeTextStyle = {},
-  badgeDotStyle = {},
-  iconContainerStyle = {},
-  searchContainerStyle = {},
-  searchTextInputStyle = {},
-  searchPlaceholderTextColor = Colors.GREY,
-  dropDownContainerStyle = {},
-  modalContentContainerStyle = {},
-  modalAnimationType = 'none',
+  setOpen = () => {},
+  value = null,
+  setValue = (callback) => {},
+  activityIndicatorColor = Colors.GREY,
+  ActivityIndicatorComponent = null,
+  activityIndicatorSize = 30,
+  addCustomItem = false,
+  ArrowDownIconComponent = null,
   arrowIconContainerStyle = {},
-  closeIconContainerStyle = {},
-  tickIconContainerStyle = {},
-  listItemContainerStyle = {},
-  listItemLabelStyle = {},
-  listChildContainerStyle = {},
-  listChildLabelStyle = {},
-  listParentContainerStyle = {},
-  listParentLabelStyle = {},
-  selectedItemContainerStyle = {},
-  selectedItemLabelStyle = {},
-  disabledItemContainerStyle = {},
-  disabledItemLabelStyle = {},
-  customItemContainerStyle = {},
-  customItemLabelStyle = {},
-  listMessageContainerStyle = {},
-  listMessageTextStyle = {},
-  itemSeparatorStyle = {},
-  badgeSeparatorStyle = {},
-  modalTitleStyle = {},
-  listMode = LIST_MODE.DEFAULT,
-  categorySelectable = true,
-  searchable = false,
-  searchWithRegionalAccents = false,
-  searchPlaceholder = null,
-  modalTitle,
-  schema = {},
-  language = LANGUAGE.DEFAULT,
-  translation = {},
-  multiple = false,
-  multipleText = null,
-  mode = MODE.DEFAULT,
-  itemKey = null,
-  maxHeight = 200,
-  renderBadgeItem = null,
-  renderListItem = null,
-  itemSeparator = false,
-  bottomOffset = 0,
+  arrowIconStyle = {},
+  ArrowUpIconComponent = null,
+  autoScroll = false,
   badgeColors = BADGE_COLORS,
   badgeDotColors = BADGE_DOT_COLORS,
+  badgeDotStyle = {},
+  badgeProps = {},
+  badgeSeparatorStyle = {},
+  badgeStyle = {},
+  badgeTextStyle = {},
+  bottomOffset = 0,
+  categorySelectable = true,
+  closeAfterSelecting = true,
+  CloseIconComponent = null,
+  closeIconContainerStyle = {},
+  closeIconStyle = {},
+  closeOnBackPressed = false,
+  containerProps = {},
+  containerStyle = {},
+  customItemContainerStyle = {},
+  customItemLabelStyle = {},
+  disableBorderRadius = true,
+  disabled = false,
+  disabledItemContainerStyle = {},
+  disabledItemLabelStyle = {},
+  disabledStyle = {},
+  disableLocalSearch = false,
+  dropDownContainerStyle = {},
+  dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
+  extendableBadgeContainer = false,
+  flatListProps = {},
+  hideSelectedItemIcon = false,
+  iconContainerStyle = {},
+  itemKey = null,
+  itemLabelProps = {},
+  itemProps = {},
+  itemSeparator = false,
+  itemSeparatorStyle = {},
+  labelProps = {},
+  labelStyle = {},
+  language = LANGUAGE.DEFAULT,
+  listChildContainerStyle = {},
+  listChildLabelStyle = {},
+  ListEmptyComponent = null,
+  listItemContainerStyle = {},
+  listItemLabelStyle = {},
+  listMessageContainerStyle = {},
+  listMessageTextStyle = {},
+  listMode = LIST_MODE.DEFAULT,
+  listParentContainerStyle = {},
+  listParentLabelStyle = {},
+  loading = false,
+  max = null,
+  maxHeight = 200,
+  min = null,
+  modalAnimationType = 'none',
+  modalContentContainerStyle = {},
+  modalProps = {},
+  modalTitle,
+  modalTitleStyle = {},
+  mode = MODE.DEFAULT,
+  multiple = false,
+  multipleText = null,
+  onChangeSearchText = (text) => {},
+  onChangeValue = (value) => {},
+  onClose = () => {},
+  onDirectionChanged = (direction) => {},
+  onLayout = (e) => {},
+  onOpen = () => {},
+  onPress = (open) => {},
+  onSelectItem = (item) => {},
+  placeholder = null,
+  placeholderStyle = {},
+  props = {},
+  renderBadgeItem = null,
+  renderListItem = null,
+  rtl = false,
+  schema = {},
+  scrollViewProps = {},
+  searchable = false,
+  searchContainerStyle = {},
+  searchPlaceholder = null,
+  searchPlaceholderTextColor = Colors.GREY,
+  searchTextInputProps = {},
+  searchTextInputStyle = {},
+  searchWithRegionalAccents = false,
+  selectedItemContainerStyle = {},
+  selectedItemLabelStyle = {},
   showArrowIcon = true,
   showBadgeDot = true,
   showTickIcon = true,
   stickyHeader = false,
-  autoScroll = false,
-  ArrowUpIconComponent = null,
-  ArrowDownIconComponent = null,
+  style = {},
+  testID,
+  textStyle = {},
+  theme = THEMES.DEFAULT,
   TickIconComponent = null,
-  CloseIconComponent = null,
-  ListEmptyComponent = null,
-  ActivityIndicatorComponent = null,
-  activityIndicatorSize = 30,
-  activityIndicatorColor = Colors.GREY,
-  props = {},
-  itemProps = {},
-  itemLabelProps = {},
-  badgeProps = {},
-  modalProps = {},
-  flatListProps = {},
-  scrollViewProps = {},
-  searchTextInputProps = {},
-  loading = false,
-  min = null,
-  max = null,
-  addCustomItem = false,
-  setOpen = () => {},
-  setItems = () => {},
-  disableBorderRadius = true,
-  containerProps = {},
-  onLayout = (e) => {},
-  onPress = (open) => {},
-  onOpen = () => {},
-  onClose = () => {},
-  setValue = (callback) => {},
-  onChangeValue = (value) => {},
-  onChangeSearchText = (text) => {},
-  onDirectionChanged = (direction) => {},
+  tickIconContainerStyle = {},
+  tickIconStyle = {},
+  translation = {},
   zIndex = 5000,
   zIndexInverse = 6000,
-  rtl = false,
-  dropDownDirection = DROPDOWN_DIRECTION.DEFAULT,
-  disableLocalSearch = false,
-  theme = THEMES.DEFAULT,
-  testID,
-  closeOnBackPressed = false,
-  extendableBadgeContainer = false,
-  onSelectItem = (item) => {},
 }) {
   const [necessaryItems, setNecessaryItems] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -175,8 +200,8 @@ function Picker({
   const flatListRef = useRef();
   const scrollViewRef = useRef();
   const memoryRef = useRef({
-    value: null,
     items: [],
+    value: null,
   });
 
   const THEME = useMemo(() => THEMES[theme].default, [theme]);
@@ -186,19 +211,17 @@ function Picker({
    * The item schema.
    * @returns {object}
    */
-  const _schema = useMemo(() => ({ ...SCHEMA, ...schema }), [schema]);
+  const ITEM_SCHEMA = useMemo(() => ({ ...SCHEMA, ...schema }), [schema]);
 
   /**
    * componentDidMount.
    */
   useEffect(() => {
-    memoryRef.current.value = multiple
-      ? Array.isArray(value)
-        ? value
-        : []
-      : value;
+    if (multiple) {
+      memoryRef.current.value = Array.isArray(value) ? value : [];
+    } else memoryRef.current.value = value;
 
-    // Get initial seleted items
+    // Get initial selected items
     let initialSelectedItems = [];
     const valueNotNull =
       value !== null && Array.isArray(value) && value.length !== 0;
@@ -206,11 +229,11 @@ function Picker({
     if (valueNotNull) {
       if (multiple) {
         initialSelectedItems = items.filter((item) =>
-          value.includes(item[_schema.value]),
+          value.includes(item[ITEM_SCHEMA.value]),
         );
       } else {
         initialSelectedItems = items.find(
-          (item) => item[_schema.value] === value,
+          (item) => item[ITEM_SCHEMA.value] === value,
         );
       }
     }
@@ -241,7 +264,7 @@ function Picker({
     setNecessaryItems((state) =>
       [...state].map((item) => {
         const _item = items.find(
-          (x) => x[_schema.value] === item[_schema.value],
+          (x) => x[ITEM_SCHEMA.value] === item[ITEM_SCHEMA.value],
         );
 
         if (_item) {
@@ -262,18 +285,18 @@ function Picker({
         if (value === null || (Array.isArray(value) && value.length === 0))
           return [];
 
-        const _state = [...state].filter((item) =>
-          value.includes(item[_schema.value]),
+        const newState = [...state].filter((item) =>
+          value.includes(item[ITEM_SCHEMA.value]),
         );
 
         const newItems = value.reduce((accumulator, currentValue) => {
-          const index = _state.findIndex(
-            (item) => item[_schema.value] === currentValue,
+          const itemIndex = newState.findIndex(
+            (item) => item[ITEM_SCHEMA.value] === currentValue,
           );
 
-          if (index === -1) {
+          if (itemIndex === -1) {
             const item = items.find(
-              (item) => item[_schema.value] === currentValue,
+              (item) => item[ITEM_SCHEMA.value] === currentValue,
             );
 
             if (item) {
@@ -286,13 +309,13 @@ function Picker({
           return accumulator;
         }, []);
 
-        return [..._state, ...newItems];
+        return [...newState, ...newItems];
       });
     } else {
       const state = [];
 
       if (value !== null) {
-        const item = items.find((item) => item[_schema.value] === value);
+        const item = items.find((item) => item[ITEM_SCHEMA.value] === value);
 
         if (item) {
           state.push(item);
@@ -385,18 +408,20 @@ function Picker({
   const sortedItems = useMemo(() => {
     const sortedItems = items.filter(
       (item) =>
-        item[_schema.parent] === undefined || item[_schema.parent] === null,
+        item[ITEM_SCHEMA.parent] === undefined ||
+        item[ITEM_SCHEMA.parent] === null,
     );
     const children = items.filter(
       (item) =>
-        item[_schema.parent] !== undefined && item[_schema.parent] !== null,
+        item[ITEM_SCHEMA.parent] !== undefined &&
+        item[ITEM_SCHEMA.parent] !== null,
     );
 
     children.forEach((child) => {
       const index = sortedItems.findIndex(
         (item) =>
-          item[_schema.parent] === child[_schema.parent] ||
-          item[_schema.value] === child[_schema.parent],
+          item[ITEM_SCHEMA.parent] === child[ITEM_SCHEMA.parent] ||
+          item[ITEM_SCHEMA.value] === child[ITEM_SCHEMA.parent],
       );
 
       if (index > -1) {
@@ -405,10 +430,10 @@ function Picker({
     });
 
     return sortedItems;
-  }, [items, _schema]);
+  }, [items, ITEM_SCHEMA]);
 
   /**
-   * Scroll the the first selected item.
+   * Scroll to the first selected item.
    */
   const scroll = useCallback(() => {
     setTimeout(() => {
@@ -436,7 +461,7 @@ function Picker({
           });
         } else {
           const index = sortedItems.findIndex(
-            (item) => item[_schema.value] === value,
+            (item) => item[ITEM_SCHEMA.value] === value,
           );
 
           if (index > -1)
@@ -468,11 +493,12 @@ function Picker({
     if (stickyHeader) {
       const parents = sortedItems.filter(
         (item) =>
-          item[_schema.parent] === undefined || item[_schema.parent] === null,
+          item[ITEM_SCHEMA.parent] === undefined ||
+          item[ITEM_SCHEMA.parent] === null,
       );
       parents.forEach((parent) => {
         const index = sortedItems.findIndex(
-          (item) => item[_schema.value] === parent[_schema.value],
+          (item) => item[ITEM_SCHEMA.value] === parent[ITEM_SCHEMA.value],
         );
         if (index > -1) stickyHeaderIndices.push(index);
       });
@@ -495,14 +521,14 @@ function Picker({
       text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
     const results = sortedItems.filter((item) => {
-      const label = String(item[_schema.label]).toLowerCase();
+      const label = String(item[ITEM_SCHEMA.label]).toLowerCase();
 
       if (
         label.includes(searchText.toLowerCase()) ||
         (searchWithRegionalAccents &&
           normalizeText(label).includes(searchText.toLowerCase()))
       ) {
-        values.push(item[_schema.value]);
+        values.push(item[ITEM_SCHEMA.value]);
         return true;
       }
 
@@ -511,16 +537,16 @@ function Picker({
 
     results.forEach((item, index) => {
       if (
-        item[_schema.parent] === undefined ||
-        item[_schema.parent] === null ||
-        values.includes(item[_schema.parent])
+        item[ITEM_SCHEMA.parent] === undefined ||
+        item[ITEM_SCHEMA.parent] === null ||
+        values.includes(item[ITEM_SCHEMA.parent])
       )
         return;
 
       const parent = sortedItems.find(
-        (x) => x[_schema.value] === item[_schema.parent],
+        (x) => x[ITEM_SCHEMA.value] === item[ITEM_SCHEMA.parent],
       );
-      values.push(item[_schema.parent]);
+      values.push(item[ITEM_SCHEMA.parent]);
 
       results.splice(index, 0, parent);
     });
@@ -529,20 +555,20 @@ function Picker({
       (results.length === 0 ||
         results.findIndex(
           (item) =>
-            String(item[_schema.label]).toLowerCase() ===
+            String(item[ITEM_SCHEMA.label]).toLowerCase() ===
             searchText.toLowerCase(),
         ) === -1) &&
       addCustomItem
     ) {
       results.push({
-        [_schema.label]: searchText,
-        [_schema.value]: searchText.replace(' ', '-'),
+        [ITEM_SCHEMA.label]: searchText,
+        [ITEM_SCHEMA.value]: searchText.replace(' ', '-'),
         custom: true,
       });
     }
 
     return results;
-  }, [sortedItems, _schema, searchText, addCustomItem]);
+  }, [sortedItems, ITEM_SCHEMA, searchText, addCustomItem]);
 
   /**
    * The value.
@@ -550,9 +576,7 @@ function Picker({
    */
   const _value = useMemo(() => {
     if (multiple) {
-      if (value === null) return [];
-
-      return [...new Set(value)];
+      return value === null ? [] : [...new Set(value)];
     }
 
     return value;
@@ -566,9 +590,9 @@ function Picker({
     if (!multiple) return [];
 
     return necessaryItems.filter((item) =>
-      _value.includes(item[_schema.value]),
+      _value.includes(item[ITEM_SCHEMA.value]),
     );
-  }, [necessaryItems, _value, _schema, multiple]);
+  }, [necessaryItems, _value, ITEM_SCHEMA, multiple]);
 
   /**
    * The language.
@@ -639,7 +663,7 @@ function Picker({
     if (isNull) return null;
 
     try {
-      return necessaryItems.find((item) => item[_schema.value] === _value);
+      return necessaryItems.find((item) => item[ITEM_SCHEMA.value] === _value);
     } catch (e) {
       return null;
     }
@@ -666,12 +690,12 @@ function Picker({
         } else return fallback;
 
       try {
-        return item[_schema.label];
+        return item[ITEM_SCHEMA.label];
       } catch (e) {
         return fallback;
       }
     },
-    [getSelectedItem, multiple, _multipleText, _schema],
+    [getSelectedItem, multiple, _multipleText, ITEM_SCHEMA],
   );
 
   /**
@@ -691,11 +715,11 @@ function Picker({
     const item = getSelectedItem();
 
     try {
-      return item[_schema.icon] ?? null;
+      return item[ITEM_SCHEMA.icon] ?? null;
     } catch (e) {
       return null;
     }
-  }, [getSelectedItem, multiple, _schema]);
+  }, [getSelectedItem, multiple, ITEM_SCHEMA]);
 
   /**
    * onPress.
@@ -871,13 +895,13 @@ function Picker({
       dropDownNoBorderRadius,
     ],
     [
-      dropDownContainerStyle,
-      pickerHeight,
-      maxHeight,
-      dropDownNoBorderRadius,
       direction,
-      _zIndex,
+      dropDownContainerStyle,
+      dropDownNoBorderRadius,
+      maxHeight,
+      pickerHeight,
       THEME,
+      _zIndex,
     ],
   );
 
@@ -1001,13 +1025,11 @@ function Picker({
    * onPress badge.
    */
   const onPressBadge = useCallback(
-    (value) => {
+    (badgeValue) => {
       setValue((state) => {
-        const _state = [...state];
-        const index = _state.findIndex((item) => item === value);
-        _state.splice(index, 1);
-
-        return _state;
+        const newState = [...state];
+        newState.filter((nsItem) => nsItem !== badgeValue);
+        return newState;
       });
     },
     [setValue],
@@ -1081,9 +1103,9 @@ function Picker({
       <RenderBadgeComponent
         props={badgeProps}
         rtl={rtl}
-        label={item[_schema.label]}
-        value={item[_schema.value]}
-        IconComponent={item[_schema.icon] ?? null}
+        label={item[ITEM_SCHEMA.label]}
+        value={item[ITEM_SCHEMA.value]}
+        IconComponent={item[ITEM_SCHEMA.icon] ?? null}
         textStyle={textStyle}
         badgeStyle={badgeStyle}
         badgeTextStyle={badgeTextStyle}
@@ -1097,18 +1119,18 @@ function Picker({
       />
     ),
     [
-      rtl,
-      _schema,
-      textStyle,
+      badgeDotStyle,
       badgeStyle,
       badgeTextStyle,
-      badgeDotStyle,
       getBadgeColor,
       getBadgeDotColor,
-      showBadgeDot,
+      ITEM_SCHEMA,
       onPressBadge,
-      theme,
+      rtl,
+      showBadgeDot,
+      textStyle,
       THEME,
+      theme,
     ],
   );
 
@@ -1117,10 +1139,10 @@ function Picker({
    * @returns {string}
    */
   const _itemKey = useMemo(() => {
-    if (itemKey === null) return _schema.value;
+    if (itemKey === null) return ITEM_SCHEMA.value;
 
     return itemKey;
-  }, [itemKey, _schema]);
+  }, [itemKey, ITEM_SCHEMA]);
 
   /**
    * The key extractor.
@@ -1403,16 +1425,28 @@ function Picker({
    */
   const onPressItem = useCallback(
     (item, customItem = false) => {
+      if (!areValueArraysEqual(value, memoryRef.current.value)) {
+        throw new Error(
+          `${new Date().toString()} The arrays of the value prop and memoryRef.current.value were not equal in the callback for when items are pressed in the Picker component. value was: ${JSON.stringify(
+            value,
+          )} and memoryRef.current.value was: ${JSON.stringify(
+            memoryRef.current.value,
+          )}`,
+        );
+      }
+
+      // if pressed item was a custom item by the user, add it to the list of items (?)
       if (customItem !== false) {
         item.custom = false;
         setItems((state) => [...state, item]);
       }
 
+      // call onSelectItem() callback for item/s now selected after item press.
       // Not a reliable method for external value changes.
       if (multiple) {
-        if (memoryRef.current.value?.includes(item[_schema.value])) {
+        if (memoryRef.current.value?.includes(item[ITEM_SCHEMA.value])) {
           const index = memoryRef.current.items.findIndex(
-            (x) => x[_schema.value] === item[_schema.value],
+            (x) => x[ITEM_SCHEMA.value] === item[ITEM_SCHEMA.value],
           );
 
           if (index > -1) {
@@ -1427,77 +1461,67 @@ function Picker({
       }
 
       setValue((state) => {
+        // call setValue() callback to change selected value/s after item press.
         if (multiple) {
-          const _state =
-            state !== null && state !== undefined ? [...state] : [];
+          const newState =
+            state === null || state === undefined ? [] : [...state];
 
-          if (_state.includes(item[_schema.value])) {
-            // Remove the value
-            if (Number.isInteger(min) && min >= _state.length) {
-              return state;
+          if (newState.includes(item[ITEM_SCHEMA.value])) {
+            // if value already included, remove it if doing so wouldn't go under min number
+            if (!Number.isInteger(min) || min < newState.length) {
+              newState.splice(newState.indexOf(item[ITEM_SCHEMA.value]), 1);
             }
-
-            const index = _state.findIndex((x) => x === item[_schema.value]);
-            _state.splice(index, 1);
-          } else {
-            // Add the value
-            if (Number.isInteger(max) && max <= _state.length) {
-              return state;
-            }
-
-            _state.push(item[_schema.value]);
+          } else if (!Number.isInteger(max) || max > newState.length) {
+            // if value not already included, add it if doing so wouldn't go above max number
+            newState.push(item[ITEM_SCHEMA.value]);
           }
 
-          return _state;
+          return newState;
         }
-        return item[_schema.value];
+
+        return item[ITEM_SCHEMA.value]; // single-value picker
       });
 
+      // adjust necessary items after item press.
+      // if single-item picker, set necessary items with array whose only element is the item pressed.
+      // if multi-item picker, if item in necessary items remove it or if not then add it, within min/max constraints
       setNecessaryItems((state) => {
         if (multiple) {
-          const _state = [...state];
+          const newState = [...state];
 
-          if (
-            _state.findIndex((x) => x[_schema.value] === item[_schema.value]) >
-            -1
-          ) {
-            // Remove the item
-            if (Number.isInteger(min) && min >= _state.length) {
-              return state;
+          const itemIndex = newState.findIndex(
+            (x) => x[ITEM_SCHEMA.value] === item[ITEM_SCHEMA.value],
+          );
+
+          if (itemIndex > -1) {
+            // If pressed item already in necessary items, remove it if doing so doesn't go below min number of items
+            if (!Number.isInteger(min) || min < newState.length) {
+              newState.splice(itemIndex, 1);
             }
-
-            const index = _state.findIndex(
-              (x) => x[_schema.value] === item[_schema.value],
-            );
-            _state.splice(index, 1);
-
-            return _state;
-          }
-          // Add the item
-          if (Number.isInteger(max) && max <= _state.length) {
-            return state;
+          } else if (!Number.isInteger(max) || max > newState.length) {
+            // If pressed item not already in necessary items, add it if doing so doesn't go above max number of items
+            newState.push(item);
           }
 
-          _state.push(item);
-
-          return _state;
+          return newState;
         }
+        // if a single-item picker, set pressed item as array of only necessary item
         return [item];
       });
 
+      // if picker is a single-item picker and to close after an item gets selected, close it since press selected item.
       if (closeAfterSelecting && !multiple) onPressClose();
     },
     [
-      setValue,
-      multiple,
-      min,
+      closeAfterSelecting,
+      ITEM_SCHEMA,
       max,
+      min,
+      multiple,
       onPressClose,
       onSelectItem,
-      closeAfterSelecting,
-      multiple,
       setItems,
-      _schema,
+      setValue,
     ],
   );
 
@@ -1573,7 +1597,7 @@ function Picker({
    */
   const __renderListItem = useCallback(
     ({ item }) => {
-      let IconComponent = item[_schema.icon] ?? null;
+      let IconComponent = item[ITEM_SCHEMA.icon] ?? null;
 
       if (IconComponent) {
         IconComponent = (
@@ -1585,20 +1609,20 @@ function Picker({
 
       let isSelected;
       if (multiple) {
-        isSelected = _value.includes(item[_schema.value]);
+        isSelected = _value.includes(item[ITEM_SCHEMA.value]);
       } else {
-        isSelected = _value === item[_schema.value];
+        isSelected = _value === item[ITEM_SCHEMA.value];
       }
 
       return (
         <RenderItemComponent
           rtl={rtl}
           item={item}
-          label={item[_schema.label]}
-          value={item[_schema.value]}
-          parent={item?.[_schema.parent] ?? null}
-          selectable={item?.[_schema.selectable] ?? null}
-          disabled={item?.[_schema.disabled] ?? false}
+          label={item[ITEM_SCHEMA.label]}
+          value={item[ITEM_SCHEMA.value]}
+          parent={item?.[ITEM_SCHEMA.parent] ?? null}
+          selectable={item?.[ITEM_SCHEMA.selectable] ?? null}
+          disabled={item?.[ITEM_SCHEMA.disabled] ?? false}
           custom={item.custom ?? false}
           props={itemProps}
           labelProps={itemLabelProps}
@@ -1617,8 +1641,8 @@ function Picker({
           selectedItemLabelStyle={_selectedItemLabelStyle}
           disabledItemContainerStyle={_disabledItemContainerStyle}
           disabledItemLabelStyle={_disabledItemLabelStyle}
-          labelStyle={item?.[_schema.labelStyle] ?? {}}
-          containerStyle={item?.[_schema.containerStyle] ?? {}}
+          labelStyle={item?.[ITEM_SCHEMA.labelStyle] ?? {}}
+          containerStyle={item?.[ITEM_SCHEMA.containerStyle] ?? {}}
           categorySelectable={categorySelectable}
           onPress={onPressItem}
           setPosition={setItemPosition}
@@ -1628,32 +1652,31 @@ function Picker({
       );
     },
     [
-      rtl,
-      RenderItemComponent,
-      _listItemLabelStyle,
-      _iconContainerStyle,
+      categorySelectable,
+      customItemContainerStyle,
+      customItemLabelStyle,
+      itemLabelProps,
+      itemProps,
+      ITEM_SCHEMA,
       listChildContainerStyle,
       listChildLabelStyle,
       listParentContainerStyle,
       listParentLabelStyle,
-      _listItemContainerStyle,
-      _listItemLabelStyle,
-      customItemContainerStyle,
-      customItemLabelStyle,
-      _selectedItemContainerStyle,
-      _selectedItemLabelStyle,
-      _disabledItemContainerStyle,
-      _disabledItemLabelStyle,
-      _TickIconComponent,
-      _schema,
-      _value,
       multiple,
-      itemProps,
-      itemLabelProps,
-      categorySelectable,
       onPressItem,
+      RenderItemComponent,
+      rtl,
       theme,
       THEME,
+      _disabledItemContainerStyle,
+      _disabledItemLabelStyle,
+      _iconContainerStyle,
+      _listItemContainerStyle,
+      _listItemLabelStyle,
+      _selectedItemContainerStyle,
+      _selectedItemLabelStyle,
+      _TickIconComponent,
+      _value,
     ],
   );
 
@@ -1779,18 +1802,18 @@ function Picker({
         </View>
       ),
     [
-      searchable,
+      isSearchComponentVisible,
       listMode,
       modalTitle,
-      isSearchComponentVisible,
-      _onChangeSearchText,
-      _modalTitleStyle,
-      _searchContainerStyle,
-      _searchTextInputStyle,
-      _searchPlaceholder,
+      searchable,
       searchPlaceholderTextColor,
       searchText,
       searchTextInputProps,
+      _modalTitleStyle,
+      _onChangeSearchText,
+      _searchContainerStyle,
+      _searchPlaceholder,
+      _searchTextInputStyle,
     ],
   );
 
@@ -1886,14 +1909,14 @@ function Picker({
       />
     ),
     [
+      flatListProps,
+      ItemSeparatorComponent,
+      keyExtractor,
+      THEME,
       _items,
+      _ListEmptyComponent,
       _value,
       __renderListItem,
-      keyExtractor,
-      ItemSeparatorComponent,
-      flatListProps,
-      _ListEmptyComponent,
-      THEME,
     ],
   );
 
