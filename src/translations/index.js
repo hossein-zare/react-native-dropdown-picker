@@ -77,4 +77,13 @@ export default {
     },
     NOTHING_TO_SHOW: "Il n'y a rien à montrer!",
   },
+  KR: {
+    PLACEHOLDER: '아이템을 선택해주세요',
+    SEARCH_PLACEHOLDER: '입력 중...',
+    SELECTED_ITEMS_COUNT_TEXT: {
+      1: '하나의 아이템이 선택되었습니다.',
+      n: '{count}개의 아이템이 선택되었습니다.',
+    },
+    NOTHING_TO_SHOW: "검색된 사항이 존재하지 않습니다.",
+  },
 };
