@@ -1,9 +1,15 @@
 # React Native Dropdown Picker
 
-<a href="https://www.npmjs.org/package/react-native-dropdown-picker">
-  <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package"
-    alt="Current npm package version." />
-</a>
+<p align="left">
+  <a href="https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg"
+      alt="react-native-dropdown-picker is released under the MIT license." />
+  </a>
+  <a href="https://www.npmjs.org/package/react-native-dropdown-picker">
+    <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package"
+      alt="Current npm package version." />
+  </a>
+</p>
 
 ## Screenshots
 
@@ -19,7 +25,11 @@
 The above screenshots are taken from the following
 example: [https://snack.expo.dev/8mHmLfcZf](https://snack.expo.dev/8mHmLfcZf)
 
-## Documentation
+## Usage
+
+See [the relevant documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
+
+## Further documentation
 
 The docs can be read
 at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website).
