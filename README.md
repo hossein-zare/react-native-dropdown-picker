@@ -19,7 +19,11 @@
 The above screenshots are taken from the following
 example: [https://snack.expo.dev/8mHmLfcZf](https://snack.expo.dev/8mHmLfcZf)
 
-## Documentation
+## Usage
+
+See [the relevant documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
+
+## Further documentation
 
 The docs can be read
 at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website).
