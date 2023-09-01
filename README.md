@@ -1,7 +1,8 @@
 # React Native Dropdown Picker
 
 <a href="https://www.npmjs.org/package/react-native-dropdown-picker">
-  <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package" alt="Current npm package version." />
+  <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package"
+    alt="Current npm package version." />
 </a>
 
 ## Screenshots
