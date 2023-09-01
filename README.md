@@ -1,11 +1,19 @@
-# React Native Dropdown Picker 5.x
+# React Native Dropdown Picker
+
+<a href="https://www.npmjs.org/package/react-native-dropdown-picker">
+  <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package"
+    alt="Current npm package version." />
+</a>
 
 ## Screenshots
 
 <p float="left">
-    <img src="https://user-images.githubusercontent.com/56504893/116790110-e0b36880-aac7-11eb-9ebd-196acee64f7a.png" width="270" alt="Screenshot">
-    <img src="https://user-images.githubusercontent.com/56504893/116789802-faec4700-aac5-11eb-837b-86f18cbfcf3d.png" width="270" alt="Screenshot">
-    <img src="https://user-images.githubusercontent.com/56504893/116789839-2c651280-aac6-11eb-99e0-b43b608ed8c7.png" width="270" alt="Screenshot">
+    <img src="https://user-images.githubusercontent.com/56504893/116790110-e0b36880-aac7-11eb-9ebd-196acee64f7a.png"
+      width="270" alt="Screenshot showing basic dropdown" />
+    <img src="https://user-images.githubusercontent.com/56504893/116789802-faec4700-aac5-11eb-837b-86f18cbfcf3d.png"
+      width="270" alt="Screenshot showing badges" />
+    <img src="https://user-images.githubusercontent.com/56504893/116789839-2c651280-aac6-11eb-99e0-b43b608ed8c7.png"
+      width="270" alt="Screenshot showing dark theme and parent items" />
 </p>
 
 The above screenshots are taken from the following
@@ -14,7 +22,9 @@ example: [https://snack.expo.dev/8mHmLfcZf](https://snack.expo.dev/8mHmLfcZf)
 ## Documentation
 
 The docs can be read
-at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website)
+at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website).
+The docs can be edited
+at: [https://github.com/hossein-zare/react-native-dropdown-picker-website](https://github.com/hossein-zare/react-native-dropdown-picker-website)
 
 ## Merge and Release Process
 
