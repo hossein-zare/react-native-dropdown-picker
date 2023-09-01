@@ -49,27 +49,6 @@ import RenderListItem from './RenderListItem';
 
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 
-/**
- * Find whether two value arrays (value prop and memoryRef.current.value) have the same values.
- * === will just check if arrays are the same reference, not if their values are the same.
- * @param valueOne first array
- * @param valueTwo second array
- * @returns boolean representing whether the two values are the same.
- */
-function areValueArraysEqual(valueOne, valueTwo) {
-  if (Array.isArray(valueOne) !== Array.isArray(valueTwo)) return false;
-
-  if (!Array.isArray(valueOne)) return valueOne === valueTwo;
-
-  if (valueOne.length !== valueTwo.length) return false;
-
-  for (let i = 0; i < valueOne.length; i += 1) {
-    if (valueOne[i] !== valueTwo[i]) return false;
-  }
-
-  return true;
-}
-
 function Picker({
   items = [],
   setItems = () => {},
@@ -1425,16 +1404,6 @@ function Picker({
    */
   const onPressItem = useCallback(
     (item, customItem = false) => {
-      if (!areValueArraysEqual(value, memoryRef.current.value)) {
-        throw new Error(
-          `${new Date().toString()} The arrays of the value prop and memoryRef.current.value were not equal in the callback for when items are pressed in the Picker component. value was: ${JSON.stringify(
-            value,
-          )} and memoryRef.current.value was: ${JSON.stringify(
-            memoryRef.current.value,
-          )}`,
-        );
-      }
-
       // if pressed item was a custom item by the user, add it to the list of items (?)
       if (customItem !== false) {
         item.custom = false;
