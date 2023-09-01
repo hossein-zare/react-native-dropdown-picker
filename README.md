@@ -1,4 +1,8 @@
-# React Native Dropdown Picker 5.x
+# React Native Dropdown Picker
+
+<a href="https://www.npmjs.org/package/react-native-dropdown-picker">
+  <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package" alt="Current npm package version." />
+</a>
 
 ## Screenshots
 
@@ -14,7 +18,9 @@ example: [https://snack.expo.dev/8mHmLfcZf](https://snack.expo.dev/8mHmLfcZf)
 ## Documentation
 
 The docs can be read
-at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website)
+at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website).
+The docs can be edited
+at: [https://github.com/hossein-zare/react-native-dropdown-picker-website](https://github.com/hossein-zare/react-native-dropdown-picker-website)
 
 ## Merge and Release Process
 
