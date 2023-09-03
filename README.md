@@ -58,6 +58,8 @@ To make a new release, follow these steps:
 
 * Verify the development branch has all the changes desired in the release and
   works well
+* You can test changes to the library and experiment easily
+  with [patch-package](https://www.npmjs.com/package/patch-package)
 * Use `npm pack` to test the new version of the library locally and check it
   works correctly;
   see [https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e](https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e)
