@@ -70,10 +70,10 @@ declare module 'react-native-dropdown-picker' {
     | 'FR'
     | 'ID'
     | 'IT'
+    | 'KO'
     | 'PT'
     | 'RU'
-    | 'TR'
-    | 'KO';
+    | 'TR';
 
   export interface TranslationInterface {
     NOTHING_TO_SHOW: string;
