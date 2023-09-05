@@ -1,15 +1,11 @@
 # React Native Dropdown Picker
 
-<p align="left">
-  <a href="https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg"
-      alt="react-native-dropdown-picker is released under the MIT license." />
-  </a>
-  <a href="https://www.npmjs.org/package/react-native-dropdown-picker">
-    <img src="https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package"
-      alt="Current npm package version." />
-  </a>
-</p>
+[![react-native-dropdown-picker is released under the MIT license.](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/LICENSE)
+[![Current npm package version.](https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package)](https://www.npmjs.org/package/react-native-dropdown-picker)
+
+[//]: # (TODO: add badge linking to GitHub repo)
+
+---
 
 ## Screenshots
 
@@ -22,17 +18,24 @@
       width="270" alt="Screenshot showing dark theme and parent items" />
 </p>
 
-The above screenshots are taken from the following
-example: [https://snack.expo.dev/8mHmLfcZf](https://snack.expo.dev/8mHmLfcZf)
+The above screenshots were taken
+from [this example](https://snack.expo.dev/8mHmLfcZf).
 
 ## Usage
 
-See [the relevant documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
+You can find runnable examples in the `examples` subdirectory, which is a
+working [Expo](https://github.com/expo/expo) project demonstrating this library.
+Navigate into the `examples` subdirectory, run `npm install`, and then run
+`npx expo start` to see the examples working.
+
+For further information on how to use this library,
+read [the relevant documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
 
 ## Further documentation
 
 The docs can be read
-at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website).
+at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website)
+
 The docs can be edited
 at: [https://github.com/hossein-zare/react-native-dropdown-picker-website](https://github.com/hossein-zare/react-native-dropdown-picker-website)
 
@@ -60,9 +63,8 @@ To make a new release, follow these steps:
   works well
 * You can test changes to the library and experiment easily
   with [patch-package](https://www.npmjs.com/package/patch-package)
-* Use `npm pack` to test the new version of the library locally and check it
-  works correctly;
-  see [https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e](https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e)
+* Once you have made changes, and after finalizing them, use `npm pack`
+  to [test your new, changed version of the library locally and check it works correctly](https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e)
 * Make and merge a final PR into the development branch that increments the
   version number in `package.json`
 * Make and merge a PR from the development branch to the release branch
