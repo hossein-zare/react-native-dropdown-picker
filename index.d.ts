@@ -1,5 +1,11 @@
 declare module 'react-native-dropdown-picker' {
-  import { Dispatch, JSX, PropsWithoutRef, ReactElement } from 'react';
+  import {
+    Dispatch,
+    JSX,
+    PropsWithoutRef,
+    ReactElement,
+    SetStateAction,
+  } from 'react';
   import {
     FlatListProps,
     LayoutChangeEvent,
@@ -13,9 +19,6 @@ declare module 'react-native-dropdown-picker' {
     ViewProps,
     ViewStyle,
   } from 'react-native';
-
-  type SetStateCallback<S> = (prevState: S) => S;
-  type SetStateValue<S> = (prevState: S) => S;
 
   export type ValueType = string | number | boolean;
 
@@ -70,10 +73,10 @@ declare module 'react-native-dropdown-picker' {
     | 'FR'
     | 'ID'
     | 'IT'
+    | 'KO'
     | 'PT'
     | 'RU'
-    | 'TR'
-    | 'KO';
+    | 'TR';
 
   export interface TranslationInterface {
     NOTHING_TO_SHOW: string;
@@ -155,9 +158,9 @@ declare module 'react-native-dropdown-picker' {
 
   export interface DropDownPickerBaseProps<T extends ValueType> {
     items: Array<ItemType<T>>;
-    setItems?: Dispatch<SetStateCallback<Array<ItemType<T>>>>;
+    setItems?: Dispatch<SetStateAction<Array<ItemType<T>>>>;
     open: boolean;
-    setOpen: Dispatch<SetStateValue<boolean>>;
+    setOpen: Dispatch<SetStateAction<boolean>>;
     activityIndicatorColor?: string;
     ActivityIndicatorComponent?: (
       props: ActivityIndicatorComponentPropsInterface,
@@ -278,7 +281,7 @@ declare module 'react-native-dropdown-picker' {
     multiple?: false;
     onChangeValue?: (value: T | null) => void;
     onSelectItem?: (item: ItemType<T>) => void;
-    setValue: Dispatch<SetStateCallback<T | null>>;
+    setValue: Dispatch<SetStateAction<T | null>>;
     value: T | null;
   }
 
@@ -286,7 +289,7 @@ declare module 'react-native-dropdown-picker' {
     multiple: true;
     onChangeValue?: (value: Array<T> | null) => void;
     onSelectItem?: (items: Array<ItemType<T>>) => void;
-    setValue: Dispatch<SetStateCallback<Array<T> | null>>;
+    setValue: Dispatch<SetStateAction<Array<T> | null>>;
     value: Array<T> | null;
   }
 
