@@ -23,10 +23,64 @@ from [this example](https://snack.expo.dev/8mHmLfcZf).
 
 ## Usage
 
-You can find runnable examples in the `examples` subdirectory, which is a
-working [Expo](https://github.com/expo/expo) project demonstrating this library.
-Navigate into the `examples` subdirectory, run `npm install`, and then run
-`npx expo start` to see the examples working.
+### Basic usage
+
+The following code shows basic usage of the library:
+
+```javascript
+import React, {useState} from 'react';
+import {View, Text} from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+
+export default function App() {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        {label: 'Apple', value: 'apple'},
+        {label: 'Banana', value: 'banana'},
+        {label: 'Pear', value: 'pear'},
+    ]);
+
+    return (
+        <View style={{flex: 1}}>
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingHorizontal: 15,
+                }}>
+                <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    setItems={setItems}
+                    placeholder={'Choose a fruit.'}
+                />
+            </View>
+
+            <View style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <Text>Chosen fruit: {value === null ? 'none' : value}</Text>
+            </View>
+        </View>
+    );
+}
+```
+
+### Further information on usage
+
+You can find more examples in the `examples` subdirectory. This subdirectory is
+a working [Expo](https://github.com/expo/expo) project demonstrating this
+library. It shows how to use the library with class components as well as
+function components, and in TypeScript as well as in JavaScript. Navigate into
+the `examples` subdirectory, run `npm install`, and then run `npx expo start` to
+see the examples working.
 
 For further information on how to use this library,
 read [the relevant documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
