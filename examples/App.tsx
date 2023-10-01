@@ -66,11 +66,11 @@ const EXAMPLE_COMPONENT_ITEMS: Array<ItemType<ExampleComponent>> = [
 ];
 
 type Props = Record<string, never>;
-type State = {
+interface State {
   currentExample: ExampleComponent;
   examplePickerOpen: boolean;
   exampleComponents: Array<ItemType<ExampleComponent>>;
-};
+}
 
 export default class App extends React.Component<Props, State> {
   constructor(props: Readonly<Props>) {

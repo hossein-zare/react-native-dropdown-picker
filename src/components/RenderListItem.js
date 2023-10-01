@@ -2,6 +2,41 @@ import React, { memo, useCallback, useMemo } from 'react';
 
 import { Text, TouchableOpacity } from 'react-native';
 
+/**
+ *
+ * @param root0
+ * @param root0.rtl
+ * @param root0.item
+ * @param root0.label
+ * @param root0.value
+ * @param root0.parent
+ * @param root0.selectable
+ * @param root0.disabled
+ * @param root0.props
+ * @param root0.labelProps
+ * @param root0.custom
+ * @param root0.isSelected
+ * @param root0.IconComponent
+ * @param root0.TickIconComponent
+ * @param root0.listItemContainerStyle
+ * @param root0.listItemLabelStyle
+ * @param root0.listChildContainerStyle
+ * @param root0.listParentContainerStyle
+ * @param root0.listChildLabelStyle
+ * @param root0.listParentLabelStyle
+ * @param root0.customItemContainerStyle
+ * @param root0.customItemLabelStyle
+ * @param root0.selectedItemContainerStyle
+ * @param root0.selectedItemLabelStyle
+ * @param root0.disabledItemContainerStyle
+ * @param root0.disabledItemLabelStyle
+ * @param root0.containerStyle
+ * @param root0.labelStyle
+ * @param root0.categorySelectable
+ * @param root0.onPress
+ * @param root0.setPosition
+ * @param root0.THEME
+ */
 function RenderListItem({
   rtl,
   item,

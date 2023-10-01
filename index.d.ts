@@ -22,7 +22,7 @@ declare module 'react-native-dropdown-picker' {
 
   export type ValueType = string | number | boolean;
 
-  export type ItemType<T extends ValueType> = {
+  export interface ItemType<T extends ValueType> {
     containerStyle?: StyleProp<ViewStyle>;
     disabled?: boolean;
     icon?: () => JSX.Element;
@@ -32,7 +32,7 @@ declare module 'react-native-dropdown-picker' {
     selectable?: boolean;
     testID?: string;
     value?: T;
-  };
+  }
 
   export type ModeType = 'DEFAULT' | 'SIMPLE' | 'BADGE';
 

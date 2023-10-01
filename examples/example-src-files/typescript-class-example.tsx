@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 import DropDownPicker, { ItemType } from 'react-native-dropdown-picker';
 
-type Props = {
+interface Props {
   multiple: boolean;
-};
-type State = {
+}
+interface State {
   open: boolean;
   singleValue: string | null;
-  multiValue: string[] | null;
+  multiValue: Array<string> | null;
   items: Array<ItemType<string>>;
-};
+}
 
 export default class TypescriptClassExample extends Component<Props, State> {
   constructor(props: Readonly<Props>) {

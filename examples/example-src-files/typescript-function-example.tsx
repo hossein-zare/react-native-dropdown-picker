@@ -12,7 +12,7 @@ export default function TypescriptFunctionExample(props: {
 }): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
   const [singleValue, setSingleValue] = useState<string | null>(null);
-  const [multiValue, setMultiValue] = useState<string[] | null>(null);
+  const [multiValue, setMultiValue] = useState<Array<string> | null>(null);
   const [items, setItems] = useState<Array<ItemType<string>>>([
     { label: 'Apple', value: 'apple' },
     { label: 'Banana', value: 'banana' },
