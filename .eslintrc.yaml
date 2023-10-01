@@ -10,6 +10,7 @@ extends:
   - airbnb/hooks
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/stylistic
   - plugin:eslint-comments/recommended
   - plugin:import/errors
   - plugin:import/recommended
@@ -42,6 +43,10 @@ plugins:
   - react-hooks
   - react-native
 rules:
+  '@typescript-eslint/array-type':
+    - error
+    - default: 'generic'
+      readonly: 'generic'
   '@typescript-eslint/explicit-function-return-type': error
   '@typescript-eslint/explicit-module-boundary-types': error
   '@typescript-eslint/no-explicit-any':

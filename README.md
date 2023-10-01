@@ -77,7 +77,7 @@ export default function App() {
 
 You can find more examples in the `examples` subdirectory. This subdirectory is
 a working [Expo](https://github.com/expo/expo) project demonstrating this
-library. It shows how to use the library with class components as well as
+library. It shows how to use the library with class components as well as with
 function components, and in TypeScript as well as in JavaScript. Navigate into
 the `examples` subdirectory, run `npm install`, and then run `npx expo start` to
 see the examples working.
