@@ -4,23 +4,6 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { RTL_DIRECTION, RTL_STYLE } from '../constants';
 
-/**
- *
- * @param root0
- * @param root0.rtl
- * @param root0.label
- * @param root0.props
- * @param root0.value
- * @param root0.textStyle
- * @param root0.badgeStyle
- * @param root0.badgeTextStyle
- * @param root0.badgeDotStyle
- * @param root0.getBadgeColor
- * @param root0.getBadgeDotColor
- * @param root0.showBadgeDot
- * @param root0.onPress
- * @param root0.THEME
- */
 function RenderBadge({
   rtl,
   label,
