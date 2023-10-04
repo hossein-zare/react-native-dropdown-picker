@@ -47,10 +47,10 @@
     "react-native-gesture-handler": "~2.13.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.24",
+    "@types/react": "^18.2.25",
     "@types/react-native": "^0.72.3",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
     "eslint": "^8.50.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
