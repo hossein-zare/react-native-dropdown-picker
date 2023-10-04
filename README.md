@@ -11,9 +11,9 @@
 
 ## 📱 Screenshots
 
-[![Screenshot showing basic dropdown](.github/assets/images/screenshots/basic.png)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/.github/assets/images/screenshots/basic_full.png)
-[![Screenshot showing badges](.github/assets/images/screenshots/badges.png)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/.github/assets/images/screenshots/badges_full.png)
-[![Screenshot showing dark theme and parent items](.github/assets/images/screenshots/dark_theme_parent_items.png)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/.github/assets/images/screenshots/dark_theme_parent_items_full.png)
+[![Screenshot showing basic dropdown](.github/assets/images/screenshots/basic.png)](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/dev-5.x/.github/assets/images/screenshots/basic_full.png)
+[![Screenshot showing badges](.github/assets/images/screenshots/badges.png)](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/dev-5.x/.github/assets/images/screenshots/badges_full.png)
+[![Screenshot showing dark theme and parent items](.github/assets/images/screenshots/dark_theme_parent_items.png)](https://raw.githubusercontent.com/hossein-zare/react-native-dropdown-picker/dev-5.x/.github/assets/images/screenshots/dark_theme_parent_items_full.png)
 
 The above screenshots were taken
 from [this example](https://snack.expo.dev/8mHmLfcZf).
