@@ -66,6 +66,7 @@ const EXAMPLE_COMPONENT_ITEMS: Array<ItemType<ExampleComponent>> = [
 ];
 
 type Props = Record<string, never>;
+
 interface State {
   currentExample: ExampleComponent;
   examplePickerOpen: boolean;

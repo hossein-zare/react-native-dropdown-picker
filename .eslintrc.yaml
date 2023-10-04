@@ -81,7 +81,7 @@ rules:
     - error
     - 300
   max-lines-per-function:
-    - error
+    - warn
     - max: 20
   no-console: error
   no-duplicate-imports: error
@@ -100,7 +100,7 @@ rules:
         - .js
         - .jsx
   react/prop-types: error
-  sort-imports: error
+  sort-imports: warn
   sort-keys:
     - error
     - asc

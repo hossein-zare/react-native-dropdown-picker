@@ -5,6 +5,7 @@ import DropDownPicker, { ItemType } from 'react-native-dropdown-picker';
 interface Props {
   multiple: boolean;
 }
+
 interface State {
   open: boolean;
   singleValue: string | null;
