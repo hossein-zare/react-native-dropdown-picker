@@ -1,31 +1,28 @@
 # React Native Dropdown Picker
 
-[![react-native-dropdown-picker is released under the MIT license.](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/LICENSE)
+[![GitHub repo](https://img.shields.io/badge/GitHub_repo-grey?logo=github)](https://github.com/hossein-zare/react-native-dropdown-picker)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhossein-zare%2Freact-native-dropdown-picker%2Fbadge%3Fref%3Ddev-5.x&style=flat)](https://actions-badge.atrox.dev/hossein-zare/react-native-dropdown-picker/goto?ref=dev-5.x)
+[![react-native-dropdown-picker is released under the MIT license.](https://img.shields.io/github/license/hossein-zare/react-native-dropdown-picker)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/LICENSE)
 [![Current npm package version.](https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package)](https://www.npmjs.org/package/react-native-dropdown-picker)
-
-[//]: # (TODO: add badge linking to GitHub repo)
+[![Weekly npm downloads](https://img.shields.io/npm/dw/react-native-dropdown-picker)](https://www.npmjs.org/package/react-native-dropdown-picker)
+[![Documentation](https://img.shields.io/badge/Documentation-grey)](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs)
 
 ---
 
-## Screenshots
+## 📱 Screenshots
 
-<p float="left">
-    <img src="https://user-images.githubusercontent.com/56504893/116790110-e0b36880-aac7-11eb-9ebd-196acee64f7a.png"
-      width="270" alt="Screenshot showing basic dropdown" />
-    <img src="https://user-images.githubusercontent.com/56504893/116789802-faec4700-aac5-11eb-837b-86f18cbfcf3d.png"
-      width="270" alt="Screenshot showing badges" />
-    <img src="https://user-images.githubusercontent.com/56504893/116789839-2c651280-aac6-11eb-99e0-b43b608ed8c7.png"
-      width="270" alt="Screenshot showing dark theme and parent items" />
-</p>
+[![Screenshot showing basic dropdown](.github/assets/images/screenshots/basic.png)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/.github/assets/images/screenshots/basic_full.png)
+[![Screenshot showing badges](.github/assets/images/screenshots/badges.png)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/.github/assets/images/screenshots/badges_full.png)
+[![Screenshot showing dark theme and parent items](.github/assets/images/screenshots/dark_theme_parent_items.png)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/.github/assets/images/screenshots/dark_theme_parent_items_full.png)
 
 The above screenshots were taken
 from [this example](https://snack.expo.dev/8mHmLfcZf).
 
-## Usage
+## 👋 Usage
 
 ### Basic usage
 
-The following code shows basic usage of the library:
+The following code shows basic usage of this library:
 
 ```javascript
 import React, {useState} from 'react';
@@ -77,15 +74,15 @@ export default function App() {
 
 You can find more examples in the `examples` subdirectory. This subdirectory is
 a working [Expo](https://github.com/expo/expo) project demonstrating this
-library. It shows how to use the library with class components as well as with
+library. It shows how to use this library with class components as well as with
 function components, and in TypeScript as well as in JavaScript. Navigate into
 the `examples` subdirectory, run `npm install`, and then run `npx expo start` to
 see the examples working.
 
 For further information on how to use this library,
-read [the relevant documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
+read [the usage documentation](https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/usage).
 
-## Further documentation
+## 📄 Further documentation
 
 The docs can be read
 at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https://hossein-zare.github.io/react-native-dropdown-picker-website)
@@ -115,10 +112,10 @@ To make a new release, follow these steps:
 
 * Verify the development branch has all the changes desired in the release and
   works well
-* You can test changes to the library and experiment easily
+* You can test changes to this library and experiment easily
   with [patch-package](https://www.npmjs.com/package/patch-package)
 * Once you have made changes, and after finalizing them, use `npm pack`
-  to [test your new, changed version of the library locally and check it works correctly](https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e)
+  to [test your new, changed version of this library locally and check it works correctly](https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e)
 * Make and merge a final PR into the development branch that increments the
   version number in `package.json`
 * Make and merge a PR from the development branch to the release branch
