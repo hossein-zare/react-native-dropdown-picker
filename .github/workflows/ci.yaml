@@ -1,12 +1,13 @@
 ---
-# docs at: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+# file format documented at:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 name: CI
 
 on: [push, pull_request]
 
 jobs:
-  # TODO: check project builds/compiles correctly, maybe with tsc TypeScript compiler?
-  # TODO: add tests including coverage
+  # TODO: check project builds/compiles correctly? maybe with tsc?
+  # TODO: add tests including coverage (jest and mocha/chai?)
 
   lint_src_files:
     name: Lint source files
@@ -119,9 +120,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check the commits conform to the Conventional Commits specification with commitlint
+      - name: >
+          Check the commits conform to the Conventional
+          Commits specification with commitlint
         uses: wagoid/commitlint-github-action@v5
 
-# TODO: check commits squashed into one (i.e. all changes in a PR are in one commit after last one in primary branch)
-# TODO: use semver to increase version numbers and update changelog automatically
-# TODO: publish new release automatically if version increased and CI passes (use release-please?)
+# TODO: check PRs have all changes (squashed) in(to) 1 commit
+# TODO: make semver automatically bump version num and update changelog
+# TODO: publish new release if version num bumped and CI passes
