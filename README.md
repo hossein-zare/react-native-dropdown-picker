@@ -2,6 +2,7 @@
 
 [![GitHub repo](https://img.shields.io/badge/GitHub_repo-grey?logo=github)](https://github.com/hossein-zare/react-native-dropdown-picker)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhossein-zare%2Freact-native-dropdown-picker%2Fbadge%3Fref%3Ddev-5.x&style=flat)](https://actions-badge.atrox.dev/hossein-zare/react-native-dropdown-picker/goto?ref=dev-5.x)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/CONTRIBUTING.md)
 [![react-native-dropdown-picker is released under the MIT license.](https://img.shields.io/github/license/hossein-zare/react-native-dropdown-picker)](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/LICENSE)
 [![Current npm package version.](https://img.shields.io/npm/v/react-native-dropdown-picker?color=brightgreen&label=npm%20package)](https://www.npmjs.org/package/react-native-dropdown-picker)
 [![Weekly npm downloads](https://img.shields.io/npm/dw/react-native-dropdown-picker)](https://www.npmjs.org/package/react-native-dropdown-picker)
@@ -90,43 +91,13 @@ at: [https://hossein-zare.github.io/react-native-dropdown-picker-website](https:
 The docs can be edited
 at: [https://github.com/hossein-zare/react-native-dropdown-picker-website](https://github.com/hossein-zare/react-native-dropdown-picker-website)
 
-## Merge and Release Process
+## 😕 Support and issues
 
-### Branches in use
+If you have questions or need help, you
+can [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/react-native-dropdown-picker)
+or [make a GitHub issue](https://github.com/hossein-zare/react-native-dropdown-picker/issues/new/choose).
+You can also make a GitHub issue to report a bug or make a feature request.
 
-#### Development
+## 🚀️ Contributing
 
-PRs should be made against and merged into
-the [`dev-5.x`](https://github.com/hossein-zare/react-native-dropdown-picker)
-branch, which is set as the `default` branch on GitHub.
-
-#### Release
-
-Releases are currently made from
-the [`5.x`](https://github.com/hossein-zare/react-native-dropdown-picker/tree/5.x)
-branch.
-
-### Release Process
-
-To make a new release, follow these steps:
-
-* Verify the development branch has all the changes desired in the release and
-  works well
-* You can test changes to this library and experiment easily
-  with [patch-package](https://www.npmjs.com/package/patch-package)
-* Once you have made changes, and after finalizing them, use `npm pack`
-  to [test your new, changed version of this library locally and check it works correctly](https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e)
-* Make and merge a final PR into the development branch that increments the
-  version number in `package.json`
-* Make and merge a PR from the development branch to the release branch
-* Using the GitHub web UI, draft a new release using the tag name `vx.x.x`
-  (replace the `x` values as appropriate). Use the release branch as the
-  target, with the release name being `vx.x.x` (again, with appropriate
-  numbers in place of `x`)
-* Verify in the GitHub Actions panel for the repository that `npm publish`
-  succeeded
-
-[//]: # (TODO: make templates for pull requests and issues, and CONTRIBUTING.md
-    include check people read docs and past issues before submitting new issues
-    ensure PRs tested with npm pack: https://dev.to/scooperdev/use-npm-pack-to-test-your-packages-locally-486e
-)
+See [CONTRIBUTING.md](https://github.com/hossein-zare/react-native-dropdown-picker/blob/dev-5.x/CONTRIBUTING.md).
