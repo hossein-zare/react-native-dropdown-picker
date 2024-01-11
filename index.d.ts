@@ -171,7 +171,7 @@ declare module 'react-native-dropdown-picker' {
       style: StyleProp<ViewStyle>;
     }) => JSX.Element;
     arrowIconContainerStyle?: StyleProp<ViewStyle>;
-    arrowIconStyle?: StyleProp<ViewStyle>;
+    arrowIconStyle?: StyleProp<ViewStyle | ImageStyle>;
     ArrowUpIconComponent?: (props: {
       style: StyleProp<ViewStyle>;
     }) => JSX.Element;
