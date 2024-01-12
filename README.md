@@ -71,6 +71,21 @@ export default function App() {
 }
 ```
 
+## Installation
+
+#### # Using npm
+
+```bash
+npm install react-native-dropdown-picker
+```
+
+#### # Using yarn
+
+```bash
+yarn add react-native-dropdown-picker
+```
+
+
 ### Further information on usage
 
 You can find more examples in the `examples` subdirectory. This subdirectory is
