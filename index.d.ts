@@ -125,7 +125,7 @@ declare module 'react-native-dropdown-picker' {
     listItemLabelStyle: StyleProp<TextStyle>;
     listParentContainerStyle: StyleProp<ViewStyle>;
     listParentLabelStyle: StyleProp<TextStyle>;
-    onPress: (value: T) => void;
+    onPress: (item: ItemType<T>, custom?: boolean) => void;
     parent: T;
     props: ViewProps;
     rtl: boolean;
