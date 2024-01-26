@@ -271,7 +271,7 @@ declare module 'react-native-dropdown-picker' {
     theme?: ThemeNameType;
     TickIconComponent?: (props: { style: StyleProp<ViewStyle> }) => JSX.Element;
     tickIconContainerStyle?: StyleProp<ViewStyle>;
-    tickIconStyle?: StyleProp<ViewStyle>;
+    tickIconStyle?: StyleProp<ViewStyle | ImageStyle>;
     translation?: Partial<TranslationInterface>;
     zIndexInverse?: number;
     zIndex?: number;
