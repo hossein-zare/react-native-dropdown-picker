@@ -1737,8 +1737,8 @@ function Picker({
   const _modalTitleStyle = useMemo(
     () => [
       THEME.modalTitle,
+       ...[textStyle].flat(),
       ...[modalTitleStyle].flat(),
-      ...[textStyle].flat(),
     ],
     [textStyle, modalTitleStyle, THEME],
   );
