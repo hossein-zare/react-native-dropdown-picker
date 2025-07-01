@@ -244,7 +244,7 @@ declare module 'react-native-dropdown-picker' {
     onLayout?: (e: LayoutChangeEvent) => void;
     onOpen?: () => void;
     onPress?: (open: boolean) => void;
-    placeholder?: string;
+    placeholder?: string | JSX.Element;
     placeholderStyle?: StyleProp<TextStyle>;
     props?: TouchableOpacityProps;
     renderBadgeItem?: (props: RenderBadgeItemPropsInterface<T>) => JSX.Element;

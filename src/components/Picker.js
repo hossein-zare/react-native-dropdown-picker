@@ -593,11 +593,20 @@ function Picker({
 
   /**
    * The placeholder.
-   * @returns {string}
+   * @returns {string|JSX.Element}
    */
   const _placeholder = useMemo(
     () => placeholder ?? _('PLACEHOLDER'),
     [placeholder, _],
+  );
+
+  /**
+   * Indicates whether the placeholder is a component.
+   * @returns {boolean}
+   */
+  const isPlaceholderComponent = useMemo(
+    () => React.isValidElement(_placeholder),
+    [_placeholder],
   );
 
   /**
@@ -650,8 +659,8 @@ function Picker({
 
   /**
    * Get the label of the selected item.
-   * @param {string|null} fallback
-   * @returns {string}
+   * @param {string|JSX.Element|null} fallback
+   * @returns {string|JSX.Element}
    */
   const getLabel = useCallback(
     (fallback = null) => {
@@ -683,6 +692,15 @@ function Picker({
   const _selectedItemLabel = useMemo(
     () => getLabel(_placeholder),
     [getLabel, _placeholder],
+  );
+
+  /**
+   * Indicates whether the selected item label is a component.
+   * @returns {boolean}
+   */
+  const isSelectedItemLabelComponent = useMemo(
+    () => React.isValidElement(_selectedItemLabel),
+    [_selectedItemLabel],
   );
 
   /**
@@ -992,12 +1010,16 @@ function Picker({
     () => (
       <>
         {SelectedItemIconComponent}
-        <Text style={_labelStyle} {...labelProps}>
-          {_selectedItemLabel}
-        </Text>
+        {isSelectedItemLabelComponent ? (
+          _selectedItemLabel
+        ) : (
+          <Text style={_labelStyle} {...labelProps}>
+            {_selectedItemLabel}
+          </Text>
+        )}
       </>
     ),
-    [SelectedItemIconComponent, _labelStyle, labelProps, _selectedItemLabel],
+    [SelectedItemIconComponent, _labelStyle, labelProps, _selectedItemLabel, isSelectedItemLabelComponent],
   );
 
   /**
@@ -1168,12 +1190,16 @@ function Picker({
   const BadgeListEmptyComponent = useCallback(
     () => (
       <View style={labelContainerStyle}>
-        <Text style={_labelStyle} {...labelProps}>
-          {_placeholder}
-        </Text>
+        {isPlaceholderComponent ? (
+          _placeholder
+        ) : (
+          <Text style={_labelStyle} {...labelProps}>
+            {_placeholder}
+          </Text>
+        )}
       </View>
     ),
-    [_labelStyle, labelContainerStyle, labelProps, _placeholder],
+    [_labelStyle, labelContainerStyle, labelProps, _placeholder, isPlaceholderComponent],
   );
 
   /**
