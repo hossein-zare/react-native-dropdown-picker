@@ -11,7 +11,7 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/stylistic
-  - plugin:eslint-comments/recommended
+  - plugin:@eslint-community/eslint-comments/recommended
   - plugin:import/errors
   - plugin:import/recommended
   - plugin:import/typescript
@@ -34,7 +34,7 @@ parserOptions:
   sourceType: module
 plugins:
   - '@typescript-eslint'
-  - eslint-comments
+  - '@eslint-community/eslint-comments'
   - eslint-plugin-json
   - import
   - jsdoc
