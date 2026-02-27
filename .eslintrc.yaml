@@ -5,9 +5,6 @@ env:
   es2021: true
   react-native/react-native: true
 extends:
-  - airbnb
-  - airbnb-typescript
-  - airbnb/hooks
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/stylistic
