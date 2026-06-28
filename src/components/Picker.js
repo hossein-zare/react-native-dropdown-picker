@@ -84,6 +84,7 @@ function Picker({
   containerStyle = {},
   customItemContainerStyle = {},
   customItemLabelStyle = {},
+  clearSearchFieldOnSelect = false,
   customItemValueDelimiter = '-',
   disableBorderRadius = true,
   disabled = false,
@@ -349,6 +350,19 @@ function Picker({
   useEffect(() => {
     if (mode === MODE.SIMPLE) badgeFlatListRef.current = null;
   }, [mode]);
+
+  /**
+   * clear search field on item select.
+   */
+  useEffect(() => {
+    if (
+      clearSearchFieldOnSelect == true &&
+      multiple == true &&
+      searchText.length > 0
+    ) {
+      setSearchText('');
+    }
+  }, [value]);
 
   /**
    * onPressClose.
