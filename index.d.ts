@@ -125,7 +125,7 @@ declare module 'react-native-dropdown-picker' {
     listItemLabelStyle: StyleProp<TextStyle>;
     listParentContainerStyle: StyleProp<ViewStyle>;
     listParentLabelStyle: StyleProp<TextStyle>;
-    onPress: (value: T) => void;
+    onPress: (item: ItemType<T>, custom?: boolean) => void;
     parent: T;
     props: ViewProps;
     rtl: boolean;
@@ -171,7 +171,7 @@ declare module 'react-native-dropdown-picker' {
       style: StyleProp<ViewStyle>;
     }) => JSX.Element;
     arrowIconContainerStyle?: StyleProp<ViewStyle>;
-    arrowIconStyle?: StyleProp<ViewStyle>;
+    arrowIconStyle?: StyleProp<ViewStyle | ImageStyle>;
     ArrowUpIconComponent?: (props: {
       style: StyleProp<ViewStyle>;
     }) => JSX.Element;
@@ -197,6 +197,7 @@ declare module 'react-native-dropdown-picker' {
     customItemContainerStyle?: StyleProp<ViewStyle>;
     customItemLabelStyle?: StyleProp<TextStyle>;
     clearSearchFieldOnSelect?: boolean;
+    customItemValueDelimiter?: string;
     disableBorderRadius?: boolean;
     disabledItemContainerStyle?: StyleProp<ViewStyle>;
     disabledItemLabelStyle?: StyleProp<TextStyle>;
@@ -272,7 +273,7 @@ declare module 'react-native-dropdown-picker' {
     theme?: ThemeNameType;
     TickIconComponent?: (props: { style: StyleProp<ViewStyle> }) => JSX.Element;
     tickIconContainerStyle?: StyleProp<ViewStyle>;
-    tickIconStyle?: StyleProp<ViewStyle>;
+    tickIconStyle?: StyleProp<ViewStyle | ImageStyle>;
     translation?: Partial<TranslationInterface>;
     zIndexInverse?: number;
     zIndex?: number;

@@ -86,4 +86,13 @@ export default {
     },
     NOTHING_TO_SHOW: '검색된 사항이 존재하지 않습니다.',
   },
+  CN: {
+    PLACEHOLDER: '选择其中一项',
+    SEARCH_PLACEHOLDER: '输入内容...',
+    SELECTED_ITEMS_COUNT_TEXT: {
+      1: '已选择一项',
+      n: '已选择 {count} 项',
+    },
+    NOTHING_TO_SHOW: '没有内容可显示!',
+  },
 };

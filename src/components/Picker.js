@@ -16,13 +16,14 @@ import {
   Image,
   Modal,
   Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import {
@@ -84,6 +85,7 @@ function Picker({
   customItemContainerStyle = {},
   customItemLabelStyle = {},
   clearSearchFieldOnSelect = false,
+  customItemValueDelimiter = '-',
   disableBorderRadius = true,
   disabled = false,
   disabledItemContainerStyle = {},
@@ -555,7 +557,7 @@ function Picker({
     ) {
       results.push({
         [ITEM_SCHEMA.label]: searchText,
-        [ITEM_SCHEMA.value]: searchText.replace(' ', '-'),
+        [ITEM_SCHEMA.value]: customItemValueDelimiter ? searchText.replaceAll(' ', customItemValueDelimiter) : searchText,
         custom: true,
       });
     }
@@ -1751,8 +1753,8 @@ function Picker({
   const _modalTitleStyle = useMemo(
     () => [
       THEME.modalTitle,
+       ...[textStyle].flat(),
       ...[modalTitleStyle].flat(),
-      ...[textStyle].flat(),
     ],
     [textStyle, modalTitleStyle, THEME],
   );
