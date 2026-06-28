@@ -1,12 +1,6 @@
 declare module 'react-native-dropdown-picker' {
-  import {
-    Dispatch,
-    JSX,
-    PropsWithoutRef,
-    ReactElement,
-    SetStateAction,
-  } from 'react';
-  import {
+  import type { Dispatch, PropsWithoutRef } from 'react';
+  import type {
     FlatListProps,
     LayoutChangeEvent,
     ModalProps,
@@ -15,31 +9,34 @@ declare module 'react-native-dropdown-picker' {
     TextInputProps,
     TextProps,
     TextStyle,
-    TouchableOpacityProps,
     ViewProps,
+    TouchableOpacityProps,
     ViewStyle,
   } from 'react-native';
 
+  type SetStateCallback<S> = ((prevState: S) => S);
+  type SetStateValue<S> = ((prevState: S) => S);
+
   export type ValueType = string | number | boolean;
 
-  export interface ItemType<T extends ValueType> {
-    containerStyle?: StyleProp<ViewStyle>;
-    disabled?: boolean;
-    icon?: () => JSX.Element;
+  export type ItemType<T> = {
     label?: string;
-    labelStyle?: StyleProp<TextStyle>;
+    value?: T;
+    icon?: () => JSX.Element;
     parent?: T;
     selectable?: boolean;
+    disabled?: boolean;
     testID?: string;
-    value?: T;
-  }
+    containerStyle?: StyleProp<ViewStyle>;
+    labelStyle?: StyleProp<TextStyle>;
+  };
 
   export type ModeType = 'DEFAULT' | 'SIMPLE' | 'BADGE';
 
   export interface ModeInterface {
-    BADGE: string;
     DEFAULT: string;
     SIMPLE: string;
+    BADGE: string;
   }
 
   export type ListModeType = 'DEFAULT' | 'FLATLIST' | 'SCROLLVIEW' | 'MODAL';
@@ -47,278 +44,276 @@ declare module 'react-native-dropdown-picker' {
   export interface ListModeInterface {
     DEFAULT: string;
     FLATLIST: string;
-    MODAL: string;
     SCROLLVIEW: string;
+    MODAL: string;
   }
 
   export interface SchemaInterface {
-    containerStyle: string;
-    disabled: string;
-    icon: string;
     label: string;
-    labelStyle: string;
+    value: string;
+    icon: string;
     parent: string;
     selectable: string;
+    disabled: string;
     testID: string;
-    value: string;
+    containerStyle: string;
+    labelStyle: string;
   }
 
   export type LanguageType =
     | 'DEFAULT'
     | 'FALLBACK'
-    | 'AR'
     | 'EN'
-    | 'ES'
+    | 'AR'
     | 'FA'
-    | 'FR'
+    | 'TR'
+    | 'RU'
+    | 'ES'
     | 'ID'
     | 'IT'
-    | 'KO'
     | 'PT'
-    | 'RU'
-    | 'TR';
+    | 'FR';
 
   export interface TranslationInterface {
-    NOTHING_TO_SHOW: string;
     PLACEHOLDER: string;
     SEARCH_PLACEHOLDER: string;
-    SELECTED_ITEMS_COUNT_TEXT: string | { [key in number | 'n']: string };
+    SELECTED_ITEMS_COUNT_TEXT: string | {
+      [key in (number | "n")]: string;
+    };
+    NOTHING_TO_SHOW: string;
   }
 
-  export type ThemeNameType = 'DEFAULT' | 'LIGHT' | 'DARK';
-  export type ThemeType = object; // TODO: specify ThemeType further: currently any object
-
-  export interface RenderBadgeItemPropsInterface<T extends ValueType> {
-    badgeDotStyle: StyleProp<ViewStyle>;
+  export interface RenderBadgeItemPropsInterface<T> {
+    label: string;
+    value: T;
+    props: TouchableOpacityProps;
+    IconComponent: () => JSX.Element;
+    textStyle: StyleProp<TextStyle>;
     badgeStyle: StyleProp<ViewStyle>;
     badgeTextStyle: StyleProp<TextStyle>;
+    badgeDotStyle: StyleProp<ViewStyle>;
     getBadgeColor: (value: string) => string;
     getBadgeDotColor: (value: string) => string;
-    IconComponent: () => JSX.Element;
-    label: string;
-    onPress: (value: T) => void;
-    props: TouchableOpacityProps;
-    rtl: boolean;
     showBadgeDot: boolean;
-    textStyle: StyleProp<TextStyle>;
+    onPress: (value: T) => void;
+    rtl: boolean;
     THEME: ThemeType;
-    value: T;
   }
 
-  export interface RenderListItemPropsInterface<T extends ValueType> {
-    categorySelectable: boolean;
-    containerStyle: StyleProp<ViewStyle>;
-    custom: boolean;
-    customItemContainerStyle: StyleProp<ViewStyle>;
-    customItemLabelStyle: StyleProp<TextStyle>;
-    disabled: boolean;
-    disabledItemContainerStyle: StyleProp<ViewStyle>;
-    disabledItemLabelStyle: StyleProp<TextStyle>;
-    IconComponent: () => JSX.Element;
-    isSelected: boolean;
+  export interface RenderListItemPropsInterface<T> {
+    rtl: boolean;
     item: ItemType<T>;
     label: string;
-    labelStyle: StyleProp<TextStyle>;
-    listChildContainerStyle: StyleProp<ViewStyle>;
-    listChildLabelStyle: StyleProp<TextStyle>;
+    value: T;
+    parent: T;
+    selectable: boolean;
+    disabled: boolean;
+    props: ViewProps;
+    custom: boolean;
+    isSelected: boolean;
+    IconComponent: () => JSX.Element;
+    TickIconComponent: () => JSX.Element;
     listItemContainerStyle: StyleProp<ViewStyle>;
     listItemLabelStyle: StyleProp<TextStyle>;
+    listChildContainerStyle: StyleProp<ViewStyle>;
     listParentContainerStyle: StyleProp<ViewStyle>;
+    listChildLabelStyle: StyleProp<TextStyle>;
     listParentLabelStyle: StyleProp<TextStyle>;
-    onPress: (item: ItemType<T>, custom?: boolean) => void;
-    parent: T;
-    props: ViewProps;
-    rtl: boolean;
-    selectable: boolean;
+    customItemContainerStyle: StyleProp<ViewStyle>;
+    customItemLabelStyle: StyleProp<TextStyle>;
     selectedItemContainerStyle: StyleProp<ViewStyle>;
     selectedItemLabelStyle: StyleProp<TextStyle>;
+    disabledItemContainerStyle: StyleProp<ViewStyle>;
+    disabledItemLabelStyle: StyleProp<TextStyle>;
+    containerStyle: StyleProp<ViewStyle>;
+    labelStyle: StyleProp<TextStyle>;
+    categorySelectable: boolean;
+    onPress: (value: T) => void;
     setPosition: (value: T, y: number) => void;
     theme: ThemeNameType;
     THEME: ThemeType;
-    TickIconComponent: () => JSX.Element;
-    value: T;
   }
 
   export interface ActivityIndicatorComponentPropsInterface {
-    color: string;
     size: number;
+    color: string;
   }
 
   export interface ListEmptyComponentPropsInterface {
+    listMessageContainer: StyleProp<ViewStyle>;
+    listMessageTextStyle: StyleProp<TextStyle>;
     ActivityIndicatorComponent: (
       props: ActivityIndicatorComponentPropsInterface,
     ) => JSX.Element;
-    listMessageContainer: StyleProp<ViewStyle>;
-    listMessageTextStyle: StyleProp<TextStyle>;
     loading: boolean;
     message: string;
   }
 
   export type DropDownDirectionType = 'DEFAULT' | 'TOP' | 'BOTTOM' | 'AUTO';
+  export type ThemeNameType = 'DEFAULT' | 'LIGHT' | 'DARK';
+  export type ThemeType = object;
 
-  export interface DropDownPickerBaseProps<T extends ValueType> {
-    items: Array<ItemType<T>>;
-    setItems?: Dispatch<SetStateAction<Array<ItemType<T>>>>;
+  interface DropDownPickerBaseProps<T> {
+    items: ItemType<T>[];
     open: boolean;
-    setOpen: Dispatch<SetStateAction<boolean>>;
-    activityIndicatorColor?: string;
-    ActivityIndicatorComponent?: (
-      props: ActivityIndicatorComponentPropsInterface,
-    ) => JSX.Element;
-    activityIndicatorSize?: number;
-    addCustomItem?: boolean;
-    ArrowDownIconComponent?: (props: {
-      style: StyleProp<ViewStyle>;
-    }) => JSX.Element;
-    arrowIconContainerStyle?: StyleProp<ViewStyle>;
-    arrowIconStyle?: StyleProp<ViewStyle | ImageStyle>;
-    ArrowUpIconComponent?: (props: {
-      style: StyleProp<ViewStyle>;
-    }) => JSX.Element;
-    autoScroll?: boolean;
-    badgeColors?: Array<string> | string;
-    badgeDotColors?: Array<string> | string;
-    badgeDotStyle?: StyleProp<ViewStyle>;
-    badgeProps?: TouchableOpacityProps;
-    badgeSeparatorStyle?: StyleProp<ViewStyle>;
-    badgeStyle?: StyleProp<ViewStyle>;
-    badgeTextStyle?: StyleProp<TextStyle>;
-    bottomOffset?: number;
-    categorySelectable?: boolean;
+    placeholder?: string;
     closeAfterSelecting?: boolean;
-    CloseIconComponent?: (props: {
-      style: StyleProp<ViewStyle>;
-    }) => JSX.Element;
-    closeIconContainerStyle?: StyleProp<ViewStyle>;
-    closeIconStyle?: StyleProp<ViewStyle>;
-    closeOnBackPressed?: boolean;
-    containerProps?: ViewProps;
-    containerStyle?: StyleProp<ViewStyle>;
-    customItemContainerStyle?: StyleProp<ViewStyle>;
-    customItemLabelStyle?: StyleProp<TextStyle>;
-    clearSearchFieldOnSelect?: boolean;
-    customItemValueDelimiter?: string;
-    disableBorderRadius?: boolean;
-    disabledItemContainerStyle?: StyleProp<ViewStyle>;
-    disabledItemLabelStyle?: StyleProp<TextStyle>;
+    labelProps?: TextProps;
     disabled?: boolean;
     disabledStyle?: StyleProp<ViewStyle>;
-    disableLocalSearch?: boolean;
-    dropDownContainerStyle?: StyleProp<ViewStyle>;
-    dropDownDirection?: DropDownDirectionType;
-    extendableBadgeContainer?: boolean;
-    flatListProps?: Partial<FlatListProps<ItemType<T>>>;
-    hideSelectedItemIcon?: boolean;
-    iconContainerStyle?: StyleProp<ViewStyle>;
-    itemKey?: string;
-    itemProps?: TouchableOpacityProps;
-    itemSeparator?: boolean;
-    itemSeparatorStyle?: StyleProp<ViewStyle>;
-    labelProps?: TextProps;
+    placeholderStyle?: StyleProp<TextStyle>;
+    containerStyle?: StyleProp<ViewStyle>;
+    style?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
     labelStyle?: StyleProp<TextStyle>;
-    language?: LanguageType;
-    listChildContainerStyle?: StyleProp<ViewStyle>;
-    listChildLabelStyle?: StyleProp<TextStyle>;
-    ListEmptyComponent?: (
-      props: ListEmptyComponentPropsInterface,
-    ) => JSX.Element;
+    arrowIconStyle?: StyleProp<ViewStyle>;
+    tickIconStyle?: StyleProp<ViewStyle>;
+    closeIconStyle?: StyleProp<ViewStyle>;
+    badgeStyle?: StyleProp<ViewStyle>;
+    badgeTextStyle?: StyleProp<TextStyle>;
+    badgeDotStyle?: StyleProp<ViewStyle>;
+    iconContainerStyle?: StyleProp<ViewStyle>;
+    searchContainerStyle?: StyleProp<ViewStyle>;
+    searchTextInputStyle?: StyleProp<TextStyle>;
+    searchPlaceholderTextColor?: string;
+    searchWithRegionalAccents?: boolean;
+    dropDownContainerStyle?: StyleProp<ViewStyle>;
+    modalContentContainerStyle?: StyleProp<ViewStyle>;
+    modalAnimationType?: 'none' | 'slide' | 'fade';
+    arrowIconContainerStyle?: StyleProp<ViewStyle>;
+    closeIconContainerStyle?: StyleProp<ViewStyle>;
+    tickIconContainerStyle?: StyleProp<ViewStyle>;
     listItemContainerStyle?: StyleProp<ViewStyle>;
     listItemLabelStyle?: StyleProp<TextStyle>;
-    listMessageContainerStyle?: StyleProp<ViewStyle>;
-    listMessageTextStyle?: StyleProp<TextStyle>;
-    listMode?: ListModeType;
+    listChildContainerStyle?: StyleProp<ViewStyle>;
+    listChildLabelStyle?: StyleProp<TextStyle>;
     listParentContainerStyle?: StyleProp<ViewStyle>;
     listParentLabelStyle?: StyleProp<TextStyle>;
-    loading?: boolean;
-    maxHeight?: number;
-    max?: number;
-    min?: number;
-    modalAnimationType?: 'none' | 'slide' | 'fade';
-    modalContentContainerStyle?: StyleProp<ViewStyle>;
-    modalProps?: ModalProps;
-    modalTitle?: string;
-    modalTitleStyle?: StyleProp<TextStyle>;
-    mode?: ModeType;
-    multipleText?: string;
-    onChangeSearchText?: (text: string) => void;
-    onClose?: () => void;
-    onDirectionChanged?: (direction: DropDownDirectionType) => void;
-    onLayout?: (e: LayoutChangeEvent) => void;
-    onOpen?: () => void;
-    onPress?: (open: boolean) => void;
-    placeholder?: string;
-    placeholderStyle?: StyleProp<TextStyle>;
-    props?: TouchableOpacityProps;
-    renderBadgeItem?: (props: RenderBadgeItemPropsInterface<T>) => JSX.Element;
-    renderListItem?: (props: RenderListItemPropsInterface<T>) => JSX.Element;
-    rtl?: boolean;
-    schema?: Partial<SchemaInterface>;
-    scrollViewProps?: ScrollViewProps;
-    searchable?: boolean;
-    searchContainerStyle?: StyleProp<ViewStyle>;
-    searchPlaceholder?: string;
-    searchPlaceholderTextColor?: string;
-    searchTextInputProps?: TextInputProps;
-    searchTextInputStyle?: StyleProp<TextStyle>;
-    searchWithRegionalAccents?: boolean;
     selectedItemContainerStyle?: StyleProp<ViewStyle>;
     selectedItemLabelStyle?: StyleProp<TextStyle>;
+    disabledItemContainerStyle?: StyleProp<ViewStyle>;
+    disabledItemLabelStyle?: StyleProp<TextStyle>;
+    customItemContainerStyle?: StyleProp<ViewStyle>;
+    customItemLabelStyle?: StyleProp<TextStyle>;
+    listMessageContainerStyle?: StyleProp<ViewStyle>;
+    listMessageTextStyle?: StyleProp<TextStyle>;
+    itemSeparatorStyle?: StyleProp<ViewStyle>;
+    badgeSeparatorStyle?: StyleProp<ViewStyle>;
+    listMode?: ListModeType;
+    categorySelectable?: boolean;
+    searchable?: boolean;
+    searchPlaceholder?: string;
+    schema?: Partial<SchemaInterface>;
+    language?: LanguageType;
+    translation?: Partial<TranslationInterface>;
+    multipleText?: string;
+    mode?: ModeType;
+    itemKey?: string;
+    maxHeight?: number;
+    renderBadgeItem?: (props: RenderBadgeItemPropsInterface<T>) => JSX.Element;
+    renderListItem?: (props: RenderListItemPropsInterface<T>) => JSX.Element;
+    itemSeparator?: boolean;
+    bottomOffset?: number;
+    badgeColors?: string[] | string;
+    badgeDotColors?: string[] | string;
     showArrowIcon?: boolean;
     showBadgeDot?: boolean;
     showTickIcon?: boolean;
     stickyHeader?: boolean;
-    style?: StyleProp<ViewStyle>;
-    testID?: string;
-    textStyle?: StyleProp<TextStyle>;
-    theme?: ThemeNameType;
+    autoScroll?: boolean;
+    ArrowUpIconComponent?: (props: {
+      style: StyleProp<ViewStyle>;
+    }) => JSX.Element;
+    ArrowDownIconComponent?: (props: {
+      style: StyleProp<ViewStyle>;
+    }) => JSX.Element;
     TickIconComponent?: (props: { style: StyleProp<ViewStyle> }) => JSX.Element;
-    tickIconContainerStyle?: StyleProp<ViewStyle>;
-    tickIconStyle?: StyleProp<ViewStyle | ImageStyle>;
-    translation?: Partial<TranslationInterface>;
-    zIndexInverse?: number;
+    CloseIconComponent?: (props: {
+      style: StyleProp<ViewStyle>;
+    }) => JSX.Element;
+    ListEmptyComponent?: (
+      props: ListEmptyComponentPropsInterface,
+    ) => JSX.Element;
+    ActivityIndicatorComponent?: (
+      props: ActivityIndicatorComponentPropsInterface,
+    ) => JSX.Element;
+    activityIndicatorSize?: number;
+    activityIndicatorColor?: string;
+    props?: TouchableOpacityProps;
+    itemProps?: TouchableOpacityProps;
+    badgeProps?: TouchableOpacityProps;
+    modalProps?: ModalProps;
+    flatListProps?: Partial<FlatListProps<ItemType<T>>>;
+    scrollViewProps?: ScrollViewProps;
+    searchTextInputProps?: TextInputProps;
+    modalTitle?: string;
+    modalTitleStyle?: StyleProp<TextStyle>;
+    loading?: boolean;
+    min?: number;
+    max?: number;
+    addCustomItem?: boolean;
+    setOpen: Dispatch<SetStateValue<boolean>>;
+    setItems?: Dispatch<SetStateCallback<any[]>>;
+    disableBorderRadius?: boolean;
+    containerProps?: ViewProps;
+    onLayout?: (e: LayoutChangeEvent) => void;
+    onPress?: (open: boolean) => void;
+    onOpen?: () => void;
+    onClose?: () => void;
+    onChangeSearchText?: (text: string) => void;
+    onDirectionChanged?: (direction: DropDownDirectionType) => void;
     zIndex?: number;
+    zIndexInverse?: number;
+    disableLocalSearch?: boolean;
+    dropDownDirection?: DropDownDirectionType;
+    theme?: ThemeNameType;
+    rtl?: boolean;
+    testID?: string;
+    closeOnBackPressed?: boolean;
+    hideSelectedItemIcon?: boolean;
+    extendableBadgeContainer?: boolean;
   }
 
-  interface DropDownPickerSingleProps<T extends ValueType> {
+  interface DropDownPickerSingleProps<T> {
     multiple?: false;
     onChangeValue?: (value: T | null) => void;
     onSelectItem?: (item: ItemType<T>) => void;
+    setValue: Dispatch<SetStateCallback<T | null | any>>;
     value: T | null;
-    setValue: Dispatch<SetStateAction<T | null>>;
   }
 
-  interface DropDownPickerMultipleProps<T extends ValueType> {
+  interface DropDownPickerMultipleProps<T> {
     multiple: true;
-    onChangeValue?: (value: Array<T> | null) => void;
-    onSelectItem?: (items: Array<ItemType<T>>) => void;
-    value: Array<T> | null;
-    setValue: Dispatch<SetStateAction<Array<T> | null>>;
+    onChangeValue?: (value: T[] | null) => void;
+    onSelectItem?: (items: ItemType<T>[]) => void;
+    setValue: Dispatch<SetStateCallback<T[] | null | any>>;
+    value: T[] | null;
   }
 
   interface DropDownPickerInterface {
+    MODE: ModeInterface;
+    LIST_MODE: ListModeInterface;
+    DROPDOWN_DIRECTION: DropDownDirectionType;
+    SCHEMA: SchemaInterface;
+    LANGUAGE: LanguageType;
+    THEMES: ThemeNameType;
+    setMode: (mode: string) => void;
+    setListMode: (mode: string) => void;
+    setDropDownDirection: (direction: DropDownDirectionType) => void;
+    setTheme: (name: string) => void;
     addTheme: (name: string, theme: ThemeNameType) => void;
+    setLanguage: (language: string) => void;
     addTranslation: (
       language: string,
       translation: TranslationInterface,
     ) => void;
-    DROPDOWN_DIRECTION: DropDownDirectionType;
-    LANGUAGE: LanguageType;
-    LIST_MODE: ListModeInterface;
-    MODE: ModeInterface;
     modifyTranslation: (
       language: string,
       translation: TranslationInterface,
     ) => void;
-    SCHEMA: SchemaInterface;
-    setDropDownDirection: (direction: DropDownDirectionType) => void;
-    setLanguage: (language: string) => void;
-    setListMode: (mode: string) => void;
-    setMode: (mode: string) => void;
-    setTheme: (name: string) => void;
-    THEMES: ThemeNameType;
   }
 
-  export type DropDownPickerProps<T extends ValueType> = (
+  export type DropDownPickerProps<T> = (
     | DropDownPickerSingleProps<T>
     | DropDownPickerMultipleProps<T>
   ) &
@@ -326,7 +321,7 @@ declare module 'react-native-dropdown-picker' {
 
   const DropDownPicker: (<T extends ValueType>(
     props: PropsWithoutRef<DropDownPickerProps<T>>,
-  ) => ReactElement) &
+  ) => React.ReactElement) &
     DropDownPickerInterface;
 
   export default DropDownPicker;
