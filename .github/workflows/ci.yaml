@@ -1,0 +1,130 @@
+---
+# file format documented at:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  # TODO: check project builds/compiles correctly? maybe with tsc?
+  # TODO: add tests including coverage (jest and mocha/chai?)
+
+  lint_src_files:
+    name: Lint source files
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - name: Lint source files with Prettier
+        run: >
+          npx prettier --check
+          .
+          --config
+          .prettierrc.yaml
+          --ignore-path
+          .prettierignore
+      - name: Lint source files with ESLint
+        run: >
+          npx eslint
+          .
+          --config
+          .eslintrc.yaml
+          --ignore-path
+          .eslintignore
+
+  check-npm-dependencies:
+    name: Check npm dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - name: Scan for known vulnerabilities in dependencies with npm audit
+        run: >
+          npm audit
+          --audit-level
+          critical
+      - name: Check for unused and missing dependencies with depcheck
+        run: >
+          npx depcheck
+          --ignores
+          typescript,prettier
+      - name: Check for outdated packages with npm outdated
+        run: npm outdated
+      - name: Check for outdated packages with npm-check-updates
+        run: npx npm-check-updates
+
+  find_todos:
+    name: Search for TODOs etc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Search for TODO, FIXME, and BUG statements in source files
+        run: >
+          if grep
+          --recursive
+          --extended-regexp
+          --with-filename
+          --line-number
+          --color=always
+          "TODO|FIXME|BUG"
+          ./src;
+          then exit 1;
+          else
+          echo "No TODO, FIXME, or BUG statements found in source files.";
+          fi
+
+  typos_spell_check:
+    name: Check spelling with typos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check spelling with typos
+        uses: crate-ci/typos@master
+        with:
+          config: .typos.toml
+
+  lint_markdown_files:
+    name: Lint Markdown files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: articulate/actions-markdownlint@v1
+        with:
+          files: '*.md'
+          ignore: '**/node_modules'
+
+  lint_yaml_files:
+    name: Lint YAML files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ibiqlik/action-yamllint@v3
+
+  lint_shell_script_files:
+    name: Lint shell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azohra/shell-linter@latest
+
+  commitlint:
+    name: Enforce Conventional Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: >
+          Check the commits conform to the Conventional
+          Commits specification with commitlint
+        uses: wagoid/commitlint-github-action@v5
+
+# TODO: check PRs have all changes (squashed) in(to) 1 commit
+# TODO: make semver automatically bump version num and update changelog
+# TODO: publish new release if version num bumped and CI passes

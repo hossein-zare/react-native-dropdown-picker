@@ -1,0 +1,19 @@
+# docs at: https://github.com/crate-ci/typos/blob/master/docs/reference.md
+
+files.extend-exclude = [
+    ".typos.toml"
+]
+
+default.extend-ignore-re = [
+    # false positives
+    "alguns itens selecionados",
+    "elementi sono stati selezionati",
+    "Nada a ser mostrado",
+    "prevProps",
+    "prevState",
+]
+
+default.locale = "en-us"
+
+# note: add false negatives with corrections in default.extend-identifiers or default.extend-words
+# todo: check mistakes over multiple words, e.g. "the the" instead of "the"

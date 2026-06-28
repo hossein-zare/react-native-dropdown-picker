@@ -1,184 +1,170 @@
-import {
-    StyleSheet
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import Colors from '../../constants/colors';
 
 export const ICONS = {
-    ARROW_DOWN: require('./icons/arrow-down.png'),
-    ARROW_UP: require('./icons/arrow-up.png'),
-    TICK: require('./icons/tick.png'),
-    CLOSE: require('./icons/close.png')
+  ARROW_DOWN: require('./icons/arrow-down.png'),
+  ARROW_UP: require('./icons/arrow-up.png'),
+  TICK: require('./icons/tick.png'),
+  CLOSE: require('./icons/close.png'),
 };
 
 export default StyleSheet.create({
-    container: {
-        width: '100%',
-    },
-    style: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-        minHeight: 50,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: Colors.BLACK,
-        paddingHorizontal: 10,
-        paddingVertical: 3,
-        backgroundColor: Colors.EBONY_CLAY,
-    },
-    label: {
-        flex: 1,
-        color: Colors.HEATHER
-    },
-    labelContainer: {
-        flex: 1,
-        flexDirection: 'row',
-    },
-    arrowIcon: {
-        width: 20,
-        height: 20
-    },
-    tickIcon: {
-        width: 20,
-        height: 20
-    },
-    closeIcon: {
-        width: 30,
-        height: 30
-    },
-    badgeStyle: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderRadius: 10,
-        backgroundColor: Colors.ALTO,
-        paddingHorizontal: 10,
-        paddingVertical: 5
-    },
-    badgeDotStyle: {
-        width: 10,
-        height: 10,
-        borderRadius: 10 / 2,
-        marginRight: 8,
-        backgroundColor: Colors.GREY
-    },
-    badgeSeparator: {
-        width: 5,
-    },
-    listBody: {
-        height: '100%',
-    },
-    listBodyContainer: {
-        flexGrow: 1,
-        alignItems: 'center',
-    },
-    dropDownContainer: {
-        position: 'absolute',
-        backgroundColor: Colors.EBONY_CLAY,
-        borderRadius: 8,
-        borderColor: Colors.BLACK,
-        borderWidth: 1,
-        width: '100%',
-        overflow: 'hidden',
-        zIndex: 1000
-    },
-    modalContentContainer: {
-        flexGrow: 1,
-        backgroundColor: Colors.EBONY_CLAY
-    },
-    listItemContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 10,
-        height: 40
-    },
-    listItemLabel: {
-        flex: 1,
-        color: Colors.HEATHER
-    },
-    iconContainer: {
-        marginRight: 10
-    },
-    arrowIconContainer: {
-        marginLeft: 10
-    },
-    tickIconContainer: {
-        marginLeft: 10
-    },
-    closeIconContainer: {
-        marginLeft: 10
-    },
-    listParentLabel: {
-
-    },
-    listChildLabel: {
-
-    },
-    listParentContainer: {
-
-    },
-    listChildContainer: {
-        paddingLeft: 40,
-    },
-    searchContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        borderBottomColor: Colors.SHUTTLE_GREY,
-        borderBottomWidth: 1
-    },
-    searchTextInput: {
-        flexGrow: 1,
-        flexShrink: 1,
-        margin: 0,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 8,
-        borderColor: Colors.SHUTTLE_GREY,
-        borderWidth: 1,
-        color: Colors.WHITE
-    },
-    itemSeparator: {
-        height: 1,
-        backgroundColor: Colors.SHUTTLE_GREY,
-    },
-    flatListContentContainer: {
-        flexGrow: 1
-    },
-    customItemContainer: {
-
-    },
-    customItemLabel: {
-        fontStyle: 'italic'
-    },
-    listMessageContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-    },
-    listMessageText: {
-        color: Colors.HEATHER
-    },
-    selectedItemContainer: {
-
-    },
-    selectedItemLabel: {
-
-    },
-    modalTitle: {
-        fontSize: 18,
-        color: Colors.HEATHER
-    },
-    extendableBadgeContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        flex: 1
-    },
-    extendableBadgeItemContainer: {
-        marginVertical: 3,
-        marginEnd: 7
-    }
+  arrowIcon: {
+    height: 20,
+    width: 20,
+  },
+  arrowIconContainer: {
+    marginLeft: 10,
+  },
+  badgeDotStyle: {
+    backgroundColor: Colors.GREY,
+    borderRadius: 10 / 2,
+    height: 10,
+    marginRight: 8,
+    width: 10,
+  },
+  badgeSeparator: {
+    width: 5,
+  },
+  badgeStyle: {
+    alignItems: 'center',
+    backgroundColor: Colors.ALTO,
+    borderRadius: 10,
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  closeIcon: {
+    height: 30,
+    width: 30,
+  },
+  closeIconContainer: {
+    marginLeft: 10,
+  },
+  container: {
+    width: '100%',
+  },
+  customItemContainer: {},
+  customItemLabel: {
+    fontStyle: 'italic',
+  },
+  dropDownContainer: {
+    backgroundColor: Colors.EBONY_CLAY,
+    borderColor: Colors.BLACK,
+    borderRadius: 8,
+    borderWidth: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    width: '100%',
+    zIndex: 1000,
+  },
+  extendableBadgeContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
+  },
+  extendableBadgeItemContainer: {
+    marginEnd: 7,
+    marginVertical: 3,
+  },
+  flatListContentContainer: {
+    flexGrow: 1,
+  },
+  iconContainer: {
+    marginRight: 10,
+  },
+  itemSeparator: {
+    backgroundColor: Colors.SHUTTLE_GREY,
+    height: 1,
+  },
+  label: {
+    color: Colors.HEATHER,
+    flex: 1,
+  },
+  labelContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  listBody: {
+    height: '100%',
+  },
+  listBodyContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+  },
+  listChildContainer: {
+    paddingLeft: 40,
+  },
+  listChildLabel: {},
+  listItemContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 40,
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+  },
+  listItemLabel: {
+    color: Colors.HEATHER,
+    flex: 1,
+  },
+  listMessageContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  listMessageText: {
+    color: Colors.HEATHER,
+  },
+  listParentContainer: {},
+  listParentLabel: {},
+  modalContentContainer: {
+    backgroundColor: Colors.EBONY_CLAY,
+    flexGrow: 1,
+  },
+  modalTitle: {
+    color: Colors.HEATHER,
+    fontSize: 18,
+  },
+  searchContainer: {
+    alignItems: 'center',
+    borderBottomColor: Colors.SHUTTLE_GREY,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    padding: 10,
+  },
+  searchTextInput: {
+    borderColor: Colors.SHUTTLE_GREY,
+    borderRadius: 8,
+    borderWidth: 1,
+    color: Colors.WHITE,
+    flexGrow: 1,
+    flexShrink: 1,
+    margin: 0,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  selectedItemContainer: {},
+  selectedItemLabel: {},
+  style: {
+    alignItems: 'center',
+    backgroundColor: Colors.EBONY_CLAY,
+    borderColor: Colors.BLACK,
+    borderRadius: 8,
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    minHeight: 50,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    width: '100%',
+  },
+  tickIcon: {
+    height: 20,
+    width: 20,
+  },
+  tickIconContainer: {
+    marginLeft: 10,
+  },
 });

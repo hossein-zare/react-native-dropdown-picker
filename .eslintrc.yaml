@@ -1,0 +1,109 @@
+---
+# docs at: https://eslint.org/docs/latest/use/configure/configuration-files
+env:
+  browser: true
+  es2021: true
+  react-native/react-native: true
+extends:
+  - airbnb
+  - airbnb-typescript
+  - airbnb/hooks
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/stylistic
+  - plugin:eslint-comments/recommended
+  - plugin:import/errors
+  - plugin:import/recommended
+  - plugin:import/typescript
+  - plugin:import/warnings
+  - plugin:jsdoc/recommended
+  - plugin:json/recommended
+  - plugin:jsx-a11y/recommended
+  - plugin:react-hooks/recommended
+  - plugin:react-native/all
+  - plugin:react/recommended
+  - prettier
+globals:
+  JSX: true
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: latest
+  project: ./tsconfig.json
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
+  - eslint-comments
+  - eslint-plugin-json
+  - import
+  - jsdoc
+  - jsx-a11y
+  - react
+  - react-hooks
+  - react-native
+rules:
+  '@typescript-eslint/array-type':
+    - error
+    - default: 'generic'
+      readonly: 'generic'
+  '@typescript-eslint/explicit-function-return-type': error
+  '@typescript-eslint/explicit-module-boundary-types': error
+  '@typescript-eslint/no-explicit-any':
+    - error
+    - fixToUnknown: false
+      ignoreRestArgs: false
+  '@typescript-eslint/no-shadow': error
+  '@typescript-eslint/no-use-before-define': error
+  camelcase: error
+  comma-dangle:
+    - error
+    - always-multiline
+  comma-style:
+    - error
+    - last
+  import/extensions:
+    - error
+    - never
+  import/no-unresolved: error
+  jsdoc/check-indentation: error
+  jsdoc/no-bad-blocks: error
+  jsdoc/require-description: error
+  jsdoc/require-file-overview: error
+  jsdoc/require-throws: error
+  jsx-quotes:
+    - error
+    - prefer-single
+  linebreak-style:
+    - error
+    - unix
+  max-lines:
+    - error
+    - 300
+  max-lines-per-function:
+    - warn
+    - max: 20
+  no-console: error
+  no-duplicate-imports: error
+  no-multi-spaces: error
+  no-shadow: error
+  no-template-curly-in-string: error
+  no-trailing-spaces: error
+  no-undef: error
+  no-use-before-define: warn
+  react-native/no-inline-styles: warn
+  react/jsx-filename-extension:
+    - error
+    - extensions:
+        - .ts
+        - .tsx
+        - .js
+        - .jsx
+  react/prop-types: error
+  sort-imports: warn
+  sort-keys:
+    - error
+    - asc
+    - caseSensitive: true
+      minKeys: 2
+      natural: true

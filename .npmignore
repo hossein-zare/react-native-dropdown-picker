@@ -1,4 +1,4 @@
 .github/
 node_modules/
-
+examples
 package-lock.json
