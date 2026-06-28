@@ -84,6 +84,7 @@ function Picker({
   containerStyle = {},
   customItemContainerStyle = {},
   customItemLabelStyle = {},
+  customItemValueDelimiter = '-',
   disableBorderRadius = true,
   disabled = false,
   disabledItemContainerStyle = {},
@@ -542,7 +543,7 @@ function Picker({
     ) {
       results.push({
         [ITEM_SCHEMA.label]: searchText,
-        [ITEM_SCHEMA.value]: searchText.replace(' ', '-'),
+        [ITEM_SCHEMA.value]: customItemValueDelimiter ? searchText.replaceAll(' ', customItemValueDelimiter) : searchText,
         custom: true,
       });
     }

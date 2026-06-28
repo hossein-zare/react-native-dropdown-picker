@@ -196,6 +196,7 @@ declare module 'react-native-dropdown-picker' {
     containerStyle?: StyleProp<ViewStyle>;
     customItemContainerStyle?: StyleProp<ViewStyle>;
     customItemLabelStyle?: StyleProp<TextStyle>;
+    customItemValueDelimiter?: string;
     disableBorderRadius?: boolean;
     disabledItemContainerStyle?: StyleProp<ViewStyle>;
     disabledItemLabelStyle?: StyleProp<TextStyle>;
