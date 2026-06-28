@@ -1,6 +1,6 @@
 {
   "name": "react-native-dropdown-picker",
-  "version": "5.5.0",
+  "version": "5.5.1",
   "description": "A single / multiple, categorizable, customizable, localizable and searchable item picker (drop-down) component for react native which supports both Android & iOS.",
   "keywords": [
     "picker",
