@@ -211,6 +211,7 @@ declare module 'react-native-dropdown-picker' {
     hideSelectedItemIcon?: boolean;
     iconContainerStyle?: StyleProp<ViewStyle>;
     itemKey?: string;
+    itemLabelProps?: TextProps;
     itemProps?: TouchableOpacityProps;
     itemSeparator?: boolean;
     itemSeparatorStyle?: StyleProp<ViewStyle>;
@@ -242,7 +243,7 @@ declare module 'react-native-dropdown-picker' {
     multipleText?: string;
     onChangeSearchText?: (text: string) => void;
     onClose?: () => void;
-    onDirectionChanged?: (direction: DropDownDirectionType) => void;
+    onDirectionChanged?: (direction: 'top' | 'bottom') => void;
     onLayout?: (e: LayoutChangeEvent) => void;
     onOpen?: () => void;
     onPress?: (open: boolean) => void;
