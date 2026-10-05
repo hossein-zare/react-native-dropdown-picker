@@ -70,5 +70,8 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-native": "^0.72.5"
+  },
+  "scripts": {
+    "test:types": "tsc -p tests/types/tsconfig.json"
   }
 }

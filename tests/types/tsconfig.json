@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "lib": ["es2020"],
+    "types": [],
+    "skipLibCheck": true
+  },
+  "files": ["../../index.d.ts", "picker.tsx"]
+}
